@@ -12,6 +12,8 @@ import {
   relicBonus,
   SPECIES,
   TEMPERAMENTS,
+  NOT_FIGHTER,
+  canFight,
   levelXp,
 } from './catalog';
 import { GameError } from './errors';
@@ -179,6 +181,12 @@ export function finishEvolution(state: GameState, dinoId: string, now: number, e
   if (!keepNick) dino.nickname = to;
   markOwned(state, dino.speciesId, dino.variant === 'albino');
   events.push({ kind: 'evolve', text: `${from} a evoluat în ${to}!`, dinoId });
+  // Prima evoluție îl face luptător: intră singur în haită, cât e loc.
+  const free = state.activity?.kind !== 'expedition' && !state.party.includes(dinoId) && state.party.length < partySize(state);
+  if (free && canFight(dino.speciesId) && !state.workers.some((w) => w.dinoId === dinoId) && !isBreeding(state, dinoId)) {
+    state.party.push(dinoId);
+    events.push({ kind: 'info', text: `${dino.nickname} poate lupta acum și a intrat în haită! ⚔️`, dinoId });
+  }
 }
 
 export function partySize(state: GameState): number {
@@ -194,6 +202,7 @@ export function setParty(state: GameState, ids: string[]) {
     if (dino.molt) throw new GameError('BUSY', `${dino.nickname} năpârlește.`);
     if (state.workers.some((w) => w.dinoId === id)) throw new GameError('BUSY', `${dino.nickname} e la muncă.`);
     if (isBreeding(state, id)) throw new GameError('BUSY', `${dino.nickname} e în Bârlog.`);
+    if (!canFight(dino.speciesId)) throw new GameError('VALIDATION', `${dino.nickname}: ${NOT_FIGHTER}`);
   }
   state.party = unique;
 }

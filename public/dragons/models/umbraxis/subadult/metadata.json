@@ -1,0 +1,39 @@
+{
+  "label": "Subadult",
+  "nativeAge": 3,
+  "derived": true,
+  "displayScale": 0.92,
+  "sourceArchive": "basic_3068_dragon_incinerateeternal_3_HD_spine-3-8-59_dxt5.zip",
+  "animations": [
+    {
+      "name": "attack",
+      "duration": 3.7333333492279053
+    },
+    {
+      "name": "breathe",
+      "duration": 1.6666666269302368
+    },
+    {
+      "name": "fly",
+      "duration": 1.6666666269302368
+    },
+    {
+      "name": "levelup",
+      "duration": 1.6666666269302368
+    },
+    {
+      "name": "special1",
+      "duration": 3.1666667461395264
+    },
+    {
+      "name": "walk",
+      "duration": 1.6666666269302368
+    }
+  ],
+  "bones": 67,
+  "slots": 74,
+  "skeleton": "models/umbraxis/subadult/skeleton.skel",
+  "atlas": "models/umbraxis/subadult/atlas.atlas",
+  "texture": "models/umbraxis/subadult/texture.png",
+  "preview": "models/umbraxis/subadult/preview.png"
+}

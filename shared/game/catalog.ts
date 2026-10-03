@@ -162,6 +162,10 @@ export const SPECIES: Record<string, Species> = Object.fromEntries(SPECIES_LIST.
 export const BABY_SPECIES = SPECIES_LIST.filter((s) => s.stage === 'pui').map((s) => s.id);
 export const STARTERS = ['mugurel', 'scanteius', 'pietroi'] as const;
 
+/** Puii nu luptă: intră în haită și în expediții abia după prima evoluție (Juvenil). */
+export const canFight = (speciesId: string) => SPECIES[speciesId]?.stage !== 'pui';
+export const NOT_FIGHTER = 'Puii nu luptă încă: intră în haită după prima evoluție (Juvenil).';
+
 export const BRANCH_INFO: Record<Branch, { name: string; diet: Diet; hint: string }> = {
   pradator: { name: 'Prădător', diet: 'carne', hint: 'Atac și viteză' },
   colos: { name: 'Colos', diet: 'plante', hint: 'Viață și apărare' },
@@ -488,7 +492,8 @@ export const ZONES: Zone[] = [
     name: 'Jungla Cețurilor',
     icon: '🌿',
     levels: [1, 8],
-    enemies: ['mugurel', 'aripel', 'pietroi', 'scanteius'],
+    // Doar juvenili: puii sălbatici nu luptă.
+    enemies: ['ferigosaur', 'planorix', 'scutosaur', 'jarraptor'],
     count: [1, 2],
     seconds: 45,
     tier: 1,

@@ -1,3 +1,4 @@
+import { EggIcon, ItemArt } from '../components/AssetIcon';
 // Activități în stil MilkyWay: Cules, Săpături, Bucătărie. O singură activitate odată.
 
 import { useState } from 'react';
@@ -17,7 +18,7 @@ import {
   skillLevel,
   skillXp,
 } from '@shared/game';
-import { Bar, ItemChip, Panel } from '../components/ui';
+import { Bar, ItemChip, PageHeader, Panel } from '../components/ui';
 import type { Game } from '../hooks/useGame';
 import { formatSeconds } from '../utils/format';
 import { WorkPanel } from './WorkPanel';
@@ -30,9 +31,9 @@ const GATHER_COUNTS = [0, 10, 50, 100];
 function queuedLabel(item: QueuedAction): string {
   if (item.kind === 'gather') {
     const a = GATHER_ACTIONS.find((x) => x.id === item.actionId)!;
-    return `${a.icon} ${a.name} ×${item.count}`;
+    return `${a.name} ×${item.count}`;
   }
-  if (item.kind === 'cook') return `${ITEMS[RECIPES.find((r) => r.id === item.recipeId)!.output].icon} ${RECIPES.find((r) => r.id === item.recipeId)!.name} ×${item.count}`;
+  if (item.kind === 'cook') return `${RECIPES.find((r) => r.id === item.recipeId)!.name} ×${item.count}`;
   const z = ZONES.find((x) => x.id === item.zoneId)!;
   return `${z.icon} ${z.name}`;
 }
@@ -74,15 +75,12 @@ export function SkillHeader({ game, skill }: { game: Game; skill: SkillId }) {
       <div className="grow">
         <div className="row between">
           <b>
-            {SKILLS[skill].name} · nivel {level}
+            {SKILLS[skill].name} <span className="skill-level">Nv. {level}</span>
           </b>
-          <small className="muted">{SKILLS[skill].blurb}</small>
+          <small className="muted">{level < MAX_SKILL_LEVEL ? `${xp - from}/${to - from} XP până la nivelul ${level + 1}` : 'Nivel maxim!'}</small>
         </div>
-        {level < MAX_SKILL_LEVEL ? (
-          <Bar value={xp - from} max={to - from} color="#7bc66b" thin label={`${xp - from}/${to - from} XP`} />
-        ) : (
-          <small>Nivel maxim!</small>
-        )}
+        {level < MAX_SKILL_LEVEL && <Bar value={xp - from} max={to - from} color="#7bc66b" thin />}
+        <small className="muted">{SKILLS[skill].blurb}</small>
       </div>
     </div>
   );
@@ -97,26 +95,46 @@ export function ActivitiesScreen({ game }: { game: Game }) {
 
   return (
     <div className="screen">
-      <WorkPanel game={game} />
-      <QueueStrip game={game} />
-      <div className="tabs" role="tablist">
-        {(['cules', 'sapaturi', 'bucatarie'] as Tab[]).map((t) => (
-          <button key={t} role="tab" aria-selected={tab === t} className={`tab${tab === t ? ' active' : ''}`} onClick={() => setTab(t)}>
-            {SKILLS[t].icon} {SKILLS[t].name}
-          </button>
-        ))}
+      <PageHeader
+        icon="⛏️"
+        title="Activități"
+        subtitle="Tu culegi, sapi sau gătești: o activitate odată, care merge și cât ești plecat (până la 8 ore). Pune altele în coadă și trimite haita la muncă în paralel."
+        stats={(['cules', 'sapaturi', 'bucatarie'] as Tab[]).map((t) => ({ label: SKILLS[t].name, value: `Nv. ${skillLevel(state, t)}` }))}
+      />
+
+      {/* Ce poți face: trei taburi mari, cu nivelul fiecăruia. */}
+      <div className="act-tabs" role="tablist">
+        {(['cules', 'sapaturi', 'bucatarie'] as Tab[]).map((t) => {
+          const running =
+            (active?.kind === 'gather' && GATHER_ACTIONS.find((a) => a.id === active.actionId)?.skill === t) ||
+            (t === 'bucatarie' && active?.kind === 'cook');
+          return (
+            <button key={t} role="tab" aria-selected={tab === t} className={`act-tab${tab === t ? ' active' : ''}`} onClick={() => setTab(t)}>
+              <span className="act-tab-icon">{SKILLS[t].icon}</span>
+              <span className="act-tab-text">
+                <b>{SKILLS[t].name}</b>
+                <small>
+                  Nv. {skillLevel(state, t)}
+                  {running && <span className="act-tab-running"> · ⏳ în lucru</span>}
+                </small>
+              </span>
+            </button>
+          );
+        })}
       </div>
 
       {tab !== 'bucatarie' ? (
         <Panel>
           <SkillHeader game={game} skill={tab} />
           <div className="count-row">
-            <span className="muted small">Câte acțiuni:</span>
-            {GATHER_COUNTS.map((n) => (
-              <button key={n} className={`btn tiny${count === n ? ' primary' : ''}`} onClick={() => setCount(n)}>
-                {n === 0 ? '∞' : n}
-              </button>
-            ))}
+            <span className="muted small">Repetă:</span>
+            <span className="segmented">
+              {GATHER_COUNTS.map((n) => (
+                <button key={n} className={count === n ? 'on' : ''} onClick={() => setCount(n)} title={n === 0 ? 'Până o oprești (maximum 8 ore)' : `${n} acțiuni`}>
+                  {n === 0 ? '∞ continuu' : `×${n}`}
+                </button>
+              ))}
+            </span>
           </div>
           <div className="action-grid">
             {GATHER_ACTIONS.filter((a) => a.skill === tab).map((a) => {
@@ -125,18 +143,18 @@ export function ActivitiesScreen({ game }: { game: Game }) {
               const totalWeight = a.drops.reduce((s, d) => s + d.weight, 0);
               return (
                 <div key={a.id} className={`action-card${running ? ' running' : ''}${locked ? ' locked' : ''}`}>
-                  <div className="action-icon">{locked ? '🔒' : a.icon}</div>
+                  <div className="action-icon">{locked ? '🔒' : a.skill === 'cules' ? <ItemArt item={a.drops[0].value} size={52} /> : a.icon}</div>
                   <b>{a.name}</b>
                   <small className="muted">
                     {formatSeconds(a.seconds)} / acțiune · +{a.xp} XP
                   </small>
                   <div className="drops">
                     {a.drops.map((d) => (
-                      <span key={d.value} className="drop" title={ITEMS[d.value].name}>
-                        {ITEMS[d.value].icon} {Math.round((d.weight / totalWeight) * 100)}%
+                      <span key={d.value} className="drop" title={ITEMS[d.value].blurb}>
+                        <ItemArt item={d.value} /> {ITEMS[d.value].name} · {Math.round((d.weight / totalWeight) * 100)}%
                       </span>
                     ))}
-                    {a.egg && <span className="drop egg-drop">🥚 {+(a.egg.chance * 100).toFixed(1)}%</span>}
+                    {a.egg && <span className="drop egg-drop"><EggIcon /> {+(a.egg.chance * 100).toFixed(1)}%</span>}
                   </div>
                   {locked ? (
                     <small className="lock-text">Nivel {a.level}</small>
@@ -172,9 +190,9 @@ export function ActivitiesScreen({ game }: { game: Game }) {
       ) : (
         <Kitchen game={game} />
       )}
-      <p className="hint">
-        Activitatea merge și cât ești plecat (maximum 8 ore). Alege un număr de acțiuni și pune altele în coadă: pornesc singure, una după alta.
-      </p>
+
+      <QueueStrip game={game} />
+      <WorkPanel game={game} />
     </div>
   );
 }
@@ -205,7 +223,7 @@ function Kitchen({ game }: { game: Game }) {
           const food = ITEMS[r.output].food!;
           return (
             <div key={r.id} className={`action-card${running ? ' running' : ''}${locked ? ' locked' : ''}`}>
-              <div className="action-icon">{locked ? '🔒' : ITEMS[r.output].icon}</div>
+              <div className="action-icon">{locked ? '🔒' : <ItemArt item={r.output} size={52} />}</div>
               <b>{r.name}</b>
               <small className="muted">
                 {formatSeconds(r.seconds)} / porție · +{food.xp} XP la hrănire

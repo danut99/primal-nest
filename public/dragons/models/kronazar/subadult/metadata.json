@@ -1,0 +1,39 @@
+{
+  "label": "Subadult",
+  "nativeAge": 3,
+  "derived": true,
+  "displayScale": 0.92,
+  "sourceArchive": "basic_3109_dragon_highredemptionnorn_3_HD_spine-3-8-59_dxt5.zip",
+  "animations": [
+    {
+      "name": "attack",
+      "duration": 3.0333333015441895
+    },
+    {
+      "name": "breathe",
+      "duration": 2
+    },
+    {
+      "name": "fly",
+      "duration": 1.6666666269302368
+    },
+    {
+      "name": "levelup",
+      "duration": 2
+    },
+    {
+      "name": "special1",
+      "duration": 3.1666667461395264
+    },
+    {
+      "name": "walk",
+      "duration": 1.6666666269302368
+    }
+  ],
+  "bones": 90,
+  "slots": 88,
+  "skeleton": "models/kronazar/subadult/skeleton.skel",
+  "atlas": "models/kronazar/subadult/atlas.atlas",
+  "texture": "models/kronazar/subadult/texture.png",
+  "preview": "models/kronazar/subadult/preview.png"
+}

@@ -1,0 +1,35 @@
+{
+  "label": "Juvenil",
+  "nativeAge": 1,
+  "derived": true,
+  "displayScale": 0.82,
+  "sourceArchive": "basic_3081_dragon_highascendedsupreme_1_HD_spine-3-8-59_dxt5.zip",
+  "animations": [
+    {
+      "name": "breathe",
+      "duration": 2
+    },
+    {
+      "name": "fly",
+      "duration": 1.600000023841858
+    },
+    {
+      "name": "levelup",
+      "duration": 2
+    },
+    {
+      "name": "special1",
+      "duration": 2.700000047683716
+    },
+    {
+      "name": "walk",
+      "duration": 1.600000023841858
+    }
+  ],
+  "bones": 55,
+  "slots": 69,
+  "skeleton": "models/imperion/juvenil/skeleton.skel",
+  "atlas": "models/imperion/juvenil/atlas.atlas",
+  "texture": "models/imperion/juvenil/texture.png",
+  "preview": "models/imperion/juvenil/preview.png"
+}

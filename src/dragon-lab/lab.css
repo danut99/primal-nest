@@ -1,0 +1,165 @@
+/* Laboratorul de dragoni (/#laborator) */
+.lab {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(300px, 1fr);
+  gap: 16px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 16px;
+  align-items: start;
+}
+.lab-stage {
+  position: sticky;
+  top: 16px;
+}
+.lab-view {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 8px;
+}
+.lab-view .dragon-player {
+  aspect-ratio: 1;
+  border: 1px solid var(--line);
+}
+.lab-row {
+  margin-top: 10px;
+}
+.lab-swatch {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid var(--line-strong);
+  cursor: pointer;
+  background-image: linear-gradient(45deg, #444 25%, transparent 25%, transparent 75%, #444 75%);
+  background-size: 10px 10px;
+}
+.lab-swatch.active {
+  border-color: var(--gold);
+}
+.lab-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.lab-section {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+}
+.lab-section summary {
+  cursor: pointer;
+  font-family: var(--font-head);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.lab-section h4 {
+  margin: 12px 0 4px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+.lab select,
+.lab input:not([type='range']):not([type='checkbox']):not([type='color']),
+.lab textarea {
+  min-width: 0;
+  padding: 5px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--line-strong);
+  background: rgba(0, 0, 0, 0.35);
+  color: var(--text);
+  font: inherit;
+}
+.lab select {
+  max-width: 100%;
+}
+.lab-field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.lab-range {
+  display: grid;
+  grid-template-columns: 110px 1fr 44px;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.lab-range.changed span {
+  color: var(--gold);
+}
+.lab-range input[type='range'] {
+  width: 100%;
+  accent-color: var(--ember);
+}
+.lab-range output {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.lab-check {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 6px 0;
+  font-size: 0.85rem;
+}
+.lab-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.lab .chip {
+  cursor: pointer;
+  color: var(--text);
+}
+.lab .chip.changed {
+  border-color: var(--ember);
+}
+.lab .chip.active {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(255, 200, 97, 0.12);
+}
+.lab-anim {
+  display: grid;
+  grid-template-columns: 70px 1fr 64px auto;
+  gap: 6px;
+  align-items: center;
+  margin-top: 6px;
+}
+.lab-json {
+  width: 100%;
+  min-height: 220px;
+  font:
+    12px/1.4 ui-monospace,
+    Consolas,
+    monospace !important;
+  margin-bottom: 8px;
+}
+@media (max-width: 860px) {
+  .lab {
+    grid-template-columns: 1fr;
+  }
+  .lab-stage {
+    position: static;
+  }
+}
+/* Ca tab în joc: ocupă tot spațiul, iar playerul lipicios stă sub bara de sus. */
+.main .lab {
+  max-width: none;
+  padding: 0;
+}
+.main .lab-stage {
+  top: 72px;
+}
+/* Playerul nu împinge controalele sub ecran. */
+.main .lab-view .dragon-player {
+  max-height: calc(100vh - 240px);
+}

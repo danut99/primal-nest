@@ -50,8 +50,10 @@ Arhitectura urmează Hearth & Crown (`../proiect nou`): reguli fără React în 
 
 - **Regiunile** (fundalurile expedițiilor și ale arenei) vin din `art/scenes`; `npm run scenes` le comprimă în `src/assets/scenes`.
 - Alte scene de test (ecranul de start, povestea) stau în `src/local-art/scenes/`, exclus din git (vezi `src/local-art/CITESTE.md`).
-- **Dinozaurii** sunt cele 4 corpuri generate în `art/turntables` (sauropod, theropod, ankylosaur, pterosaur), câte 8 unghiuri pe vârstă. `npm run turntables` le comprimă în `src/assets/turntables` (o poză 3/4 + o bandă 360°).
-- În joc apar ca imagini (cu rotire 360° în Haită, la eclozare și în Atlas); în lupta 3D (three.js) sunt decupaje din profil, luminate de arenă.
+- **Creaturile** sunt dragonii animați din `public/dragons` (vezi `src/content/dragons.ts`): liniile sauropod/raptor/ankylo/ptero folosesc Nerion/Pyron/Crystalis/Solarys (pui, juvenil, cele două ramuri de adult = adult/subadult). Alfa regiunilor sunt boșii Umbraxis, Auralis, Vortexion, Kronazar.
+- În Haită, la eclozare și în Atlas apar animați (atinge-i ca să zboare/atace); în liste, imagini statice din `public/dragons/stills` (`npm run stills`, cu `npm run dev` pornit).
+- **Lupta** (`src/battle/Arena.ts`) folosește animațiile lor: mers/zbor până la țintă și `attack` pentru atacul de bază, `special1` pentru ultimată, `levelup` la victorie. Puii nu luptă: intră în haită după prima evoluție.
+- **Dragonii animați** (Spine 3.8, preluați din DCAT) stau în `public/dragons`: cei 4 dragoni generați (Solarys, Pyron, Nerion, Crystalis, câte 4 evoluții) + Auralis în `models/`, iar arhivele Dragon City în `library/` (DDS-ul se convertește în browser, fără server). Codul e în `src/dragons` (`<DragonPlayer source={{ model: 'nerion', stage: 'adult' }} />`); ecranul „Dragoni” din meniu sau direct `/#dragoni`. După ce adaugi arhive noi: `npm run dragons`.
 
 ## Verificări
 

@@ -1,6 +1,6 @@
 // Cuibul: plasare, rotire, lumânare și eclozare.
 
-import { PROPERTY_LEVELS, RARITIES, SPECIES, TEMPERATURES, TURN_BONUS, TURN_COOLDOWN_SECONDS, TUTORIAL_EGG_SECONDS } from './catalog';
+import { PROPERTY_LEVELS, canFight, RARITIES, SPECIES, TEMPERATURES, TURN_BONUS, TURN_COOLDOWN_SECONDS, TUTORIAL_EGG_SECONDS } from './catalog';
 import { GameError } from './errors';
 import { addSkillXp, makeId, markOwned, markTutorial, skillLevel } from './state';
 import type { Dino, Egg, GameEvent, GameState, Stats, Temperature } from './types';
@@ -111,8 +111,8 @@ export function hatchEgg(state: GameState, eggId: string, now: number, events: G
   };
   state.eggs = state.eggs.filter((e) => e.id !== eggId);
   state.dinos.push(dino);
-  // Primii pui intră automat în haită, cât e loc.
-  if (state.activity?.kind !== 'expedition' && state.party.length < 2) state.party.push(dino.id);
+  // Primii luptători intră automat în haită, cât e loc (puii nu luptă, deci așteaptă prima evoluție).
+  if (canFight(dino.speciesId) && state.activity?.kind !== 'expedition' && state.party.length < 2) state.party.push(dino.id);
   markOwned(state, dino.speciesId, dino.variant === 'albino');
   markTutorial(state, 'first-hatch');
   state.stats.hatches++;

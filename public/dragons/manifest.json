@@ -1,0 +1,4557 @@
+{
+ "models": [
+  {
+   "id": "solarys",
+   "name": "Solarys",
+   "element": "Auroră solară",
+   "color": "#f2cd75",
+   "description": "Gardian înaripat, armură de argint și aur, solzi albaștri.",
+   "stages": [
+    {
+     "id": "pui",
+     "label": "Pui",
+     "scale": 0.7
+    },
+    {
+     "id": "juvenil",
+     "label": "Juvenil",
+     "scale": 0.82
+    },
+    {
+     "id": "subadult",
+     "label": "Subadult",
+     "scale": 0.92
+    },
+    {
+     "id": "adult",
+     "label": "Adult",
+     "scale": 1
+    }
+   ]
+  },
+  {
+   "id": "pyron",
+   "name": "Pyron",
+   "element": "Foc vulcanic",
+   "color": "#ff8953",
+   "description": "Dragon de obsidian cu fisuri de lavă și aripi de jar.",
+   "stages": [
+    {
+     "id": "pui",
+     "label": "Pui",
+     "scale": 0.7
+    },
+    {
+     "id": "juvenil",
+     "label": "Juvenil",
+     "scale": 0.82
+    },
+    {
+     "id": "subadult",
+     "label": "Subadult",
+     "scale": 0.92
+    },
+    {
+     "id": "adult",
+     "label": "Adult",
+     "scale": 1
+    }
+   ]
+  },
+  {
+   "id": "nerion",
+   "name": "Nerion",
+   "element": "Ocean",
+   "color": "#6de4d4",
+   "description": "Dragon marin cu înotătoare turcoaz și accente de coral.",
+   "stages": [
+    {
+     "id": "pui",
+     "label": "Pui",
+     "scale": 0.7
+    },
+    {
+     "id": "juvenil",
+     "label": "Juvenil",
+     "scale": 0.82
+    },
+    {
+     "id": "subadult",
+     "label": "Subadult",
+     "scale": 0.92
+    },
+    {
+     "id": "adult",
+     "label": "Adult",
+     "scale": 1
+    }
+   ]
+  },
+  {
+   "id": "crystalis",
+   "name": "Crystalis",
+   "element": "Cristale",
+   "color": "#c0a3ff",
+   "description": "Dragon de ametist cu membrane lavandă și accente argintii.",
+   "stages": [
+    {
+     "id": "pui",
+     "label": "Pui",
+     "scale": 0.7
+    },
+    {
+     "id": "juvenil",
+     "label": "Juvenil",
+     "scale": 0.82
+    },
+    {
+     "id": "subadult",
+     "label": "Subadult",
+     "scale": 0.92
+    },
+    {
+     "id": "adult",
+     "label": "Adult",
+     "scale": 1
+    }
+   ]
+  },
+  {
+   "id": "auralis",
+   "name": "Auralis",
+   "element": "Auroră",
+   "color": "#7fe0c8",
+   "description": "Solzi turcoaz, armură violet și aur, aripi mentă cu vârfuri violet.",
+   "stages": [
+    {
+     "id": "adult",
+     "label": "Adult",
+     "scale": 1
+    }
+   ]
+  },
+  {
+   "id": "kronazar",
+   "name": "Kronazar",
+   "element": "Imparat al eclipsei",
+   "color": "#ff4962",
+   "description": "Imparat de obsidian, armura de aur antic si energie carmin.",
+   "stages": [
+    {
+     "id": "pui",
+     "label": "Pui",
+     "scale": 0.7
+    },
+    {
+     "id": "juvenil",
+     "label": "Juvenil",
+     "scale": 0.82
+    },
+    {
+     "id": "subadult",
+     "label": "Subadult",
+     "scale": 0.92
+    },
+    {
+     "id": "adult",
+     "label": "Adult",
+     "scale": 1
+    }
+   ]
+  },
+  {
+   "id": "vortexion",
+   "name": "Vortexion",
+   "element": "Suveran cosmic",
+   "color": "#b487ff",
+   "description": "Suveran cosmic cu armura argintie si energie de nebuloasa.",
+   "stages": [
+    {
+     "id": "pui",
+     "label": "Pui",
+     "scale": 0.7
+    },
+    {
+     "id": "juvenil",
+     "label": "Juvenil",
+     "scale": 0.82
+    },
+    {
+     "id": "subadult",
+     "label": "Subadult",
+     "scale": 0.92
+    },
+    {
+     "id": "adult",
+     "label": "Adult",
+     "scale": 1
+    }
+   ]
+  },
+  {
+   "id": "umbraxis",
+   "name": "Umbraxis",
+   "element": "Flacara spectrala",
+   "color": "#78ffbd",
+   "description": "Dragon spectral cu solzi negri, foc verde si rune magenta.",
+   "stages": [
+    {
+     "id": "pui",
+     "label": "Pui",
+     "scale": 0.7
+    },
+    {
+     "id": "juvenil",
+     "label": "Juvenil",
+     "scale": 0.82
+    },
+    {
+     "id": "subadult",
+     "label": "Subadult",
+     "scale": 0.92
+    },
+    {
+     "id": "adult",
+     "label": "Adult",
+     "scale": 1
+    }
+   ]
+  },
+  {
+   "id": "astrion",
+   "name": "Astrion",
+   "element": "Zodiac astral",
+   "color": "#82cfff",
+   "description": "Dragon zodiacal cu constelatii, aur stelar si solzi de safir.",
+   "stages": [
+    {
+     "id": "pui",
+     "label": "Pui",
+     "scale": 0.7
+    },
+    {
+     "id": "juvenil",
+     "label": "Juvenil",
+     "scale": 0.82
+    },
+    {
+     "id": "subadult",
+     "label": "Subadult",
+     "scale": 0.92
+    },
+    {
+     "id": "adult",
+     "label": "Adult",
+     "scale": 1
+    }
+   ]
+  },
+  {
+   "id": "imperion",
+   "name": "Imperion",
+   "element": "Coroana prismatica",
+   "color": "#ffe58d",
+   "description": "Suveran incoronat cu armura aurie, cristale irizate si sceptru regal.",
+   "stages": [
+    {
+     "id": "pui",
+     "label": "Pui",
+     "scale": 0.7
+    },
+    {
+     "id": "juvenil",
+     "label": "Juvenil",
+     "scale": 0.82
+    },
+    {
+     "id": "subadult",
+     "label": "Subadult",
+     "scale": 0.92
+    },
+    {
+     "id": "adult",
+     "label": "Adult",
+     "scale": 1
+    }
+   ]
+  },
+  {
+   "id": "prismara",
+   "name": "Prismara",
+   "element": "Aripi de opal",
+   "color": "#ffa8e7",
+   "description": "Dragon cu aripi late irizate, solzi de diamant si armura din aur roz.",
+   "stages": [
+    {
+     "id": "pui",
+     "label": "Pui",
+     "scale": 0.7
+    },
+    {
+     "id": "juvenil",
+     "label": "Juvenil",
+     "scale": 0.82
+    },
+    {
+     "id": "subadult",
+     "label": "Subadult",
+     "scale": 0.92
+    },
+    {
+     "id": "adult",
+     "label": "Adult",
+     "scale": 1
+    }
+   ]
+  },
+  {
+   "id": "sutrath",
+   "name": "Sutrath",
+   "element": "Cusaturi si sange",
+   "color": "#c35874",
+   "description": "Dragon intunecat cu piele cusuta, cicatrici, os si pete de sange.",
+   "stages": [
+    {
+     "id": "pui",
+     "label": "Pui",
+     "scale": 0.7
+    },
+    {
+     "id": "juvenil",
+     "label": "Juvenil",
+     "scale": 0.82
+    },
+    {
+     "id": "subadult",
+     "label": "Subadult",
+     "scale": 0.92
+    },
+    {
+     "id": "adult",
+     "label": "Adult",
+     "scale": 1
+    }
+   ]
+  },
+  {
+   "id": "noctyra",
+   "name": "Noctyra",
+   "element": "Aripi de nebuloasă",
+   "color": "#bba1ff",
+   "description": "Dragon înaripat cu membrane de galaxie, filigran auriu și solzi de opal.",
+   "stages": [
+    {
+     "id": "pui",
+     "label": "Pui",
+     "scale": 0.7,
+     "bodyBounds": {
+      "x": -31.62010859544771,
+      "y": 6.81630129239176,
+      "width": 68.90097581113022,
+      "height": 85.47284005946916
+     },
+     "sceneBounds": {
+      "x": -119.09825719552391,
+      "y": -64.92803921723676,
+      "width": 241.9206986735722,
+      "height": 249.9156195129516
+     },
+     "nativeAge": 1,
+     "derived": false
+    },
+    {
+     "id": "juvenil",
+     "label": "Juvenil",
+     "scale": 0.82,
+     "bodyBounds": {
+      "x": -31.62010859544771,
+      "y": 6.81630129239176,
+      "width": 68.90097581113022,
+      "height": 85.47284005946916
+     },
+     "sceneBounds": {
+      "x": -119.09825719552391,
+      "y": -64.92803921723676,
+      "width": 241.9206986735722,
+      "height": 249.9156195129516
+     },
+     "nativeAge": 1,
+     "derived": true
+    },
+    {
+     "id": "subadult",
+     "label": "Subadult",
+     "scale": 0.92,
+     "bodyBounds": {
+      "x": -64.44951995175045,
+      "y": -1.1661906092875345,
+      "width": 123.31964346002931,
+      "height": 131.279030828808
+     },
+     "sceneBounds": {
+      "x": -111.59258503618783,
+      "y": -63.40322155146321,
+      "width": 388.34906708448324,
+      "height": 241.5558260355101
+     },
+     "nativeAge": 3,
+     "derived": true
+    },
+    {
+     "id": "adult",
+     "label": "Adult",
+     "scale": 1,
+     "bodyBounds": {
+      "x": -64.44951995175045,
+      "y": -1.1661906092875345,
+      "width": 123.31964346002931,
+      "height": 131.279030828808
+     },
+     "sceneBounds": {
+      "x": -111.59258503618783,
+      "y": -63.40322155146321,
+      "width": 388.34906708448324,
+      "height": 241.5558260355101
+     },
+     "nativeAge": 3,
+     "derived": false
+    }
+   ]
+  },
+  {
+   "id": "vharok",
+   "name": "Vharok",
+   "element": "Furtună de obsidian",
+   "color": "#57e5ff",
+   "description": "Dragon masiv cu armură de obsidian, fisuri electrice și coarne de cristal.",
+   "stages": [
+    {
+     "id": "pui",
+     "label": "Pui",
+     "scale": 0.7,
+     "bodyBounds": {
+      "x": -24.727369287258647,
+      "y": -2.690615666839907,
+      "width": 63.45808425065014,
+      "height": 58.39143627922701
+     },
+     "sceneBounds": {
+      "x": -36.113944464800376,
+      "y": -22.548644498923295,
+      "width": 100.475942290598,
+      "height": 101.81176002839562
+     },
+     "nativeAge": 1,
+     "derived": false
+    },
+    {
+     "id": "juvenil",
+     "label": "Juvenil",
+     "scale": 0.82,
+     "bodyBounds": {
+      "x": -24.727369287258647,
+      "y": -2.690615666839907,
+      "width": 63.45808425065014,
+      "height": 58.39143627922701
+     },
+     "sceneBounds": {
+      "x": -36.113944464800376,
+      "y": -22.548644498923295,
+      "width": 100.475942290598,
+      "height": 101.81176002839562
+     },
+     "nativeAge": 1,
+     "derived": true
+    },
+    {
+     "id": "subadult",
+     "label": "Subadult",
+     "scale": 0.92,
+     "bodyBounds": {
+      "x": -63.73817010354723,
+      "y": 0.7345378523867652,
+      "width": 151.801447819808,
+      "height": 129.3767147803992
+     },
+     "sceneBounds": {
+      "x": -162.0134727736764,
+      "y": -115.44901245664613,
+      "width": 424.380762299959,
+      "height": 348.16355029333727
+     },
+     "nativeAge": 3,
+     "derived": true
+    },
+    {
+     "id": "adult",
+     "label": "Adult",
+     "scale": 1,
+     "bodyBounds": {
+      "x": -63.73817010354723,
+      "y": 0.7345378523867652,
+      "width": 151.801447819808,
+      "height": 129.3767147803992
+     },
+     "sceneBounds": {
+      "x": -162.0134727736764,
+      "y": -115.44901245664613,
+      "width": 424.380762299959,
+      "height": 348.16355029333727
+     },
+     "nativeAge": 3,
+     "derived": false
+    }
+   ]
+  },
+  {
+   "id": "noctyra-stella",
+   "name": "Noctyra & Stella",
+   "element": "Pact astral",
+   "color": "#bba1ff",
+   "description": "Noctyra, companionul-vulpe Stella și un sceptru lunar. Ult2: orbită, sincronizare și undă astrală.",
+   "stages": [
+    {
+     "id": "pui",
+     "label": "Pui",
+     "scale": 0.7,
+     "bodyBounds": {
+      "x": -40.167392601394624,
+      "y": 2.5426592894183013,
+      "width": 115.91103784383827,
+      "height": 95.72958086660547
+     },
+     "sceneBounds": {
+      "x": -111.17993525394337,
+      "y": -67.54506955934642,
+      "width": 230.77666816056674,
+      "height": 230.77666816056674
+     },
+     "extension": "extensions/noctyra-stella/extension.js",
+     "extensionConfig": {
+      "sourceBounds": {
+       "x": -31.62010859544771,
+       "y": 6.81630129239176,
+       "width": 68.90097581113022,
+       "height": 85.47284005946916
+      },
+      "companion": "extensions/noctyra-stella/companion.png",
+      "weapon": "extensions/noctyra-stella/weapon.png"
+     }
+    },
+    {
+     "id": "juvenil",
+     "label": "Juvenil",
+     "scale": 0.82,
+     "bodyBounds": {
+      "x": -40.167392601394624,
+      "y": 2.5426592894183013,
+      "width": 115.91103784383827,
+      "height": 95.72958086660547
+     },
+     "sceneBounds": {
+      "x": -111.17993525394337,
+      "y": -67.54506955934642,
+      "width": 230.77666816056674,
+      "height": 230.77666816056674
+     },
+     "extension": "extensions/noctyra-stella/extension.js",
+     "extensionConfig": {
+      "sourceBounds": {
+       "x": -31.62010859544771,
+       "y": 6.81630129239176,
+       "width": 68.90097581113022,
+       "height": 85.47284005946916
+      },
+      "companion": "extensions/noctyra-stella/companion.png",
+      "weapon": "extensions/noctyra-stella/weapon.png"
+     }
+    },
+    {
+     "id": "subadult",
+     "label": "Subadult",
+     "scale": 0.92,
+     "bodyBounds": {
+      "x": -77.57742303463125,
+      "y": -7.730142150727935,
+      "width": 195.5231104158737,
+      "height": 147.03251452826498
+     },
+     "sceneBounds": {
+      "x": -177.54999697142603,
+      "y": -115.37894743035051,
+      "width": 354.4533832377816,
+      "height": 354.4533832377816
+     },
+     "extension": "extensions/noctyra-stella/extension.js",
+     "extensionConfig": {
+      "sourceBounds": {
+       "x": -64.44951995175045,
+       "y": -1.1661906092875345,
+       "width": 123.31964346002931,
+       "height": 131.279030828808
+      },
+      "companion": "extensions/noctyra-stella/companion.png",
+      "weapon": "extensions/noctyra-stella/weapon.png"
+     }
+    },
+    {
+     "id": "adult",
+     "label": "Adult",
+     "scale": 1,
+     "bodyBounds": {
+      "x": -77.57742303463125,
+      "y": -7.730142150727935,
+      "width": 195.5231104158737,
+      "height": 147.03251452826498
+     },
+     "sceneBounds": {
+      "x": -177.54999697142603,
+      "y": -115.37894743035051,
+      "width": 354.4533832377816,
+      "height": 354.4533832377816
+     },
+     "extension": "extensions/noctyra-stella/extension.js",
+     "extensionConfig": {
+      "sourceBounds": {
+       "x": -64.44951995175045,
+       "y": -1.1661906092875345,
+       "width": 123.31964346002931,
+       "height": 131.279030828808
+      },
+      "companion": "extensions/noctyra-stella/companion.png",
+      "weapon": "extensions/noctyra-stella/weapon.png"
+     }
+    }
+   ]
+  }
+ ],
+ "library": [
+  {
+   "id": "3002",
+   "name": "4eva Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3002_dragon_4eva_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3002_dragon_4eva_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2938",
+   "name": "Aello Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2938_dragon_aelo_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2938_dragon_aelo_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2917",
+   "name": "Algae Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2917_dragon_algae_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2917_dragon_algae_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2830",
+   "name": "Alpha Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2830_dragon_alpha_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2830_dragon_alpha_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2837",
+   "name": "Ambition Karma Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2837_dragon_ambitionkarma_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2837_dragon_ambitionkarma_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2988",
+   "name": "Anaconductor Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2988_dragon_anaconductor_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2988_dragon_anaconductor_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2827",
+   "name": "AnimOwl Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2827_dragon_animowl_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2827_dragon_animowl_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3095",
+   "name": "Arcana Hermit Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3095_dragon_arcanahermit_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3095_dragon_arcanahermit_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3025",
+   "name": "Arcana Hierophant Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3025_dragon_arcanahierophant_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3025_dragon_arcanahierophant_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3053",
+   "name": "Arcana Priestess Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3053_dragon_arcanapriestess_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3053_dragon_arcanapriestess_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3067",
+   "name": "Arcana Tower Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3067_dragon_arcanatower_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3067_dragon_arcanatower_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3039",
+   "name": "Arcana Wheel Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3039_dragon_arcanawheel_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3039_dragon_arcanawheel_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2831",
+   "name": "Ascended Bravery Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2831_dragon_ascendedbravery_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2831_dragon_ascendedbravery_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2910",
+   "name": "Ascended Cosmos Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2910_dragon_ascendedcosmos_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2910_dragon_ascendedcosmos_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2909",
+   "name": "Ascended Deity Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2909_dragon_ascendeddeity_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2909_dragon_ascendeddeity_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2911",
+   "name": "Ascended Oracle Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2911_dragon_ascendedoracle_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2911_dragon_ascendedoracle_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2797",
+   "name": "Ascended Praetor Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2797_dragon_ascendedpraetor_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2797_dragon_ascendedpraetor_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2849",
+   "name": "Ascended Retributor Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2849_dragon_ascendedretributor_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2849_dragon_ascendedretributor_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2814",
+   "name": "Ascended Sage Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2814_dragon_ascendedsage_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2814_dragon_ascendedsage_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2820",
+   "name": "Assassin Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2820_dragon_assassin_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2820_dragon_assassin_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3082",
+   "name": "Avalanche Eternal Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3082_dragon_avalancheeternal_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3082_dragon_avalancheeternal_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3028",
+   "name": "Avant-Garde Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3028_dragon_avantgarde_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3028_dragon_avantgarde_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2774",
+   "name": "Ballista Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2774_dragon_ballista_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2774_dragon_ballista_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2921",
+   "name": "Beakaneer Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2921_dragon_beakaneer_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2921_dragon_beakaneer_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2834",
+   "name": "Beauticia Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2834_dragon_beautica_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2834_dragon_beautica_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3040",
+   "name": "Bicephalous Eternal Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3040_dragon_bicephalouseternal_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3040_dragon_bicephalouseternal_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2896",
+   "name": "Blazing Steed Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2896_dragon_blazingsteed_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2896_dragon_blazingsteed_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3021",
+   "name": "Bloom Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3021_dragon_bloom_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3021_dragon_bloom_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2864",
+   "name": "Broodby Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2864_dragon_broodby_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2864_dragon_broodby_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2945",
+   "name": "Bugblaze Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2945_dragon_bugblaze_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2945_dragon_bugblaze_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2979",
+   "name": "Cactispine Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2979_dragon_cactispine_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2979_dragon_cactispine_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2984",
+   "name": "Carol Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2984_dragon_carol_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2984_dragon_carol_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2769",
+   "name": "Catapult Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2769_dragon_catapult_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2769_dragon_catapult_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2881",
+   "name": "Cavemodo Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2881_dragon_cavemodo_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2881_dragon_cavemodo_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2924",
+   "name": "Chaos Reign Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2924_dragon_chaosreign_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2924_dragon_chaosreign_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2813",
+   "name": "Clawtortle Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2813_dragon_clawtortle_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2813_dragon_clawtortle_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2931",
+   "name": "Clubs Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2931_dragon_clubs_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2931_dragon_clubs_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3026",
+   "name": "Colossus Eternal Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3026_dragon_colossuseternal_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3026_dragon_colossuseternal_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2824",
+   "name": "Count Volt Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2824_dragon_countvolt_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2824_dragon_countvolt_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2785",
+   "name": "Courageous Karma Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2785_dragon_courageouskarma_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2785_dragon_courageouskarma_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2913",
+   "name": "Craftee Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2913_dragon_craftee_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2913_dragon_craftee_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2976",
+   "name": "Craftsman Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2976_dragon_craftsman_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2976_dragon_craftsman_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2920",
+   "name": "Cranium Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2920_dragon_cranium_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2920_dragon_cranium_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2964",
+   "name": "Crawlizoid Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2964_dragon_crawlizoid_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2964_dragon_crawlizoid_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2828",
+   "name": "Crownix Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2828_dragon_crownix_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2828_dragon_crownix_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2999",
+   "name": "Cupid Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2999_dragon_cupid_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2999_dragon_cupid_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2922",
+   "name": "Cytherean Empress Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2922_dragon_cythereanempress_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2922_dragon_cythereanempress_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2876",
+   "name": "Damona Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2876_dragon_damona_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2876_dragon_damona_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2969",
+   "name": "Daryl Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2969_dragon_daryl_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2969_dragon_daryl_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2951",
+   "name": "Delusion Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2951_dragon_delusion_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2951_dragon_delusion_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2858",
+   "name": "Deputroll Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2858_dragon_deputroll_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2858_dragon_deputroll_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2977",
+   "name": "Design Chief Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Adult",
+     "file": "basic_2977_dragon_designchief_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2871",
+   "name": "Determination Karma Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2871_dragon_determinationkarma_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2871_dragon_determinationkarma_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3139",
+   "name": "Deuspet Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3139_dragon_deuspet_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Juvenil",
+     "file": "basic_3139_dragon_deuspet_2_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3139_dragon_deuspet_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2887",
+   "name": "Dhar Mann Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2887_dragon_dharmann_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2887_dragon_dharmann_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2928",
+   "name": "Diamonds Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2928_dragon_diamonds_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2928_dragon_diamonds_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2936",
+   "name": "DragOni Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2936_dragon_dragoni_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2936_dragon_dragoni_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2927",
+   "name": "Dual Parliament Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2927_dragon_parliament_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2927_dragon_parliament_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2941",
+   "name": "Dual Perception Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2941_dragon_perception_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2941_dragon_perception_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2790",
+   "name": "Dynamite Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2790_dragon_dynamite_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2790_dragon_dynamite_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3019",
+   "name": "Eggsile Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3019_dragon_eggsile_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3019_dragon_eggsile_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3018",
+   "name": "Eggsodus Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3018_dragon_eggsodus_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3018_dragon_eggsodus_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3027",
+   "name": "Empire Wasteland Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3027_dragon_empirewasteland_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3027_dragon_empirewasteland_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2994",
+   "name": "Empower Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2994_dragon_empower_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2994_dragon_empower_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2906",
+   "name": "Endurance Karma Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2906_dragon_endurancekarma_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2906_dragon_endurancekarma_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2841",
+   "name": "Evil Witch Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2841_dragon_evilwitch_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2841_dragon_evilwitch_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2966",
+   "name": "Evozoid Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2966_dragon_evozoid_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2966_dragon_evozoid_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2985",
+   "name": "Fast Feline Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2985_dragon_fastfeline_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2985_dragon_fastfeline_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2821",
+   "name": "Flamingrock Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2821_dragon_flamingrock_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Juvenil",
+     "file": "basic_2821_dragon_flamingrock_2_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2821_dragon_flamingrock_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2819",
+   "name": "Focus Karma Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2819_dragon_focuskarma_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2819_dragon_focuskarma_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2912",
+   "name": "Forrestbono Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2912_dragon_forrestbono_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2912_dragon_forrestbono_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2905",
+   "name": "Fragmented Karma Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2905_dragon_fragmentedkarma_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2905_dragon_fragmentedkarma_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2990",
+   "name": "Gatekeeper Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2990_dragon_gatekeeper_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2990_dragon_gatekeeper_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2802",
+   "name": "Grace Karma Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2802_dragon_gracekarma_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2802_dragon_gracekarma_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2833",
+   "name": "Graceful Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2833_dragon_graceful_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2833_dragon_graceful_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3000",
+   "name": "Guardian Angel Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3000_dragon_guardianangel_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3000_dragon_guardianangel_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3020",
+   "name": "Hailstone Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3020_dragon_hailstone_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3020_dragon_hailstone_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2869",
+   "name": "Hanzo Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2869_dragon_hanzo_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2869_dragon_hanzo_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3038",
+   "name": "Haunted Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3038_dragon_haunteddragon_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3038_dragon_haunteddragon_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2888",
+   "name": "Healing Karma Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2888_dragon_healingkarma_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2888_dragon_healingkarma_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2930",
+   "name": "Hearts Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2930_dragon_hearts_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2930_dragon_hearts_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2972",
+   "name": "Heartstopper Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2972_dragon_heartstopper_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2972_dragon_heartstopper_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3054",
+   "name": "Hecatoncheire Eternal Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3054_dragon_hecatoncheireeternal_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3054_dragon_hecatoncheireeternal_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3023",
+   "name": "Hibernation Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3023_dragon_hibernation_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3023_dragon_hibernation_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2878",
+   "name": "High Anomaly Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2878_dragon_highanomaly_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2878_dragon_highanomaly_3_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult · skin 1",
+     "file": "basic_2878_dragon_highanomaly_skin1_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3081",
+   "name": "High Ascended Supreme Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3081_dragon_highascendedsupreme_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3081_dragon_highascendedsupreme_3_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult · skin 1",
+     "file": "basic_3081_dragon_highascendedsupreme_skin1_3_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult · skin 2",
+     "file": "basic_3081_dragon_highascendedsupreme_skin2_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2826",
+   "name": "High Bloody Moon Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2826_dragon_highbloodymoon_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2826_dragon_highbloodymoon_3_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult · skin 1",
+     "file": "basic_2826_dragon_highbloodymoon_skin1_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3031",
+   "name": "High Cinco Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3031_dragon_highcinco_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3031_dragon_highcinco_3_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult · skin 1",
+     "file": "basic_3031_dragon_highcinco_skin1_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2861",
+   "name": "High Colony Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2861_dragon_highcolony_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2861_dragon_highcolony_3_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult · skin 1",
+     "file": "basic_2861_dragon_highcolony_skin1_3_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult · skin 2",
+     "file": "basic_2861_dragon_highcolony_skin2_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2901",
+   "name": "High Corrupted Time Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2901_dragon_highcorruptedtime_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2901_dragon_highcorruptedtime_3_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Pui (aură neagră)",
+     "file": "basic_2901_dragon_highcorruptedtime_b_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult (aură neagră)",
+     "file": "basic_2901_dragon_highcorruptedtime_b_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2960",
+   "name": "High Drowsy Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2960_dragon_highdrowsy_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2960_dragon_highdrowsy_3_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult · skin 1",
+     "file": "basic_2960_dragon_highdrowsy_skin1_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2946",
+   "name": "High Famine Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2946_dragon_highfamine_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2946_dragon_highfamine_3_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult · skin 1",
+     "file": "basic_2946_dragon_highfamine_skin1_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2989",
+   "name": "High Five Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2989_dragon_highfive_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2989_dragon_highfive_3_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult · skin 1",
+     "file": "basic_2989_dragon_highfive_skin1_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3003",
+   "name": "High Heroic Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3003_dragon_highheroic_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3003_dragon_highheroic_3_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult · skin 1",
+     "file": "basic_3003_dragon_highheroic_skin1_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3011",
+   "name": "High Master Karma Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3011_dragon_highmasterkarma_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3011_dragon_highmasterkarma_3_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult · skin 1",
+     "file": "basic_3011_dragon_highmasterkarma_skin1_3_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult · skin 2",
+     "file": "basic_3011_dragon_highmasterkarma_skin2_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3017",
+   "name": "High Nest Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3017_dragon_highnest_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3017_dragon_highnest_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3109",
+   "name": "High Redemption Norn Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3109_dragon_highredemptionnorn_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3109_dragon_highredemptionnorn_3_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult · skin 1",
+     "file": "basic_3109_dragon_highredemptionnorn_skin1_3_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult · skin 2",
+     "file": "basic_3109_dragon_highredemptionnorn_skin2_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2844",
+   "name": "High Reign Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2844_dragon_highreigndragon_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2844_dragon_highreigndragon_3_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult · skin 1",
+     "file": "basic_2844_dragon_highreigndragon_skin1_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2809",
+   "name": "High Sacredwing Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2809_dragon_highsacredwing_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2809_dragon_highsacredwing_3_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult · skin 3",
+     "file": "basic_2809_dragon_highsacredwing_3_skin_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2919",
+   "name": "High Seven Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2919_dragon_highseven_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2919_dragon_highseven_3_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult · skin 1",
+     "file": "basic_2919_dragon_highseven_skin1_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2895",
+   "name": "High Sunbringer Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2895_dragon_highsunbringer_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2895_dragon_highsunbringer_3_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult · skin 1",
+     "file": "basic_2895_dragon_highsunbringer_skin1_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2975",
+   "name": "High Toytown Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2975_dragon_hightoytown_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2975_dragon_hightoytown_3_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult · skin 1",
+     "file": "basic_2975_dragon_hightoytown_skin1_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2932",
+   "name": "High Treasure Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2932_dragon_hightreasure_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2932_dragon_hightreasure_3_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult · skin 1",
+     "file": "basic_2932_dragon_hightreasure_skin1_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2863",
+   "name": "Hive Drone Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2863_dragon_hivedrone_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2863_dragon_hivedrone_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2862",
+   "name": "Hive Soldier Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2862_dragon_hivesoldier_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2862_dragon_hivesoldier_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3110",
+   "name": "Hoarder Eternal Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3110_dragon_hoardereternal_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3110_dragon_hoardereternal_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2755",
+   "name": "Incendiary Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2755_dragon_incendiary_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2755_dragon_incendiary_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3068",
+   "name": "Incinerate Eternal Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3068_dragon_incinerateeternal_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3068_dragon_incinerateeternal_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2923",
+   "name": "Iron Glider Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2923_dragon_ironglider_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2923_dragon_ironglider_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3096",
+   "name": "Ivy Eternal Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3096_dragon_ivyeternal_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3096_dragon_ivyeternal_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2950",
+   "name": "Jawbone Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2950_dragon_jawbone_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2950_dragon_jawbone_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2875",
+   "name": "Jewelem Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2875_dragon_jewelem_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2875_dragon_jewelem_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2801",
+   "name": "Karl Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2801_dragon_karl_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2801_dragon_karl_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2967",
+   "name": "Kimby Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2967_dragon_kimby_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2967_dragon_kimby_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2791",
+   "name": "Knife Bandit Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2791_dragon_knifebandit_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2791_dragon_knifebandit_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2918",
+   "name": "Koraken Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2918_dragon_koraken_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2918_dragon_koraken_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2836",
+   "name": "Kung Flow Karma Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2836_dragon_kungflowkarma_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2836_dragon_kungflowkarma_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2943",
+   "name": "Lanternfinder Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2943_dragon_lanternfinder_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2943_dragon_lanternfinder_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2847",
+   "name": "Legend Status Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2847_dragon_legendstatus_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2847_dragon_legendstatus_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2842",
+   "name": "Luscious Locks Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2842_dragon_lusciouslocks_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2842_dragon_lusciouslocks_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2942",
+   "name": "Lustre Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2942_dragon_lustre_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2942_dragon_lustre_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2998",
+   "name": "Maggie Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2998_dragon_maggie_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2998_dragon_maggie_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2904",
+   "name": "McCreamy 2.0 Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2904_dragon_mccreamy2_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2904_dragon_mccreamy2_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2855",
+   "name": "Medium Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2855_dragon_medium_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2855_dragon_medium_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2965",
+   "name": "Metamorphosis Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2965_dragon_metamorphosis_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2965_dragon_metamorphosis_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2970",
+   "name": "Michonne Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2970_dragon_michonne_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2970_dragon_michonne_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2872",
+   "name": "Midarian Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2872_dragon_midarian_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2872_dragon_midarian_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2835",
+   "name": "Moriah Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2835_dragon_moriah_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2835_dragon_moriah_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2803",
+   "name": "Murdraghoul Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2803_dragon_murdraghoul_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2803_dragon_murdraghoul_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2882",
+   "name": "Musketeer Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2882_dragon_musketeer_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2882_dragon_musketeer_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2973",
+   "name": "Narwhal Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2973_dragon_narwhal_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2973_dragon_narwhal_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3012",
+   "name": "Negan Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3012_dragon_negan_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3012_dragon_negan_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2961",
+   "name": "Night Mare Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2961_dragon_nightmare_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2961_dragon_nightmare_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2825",
+   "name": "Noble Blue Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2825_dragon_nobleblue_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2825_dragon_nobleblue_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2971",
+   "name": "Orca Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2971_dragon_orca_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2971_dragon_orca_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2898",
+   "name": "Pettalion Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2898_dragon_pettalion_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2898_dragon_pettalion_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2879",
+   "name": "Phaun Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2879_dragon_phaun_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2879_dragon_phaun_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2934",
+   "name": "Pickaxe Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2934_dragon_pickaxe_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2934_dragon_pickaxe_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2810",
+   "name": "Piety Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2810_dragon_piety_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2810_dragon_piety_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3007",
+   "name": "Piranha Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3007_dragon_piranha_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3007_dragon_piranha_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2958",
+   "name": "Pixie Drake Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2958_dragon_pixiedrake_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2958_dragon_pixiedrake_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2957",
+   "name": "Pixie Hydra Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2957_dragon_pixiehydra_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2957_dragon_pixiehydra_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2956",
+   "name": "Pixie Salamander Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2956_dragon_pixiesalamander_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2956_dragon_pixiesalamander_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2959",
+   "name": "Pixie Wyvern Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2959_dragon_pixiewyvern_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2959_dragon_pixiewyvern_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2725",
+   "name": "Polar General Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2725_dragon_polargeneral_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2725_dragon_polargeneral_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2980",
+   "name": "Polipurge Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2980_dragon_polipurge_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2980_dragon_polipurge_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3008",
+   "name": "Porpoise Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3008_dragon_porpoise_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3008_dragon_porpoise_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2978",
+   "name": "Potatorture Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2978_dragon_potatorture_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2978_dragon_potatorture_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2766",
+   "name": "Preston Flash Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2766_dragon_brentrivera_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2766_dragon_brentrivera_3_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Pui",
+     "file": "basic_2766_dragon_prestonflash_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2766_dragon_prestonflash_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2848",
+   "name": "Primal Wrath Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2848_dragon_primalrage_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2848_dragon_primalrage_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2829",
+   "name": "Primalio Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2829_dragon_primalio_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2829_dragon_primalio_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2963",
+   "name": "Protopillar Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2963_dragon_protopillar_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2963_dragon_protopillar_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3009",
+   "name": "Pufferfish Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3009_dragon_pufferfish_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3009_dragon_pufferfish_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3006",
+   "name": "Puffin Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3006_dragon_puffin_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3006_dragon_puffin_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2852",
+   "name": "Purification Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2852_dragon_purification_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2852_dragon_purification_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3004",
+   "name": "Rabid Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3004_dragon_rabid_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3004_dragon_rabid_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2944",
+   "name": "Radiance Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2944_dragon_radiance_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2944_dragon_radiance_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3010",
+   "name": "Rainbow Onesie Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3010_dragon_rainbowonesie_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3010_dragon_rainbowonesie_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2865",
+   "name": "Ramsey Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2865_dragon_ramsey_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2865_dragon_ramsey_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2949",
+   "name": "Razorslash Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2949_dragon_razorslash_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2949_dragon_razorslash_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2889",
+   "name": "Rebelle Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2889_dragon_rebelle_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2889_dragon_rebelle_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2995",
+   "name": "Recall Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2995_dragon_recall_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2995_dragon_recall_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2838",
+   "name": "Red Crested Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2838_dragon_redcrested_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2838_dragon_redcrested_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2832",
+   "name": "Redemption Blade Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2832_dragon_redemptionblade_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2832_dragon_redemptionblade_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2968",
+   "name": "Redemption Brutality Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2968_dragon_redemptionbrutality_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2968_dragon_redemptionbrutality_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2890",
+   "name": "Redemption Conquest Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2890_dragon_redemptionconquest_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2890_dragon_redemptionconquest_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2997",
+   "name": "Redemption Doom Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2997_dragon_redemptiondoom_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2997_dragon_redemptiondoom_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2926",
+   "name": "Redemption Looter Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2926_dragon_redemptionlooter_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2926_dragon_redemptionlooter_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2940",
+   "name": "Redemption Malice Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2940_dragon_redemptionmalice_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2940_dragon_redemptionmalice_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2983",
+   "name": "Redemption Wrath Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2983_dragon_redemptionwrath_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2983_dragon_redemptionwrath_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2954",
+   "name": "Redemption Wulf Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2954_dragon_redemptionwulf_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2954_dragon_redemptionwulf_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2811",
+   "name": "Relickeeper Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2811_dragon_relickeeper_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2811_dragon_relickeeper_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2925",
+   "name": "Renaissance Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2925_dragon_renaissance_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2925_dragon_renaissance_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2816",
+   "name": "Reptileader Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2816_dragon_reptileader_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2816_dragon_reptileader_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2854",
+   "name": "Revival Karma Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2854_dragon_revivalkarma_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2854_dragon_revivalkarma_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2955",
+   "name": "Rick Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2955_dragon_rick_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2955_dragon_rick_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2794",
+   "name": "Robo Hound Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2794_dragon_robohound_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2794_dragon_robohound_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2793",
+   "name": "Robo Ravager Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2793_dragon_roboravager_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2793_dragon_roboravager_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2853",
+   "name": "Rug Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2853_dragon_rug_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2853_dragon_rug_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2783",
+   "name": "Rune Wyvern Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2783_dragon_runewyvern_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2783_dragon_runewyvern_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2987",
+   "name": "Scorpiate Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2987_dragon_scorpiate_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2987_dragon_scorpiate_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2981",
+   "name": "Scoville Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2981_dragon_scoville_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2981_dragon_scoville_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2947",
+   "name": "Scraveton Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2947_dragon_scraveton_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2947_dragon_scraveton_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2935",
+   "name": "Screamer Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2935_dragon_screamer_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2935_dragon_screamer_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2952",
+   "name": "Scythewing Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2952_dragon_scythewing_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2952_dragon_scythewing_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3140",
+   "name": "Sea Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3140_dragon_sea_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Juvenil",
+     "file": "basic_3140_dragon_sea_2_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3140_dragon_sea_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3001",
+   "name": "Seraphim Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3001_dragon_seraphim_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3001_dragon_seraphim_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3030",
+   "name": "Sharp Poise Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3030_dragon_sharppoise_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3030_dragon_sharppoise_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2915",
+   "name": "Shellcanic Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2915_dragon_shellcanic_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2915_dragon_shellcanic_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2933",
+   "name": "Shovel Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2933_dragon_shovel_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2933_dragon_shovel_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2986",
+   "name": "Silent Slay Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2986_dragon_silentslay_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2986_dragon_silentslay_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3029",
+   "name": "Silhouette Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3029_dragon_silhouette_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3029_dragon_silhouette_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2859",
+   "name": "Sister Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2859_dragon_sister_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2859_dragon_sister_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2894",
+   "name": "Smug Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2894_dragon_smug_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2894_dragon_smug_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2823",
+   "name": "Snow Monarch Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2823_dragon_snowmonarch_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2823_dragon_snowmonarch_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2897",
+   "name": "Solar Charioteer Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2897_dragon_solarcharioteer_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2897_dragon_solarcharioteer_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2929",
+   "name": "Spades Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2929_dragon_spades_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2929_dragon_spades_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2880",
+   "name": "Speedy & Greedy Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2880_dragon_speedyandgreedy_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2880_dragon_speedyandgreedy_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2892",
+   "name": "Spellbinding Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2892_dragon_spellblending_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2892_dragon_spellblending_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2948",
+   "name": "Starveton Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2948_dragon_starveton_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2948_dragon_starveton_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3005",
+   "name": "Statuschaser Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3005_dragon_statuschaser_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3005_dragon_statuschaser_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2886",
+   "name": "Steel Arms Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2886_dragon_steelarms_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2886_dragon_steelarms_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2996",
+   "name": "Stokes Twins Dragons",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2996_dragon_stokestwins_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2996_dragon_stokestwins_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2845",
+   "name": "Successor Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2845_dragon_successor_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2845_dragon_successor_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2992",
+   "name": "Summon Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2992_dragon_summon_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2992_dragon_summon_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2982",
+   "name": "Super Dhar Mann Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2982_dragon_superdharmann_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2982_dragon_superdharmann_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2846",
+   "name": "Superseder Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2846_dragon_superseder_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2846_dragon_superseder_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2937",
+   "name": "Tentacularian Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2937_dragon_tentacularian_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2937_dragon_tentacularian_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2868",
+   "name": "Time Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2868_dragon_time_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2868_dragon_time_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2885",
+   "name": "Time Patrol Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2885_dragon_timepatrol_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2885_dragon_timepatrol_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2817",
+   "name": "Traiturtle Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2817_dragon_traiturtle_1_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2860",
+   "name": "Transformation Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2860_dragon_transformation_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2860_dragon_transformation_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2993",
+   "name": "Tree of Life Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2993_dragon_treeoflife_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2993_dragon_treeoflife_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2857",
+   "name": "Tricky Trunk Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2857_dragon_trickytrunk_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2857_dragon_trickytrunk_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2843",
+   "name": "Truthbender Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2843_dragon_truthbender_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2843_dragon_truthbender_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2812",
+   "name": "Turtorrior Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2812_dragon_turtorrior_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2812_dragon_turtorrior_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2991",
+   "name": "Twinkle Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2991_dragon_twinkle_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2991_dragon_twinkle_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2851",
+   "name": "Ultimate Soul Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2851_dragon_ultimatesoul_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2851_dragon_ultimatesoul_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "3022",
+   "name": "Undergrowth Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_3022_dragon_undergrowth_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_3022_dragon_undergrowth_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2818",
+   "name": "Unspeakable Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2818_dragon_unspeakable_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2818_dragon_unspeakable_3_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Pui (aură neagră)",
+     "file": "basic_2818_dragon_unspeakable_b_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult (aură neagră)",
+     "file": "basic_2818_dragon_unspeakable_b_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2974",
+   "name": "Walrus Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2974_dragon_walrus_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2974_dragon_walrus_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2902",
+   "name": "Warose Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2902_dragon_warose_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2902_dragon_warose_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2903",
+   "name": "Warthorn Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2903_dragon_warthorn_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2903_dragon_warthorn_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2916",
+   "name": "Whail Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2916_dragon_whail_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2916_dragon_whail_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2899",
+   "name": "White Rose Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2899_dragon_whiterose_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2899_dragon_whiterose_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2877",
+   "name": "Winstance Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2877_dragon_winstance_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2877_dragon_winstance_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2962",
+   "name": "Wish Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2962_dragon_wish_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2962_dragon_wish_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2893",
+   "name": "Wonderland Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2893_dragon_wonderland_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2893_dragon_wonderland_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "2914",
+   "name": "ZHC Dragon",
+   "kind": "dragon",
+   "forms": [
+    {
+     "label": "Pui",
+     "file": "basic_2914_dragon_zhc_1_HD_spine-3-8-59_dxt5.zip"
+    },
+    {
+     "label": "Adult",
+     "file": "basic_2914_dragon_zhc_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "arcana_vortex",
+   "name": "Arcana Vortex",
+   "kind": "efect",
+   "forms": [
+    {
+     "label": "Animație",
+     "file": "basic_arcana_vortex_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "ascendedsupreme_vortex",
+   "name": "Ascendedsupreme Vortex",
+   "kind": "efect",
+   "forms": [
+    {
+     "label": "Animație",
+     "file": "basic_ascendedsupreme_vortex_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "fx_3082_fatality_effect",
+   "name": "Avalanche Eternal Dragon · fatality",
+   "kind": "efect",
+   "forms": [
+    {
+     "label": "Animație",
+     "file": "basic_fx_3082_fatality_effect_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "fx_3040_fatality_effect",
+   "name": "Bicephalous Eternal Dragon · fatality",
+   "kind": "efect",
+   "forms": [
+    {
+     "label": "Animație",
+     "file": "basic_fx_3040_fatality_effect_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "fx_3026_fatality_effect",
+   "name": "Colossus Eternal Dragon · fatality",
+   "kind": "efect",
+   "forms": [
+    {
+     "label": "Animație",
+     "file": "basic_fx_3026_fatality_effect_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "dualdragon_vortex",
+   "name": "Dualdragon Vortex",
+   "kind": "efect",
+   "forms": [
+    {
+     "label": "Animație",
+     "file": "basic_dualdragon_vortex_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "elite_icon_animation",
+   "name": "Elite Icon Animation",
+   "kind": "efect",
+   "forms": [
+    {
+     "label": "Animație",
+     "file": "basic_elite_icon_animation_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "emergency_damage",
+   "name": "Emergency Damage",
+   "kind": "efect",
+   "forms": [
+    {
+     "label": "Animație",
+     "file": "basic_emergency_damage_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "eternal_vortex",
+   "name": "Eternal Vortex",
+   "kind": "efect",
+   "forms": [
+    {
+     "label": "Animație",
+     "file": "basic_eternal_vortex_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "fx_bunker_3",
+   "name": "Fx Bunker 3",
+   "kind": "efect",
+   "forms": [
+    {
+     "label": "Animație",
+     "file": "basic_fx_bunker_3_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "glow_merge_animation",
+   "name": "Glow Merge Animation",
+   "kind": "efect",
+   "forms": [
+    {
+     "label": "Animație",
+     "file": "basic_glow_merge_animation_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "fx_3054_fatality_effect",
+   "name": "Hecatoncheire Eternal Dragon · fatality",
+   "kind": "efect",
+   "forms": [
+    {
+     "label": "Animație",
+     "file": "basic_fx_3054_fatality_effect_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "heroic-dragon_aura",
+   "name": "Heroic Dragon Aura",
+   "kind": "efect",
+   "forms": [
+    {
+     "label": "Animație",
+     "file": "basic_heroic-dragon_aura_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "highmaster_karma_vortex",
+   "name": "Highmaster Karma Vortex",
+   "kind": "efect",
+   "forms": [
+    {
+     "label": "Animație",
+     "file": "basic_highmaster_karma_vortex_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "fx_3110_fatality_effect",
+   "name": "Hoarder Eternal Dragon · fatality",
+   "kind": "efect",
+   "forms": [
+    {
+     "label": "Animație",
+     "file": "basic_fx_3110_fatality_effect_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "fx_3068_fatality_effect",
+   "name": "Incinerate Eternal Dragon · fatality",
+   "kind": "efect",
+   "forms": [
+    {
+     "label": "Animație",
+     "file": "basic_fx_3068_fatality_effect_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "fx_3096_fatality_effect",
+   "name": "Ivy Eternal Dragon · fatality",
+   "kind": "efect",
+   "forms": [
+    {
+     "label": "Animație",
+     "file": "basic_fx_3096_fatality_effect_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "merge_animation",
+   "name": "Merge Animation",
+   "kind": "efect",
+   "forms": [
+    {
+     "label": "Animație",
+     "file": "basic_merge_animation_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "nox_offer_animation",
+   "name": "Nox Offer Animation",
+   "kind": "efect",
+   "forms": [
+    {
+     "label": "Animație",
+     "file": "basic_nox_offer_animation_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "phoenix_perk_skill",
+   "name": "Phoenix Perk Skill",
+   "kind": "efect",
+   "forms": [
+    {
+     "label": "Animație",
+     "file": "basic_phoenix_perk_skill_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "redemption_vortex",
+   "name": "Redemption Vortex",
+   "kind": "efect",
+   "forms": [
+    {
+     "label": "Animație",
+     "file": "basic_redemption_vortex_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "twd_vortex",
+   "name": "Twd Vortex",
+   "kind": "efect",
+   "forms": [
+    {
+     "label": "Animație",
+     "file": "basic_twd_vortex_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  },
+  {
+   "id": "ui_offer_button_transitions",
+   "name": "Ui Offer Button Transitions",
+   "kind": "efect",
+   "forms": [
+    {
+     "label": "Animație",
+     "file": "basic_ui_offer_button_transitions_HD_spine-3-8-59_dxt5.zip"
+    }
+   ]
+  }
+ ],
+ "grandiose": [
+  {
+   "id": "colossuseternal",
+   "name": "Colossus Eternal",
+   "description": "Colos suspendat, brațe masive și detonare de energie.",
+   "archive": "basic_3026_dragon_colossuseternal_3_HD_spine-3-8-59_dxt5.zip",
+   "preview": "featured/colossuseternal.png",
+   "recommendedAnimation": "attack",
+   "bodyBounds": {
+    "x": -74.89829886251201,
+    "y": -3.8359999629259094,
+    "width": 143.14142275875614,
+    "height": 129.14084506386754
+   },
+   "sceneBounds": {
+    "x": -321.70657493111423,
+    "y": -414.5097527413271,
+    "width": 953.9124227888269,
+    "height": 944.8274991397661
+   }
+  },
+  {
+   "id": "bicephalouseternal",
+   "name": "Bicephalous Eternal",
+   "description": "Două capete, siluetă lată și energie violetă.",
+   "archive": "basic_3040_dragon_bicephalouseternal_3_HD_spine-3-8-59_dxt5.zip",
+   "preview": "featured/bicephalouseternal.png",
+   "recommendedAnimation": "special1",
+   "bodyBounds": {
+    "x": -63.678705868913745,
+    "y": -2.5199999436736094,
+    "width": 115.60919118591698,
+    "height": 98.628875758052
+   },
+   "sceneBounds": {
+    "x": -307.8784845997557,
+    "y": -269.5348609950795,
+    "width": 643.3689485839369,
+    "height": 643.3689187250523
+   }
+  },
+  {
+   "id": "whail",
+   "name": "Whail",
+   "description": "Creatură marină voluminoasă; atac acvatic și coadă uriașă.",
+   "archive": "basic_2916_dragon_whail_3_HD_spine-3-8-59_dxt5.zip",
+   "preview": "featured/whail.png",
+   "recommendedAnimation": "attack",
+   "bodyBounds": {
+    "x": -65.39002393483625,
+    "y": -5.9634390762035,
+    "width": 111.05567173339347,
+    "height": 107.49114288304669
+   },
+   "sceneBounds": {
+    "x": -285.6907948577651,
+    "y": -226.5503338682691,
+    "width": 583.5729515139445,
+    "height": 565.8774372396102
+   }
+  },
+  {
+   "id": "scythewing",
+   "name": "Scythewing",
+   "description": "Dragon patruped, aripi în formă de coase și atac cu tăieturi.",
+   "archive": "basic_2952_dragon_scythewing_3_HD_spine-3-8-59_dxt5.zip",
+   "preview": "featured/scythewing.png",
+   "recommendedAnimation": "attack",
+   "bodyBounds": {
+    "x": -46.327070333281576,
+    "y": -6.120660298277835,
+    "width": 108.18325685758253,
+    "height": 86.51178620631183
+   },
+   "sceneBounds": {
+    "x": -69.84141443116656,
+    "y": -29.925364528086536,
+    "width": 292.98644089810057,
+    "height": 143.29202420493044
+   }
+  },
+  {
+   "id": "pixiehydra",
+   "name": "Pixie Hydra",
+   "description": "Trei capete și anatomie de hidră, diferită de modelele umanoide.",
+   "archive": "basic_2957_dragon_pixiehydra_3_HD_spine-3-8-59_dxt5.zip",
+   "preview": "featured/pixiehydra.png",
+   "recommendedAnimation": "special1",
+   "bodyBounds": {
+    "x": -63.08513997527696,
+    "y": -4.856284077330247,
+    "width": 122.32804604388281,
+    "height": 108.17437509445675
+   },
+   "sceneBounds": {
+    "x": -242.41260866437574,
+    "y": -175.4965012889298,
+    "width": 478.3474225953337,
+    "height": 455.4972475588147
+   }
+  },
+  {
+   "id": "highcorruptedtime",
+   "name": "High Corrupted Time",
+   "description": "Temă temporală întunecată, portal circular și vârtej la atac.",
+   "archive": "basic_2901_dragon_highcorruptedtime_3_HD_spine-3-8-59_dxt5.zip",
+   "preview": "featured/highcorruptedtime.png",
+   "recommendedAnimation": "special1",
+   "bodyBounds": {
+    "x": -57.72941575886102,
+    "y": -2.8055393373255777,
+    "width": 126.77018984016834,
+    "height": 132.35402645187963
+   },
+   "sceneBounds": {
+    "x": -167.6155968880998,
+    "y": -125.08591605687016,
+    "width": 383.1282424607098,
+    "height": 376.4416196425942
+   }
+  }
+ ],
+ "spectacular": [
+  "noctyra",
+  "vharok",
+  "noctyra-stella"
+ ]
+}

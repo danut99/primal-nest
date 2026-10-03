@@ -10,18 +10,18 @@
     "test": "vitest run",
     "typecheck": "tsc -p tsconfig.json",
     "format": "prettier --write .",
-    "turntables": "python scripts/build-turntables.py",
-    "scenes": "python scripts/build-scenes.py"
+    "scenes": "python scripts/build-scenes.py",
+    "dragons": "node scripts/build-dragons.mjs",
+    "stills": "node scripts/build-stills.mjs"
   },
   "dependencies": {
+    "fflate": "^0.8.3",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "three": "^0.170.0"
+    "react-dom": "^19.1.0"
   },
   "devDependencies": {
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
-    "@types/three": "^0.170.0",
     "@vitejs/plugin-react": "^4.7.0",
     "playwright-core": "^1.63.0",
     "prettier": "^3.9.9",

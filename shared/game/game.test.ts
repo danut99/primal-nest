@@ -23,6 +23,7 @@ import {
   achievementDone,
   workSpeed,
   WORK_JOBS,
+  SPECIES,
 } from './index';
 
 const T0 = Date.UTC(2026, 9, 3, 12, 0, 0);
@@ -38,6 +39,16 @@ function hatchedGame(starter: 'mugurel' | 'scanteius' | 'pietroi' = 'scanteius')
   s = play(s, { type: 'placeEgg', eggId: s.eggs[0].id, temperature: 'cald' }, T0).state;
   const r = play(s, { type: 'hatch', eggId: s.eggs[0].id }, T0 + 2 * MIN);
   return { state: r.state, dinoId: r.hatchedId! };
+}
+
+const JUVENIL = { mugurel: 'ferigosaur', scanteius: 'jarraptor', pietroi: 'scutosaur' } as const;
+
+/** Puii nu luptă: pentru lupte, starterul e deja Juvenil (nivel 10, ca după prima evoluție) și stă în haită. */
+function juvenilGame(starter: 'mugurel' | 'scanteius' | 'pietroi' = 'scanteius', level = 10) {
+  const { state, dinoId } = hatchedGame(starter);
+  Object.assign(state.dinos[0], { speciesId: JUVENIL[starter], nickname: 'Juvi', level, xp: 30 * (level - 1) ** 2, bond: 50 });
+  state.party = [dinoId];
+  return { state, dinoId };
 }
 
 describe('cuib', () => {
@@ -181,9 +192,24 @@ describe('lupte', () => {
     expect(a.events.at(-1)).toEqual({ t: 'end', win: a.win });
   });
 
-  it('puiul de nivel 1 câștigă prima luptă din Mlaștină', () => {
+  it('puii nu luptă: nu intră în haită și nu pot porni lupte', () => {
+    const { state, dinoId } = hatchedGame();
+    expect(state.party).toHaveLength(0);
+    expect(() => play(state, { type: 'setParty', ids: [dinoId] }, T0)).toThrow(/Puii nu luptă/);
+    state.party = [dinoId]; // salvare veche, cu puiul în haită
+    expect(() => play(state, { type: 'battle', zoneId: 'jungla' }, T0)).toThrow(/Puii nu luptă/);
+    expect(() => play(state, { type: 'expedition', zoneId: 'jungla' }, T0)).toThrow(/Puii nu luptă/);
+  });
+
+  it('în sălbăticie nu apar pui', () => {
+    for (const zoneId of ['jungla', 'canion', 'piscuri', 'vulcan']) {
+      for (const id of findZone(zoneId).enemies) expect(SPECIES[id].stage, `${zoneId}: ${id}`).not.toBe('pui');
+    }
+  });
+
+  it('juvenilul proaspăt evoluat câștigă prima luptă din Junglă', () => {
     for (const starter of ['mugurel', 'scanteius', 'pietroi'] as const) {
-      const { state } = hatchedGame(starter);
+      const { state } = juvenilGame(starter);
       const r = play(state, { type: 'battle', zoneId: 'jungla' }, T0 + 3 * MIN);
       expect(r.battle!.win).toBe(true);
       expect(r.state.dinos[0].xp).toBeGreaterThan(0);
@@ -191,7 +217,7 @@ describe('lupte', () => {
   });
 
   it('expediția se întoarce după 3 înfrângeri la rând', () => {
-    const { state } = hatchedGame();
+    const { state } = juvenilGame('scanteius', 1);
     state.alphas = ['jungla'];
     const s = play(state, { type: 'expedition', zoneId: 'canion' }, T0).state;
     const r = play(s, { type: 'claim' }, T0 + HOUR);
@@ -201,15 +227,15 @@ describe('lupte', () => {
   });
 
   it('regiunile se deschid pe rând, iar Alfa final cere Os de Alfa', () => {
-    const { state } = hatchedGame();
+    const { state } = juvenilGame();
     expect(() => play(state, { type: 'expedition', zoneId: 'canion' }, T0)).toThrow(/Alfa Junglei/);
     state.alphas = ['jungla', 'canion', 'piscuri'];
     expect(() => play(state, { type: 'battle', zoneId: 'vulcan', alpha: true }, T0)).toThrow(/Os de Alfa/);
   });
 
   it('eliberarea lui Alfa deschide regiunea următoare și dă o relicvă', () => {
-    let { state, dinoId } = hatchedGame('scanteius');
-    state.dinos.push({ ...state.dinos[0], id: 'd2', speciesId: 'mugurel', nickname: 'Mugurel' });
+    let { state, dinoId } = juvenilGame('scanteius');
+    state.dinos.push({ ...state.dinos[0], id: 'd2', speciesId: 'ferigosaur', nickname: 'Ferigosaur' });
     for (const d of state.dinos) Object.assign(d, { level: 14, xp: 30 * 169, bond: 60 });
     state.party = [dinoId, 'd2'];
     let won = false;
@@ -245,15 +271,15 @@ describe('lupte', () => {
 });
 
 describe('echilibrare', () => {
-  it('prima sesiune: puiul ajunge la nivelul 10 în 2 ore de expediție în Mlaștină', () => {
+  it('prima sesiune de lupte: juvenilul crește în 2 ore de expediție în Junglă', () => {
     for (const starter of ['mugurel', 'scanteius', 'pietroi'] as const) {
-      let { state } = hatchedGame(starter);
+      let { state } = juvenilGame(starter);
       state = play(state, { type: 'battle', zoneId: 'jungla' }, T0 + 3 * MIN).state;
       state = play(state, { type: 'expedition', zoneId: 'jungla' }, T0 + 4 * MIN).state;
       const r = play(state, { type: 'claim' }, T0 + 4 * MIN + 2 * HOUR);
       expect(r.state.activity, starter).not.toBeNull();
       expect(r.haul!.wins / (r.haul!.wins + r.haul!.losses), starter).toBeGreaterThan(0.7);
-      expect(r.state.dinos[0].level, starter).toBeGreaterThanOrEqual(10);
+      expect(r.state.dinos[0].level, starter).toBeGreaterThan(10);
       expect(skillLevel(r.state, 'imblanzire')).toBeGreaterThanOrEqual(3);
     }
   });
@@ -298,8 +324,7 @@ describe('salvare', () => {
 
 describe('haita la muncă', () => {
   it('dinozaurul lucrează în paralel cu activitatea, iese din haită și aduce materiale', () => {
-    let { state, dinoId } = hatchedGame('scanteius');
-    state.party = [dinoId];
+    let { state, dinoId } = juvenilGame('scanteius');
     state = play(state, { type: 'gather', actionId: 'ferigi' }, T0).state;
     state = play(state, { type: 'assignWork', dinoId, jobId: 'vanator' }, T0).state;
     expect(state.party).not.toContain(dinoId);

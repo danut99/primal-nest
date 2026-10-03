@@ -17,7 +17,9 @@ import {
   RELICS,
   RETREAT_AFTER_LOSSES,
   ZONES,
+  NOT_FIGHTER,
   SPECIES,
+  canFight,
   type Zone,
 } from './catalog';
 import { type BattleResult, findZone, fromDino, rollEnemies, simulateBattle } from './battle';
@@ -137,8 +139,13 @@ function claimCook(state: GameState, activity: Extract<Activity, { kind: 'cook' 
 
 // ---------- Lupte ----------
 
+/** Mesajul pentru o haită fără luptători: dacă ai doar pui, spune-i jucătorului de ce. */
+function emptyParty(state: GameState) {
+  return state.dinos.some((d) => canFight(d.speciesId)) ? 'Haita e goală. Alege cel puțin un dinozaur.' : NOT_FIGHTER;
+}
+
 export function partyDinos(state: GameState) {
-  return state.party.map((id) => findDino(state, id)).filter((d) => !d.molt);
+  return state.party.map((id) => findDino(state, id)).filter((d) => !d.molt && canFight(d.speciesId));
 }
 
 /** Aplică rezultatul unei lupte: XP, drop-uri, ouă, Atlas. */
@@ -376,7 +383,7 @@ export function maxCookable(state: GameState, recipeId: string): number {
 export function startExpedition(state: GameState, zoneId: string, now: number, events: GameEvent[]) {
   const zone = findZone(zoneId);
   assertUnlocked(state, zone);
-  if (partyDinos(state).length === 0) throw new GameError('VALIDATION', 'Haita e goală. Alege cel puțin un dinozaur.');
+  if (partyDinos(state).length === 0) throw new GameError('VALIDATION', emptyParty(state));
   const haul = replaceActivity(state, now, events);
   state.activity = { kind: 'expedition', zoneId, startedAt: now, seed: mixSeed(state.rngSeed, state.nextId++), index: 0 };
   return haul;
@@ -398,7 +405,7 @@ export function liveBattle(state: GameState, zoneId: string, alpha: boolean, eve
   const zone = findZone(zoneId);
   if (state.activity?.kind === 'expedition') throw new GameError('BUSY', 'Haita e în expediție. Oprește expediția ca să lupți direct.');
   const party = partyDinos(state);
-  if (party.length === 0) throw new GameError('VALIDATION', 'Haita e goală. Alege cel puțin un dinozaur.');
+  if (party.length === 0) throw new GameError('VALIDATION', emptyParty(state));
   assertUnlocked(state, zone);
   const key = alpha ? zone.alpha.key : undefined;
   if (key) {

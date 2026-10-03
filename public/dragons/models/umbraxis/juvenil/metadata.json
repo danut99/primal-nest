@@ -1,0 +1,35 @@
+{
+  "label": "Juvenil",
+  "nativeAge": 1,
+  "derived": true,
+  "displayScale": 0.82,
+  "sourceArchive": "basic_3068_dragon_incinerateeternal_1_HD_spine-3-8-59_dxt5.zip",
+  "animations": [
+    {
+      "name": "breathe",
+      "duration": 1.7333333492279053
+    },
+    {
+      "name": "fly",
+      "duration": 1.5
+    },
+    {
+      "name": "levelup",
+      "duration": 1.7333333492279053
+    },
+    {
+      "name": "special1",
+      "duration": 2.5
+    },
+    {
+      "name": "walk",
+      "duration": 1.5
+    }
+  ],
+  "bones": 49,
+  "slots": 63,
+  "skeleton": "models/umbraxis/juvenil/skeleton.skel",
+  "atlas": "models/umbraxis/juvenil/atlas.atlas",
+  "texture": "models/umbraxis/juvenil/texture.png",
+  "preview": "models/umbraxis/juvenil/preview.png"
+}

@@ -1,6 +1,7 @@
+import { ItemArt, RelicIcon } from '../components/AssetIcon';
 // Redarea animată a unei lupte. Rezultatul e deja calculat de reguli; aici doar îl punem în scenă.
-// Implicit: arenă 3D (modele animate, umbre, proiectile, scântei). Cu grafică redusă sau fără WebGL:
-// varianta 2D cu sprite-uri. Ambele redau același jurnal de evenimente.
+// Implicit: arena cu dragonii animați (Spine: mers, zbor, atac, ultimată, sărbătoare), al cărei ritm îl dă
+// durata animațiilor. Cu grafică redusă sau fără WebGL: varianta 2D cu imagini statice. Ambele redau același jurnal.
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { type BattleResult, type Combatant, type Haul, type ItemId, ITEMS, RELICS, TYPES, type Zone } from '@shared/game';
@@ -9,8 +10,8 @@ import { EggSprite } from '../components/EggSprite';
 import { sceneBackground } from '../content/art';
 import { Bar, Modal } from '../components/ui';
 import type { Game } from '../hooks/useGame';
-import type { BattleScene } from '../three/BattleScene';
-import { bloodEnabled } from '../utils/settings';
+import { bossStill } from '../content/dragons';
+import type { Arena } from '../battle/Arena';
 import { sound } from '../utils/sound';
 
 interface Props {
@@ -41,37 +42,43 @@ export function BattleView({ game, zone, alpha, result, haul, onClose, onAgain }
   const [speed, setSpeed] = useState(1);
   const [impacted, setImpacted] = useState(false);
   const byKey = useMemo(() => Object.fromEntries(result.start.map((c) => [c.key, c])), [result]);
-  const blood = useMemo(bloodEnabled, []);
-  const use3d = useMemo(() => !document.documentElement.classList.contains('low-fx') && webglAvailable(), []);
+  const [use3d, setUse3d] = useState(webglAvailable);
   const [ready, setReady] = useState(!use3d);
   const [pops, setPops] = useState<DamagePop[]>([]);
   const stage = useRef<HTMLDivElement>(null);
-  const scene = useRef<BattleScene | null>(null);
+  const scene = useRef<Arena | null>(null);
   const finished = step >= result.events.length;
-  const stepMs = (ev: (typeof result.events)[number]) => (ev.t === 'faint' ? FAINT_STEP : BASE_STEP) / speed;
+  // Viteza se schimbă din mers: arena accelerează tot, iar pasul curent nu se reia.
+  const speedRef = useRef(speed);
+  speedRef.current = speed;
+  const stepMs = (ev: (typeof result.events)[number]) => (ev.t === 'faint' ? FAINT_STEP : BASE_STEP) / speedRef.current;
 
-  // Arena 3D: se încarcă o dată, se eliberează la închidere.
+  // Arena: se încarcă o dată, se eliberează la închidere. Dacă nu poate porni, lupta se vede în varianta 2D.
   useEffect(() => {
     if (!use3d || !stage.current) return;
-    // three.js se încarcă doar la prima luptă, ca jocul să pornească repede.
     const el = stage.current;
     let alive = true;
-    let s: BattleScene | null = null;
-    import('../three/BattleScene')
-      .then(({ BattleScene }) => {
+    let s: Arena | null = null;
+    import('../battle/Arena')
+      .then(({ Arena }) => {
         if (!alive) return;
-        s = new BattleScene(el, zone.id, blood);
+        s = new Arena(el, zone.id);
         scene.current = s;
         return s.load(result.start);
       })
       .then(() => alive && setReady(true))
-      .catch(() => alive && setReady(true));
+      .catch((e) => {
+        console.warn('Arena nu a pornit, lupta se vede în 2D.', e);
+        if (!alive) return;
+        setUse3d(false);
+        setReady(true);
+      });
     return () => {
       alive = false;
       s?.dispose();
       scene.current = null;
     };
-  }, [use3d, zone.id, blood, result]);
+  }, [use3d, zone.id, result]);
 
   useEffect(() => {
     if (!intro || !ready) return;
@@ -83,12 +90,15 @@ export function BattleView({ game, zone, alpha, result, haul, onClose, onAgain }
   useEffect(() => {
     if (intro || finished || !ready) return;
     const ev = result.events[step];
-    const ms = stepMs(ev);
+    // Arena spune cât durează animația pasului și când lovește; varianta 2D are pași ficși.
+    const plan = scene.current?.play(ev);
+    const rate = speedRef.current;
+    const ms = plan ? (plan.duration * 1000) / rate : stepMs(ev);
+    const impactMs = plan ? (plan.impact * 1000) / rate : ms * 0.1;
     setImpacted(false);
-    scene.current?.play(ev, ms);
     const timers: ReturnType<typeof setTimeout>[] = [];
     if (ev.t === 'attack') {
-      // Lovitura se aude și se vede la jumătatea pasului, când atacatorul ajunge la țintă.
+      // Lovitura se aude și se vede exact când animația atacului ajunge la țintă.
       timers.push(
         setTimeout(() => {
           (ev.crit || ev.eff > 1 ? sound.bigHit : sound.hit)();
@@ -102,14 +112,16 @@ export function BattleView({ game, zone, alpha, result, haul, onClose, onAgain }
             const pop = { id: Date.now() + Math.random(), x: pos.x, y, text: `−${ev.damage}`, cls };
             setPops((p) => [...p.slice(-4), pop]);
           }
-        }, ms * (use3d ? 0.46 : 0.1)),
+        }, impactMs),
       );
     }
     if (ev.t === 'end') (ev.win ? sound.win : sound.lose)();
     timers.push(setTimeout(() => setStep((s) => s + 1), ms));
     return () => timers.forEach(clearTimeout);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [intro, step, speed, finished, result, ready]);
+  }, [intro, step, finished, result, ready]);
+
+  useEffect(() => scene.current?.setSpeed(speed), [speed, ready]);
 
   // Starea curentă (HP, KO) reconstruită din evenimentele deja jucate.
   const hp: Record<string, number> = {};
@@ -178,6 +190,7 @@ export function BattleView({ game, zone, alpha, result, haul, onClose, onAgain }
         <div className={`fighter-sprite${acting ? (c.side === 'player' ? ' lunge-right' : ' lunge-left') : ''}${hit ? ' hit' : ''}`} key={hit || acting ? step : 'idle'}>
           <DinoSprite
             speciesId={c.speciesId}
+            art={c.boss ? bossStill(zone.id) : undefined}
             albino={c.variant === 'albino'}
             size={c.boss ? 170 : 108}
             flip={c.side === 'enemy'}
@@ -190,7 +203,6 @@ export function BattleView({ game, zone, alpha, result, haul, onClose, onAgain }
                 className={`slash${lastAttack.special ? ' special' : ''}`}
                 style={{ ['--slash' as string]: lastAttack.moveType ? TYPES[lastAttack.moveType].color : '#ffffff' }}
               />
-              {blood && <span className={`blood${heavy ? ' heavy' : ''}`} />}
               <span className={`dmg${lastAttack.crit ? ' crit' : ''}${lastAttack.eff > 1 ? ' super' : ''}`}>−{lastAttack.damage}</span>
             </>
           )}
@@ -293,14 +305,14 @@ export function HaulList({ haul, game }: { haul: Haul; game: Game }) {
     <div className="haul">
       {haul.relic && (
         <span className="haul-item relic-haul" style={{ ['--relic' as string]: RELICS[haul.relic].color }}>
-          {RELICS[haul.relic].icon} {RELICS[haul.relic].name}!
+          <RelicIcon relic={haul.relic} /> {RELICS[haul.relic].name}!
         </span>
       )}
       {haul.sparks > 0 && <span className="haul-item">✨ +{haul.sparks}</span>}
       {haul.diamonds > 0 && <span className="haul-item">💎 +{haul.diamonds}</span>}
       {items.map(([id, n]) => (
         <span key={id} className="haul-item" title={ITEMS[id].name}>
-          {ITEMS[id].icon} +{n}
+          <ItemArt item={id} /> +{n}
         </span>
       ))}
       {eggs.map((egg) => (

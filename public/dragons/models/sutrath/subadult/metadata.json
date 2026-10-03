@@ -1,0 +1,39 @@
+{
+  "label": "Subadult",
+  "nativeAge": 3,
+  "derived": true,
+  "displayScale": 0.92,
+  "sourceArchive": "basic_2826_dragon_highbloodymoon_3_HD_spine-3-8-59_dxt5.zip",
+  "animations": [
+    {
+      "name": "attack",
+      "duration": 3.8333332538604736
+    },
+    {
+      "name": "breathe",
+      "duration": 1.6666666269302368
+    },
+    {
+      "name": "fly",
+      "duration": 1.6666666269302368
+    },
+    {
+      "name": "levelup",
+      "duration": 1.6666666269302368
+    },
+    {
+      "name": "special1",
+      "duration": 3.1666667461395264
+    },
+    {
+      "name": "walk",
+      "duration": 1.6666666269302368
+    }
+  ],
+  "bones": 69,
+  "slots": 63,
+  "skeleton": "models/sutrath/subadult/skeleton.skel",
+  "atlas": "models/sutrath/subadult/atlas.atlas",
+  "texture": "models/sutrath/subadult/texture.png",
+  "preview": "models/sutrath/subadult/preview.png"
+}

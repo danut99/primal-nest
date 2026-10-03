@@ -1,0 +1,377 @@
+
+texture.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+basic/body
+  rotate: false
+  xy: 2, 179
+  size: 267, 149
+  orig: 267, 149
+  offset: 0, 0
+  index: -1
+basic/cheek
+  rotate: true
+  xy: 1003, 604
+  size: 25, 19
+  orig: 25, 19
+  offset: 0, 0
+  index: -1
+basic/ear_l_1
+  rotate: true
+  xy: 898, 786
+  size: 39, 59
+  orig: 39, 59
+  offset: 0, 0
+  index: -1
+basic/ear_l_2
+  rotate: true
+  xy: 417, 131
+  size: 35, 23
+  orig: 35, 23
+  offset: 0, 0
+  index: -1
+basic/ear_l_3
+  rotate: false
+  xy: 976, 266
+  size: 27, 58
+  orig: 27, 58
+  offset: 0, 0
+  index: -1
+basic/ear_r_1
+  rotate: false
+  xy: 659, 899
+  size: 64, 18
+  orig: 64, 18
+  offset: 0, 0
+  index: -1
+basic/ear_r_2
+  rotate: true
+  xy: 901, 873
+  size: 51, 33
+  orig: 51, 33
+  offset: 0, 0
+  index: -1
+basic/ear_r_4
+  rotate: true
+  xy: 950, 2
+  size: 47, 72
+  orig: 47, 72
+  offset: 0, 0
+  index: -1
+basic/ear_r_5
+  rotate: true
+  xy: 976, 131
+  size: 57, 46
+  orig: 57, 46
+  offset: 0, 0
+  index: -1
+basic/eye_l_1
+  rotate: true
+  xy: 361, 1002
+  size: 20, 37
+  orig: 20, 37
+  offset: 0, 0
+  index: -1
+basic/eye_l_2
+  rotate: true
+  xy: 314, 1002
+  size: 20, 45
+  orig: 20, 45
+  offset: 0, 0
+  index: -1
+basic/eye_r_1
+  rotate: false
+  xy: 901, 827
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+basic/eye_r_2
+  rotate: false
+  xy: 576, 926
+  size: 61, 54
+  orig: 61, 54
+  offset: 0, 0
+  index: -1
+basic/eyebrow_l
+  rotate: true
+  xy: 962, 436
+  size: 29, 60
+  orig: 29, 60
+  offset: 0, 0
+  index: -1
+basic/eyebrow_r
+  rotate: true
+  xy: 962, 467
+  size: 63, 56
+  orig: 63, 56
+  offset: 0, 0
+  index: -1
+basic/face_1
+  rotate: false
+  xy: 203, 917
+  size: 109, 98
+  orig: 109, 98
+  offset: 0, 0
+  index: -1
+basic/face_2
+  rotate: true
+  xy: 498, 917
+  size: 63, 76
+  orig: 63, 76
+  offset: 0, 0
+  index: -1
+basic/fin_l_1
+  rotate: true
+  xy: 770, 828
+  size: 118, 129
+  orig: 118, 129
+  offset: 0, 0
+  index: -1
+basic/fin_l_2
+  rotate: false
+  xy: 950, 51
+  size: 71, 78
+  orig: 71, 78
+  offset: 0, 0
+  index: -1
+basic/fin_r_1
+  rotate: false
+  xy: 271, 179
+  size: 169, 160
+  orig: 169, 160
+  offset: 0, 0
+  index: -1
+basic/fin_r_2
+  rotate: false
+  xy: 2, 906
+  size: 138, 107
+  orig: 138, 107
+  offset: 0, 0
+  index: -1
+basic/lower_jaw
+  rotate: true
+  xy: 898, 701
+  size: 83, 48
+  orig: 83, 48
+  offset: 0, 0
+  index: -1
+basic/neck
+  rotate: true
+  xy: 706, 2
+  size: 127, 242
+  orig: 127, 242
+  offset: 0, 0
+  index: -1
+basic/neck_fin_1
+  rotate: true
+  xy: 399, 917
+  size: 58, 97
+  orig: 58, 97
+  offset: 0, 0
+  index: -1
+basic/neck_fin_2
+  rotate: false
+  xy: 314, 917
+  size: 83, 83
+  orig: 83, 83
+  offset: 0, 0
+  index: -1
+basic/neck_fin_3
+  rotate: false
+  xy: 399, 977
+  size: 89, 19
+  orig: 89, 19
+  offset: 0, 0
+  index: -1
+basic/neck_fin_4
+  rotate: false
+  xy: 578, 899
+  size: 79, 25
+  orig: 79, 25
+  offset: 0, 0
+  index: -1
+basic/neck_fin_5
+  rotate: true
+  xy: 1005, 266
+  size: 51, 17
+  orig: 51, 17
+  offset: 0, 0
+  index: -1
+basic/neck_fin_6
+  rotate: true
+  xy: 417, 2
+  size: 127, 287
+  orig: 127, 287
+  offset: 0, 0
+  index: -1
+basic/nose
+  rotate: true
+  xy: 976, 190
+  size: 74, 42
+  orig: 74, 42
+  offset: 0, 0
+  index: -1
+basic/tail_1
+  rotate: true
+  xy: 142, 917
+  size: 105, 59
+  orig: 105, 59
+  offset: 0, 0
+  index: -1
+basic/tail_2
+  rotate: false
+  xy: 826, 131
+  size: 148, 193
+  orig: 148, 193
+  offset: 0, 0
+  index: -1
+basic/tail_3
+  rotate: false
+  xy: 953, 532
+  size: 66, 70
+  orig: 66, 70
+  offset: 0, 0
+  index: -1
+basic/tongue
+  rotate: true
+  xy: 953, 604
+  size: 71, 48
+  orig: 71, 48
+  offset: 0, 0
+  index: -1
+basic/upper_jaw
+  rotate: true
+  xy: 962, 326
+  size: 108, 60
+  orig: 108, 60
+  offset: 0, 0
+  index: -1
+fx/baokai_0001
+  rotate: false
+  xy: 770, 518
+  size: 181, 181
+  orig: 181, 181
+  offset: 0, 0
+  index: -1
+fx/guang
+  rotate: false
+  xy: 770, 701
+  size: 126, 125
+  orig: 126, 125
+  offset: 0, 0
+  index: -1
+fx/Liquid 047 Shot Impact Splash Right MIX/Liquid 047 Shot Impact Splash Right MIX_00001
+  rotate: false
+  xy: 2, 330
+  size: 190, 190
+  orig: 190, 190
+  offset: 0, 0
+  index: -1
+fx/Liquid 047 Shot Impact Splash Right MIX/Liquid 047 Shot Impact Splash Right MIX_00003
+  rotate: false
+  xy: 2, 522
+  size: 190, 190
+  orig: 190, 190
+  offset: 0, 0
+  index: -1
+fx/Liquid 047 Shot Impact Splash Right MIX/Liquid 047 Shot Impact Splash Right MIX_00005
+  rotate: false
+  xy: 2, 714
+  size: 190, 190
+  orig: 190, 190
+  offset: 0, 0
+  index: -1
+fx/Liquid 047 Shot Impact Splash Right MIX/Liquid 047 Shot Impact Splash Right MIX_00007
+  rotate: false
+  xy: 442, 131
+  size: 190, 190
+  orig: 190, 190
+  offset: 0, 0
+  index: -1
+fx/Liquid 047 Shot Impact Splash Right MIX/Liquid 047 Shot Impact Splash Right MIX_00009
+  rotate: false
+  xy: 634, 131
+  size: 190, 190
+  orig: 190, 190
+  offset: 0, 0
+  index: -1
+fx/Liquid 047 Shot Impact Splash Right MIX/Liquid 047 Shot Impact Splash Right MIX_00011
+  rotate: false
+  xy: 194, 341
+  size: 190, 190
+  orig: 190, 190
+  offset: 0, 0
+  index: -1
+fx/Liquid 047 Shot Impact Splash Right MIX/Liquid 047 Shot Impact Splash Right MIX_00013
+  rotate: false
+  xy: 194, 533
+  size: 190, 190
+  orig: 190, 190
+  offset: 0, 0
+  index: -1
+fx/Liquid 047 Shot Impact Splash Right MIX/Liquid 047 Shot Impact Splash Right MIX_00015
+  rotate: false
+  xy: 194, 725
+  size: 190, 190
+  orig: 190, 190
+  offset: 0, 0
+  index: -1
+fx/Liquid 050 Explosion Radial MIX/Liquid 050 Explosion Radial MIX_00001
+  rotate: false
+  xy: 386, 341
+  size: 190, 190
+  orig: 190, 190
+  offset: 0, 0
+  index: -1
+fx/Liquid 050 Explosion Radial MIX/Liquid 050 Explosion Radial MIX_00003
+  rotate: false
+  xy: 386, 533
+  size: 190, 190
+  orig: 190, 190
+  offset: 0, 0
+  index: -1
+fx/Liquid 050 Explosion Radial MIX/Liquid 050 Explosion Radial MIX_00005
+  rotate: false
+  xy: 386, 725
+  size: 190, 190
+  orig: 190, 190
+  offset: 0, 0
+  index: -1
+fx/Liquid 050 Explosion Radial MIX/Liquid 050 Explosion Radial MIX_00007
+  rotate: false
+  xy: 578, 323
+  size: 190, 190
+  orig: 190, 190
+  offset: 0, 0
+  index: -1
+fx/Liquid 050 Explosion Radial MIX/Liquid 050 Explosion Radial MIX_00009
+  rotate: false
+  xy: 578, 515
+  size: 190, 190
+  orig: 190, 190
+  offset: 0, 0
+  index: -1
+fx/Liquid 050 Explosion Radial MIX/Liquid 050 Explosion Radial MIX_00011
+  rotate: false
+  xy: 578, 707
+  size: 190, 190
+  orig: 190, 190
+  offset: 0, 0
+  index: -1
+fx/Liquid 050 Explosion Radial MIX/Liquid 050 Explosion Radial MIX_00013
+  rotate: false
+  xy: 770, 326
+  size: 190, 190
+  orig: 190, 190
+  offset: 0, 0
+  index: -1
+fx/xing2
+  rotate: false
+  xy: 2, 2
+  size: 413, 175
+  orig: 413, 175
+  offset: 0, 0
+  index: -1

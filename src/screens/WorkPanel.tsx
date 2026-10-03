@@ -1,3 +1,4 @@
+import { ItemArt } from '../components/AssetIcon';
 // Haita la muncă: posturile din Tabără, unde dinozaurii lucrează în paralel cu activitatea ta.
 
 import { useState } from 'react';
@@ -131,7 +132,7 @@ function AssignModal({ game, onClose }: { game: Game; onClose: () => void }) {
         {job.blurb} Aduce:{' '}
         {job.drops.map((d) => (
           <span key={d.value} title={ITEMS[d.value].name}>
-            {ITEMS[d.value].icon}
+            <ItemArt item={d.value} />
           </span>
         ))}
       </p>

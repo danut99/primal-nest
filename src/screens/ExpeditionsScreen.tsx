@@ -1,3 +1,4 @@
+import { EggIcon, ItemArt, RelicIcon } from '../components/AssetIcon';
 // Expediții: regiuni păzite de câte un Alfa. Luptă directă (privită) sau expediție idle (și offline).
 
 import { useState } from 'react';
@@ -14,7 +15,9 @@ import {
   partyDinos,
   zoneUnlocked,
 } from '@shared/game';
+import { BossLive } from '../components/DinoLive';
 import { DinoSprite } from '../components/DinoSprite';
+import { ZONE_BOSS, bossStill } from '../content/dragons';
 import { sceneBackground } from '../content/art';
 import { Panel } from '../components/ui';
 import type { Game } from '../hooks/useGame';
@@ -51,55 +54,99 @@ export function ExpeditionsScreen({ game }: { game: Game }) {
       <FormationSummary game={game} onEdit={() => setPrep({ kind: 'arrange' })} />
 
       <div className="zone-list">
-        {ZONES.map((zone) => {
+        {ZONES.map((zone, index) => {
           const unlocked = zoneUnlocked(state, zone);
           const here = onExpedition === zone.id;
           const a = zone.alpha;
           const beaten = state.alphas.includes(zone.id);
           const keys = a.key ? (state.inventory[a.key] ?? 0) : 0;
           const prev = zone.requires ? ZONES.find((z) => z.id === zone.requires)! : null;
+          const boss = ZONE_BOSS[zone.id];
           return (
-            <section
-              key={zone.id}
-              className={`zone-card biome-${zone.id}${here ? ' running' : ''}${unlocked ? '' : ' locked'}`}
-              style={sceneBackground(zone.id, 0.4)}
-            >
-              <div className="biome-mist" />
-              <div className="zone-body">
-                <div className="zone-head">
-                  <span className="zone-icon">{zone.icon}</span>
-                  <div>
-                    <h3>{zone.name}</h3>
+            <section key={zone.id} className={`zc biome-${zone.id}${here ? ' running' : ''}${unlocked ? '' : ' locked'}${beaten ? ' beaten' : ''}`}>
+              {/* Bannerul: scena regiunii, numele și bossul ei. */}
+              <header className="zc-banner" style={sceneBackground(zone.id, 0.15)}>
+                <div className="zc-title">
+                  <span className="zc-region">
+                    {zone.icon} Regiunea {index + 1}
+                  </span>
+                  <h3>{zone.name}</h3>
+                  <span className="zc-levels">
+                    Nivel {zone.levels[0]}–{zone.levels[1]}
+                  </span>
+                  {here && <span className="zc-running">🗺️ În expediție…</span>}
+                </div>
+                <div className="zc-boss">
+                  <span className="zc-boss-glow" />
+                  {unlocked ? (
+                    <BossLive zoneId={zone.id} speciesId={a.speciesId} />
+                  ) : (
+                    <DinoSprite speciesId={a.speciesId} art={bossStill(zone.id)} size={190} flip silhouette />
+                  )}
+                  <div className="zc-boss-plate">
+                    <span className="zc-boss-tag">{!unlocked ? '🔒 ALFA' : beaten ? '★ ÎNVINS' : 'ALFA'}</span>
+                    <b>{unlocked ? boss.name : '???'}</b>
                     <small>
-                      Nivel {zone.levels[0]}–{zone.levels[1]} · Alfa nv. {a.level}
+                      {a.title} · nv. {a.level}
                     </small>
                   </div>
                 </div>
-                {unlocked ? (
-                  <>
-                    <p className="zone-blurb">{zone.blurb}</p>
-                    <div className="zone-enemies">
-                      {zone.enemies.map((id) => (
-                        <DinoSprite
-                          key={id}
-                          speciesId={id}
-                          size={54}
-                          flip
-                          shadowed={!!state.atlas[id]?.seen}
-                          silhouette={!state.atlas[id]?.seen}
-                          title={state.atlas[id]?.seen ? SPECIES[id].name : '???'}
-                        />
-                      ))}
+                {!unlocked && (
+                  <div className="zc-lock">
+                    <span>🔒</span>
+                    <p>
+                      Drumul e păzit. Învinge-l pe <b>{prev?.alpha.title}</b> din {prev?.name}.
+                    </p>
+                  </div>
+                )}
+              </header>
+
+              {unlocked && (
+                <div className="zc-body">
+                  <p className="zc-blurb">{zone.blurb}</p>
+
+                  <div className="zc-section">
+                    <h4>Inamici</h4>
+                    <div className="zc-enemies">
+                      {zone.enemies.map((id) => {
+                        const seen = !!state.atlas[id]?.seen;
+                        return (
+                          <figure key={id} className="zc-enemy" title={seen ? SPECIES[id].name : '???'}>
+                            <span className="zc-enemy-frame">
+                              <DinoSprite speciesId={id} size={64} flip shadowed={seen} silhouette={!seen} aura={false} />
+                            </span>
+                            <figcaption>{seen ? SPECIES[id].name : '???'}</figcaption>
+                          </figure>
+                        );
+                      })}
                     </div>
+                  </div>
+
+                  <div className="zc-section">
+                    <h4>Pradă</h4>
                     <div className="drops">
                       {zone.drops.map((d) => (
                         <span key={d.item} className="drop" title={ITEMS[d.item].name}>
-                          {ITEMS[d.item].icon} {Math.round(d.chance * 100)}%
+                          <ItemArt item={d.item} /> {ITEMS[d.item].name} · {Math.round(d.chance * 100)}%
                         </span>
                       ))}
-                      {zone.egg.chance > 0 && <span className="drop egg-drop">🥚 {+(zone.egg.chance * 100).toFixed(1)}%</span>}
+                      {zone.egg.chance > 0 && <span className="drop egg-drop"><EggIcon /> Ou · {+(zone.egg.chance * 100).toFixed(1)}%</span>}
                     </div>
-                    <div className="zone-actions">
+                  </div>
+
+                  <div className="zc-section zc-reward">
+                    <h4>Premiul Alfa</h4>
+                    <div className="drops">
+                      <span className="drop zc-relic">
+                        <RelicIcon relic={a.relic} /> {RELICS[a.relic].name}
+                      </span>
+                      <span className="drop"><EggIcon /> ou {a.egg}</span>
+                      <span className="drop">✨ {a.sparks}</span>
+                    </div>
+                  </div>
+
+                  <footer className="zc-actions">
+                    <div className="zc-actions-main">
                       <button
                         className="btn primary"
                         disabled={!!onExpedition}
@@ -108,14 +155,8 @@ export function ExpeditionsScreen({ game }: { game: Game }) {
                       >
                         ⚔️ Luptă acum
                       </button>
-                      {here ? (
-                        <span className="running-tag">🗺️ În expediție…</span>
-                      ) : (
-                        <button
-                          className="btn"
-                          onClick={() => setPrep({ kind: 'idle', zone })}
-                          title={`O luptă la ${formatSeconds(zone.seconds)}, și offline`}
-                        >
+                      {!here && (
+                        <button className="btn" onClick={() => setPrep({ kind: 'idle', zone })} title={`O luptă la ${formatSeconds(zone.seconds)}, și offline`}>
                           🕒 Expediție idle
                         </button>
                       )}
@@ -130,43 +171,18 @@ export function ExpeditionsScreen({ game }: { game: Game }) {
                         </button>
                       )}
                     </div>
-                  </>
-                ) : (
-                  <p className="zone-locked">
-                    🔒 Drumul e păzit. Învinge-l pe <b>{prev?.alpha.title}</b> din {prev?.name}.
-                  </p>
-                )}
-              </div>
-
-              <div className={`alpha-panel${beaten ? ' beaten' : ''}`}>
-                <div className="alpha-art">
-                  <span className="alpha-glow" />
-                  <DinoSprite
-                    speciesId={a.speciesId}
-                    size={150}
-                    flip
-                    shadowed={!beaten && unlocked}
-                    silhouette={!unlocked}
-                    relic={unlocked && !beaten ? a.relic : undefined}
-                  />
+                    <button
+                      className="btn danger-glow"
+                      disabled={!!onExpedition || (!!a.key && keys < 1)}
+                      onClick={() => setPrep({ kind: 'battle', zone, alpha: true })}
+                    >
+                      {a.key ? <ItemArt item={a.key} /> : '💀 '}
+                      {beaten ? 'Luptă din nou cu Alfa' : 'Provoacă Alfa'}
+                      {a.key ? ` (${keys})` : ''}
+                    </button>
+                  </footer>
                 </div>
-                <div className="alpha-info">
-                  <span className="alpha-tag">{beaten ? 'ÎNVINS' : 'ALFA'}</span>
-                  <b>{unlocked ? `${SPECIES[a.speciesId].name}, ${a.title}` : '???'}</b>
-                  <small>
-                    Pradă: {RELICS[a.relic].icon} {RELICS[a.relic].name} · 🥚 ou {a.egg} · ✨ {a.sparks}
-                  </small>
-                  <button
-                    className="btn danger-glow"
-                    disabled={!unlocked || !!onExpedition || (!!a.key && keys < 1)}
-                    onClick={() => setPrep({ kind: 'battle', zone, alpha: true })}
-                  >
-                    {a.key ? `${ITEMS[a.key].icon} ` : '💀 '}
-                    {beaten ? 'Luptă din nou' : 'Provoacă-l'}
-                    {a.key ? ` (${keys})` : ''}
-                  </button>
-                </div>
-              </div>
+              )}
             </section>
           );
         })}

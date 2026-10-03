@@ -1,0 +1,39 @@
+{
+  "label": "Subadult",
+  "nativeAge": 3,
+  "derived": true,
+  "displayScale": 0.92,
+  "sourceArchive": "basic_3081_dragon_highascendedsupreme_3_HD_spine-3-8-59_dxt5.zip",
+  "animations": [
+    {
+      "name": "attack",
+      "duration": 2.866666555404663
+    },
+    {
+      "name": "breathe",
+      "duration": 2
+    },
+    {
+      "name": "fly",
+      "duration": 1.600000023841858
+    },
+    {
+      "name": "levelup",
+      "duration": 2
+    },
+    {
+      "name": "special1",
+      "duration": 2.700000047683716
+    },
+    {
+      "name": "walk",
+      "duration": 1.600000023841858
+    }
+  ],
+  "bones": 68,
+  "slots": 81,
+  "skeleton": "models/imperion/subadult/skeleton.skel",
+  "atlas": "models/imperion/subadult/atlas.atlas",
+  "texture": "models/imperion/subadult/texture.png",
+  "preview": "models/imperion/subadult/preview.png"
+}

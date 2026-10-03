@@ -1,0 +1,101 @@
+{
+  "label": "Juvenil",
+  "nativeAge": 1,
+  "derived": true,
+  "displayScale": 0.82,
+  "sourceArchive": "basic_2833_dragon_graceful_1_HD_spine-3-8-59_dxt5.zip",
+  "animations": [
+    {
+      "name": "breathe",
+      "duration": 1.5,
+      "bounds": {
+        "x": -31.62010859544771,
+        "y": 6.81630129239176,
+        "width": 55.55804093375997,
+        "height": 76.30912758137649
+      },
+      "peakTime": 0.25
+    },
+    {
+      "name": "fly",
+      "duration": 1.5,
+      "bounds": {
+        "x": -29.51324872946217,
+        "y": 10.26503802588614,
+        "width": 66.79411594514468,
+        "height": 82.02410332597478
+      },
+      "peakTime": 0.125
+    },
+    {
+      "name": "levelup",
+      "duration": 1.5,
+      "bounds": {
+        "x": -31.62010859544771,
+        "y": 6.81630129239176,
+        "width": 55.55804093375997,
+        "height": 76.30912758137649
+      },
+      "peakTime": 0.25
+    },
+    {
+      "name": "special1",
+      "duration": 3.299999952316284,
+      "bounds": {
+        "x": -119.09825719552391,
+        "y": -64.92803921723676,
+        "width": 241.9206986735722,
+        "height": 249.9156195129516
+      },
+      "peakTime": 1.3749999801317851
+    },
+    {
+      "name": "walk",
+      "duration": 1.5,
+      "bounds": {
+        "x": -29.51324872946217,
+        "y": 10.26503802588614,
+        "width": 66.79411594514468,
+        "height": 82.02410332597478
+      },
+      "peakTime": 0.125
+    },
+    {
+      "name": "ult2",
+      "duration": 4.8,
+      "authored": true,
+      "description": "Orbită Stella → încărcare sceptru → undă astrală → revenire."
+    }
+  ],
+  "bones": 41,
+  "slots": 55,
+  "skeleton": "models/noctyra-stella/juvenil/skeleton.skel",
+  "atlas": "models/noctyra-stella/juvenil/atlas.atlas",
+  "texture": "models/noctyra-stella/juvenil/texture.png",
+  "preview": "models/noctyra-stella/juvenil/preview.png",
+  "generatedTexture": "generated/noctyra-juvenil.png",
+  "prompt": "prompts/noctyra-juvenil.txt",
+  "bodyBounds": {
+    "x": -40.167392601394624,
+    "y": 2.5426592894183013,
+    "width": 115.91103784383827,
+    "height": 95.72958086660547
+  },
+  "sceneBounds": {
+    "x": -111.17993525394337,
+    "y": -67.54506955934642,
+    "width": 230.77666816056674,
+    "height": 230.77666816056674
+  },
+  "extension": "extensions/noctyra-stella/extension.js",
+  "extensionConfig": {
+    "sourceBounds": {
+      "x": -31.62010859544771,
+      "y": 6.81630129239176,
+      "width": 68.90097581113022,
+      "height": 85.47284005946916
+    },
+    "companion": "extensions/noctyra-stella/companion.png",
+    "weapon": "extensions/noctyra-stella/weapon.png"
+  }
+}

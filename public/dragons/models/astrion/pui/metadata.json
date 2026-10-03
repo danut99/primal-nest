@@ -1,0 +1,35 @@
+{
+  "label": "Pui",
+  "nativeAge": 1,
+  "derived": false,
+  "displayScale": 0.7,
+  "sourceArchive": "basic_3001_dragon_seraphim_1_HD_spine-3-8-59_dxt5.zip",
+  "animations": [
+    {
+      "name": "breathe",
+      "duration": 1.3333333730697632
+    },
+    {
+      "name": "fly",
+      "duration": 1.3333333730697632
+    },
+    {
+      "name": "levelup",
+      "duration": 1.3333333730697632
+    },
+    {
+      "name": "special1",
+      "duration": 3.1666667461395264
+    },
+    {
+      "name": "walk",
+      "duration": 1.3333333730697632
+    }
+  ],
+  "bones": 59,
+  "slots": 66,
+  "skeleton": "models/astrion/pui/skeleton.skel",
+  "atlas": "models/astrion/pui/atlas.atlas",
+  "texture": "models/astrion/pui/texture.png",
+  "preview": "models/astrion/pui/preview.png"
+}

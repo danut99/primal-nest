@@ -1,0 +1,39 @@
+{
+  "label": "Adult",
+  "nativeAge": 3,
+  "derived": false,
+  "displayScale": 1,
+  "sourceArchive": "basic_3011_dragon_highmasterkarma_3_HD_spine-3-8-59_dxt5.zip",
+  "animations": [
+    {
+      "name": "attack",
+      "duration": 3.3333332538604736
+    },
+    {
+      "name": "breathe",
+      "duration": 2
+    },
+    {
+      "name": "fly",
+      "duration": 2
+    },
+    {
+      "name": "levelup",
+      "duration": 2
+    },
+    {
+      "name": "special1",
+      "duration": 3
+    },
+    {
+      "name": "walk",
+      "duration": 2
+    }
+  ],
+  "bones": 88,
+  "slots": 93,
+  "skeleton": "models/vortexion/adult/skeleton.skel",
+  "atlas": "models/vortexion/adult/atlas.atlas",
+  "texture": "models/vortexion/adult/texture.png",
+  "preview": "models/vortexion/adult/preview.png"
+}

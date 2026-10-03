@@ -3,3 +3,13 @@ dist/
 *.log
 # Artă locală (imagini de test, ex. din Dinoblade): nu se publică.
 src/local-art/
+# Unealta DCAT și pachetele de dragoni (generare, surse, build-uri): rămân doar locale.
+DCAT-main/
+# Arhivele Dragon City (~290 MB): doar locale. Fără ele, jocul merge; biblioteca din tabul Dragoni și din laborator nu.
+public/dragons/library/
+# Sursele de artă (scene, imaginile 360° vechi): doar locale, ca până acum.
+art/
+# Optimized artwork used by the application is part of the project.
+!/public/art/
+# Imaginile brute generate (sursele iconițelor din public/art și public/icons): doar locale.
+output/

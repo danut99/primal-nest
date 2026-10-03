@@ -1,0 +1,95 @@
+{
+  "label": "Subadult",
+  "nativeAge": 3,
+  "derived": true,
+  "displayScale": 0.92,
+  "sourceArchive": "basic_2833_dragon_graceful_3_HD_spine-3-8-59_dxt5.zip",
+  "animations": [
+    {
+      "name": "attack",
+      "duration": 3.6666667461395264,
+      "bounds": {
+        "x": -80.64913279318645,
+        "y": -52.71743644719075,
+        "width": 357.4056148414819,
+        "height": 225.05723738073684
+      },
+      "peakTime": 1.5277778108914692
+    },
+    {
+      "name": "breathe",
+      "duration": 1.5,
+      "bounds": {
+        "x": -64.32329410754608,
+        "y": -1.1661906092875345,
+        "width": 117.25542261356003,
+        "height": 121.74027162120062
+      },
+      "peakTime": 0.84375
+    },
+    {
+      "name": "fly",
+      "duration": 1.5,
+      "bounds": {
+        "x": -64.44951995175045,
+        "y": 8.872131986037557,
+        "width": 123.31964346002931,
+        "height": 121.24070823348292
+      },
+      "peakTime": 0.28125
+    },
+    {
+      "name": "levelup",
+      "duration": 1.5,
+      "bounds": {
+        "x": -64.32329410754608,
+        "y": -1.1661906092875345,
+        "width": 117.25542261356003,
+        "height": 121.74027162120062
+      },
+      "peakTime": 0.84375
+    },
+    {
+      "name": "special1",
+      "duration": 3.433333396911621,
+      "bounds": {
+        "x": -111.59258503618783,
+        "y": -63.40322155146321,
+        "width": 230.23530026378816,
+        "height": 241.5558260355101
+      },
+      "peakTime": 1.4305555820465088
+    },
+    {
+      "name": "walk",
+      "duration": 1.5,
+      "bounds": {
+        "x": -64.44951995175045,
+        "y": 8.872131986037557,
+        "width": 123.31964346002931,
+        "height": 121.24070823348292
+      },
+      "peakTime": 0.28125
+    }
+  ],
+  "bones": 56,
+  "slots": 66,
+  "skeleton": "models/noctyra/subadult/skeleton.skel",
+  "atlas": "models/noctyra/subadult/atlas.atlas",
+  "texture": "models/noctyra/subadult/texture.png",
+  "preview": "models/noctyra/subadult/preview.png",
+  "generatedTexture": "generated/noctyra-subadult.png",
+  "prompt": "prompts/noctyra-subadult.txt",
+  "bodyBounds": {
+    "x": -64.44951995175045,
+    "y": -1.1661906092875345,
+    "width": 123.31964346002931,
+    "height": 131.279030828808
+  },
+  "sceneBounds": {
+    "x": -111.59258503618783,
+    "y": -63.40322155146321,
+    "width": 388.34906708448324,
+    "height": 241.5558260355101
+  }
+}

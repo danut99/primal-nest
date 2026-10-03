@@ -1,0 +1,95 @@
+{
+  "label": "Adult",
+  "nativeAge": 3,
+  "derived": false,
+  "displayScale": 1,
+  "sourceArchive": "basic_2946_dragon_highfamine_3_HD_spine-3-8-59_dxt5.zip",
+  "animations": [
+    {
+      "name": "attack",
+      "duration": 3.3333332538604736,
+      "bounds": {
+        "x": -98.06189119403162,
+        "y": -73.35618286412875,
+        "width": 360.42918072031415,
+        "height": 286.05500506200445
+      },
+      "peakTime": 1.041666641831398
+    },
+    {
+      "name": "breathe",
+      "duration": 1.6666666269302368,
+      "bounds": {
+        "x": -58.71649970150989,
+        "y": 0.7345378523867652,
+        "width": 114.05172291500458,
+        "height": 117.62727445684622
+      },
+      "peakTime": 0.4166666567325592
+    },
+    {
+      "name": "fly",
+      "duration": 1.6666666269302368,
+      "bounds": {
+        "x": -63.73817010354723,
+        "y": 7.240991471769863,
+        "width": 151.801447819808,
+        "height": 122.87026116101612
+      },
+      "peakTime": 1.562499962747097
+    },
+    {
+      "name": "levelup",
+      "duration": 1.6666666269302368,
+      "bounds": {
+        "x": -58.71649970150989,
+        "y": 0.7345378523867652,
+        "width": 114.05172291500458,
+        "height": 117.62727445684622
+      },
+      "peakTime": 0.4166666567325592
+    },
+    {
+      "name": "special1",
+      "duration": 3.1666667461395264,
+      "bounds": {
+        "x": -162.0134727736764,
+        "y": -115.44901245664613,
+        "width": 348.163574530851,
+        "height": 348.16355029333727
+      },
+      "peakTime": 1.5833333730697632
+    },
+    {
+      "name": "walk",
+      "duration": 1.6666666269302368,
+      "bounds": {
+        "x": -63.73817010354723,
+        "y": 7.240991471769863,
+        "width": 151.801447819808,
+        "height": 122.87026116101612
+      },
+      "peakTime": 1.562499962747097
+    }
+  ],
+  "bones": 61,
+  "slots": 62,
+  "skeleton": "models/vharok/adult/skeleton.skel",
+  "atlas": "models/vharok/adult/atlas.atlas",
+  "texture": "models/vharok/adult/texture.png",
+  "preview": "models/vharok/adult/preview.png",
+  "generatedTexture": "generated/vharok-adult.png",
+  "prompt": "prompts/vharok-adult.txt",
+  "bodyBounds": {
+    "x": -63.73817010354723,
+    "y": 0.7345378523867652,
+    "width": 151.801447819808,
+    "height": 129.3767147803992
+  },
+  "sceneBounds": {
+    "x": -162.0134727736764,
+    "y": -115.44901245664613,
+    "width": 424.380762299959,
+    "height": 348.16355029333727
+  }
+}

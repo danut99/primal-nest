@@ -1,0 +1,39 @@
+{
+  "label": "Subadult",
+  "nativeAge": 3,
+  "derived": true,
+  "displayScale": 0.92,
+  "sourceArchive": "basic_3001_dragon_seraphim_3_HD_spine-3-8-59_dxt5.zip",
+  "animations": [
+    {
+      "name": "attack",
+      "duration": 2.933333396911621
+    },
+    {
+      "name": "breathe",
+      "duration": 1.6666666269302368
+    },
+    {
+      "name": "fly",
+      "duration": 1.6666666269302368
+    },
+    {
+      "name": "levelup",
+      "duration": 1.6666666269302368
+    },
+    {
+      "name": "special1",
+      "duration": 3.2333333492279053
+    },
+    {
+      "name": "walk",
+      "duration": 1.6666666269302368
+    }
+  ],
+  "bones": 83,
+  "slots": 96,
+  "skeleton": "models/astrion/subadult/skeleton.skel",
+  "atlas": "models/astrion/subadult/atlas.atlas",
+  "texture": "models/astrion/subadult/texture.png",
+  "preview": "models/astrion/subadult/preview.png"
+}

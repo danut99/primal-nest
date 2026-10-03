@@ -14,6 +14,8 @@ import {
 } from '@shared/game';
 import { DinoSprite } from '../components/DinoSprite';
 import { EggSprite } from '../components/EggSprite';
+import { GameIcon } from '../components/GameIcon';
+import { EggIcon } from '../components/AssetIcon';
 import { sceneBackground } from '../content/art';
 import { Saurok, Sparkles, TypeBadge } from '../components/ui';
 import { sound } from '../utils/sound';
@@ -122,10 +124,9 @@ export function Onboarding({ onStart, now }: { onStart: (s: GameState) => void; 
   const s = step - storySteps;
   return (
     <div className="onboarding">
-      <SceneLayer name="fundal" />
       <div className="onb-card">
         <div className="logo big">
-          <span className="logo-egg">🥚</span> Primal Nest
+          <GameIcon name="logo" size={88} className="brand-mark" /> Primal Nest
         </div>
         <p className="tagline">Ultimul Cuib</p>
 
@@ -230,7 +231,7 @@ export function Onboarding({ onStart, now }: { onStart: (s: GameState) => void; 
                 ← Înapoi
               </button>
               <button className="btn primary big" disabled={!temp} onClick={begin}>
-                🥚 Pune oul în cuib
+                <EggIcon /> Pune oul în cuib
               </button>
             </div>
           </div>

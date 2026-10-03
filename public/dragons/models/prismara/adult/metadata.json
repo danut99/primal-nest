@@ -1,0 +1,39 @@
+{
+  "label": "Adult",
+  "nativeAge": 3,
+  "derived": false,
+  "displayScale": 1,
+  "sourceArchive": "basic_3000_dragon_guardianangel_3_HD_spine-3-8-59_dxt5.zip",
+  "animations": [
+    {
+      "name": "attack",
+      "duration": 3.1666667461395264
+    },
+    {
+      "name": "breathe",
+      "duration": 2
+    },
+    {
+      "name": "fly",
+      "duration": 1.6666666269302368
+    },
+    {
+      "name": "levelup",
+      "duration": 2
+    },
+    {
+      "name": "special1",
+      "duration": 2.3333332538604736
+    },
+    {
+      "name": "walk",
+      "duration": 1.6666666269302368
+    }
+  ],
+  "bones": 72,
+  "slots": 83,
+  "skeleton": "models/prismara/adult/skeleton.skel",
+  "atlas": "models/prismara/adult/atlas.atlas",
+  "texture": "models/prismara/adult/texture.png",
+  "preview": "models/prismara/adult/preview.png"
+}

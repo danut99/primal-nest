@@ -20,7 +20,8 @@ import {
 } from '@shared/game';
 import { DinoSprite } from '../components/DinoSprite';
 import { EggSprite } from '../components/EggSprite';
-import { Bar, Panel, Stars } from '../components/ui';
+import { EggIcon } from '../components/AssetIcon';
+import { Bar, PageHeader, Panel, Stars } from '../components/ui';
 import type { Game } from '../hooks/useGame';
 import { formatDuration, formatSeconds } from '../utils/format';
 
@@ -35,22 +36,59 @@ export function BreedingPanel({ game }: { game: Game }) {
   const state = game.state!;
   const level = skillLevel(state, 'imblanzire');
 
+  const head = (
+    <PageHeader
+      icon="💞"
+      title="Bârlogul"
+      subtitle={`Împerechează doi dragoni: după ${BREED_SECONDS / 3600} ore primești un ou care moștenește genele părinților. Fiecare dragon se poate împerechea de cel mult ${BREED_MAX} ori.`}
+      stats={[
+        { label: 'Îmblânzire', value: `Nv. ${level}` },
+        { label: 'stare', value: level < BREED_SKILL_LEVEL ? '🔒' : state.breeding ? '⏳' : '✓', tone: level < BREED_SKILL_LEVEL ? undefined : 'ok' },
+      ]}
+    />
+  );
+
   if (level < BREED_SKILL_LEVEL) {
     const xp = state.skills.imblanzire;
     return (
-      <Panel title="Bârlogul" icon="💞" className="den">
-        <div className="den-locked">
-          <span className="den-lock-icon">🔒</span>
-          <h3>Bârlogul e încă închis</h3>
-          <p className="muted">Câștigă lupte în Expediții ca să crești Îmblânzirea. La nivelul {BREED_SKILL_LEVEL} poți împerechea dinozauri.</p>
-          <div className="den-lock-bar">
-            <Bar value={xp} max={skillXp(BREED_SKILL_LEVEL)} color="#ff7aa8" label={`Îmblânzire ${level}/${BREED_SKILL_LEVEL}`} />
+      <>
+        {head}
+        <Panel title="Cum funcționează" icon="📜" className="den">
+          <ol className="den-steps">
+            <li>
+              <span>💞</span>
+              <b>Alegi doi părinți</b>
+              <small>Dragoni crescuți de tine, care nu luptă și nu muncesc în acel moment.</small>
+            </li>
+            <li>
+              <span>⏳</span>
+              <b>Așteaptă {BREED_SECONDS / 3600} ore</b>
+              <small>Stau în bârlog; merge și cât ești plecat.</small>
+            </li>
+            <li>
+              <span><EggIcon size={32} /></span>
+              <b>Primești un ou</b>
+              <small>Puiul moștenește genele părinților; părinți buni dau ouă mai rare.</small>
+            </li>
+          </ol>
+          <div className="den-locked">
+            <span className="den-lock-icon">🔒</span>
+            <h3>Se deschide la Îmblânzire nivel {BREED_SKILL_LEVEL}</h3>
+            <p className="muted">Îmblânzirea crește când câștigi lupte în Expediții.</p>
+            <div className="den-lock-bar">
+              <Bar value={xp} max={skillXp(BREED_SKILL_LEVEL)} color="#ff7aa8" label={`Îmblânzire ${level}/${BREED_SKILL_LEVEL}`} />
+            </div>
           </div>
-        </div>
-      </Panel>
+        </Panel>
+      </>
     );
   }
-  return state.breeding ? <ActiveDen game={game} /> : <DenPicker game={game} />;
+  return (
+    <>
+      {head}
+      {state.breeding ? <ActiveDen game={game} /> : <DenPicker game={game} />}
+    </>
+  );
 }
 
 // ---------- Împerecherea în curs ----------
@@ -86,7 +124,7 @@ function ActiveDen({ game }: { game: Game }) {
       <div className="den-cta">
         {done ? (
           <button className="btn primary big glow" onClick={() => game.dispatch({ type: 'finishBreed' })}>
-            🥚 Ia oul
+            <EggIcon /> Ia oul
           </button>
         ) : (
           <button className="btn small ghost" onClick={() => game.dispatch({ type: 'cancelBreed' })}>

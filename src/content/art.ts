@@ -1,7 +1,7 @@
 // Fundalurile: regiunile de expediție vin din src/assets/scenes (generate din art/scenes cu
 // `npm run scenes`); restul (ex. 'fundal', 'poveste-1') sunt scene locale opționale din
 // src/local-art/scenes, exclus din git. Dacă lipsesc, ecranele rămân pe fundalul din cod.
-// Dinozaurii au imaginile lor în src/assets/turntables (vezi content/turntables.ts).
+// Dinozaurii sunt dragonii animați din public/dragons (vezi content/dragons.ts).
 
 import type { CSSProperties } from 'react';
 

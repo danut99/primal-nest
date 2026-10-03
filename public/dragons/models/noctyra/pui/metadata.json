@@ -1,0 +1,84 @@
+{
+  "label": "Pui",
+  "nativeAge": 1,
+  "derived": false,
+  "displayScale": 0.7,
+  "sourceArchive": "basic_2833_dragon_graceful_1_HD_spine-3-8-59_dxt5.zip",
+  "animations": [
+    {
+      "name": "breathe",
+      "duration": 1.5,
+      "bounds": {
+        "x": -31.62010859544771,
+        "y": 6.81630129239176,
+        "width": 55.55804093375997,
+        "height": 76.30912758137649
+      },
+      "peakTime": 0.25
+    },
+    {
+      "name": "fly",
+      "duration": 1.5,
+      "bounds": {
+        "x": -29.51324872946217,
+        "y": 10.26503802588614,
+        "width": 66.79411594514468,
+        "height": 82.02410332597478
+      },
+      "peakTime": 0.125
+    },
+    {
+      "name": "levelup",
+      "duration": 1.5,
+      "bounds": {
+        "x": -31.62010859544771,
+        "y": 6.81630129239176,
+        "width": 55.55804093375997,
+        "height": 76.30912758137649
+      },
+      "peakTime": 0.25
+    },
+    {
+      "name": "special1",
+      "duration": 3.299999952316284,
+      "bounds": {
+        "x": -119.09825719552391,
+        "y": -64.92803921723676,
+        "width": 241.9206986735722,
+        "height": 249.9156195129516
+      },
+      "peakTime": 1.3749999801317851
+    },
+    {
+      "name": "walk",
+      "duration": 1.5,
+      "bounds": {
+        "x": -29.51324872946217,
+        "y": 10.26503802588614,
+        "width": 66.79411594514468,
+        "height": 82.02410332597478
+      },
+      "peakTime": 0.125
+    }
+  ],
+  "bones": 41,
+  "slots": 55,
+  "skeleton": "models/noctyra/pui/skeleton.skel",
+  "atlas": "models/noctyra/pui/atlas.atlas",
+  "texture": "models/noctyra/pui/texture.png",
+  "preview": "models/noctyra/pui/preview.png",
+  "generatedTexture": "generated/noctyra-pui.png",
+  "prompt": "prompts/noctyra-pui.txt",
+  "bodyBounds": {
+    "x": -31.62010859544771,
+    "y": 6.81630129239176,
+    "width": 68.90097581113022,
+    "height": 85.47284005946916
+  },
+  "sceneBounds": {
+    "x": -119.09825719552391,
+    "y": -64.92803921723676,
+    "width": 241.9206986735722,
+    "height": 249.9156195129516
+  }
+}

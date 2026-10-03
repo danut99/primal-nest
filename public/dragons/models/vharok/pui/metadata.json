@@ -1,0 +1,84 @@
+{
+  "label": "Pui",
+  "nativeAge": 1,
+  "derived": false,
+  "displayScale": 0.7,
+  "sourceArchive": "basic_2946_dragon_highfamine_1_HD_spine-3-8-59_dxt5.zip",
+  "animations": [
+    {
+      "name": "breathe",
+      "duration": 1.3333333730697632,
+      "bounds": {
+        "x": -18.641008876655228,
+        "y": -2.690615666839907,
+        "width": 38.17268343211515,
+        "height": 58.39143627922701
+      },
+      "peakTime": 0.9722222511967024
+    },
+    {
+      "name": "fly",
+      "duration": 1.3333333730697632,
+      "bounds": {
+        "x": -24.727369287258647,
+        "y": 1.920430250372732,
+        "width": 63.45808425065014,
+        "height": 52.48064697393322
+      },
+      "peakTime": 0.1666666716337204
+    },
+    {
+      "name": "levelup",
+      "duration": 1.3333333730697632,
+      "bounds": {
+        "x": -18.641008876655228,
+        "y": -2.690615666839907,
+        "width": 38.17268343211515,
+        "height": 58.39143627922701
+      },
+      "peakTime": 0.9722222511967024
+    },
+    {
+      "name": "special1",
+      "duration": 2.700000047683716,
+      "bounds": {
+        "x": -36.113944464800376,
+        "y": -22.548644498923295,
+        "width": 100.475942290598,
+        "height": 101.81176002839562
+      },
+      "peakTime": 1.1250000198682149
+    },
+    {
+      "name": "walk",
+      "duration": 1.3333333730697632,
+      "bounds": {
+        "x": -24.727369287258647,
+        "y": 1.920430250372732,
+        "width": 63.45808425065014,
+        "height": 52.48064697393322
+      },
+      "peakTime": 0.1666666716337204
+    }
+  ],
+  "bones": 41,
+  "slots": 49,
+  "skeleton": "models/vharok/pui/skeleton.skel",
+  "atlas": "models/vharok/pui/atlas.atlas",
+  "texture": "models/vharok/pui/texture.png",
+  "preview": "models/vharok/pui/preview.png",
+  "generatedTexture": "generated/vharok-pui-v2.png",
+  "prompt": "prompts/vharok-pui-v2.txt",
+  "bodyBounds": {
+    "x": -24.727369287258647,
+    "y": -2.690615666839907,
+    "width": 63.45808425065014,
+    "height": 58.39143627922701
+  },
+  "sceneBounds": {
+    "x": -36.113944464800376,
+    "y": -22.548644498923295,
+    "width": 100.475942290598,
+    "height": 101.81176002839562
+  }
+}

@@ -1,6 +1,6 @@
 // Cadrul aplicației: început → joc. Bara de sus, navigarea, activitatea curentă, notificările.
 
-import { useState } from 'react';
+import { Suspense, lazy, useState } from 'react';
 import {
   type Haul,
   GATHER_ACTIONS,
@@ -15,7 +15,9 @@ import {
   type Dino,
   levelXp,
 } from '@shared/game';
-import { Bar, Modal, Saurok, Sky } from '../components/ui';
+import { Bar, Modal, Saurok } from '../components/ui';
+import { GameIcon } from '../components/GameIcon';
+import { ItemArt } from '../components/AssetIcon';
 import { type Game, useGame, useTick } from '../hooks/useGame';
 import { ActivitiesScreen } from '../screens/ActivitiesScreen';
 import { AtlasScreen } from '../screens/AtlasScreen';
@@ -24,33 +26,35 @@ import { BreedingPanel } from '../screens/BreedingPanel';
 import { CampScreen } from '../screens/CampScreen';
 import { MissionsModal, claimableCount } from '../screens/MissionsModal';
 import { WelcomeModal } from '../screens/WelcomeModal';
+// Vizualizatorul de dragoni se încarcă doar când deschizi tabul.
+const DragonsScreen = lazy(() => import('../dragons/DragonsScreen').then((m) => ({ default: m.DragonsScreen })));
+// Laboratorul de dragoni (editorul de rețete), tot la cerere.
+const LabScreen = lazy(() => import('../dragon-lab/LabScreen').then((m) => ({ default: m.LabScreen })));
 import { ExpeditionsScreen } from '../screens/ExpeditionsScreen';
 import { NestScreen } from '../screens/NestScreen';
 import { Onboarding } from '../screens/Onboarding';
 import { PackScreen } from '../screens/PackScreen';
-import { applyLowFx, bloodEnabled, lowFxEnabled, setBloodEnabled, setLowFxEnabled } from '../utils/settings';
 import { sound } from '../utils/sound';
 
-export type Screen = 'cuib' | 'haita' | 'barlog' | 'activitati' | 'expeditii' | 'tabara' | 'atlas';
+export type Screen = 'cuib' | 'haita' | 'barlog' | 'activitati' | 'expeditii' | 'tabara' | 'atlas' | 'dragoni' | 'laborator';
 
-const NAV: { id: Screen; icon: string; label: string }[] = [
-  { id: 'cuib', icon: '🪺', label: 'Cuib' },
-  { id: 'haita', icon: '🦖', label: 'Haită' },
-  { id: 'barlog', icon: '💞', label: 'Bârlog' },
-  { id: 'activitati', icon: '⛏️', label: 'Activități' },
-  { id: 'expeditii', icon: '🗺️', label: 'Expediții' },
-  { id: 'tabara', icon: '🏕️', label: 'Tabără' },
-  { id: 'atlas', icon: '📖', label: 'Atlas' },
+const NAV: { id: Screen; label: string }[] = [
+  { id: 'cuib', label: 'Cuib' },
+  { id: 'haita', label: 'Haită' },
+  { id: 'barlog', label: 'Bârlog' },
+  { id: 'activitati', label: 'Activități' },
+  { id: 'expeditii', label: 'Expediții' },
+  { id: 'tabara', label: 'Tabără' },
+  { id: 'atlas', label: 'Atlas' },
+  { id: 'dragoni', label: 'Dragoni' },
+  { id: 'laborator', label: 'Laborator' },
 ];
 
 export default function App() {
   const game = useGame();
   useTick();
   return (
-    <>
-      <Sky />
-      {game.state ? <GameShell game={game} /> : <Onboarding onStart={game.start} now={game.now} />}
-    </>
+    <>{game.state ? <GameShell game={game} /> : <Onboarding onStart={game.start} now={game.now} />}</>
   );
 }
 
@@ -61,8 +65,6 @@ function GameShell({ game }: { game: Game }) {
   const [selectedDino, setSelectedDino] = useState<string | null>(null);
   const [haul, setHaul] = useState<Haul | null>(null);
   const [muted, setMuted] = useState(sound.muted);
-  const [blood, setBlood] = useState(bloodEnabled);
-  const [lowFx, setLowFx] = useState(lowFxEnabled);
   const objective = currentObjective(state);
   const readyEggs = eggsInNest(state).filter((e) => e.incubation!.endsAt <= now).length;
   const readyMolts = state.dinos.filter((d) => d.molt && d.molt.endsAt <= now).length;
@@ -80,43 +82,26 @@ function GameShell({ game }: { game: Game }) {
   return (
     <div className="app">
       <header className="topbar">
-        <div className="logo">
-          <span className="logo-egg">🥚</span> Primal Nest
+        <div className="logo" aria-label="Primal Nest">
+          <GameIcon name="logo" size={48} className="brand-mark" /> Primal Nest
         </div>
+        {/* Activitatea curentă stă în bara de sus: se vede mereu și nu acoperă conținutul. */}
+        <ActivityBar game={game} onHaul={setHaul} onGo={go} />
         <div className="topbar-right">
-          <span className="sparks" title="Scântei stelare">
-            ✨ {state.sparks}
+          <span className="res-pill sparks" title="Scântei stelare: din forjă, lupte, Alfa și misiuni">
+            <GameIcon name="scanteie" className="res-icon" />
+            <b>{state.sparks}</b>
+            <small>scântei</small>
           </span>
-          <span className="diamonds" title="Diamante: le câștigi din Alfa, misiuni, realizări și, rar, din lupte">
-            💎 {state.diamonds}
+          <span className="res-pill diamonds" title="Diamante: le câștigi din Alfa, misiuni, realizări și, rar, din lupte">
+            <GameIcon name="diamant" className="res-icon" />
+            <b>{state.diamonds}</b>
+            <small>diamante</small>
           </span>
-          <button className="icon-btn missions-btn" onClick={() => setMissions(true)} aria-label="Misiuni și realizări" title="Misiuni și realizări">
-            📜{rewards > 0 && <span className="badge">{rewards}</span>}
+          <button className="round-btn missions-btn" onClick={() => setMissions(true)} aria-label="Misiuni și realizări" title="Misiuni și realizări">
+            <GameIcon name="misiune" size={28} />{rewards > 0 && <span className="badge">{rewards}</span>}
           </button>
-          <button
-            className={`icon-btn${blood ? '' : ' off'}`}
-            onClick={() => {
-              setBloodEnabled(!blood);
-              setBlood(!blood);
-            }}
-            aria-label={blood ? 'Oprește efectele de sânge' : 'Pornește efectele de sânge'}
-            title={blood ? 'Efecte de sânge: pornite' : 'Efecte de sânge: oprite'}
-          >
-            🩸
-          </button>
-          <button
-            className={'icon-btn' + (lowFx ? ' off' : '')}
-            onClick={() => {
-              setLowFxEnabled(!lowFx);
-              applyLowFx(!lowFx);
-              setLowFx(!lowFx);
-            }}
-            aria-label={lowFx ? 'Pornește efectele grafice' : 'Redu efectele grafice'}
-            title={lowFx ? 'Grafică redusă (mai rapid)' : 'Grafică completă'}
-          >
-            🎆
-          </button>
-          <button className="icon-btn" onClick={() => setMuted(sound.toggle())} aria-label={muted ? 'Pornește sunetul' : 'Oprește sunetul'}>
+          <button className="round-btn" onClick={() => setMuted(sound.toggle())} aria-label={muted ? 'Pornește sunetul' : 'Oprește sunetul'} title={muted ? 'Sunet oprit' : 'Sunet pornit'}>
             {muted ? '🔇' : '🔊'}
           </button>
         </div>
@@ -124,8 +109,9 @@ function GameShell({ game }: { game: Game }) {
 
       {objective && (
         <button className="objective" onClick={() => go(objective.screen)}>
-          <Saurok size={44} />
+          <Saurok size={38} />
           <div>
+            <small className="objective-kicker">Pasul următor</small>
             <b>{objective.title}</b>
             <small>{objective.hint}</small>
           </div>
@@ -139,7 +125,7 @@ function GameShell({ game }: { game: Game }) {
             const badge = n.id === 'cuib' ? readyEggs : n.id === 'haita' ? readyMolts + hungry : n.id === 'barlog' ? breedReady : 0;
             return (
               <button key={n.id} className={`nav-btn${screen === n.id ? ' active' : ''}`} onClick={() => go(n.id)} aria-current={screen === n.id ? 'page' : undefined}>
-                <span className="nav-icon">{n.icon}</span>
+                <img className="nav-icon" src={`/icons/tabs/${n.id}.png`} alt="" aria-hidden="true" width={40} height={40} />
                 <span className="nav-label">{n.label}</span>
                 {badge > 0 && <span className="badge">{badge}</span>}
               </button>
@@ -157,12 +143,21 @@ function GameShell({ game }: { game: Game }) {
           )}
           {screen === 'activitati' && <ActivitiesScreen game={game} />}
           {screen === 'expeditii' && <ExpeditionsScreen game={game} />}
-          {screen === 'tabara' && <CampScreen game={game} />}
+          {screen === 'tabara' && <CampScreen game={game} onGo={go} />}
           {screen === 'atlas' && <AtlasScreen game={game} />}
+          {screen === 'dragoni' && (
+            <Suspense fallback={<div className="screen muted">Se încarcă dragonii…</div>}>
+              <DragonsScreen />
+            </Suspense>
+          )}
+          {screen === 'laborator' && (
+            <Suspense fallback={<div className="screen muted">Se încarcă laboratorul…</div>}>
+              <LabScreen />
+            </Suspense>
+          )}
         </main>
       </div>
 
-      <ActivityBar game={game} onHaul={setHaul} />
       <Toasts game={game} />
       {import.meta.env.DEV && <DevTools game={game} />}
 
@@ -202,25 +197,32 @@ function GameShell({ game }: { game: Game }) {
   );
 }
 
-function ActivityBar({ game, onHaul }: { game: Game; onHaul: (h: Haul) => void }) {
+function ActivityBar({ game, onHaul, onGo }: { game: Game; onHaul: (h: Haul) => void; onGo: (s: Screen) => void }) {
   const state = game.state!;
   const a = state.activity;
   if (!a) {
     return (
-      <div className="activity-bar idle">
-        <span>💤 Nicio activitate. Pornește una din Activități sau Expediții.</span>
-      </div>
+      <button className="activity-bar idle" onClick={() => onGo('activitati')} title="Alege o activitate">
+        <span className="act-icon">💤</span>
+        <span className="act-main">
+          <b>Nicio activitate</b>
+          <small>Pornește una: cules, săpături, gătit sau o expediție →</small>
+        </span>
+      </button>
     );
   }
   const now = game.now();
   const dur = activityDuration(a) * 1000;
   const ready = readyCount(a, now);
   const progress = ((now - a.startedAt) % dur) / dur;
+  const gather = a.kind === 'gather' ? GATHER_ACTIONS.find((x) => x.id === a.actionId)! : null;
+  const recipe = a.kind === 'cook' ? RECIPES.find((r) => r.id === a.recipeId)! : null;
+  const activityItem = recipe?.output ?? (gather?.skill === 'cules' ? gather.drops[0].value : null);
   const label =
     a.kind === 'gather'
-      ? GATHER_ACTIONS.find((x) => x.id === a.actionId)!
+      ? gather!
       : a.kind === 'cook'
-        ? { icon: '🍳', name: RECIPES.find((r) => r.id === a.recipeId)!.name }
+        ? { icon: '🍳', name: recipe!.name }
         : ZONES.find((z) => z.id === a.zoneId)!;
   const unit = a.kind === 'expedition' ? 'lupte' : 'gata';
   const cookDone = (a.kind === 'cook' && a.done + ready >= a.count) || (a.kind === 'gather' && !!a.limit && a.index + ready >= a.limit);
@@ -232,7 +234,7 @@ function ActivityBar({ game, onHaul }: { game: Game; onHaul: (h: Haul) => void }
 
   return (
     <div className="activity-bar">
-      <span className="act-icon">{label.icon}</span>
+      <span className="act-icon">{activityItem ? <ItemArt item={activityItem} size={28} /> : label.icon}</span>
       <div className="act-main">
         <div className="row between">
           <b>{label.name}</b>

@@ -1,0 +1,183 @@
+[
+ {
+  "id": "umbravel",
+  "name": "Umbravel",
+  "description": "Dragon de umbră cu aripi lungi și mișcare lentă, elastică.",
+  "base": {
+   "model": "solarys",
+   "stage": "adult"
+  },
+  "color": {
+   "colorize": "#5b4a8a",
+   "colorizeAmount": 0.65,
+   "lightness": -0.2
+  },
+  "parts": {
+   "efecte": {
+    "hidden": true
+   },
+   "coarne": {
+    "scale": 1.4,
+    "colorize": "#f0e6c8",
+    "colorizeAmount": 0.9
+   },
+   "aripi": {
+    "length": 1.35,
+    "amplify": 1.5,
+    "wave": 6,
+    "waveSpeed": 0.6,
+    "inertia": 0.6,
+    "colorize": "#2a1546",
+    "colorizeAmount": 0.9,
+    "lightness": -0.35
+   },
+   "coada": {
+    "length": 1.3,
+    "wave": 14,
+    "waveSpeed": 0.5,
+    "waveLag": 0.9,
+    "inertia": 0.5
+   },
+   "podoabe": {
+    "hidden": true
+   }
+  },
+  "motion": {
+   "speed": 0.75,
+   "warp": 0.35,
+   "bob": 18,
+   "bobSpeed": 0.35,
+   "sway": 4,
+   "zoom": 1.2
+  }
+ },
+ {
+  "id": "magmorn",
+  "name": "Magmorn",
+  "description": "Bestie de piatră verde, greoaie, cu coada care se unduiește.",
+  "base": {
+   "model": "pyron",
+   "stage": "adult"
+  },
+  "color": {
+   "hue": 95,
+   "saturation": 0.5,
+   "lightness": -0.1
+  },
+  "parts": {
+   "efecte": {
+    "hidden": true
+   },
+   "cap": {
+    "scale": 0.85
+   },
+   "coada": {
+    "length": 1.6,
+    "width": 1.2,
+    "wave": 18,
+    "waveSpeed": 0.7,
+    "waveLag": 1.1,
+    "inertia": 0.45
+   },
+   "podoabe": {
+    "scale": 1.5,
+    "colorize": "#c9b27a",
+    "colorizeAmount": 0.75
+   },
+   "picioare": {
+    "amplify": 0.6
+   }
+  },
+  "motion": {
+   "speed": 0.65,
+   "warp": 0.5,
+   "sway": 2,
+   "swaySpeed": 0.25
+  }
+ },
+ {
+  "id": "corallyth",
+  "name": "Corallyth",
+  "description": "Șarpe de recif, roșu-coral, cu gât lung și înotătoare uriașe.",
+  "base": {
+   "model": "nerion",
+   "stage": "adult"
+  },
+  "color": {
+   "hue": -150,
+   "saturation": 0.85
+  },
+  "parts": {
+   "efecte": {
+    "hidden": true
+   },
+   "gat": {
+    "length": 1.25,
+    "wave": 6,
+    "waveSpeed": 0.4,
+    "inertia": 0.4
+   },
+   "inotatoare": {
+    "scale": 1.5,
+    "amplify": 1.8,
+    "wave": 10,
+    "waveSpeed": 1.2,
+    "waveLag": 0.8,
+    "colorize": "#ff7a6b",
+    "colorizeAmount": 0.75
+   },
+   "coada": {
+    "wave": 10,
+    "waveSpeed": 0.6,
+    "inertia": 0.5
+   }
+  },
+  "motion": {
+   "speed": 0.85,
+   "bob": 25,
+   "bobSpeed": 0.3,
+   "sway": 5,
+   "swaySpeed": 0.2,
+   "zoom": 1.15
+  }
+ },
+ {
+  "id": "frigorn",
+  "name": "Frigorn",
+  "description": "Dragon de gheață cu aripi scurte, coarne mari și mișcări sacadate.",
+  "base": {
+   "model": "crystalis",
+   "stage": "adult"
+  },
+  "color": {
+   "hue": -70,
+   "saturation": 0.6,
+   "lightness": 0.15
+  },
+  "parts": {
+   "efecte": {
+    "hidden": true
+   },
+   "aripi": {
+    "scale": 0.8,
+    "amplify": 1.8,
+    "colorize": "#bfefff",
+    "colorizeAmount": 0.7
+   },
+   "coarne": {
+    "scale": 1.6
+   },
+   "cap": {
+    "scale": 1.15
+   },
+   "coada": {
+    "length": 0.8,
+    "amplify": 0.5
+   }
+  },
+  "motion": {
+   "speed": 1.2,
+   "warp": 0.8
+  }
+ }
+]

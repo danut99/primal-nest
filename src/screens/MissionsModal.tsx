@@ -12,6 +12,7 @@ import {
   streakBonus,
 } from '@shared/game';
 import { Bar, Modal } from '../components/ui';
+import { GameIcon } from '../components/GameIcon';
 import type { Game } from '../hooks/useGame';
 import { formatDuration } from '../utils/format';
 
@@ -36,10 +37,10 @@ export function MissionsModal({ game, onClose }: { game: Game; onClose: () => vo
 
   return (
     <Modal onClose={onClose} className="missions-modal">
-      <h2>📜 Misiuni</h2>
+      <h2><GameIcon name="misiune" size={32} /> Misiuni</h2>
       <div className="tabs small-tabs">
         <button className={`tab${tab === 'daily' ? ' active' : ''}`} onClick={() => setTab('daily')}>
-          Zilnice
+          <GameIcon name="zilnica" /> Zilnice
         </button>
         <button className={`tab${tab === 'ach' ? ' active' : ''}`} onClick={() => setTab('ach')}>
           Realizări {state.achievements.length}/{ACHIEVEMENTS.length}
@@ -75,18 +76,18 @@ export function MissionsModal({ game, onClose }: { game: Game; onClose: () => vo
                       <span className="quest-done">✓</span>
                     ) : (
                       <button className="btn small primary" disabled={p < q.goal} onClick={() => game.dispatch({ type: 'claimQuest', questId: id })}>
-                        +{q.sparks} ✨ · +{q.diamonds} 💎
+                        +{q.sparks} <GameIcon name="scanteie" size={20} /> · +{q.diamonds} <GameIcon name="diamant" size={20} />
                       </button>
                     )}
                   </div>
                 );
               })}
               <div className={`daily-chest${allDone && !daily.bonusClaimed ? ' ready' : ''}`}>
-                <span className="chest-icon">{daily.bonusClaimed ? '📭' : '🎁'}</span>
+                <span className={`chest-icon${daily.bonusClaimed ? ' claimed' : ''}`}><GameIcon name="zilnica" size={48} /></span>
                 <div className="grow">
                   <b>Cufărul zilei</b>
                   <small className="muted">
-                    {daily.bonusClaimed ? 'Luat azi. Revino mâine pentru serie!' : `Toate cele ${daily.quests.length} misiuni → +${streakBonus(nextStreak)} 💎 (ziua ${nextStreak})`}
+                    {daily.bonusClaimed ? 'Luat azi. Revino mâine pentru serie!' : <>Toate cele {daily.quests.length} misiuni → +{streakBonus(nextStreak)} <GameIcon name="diamant" size={18} /> (ziua {nextStreak})</>}
                   </small>
                 </div>
                 {!daily.bonusClaimed && (
@@ -110,10 +111,10 @@ export function MissionsModal({ game, onClose }: { game: Game; onClose: () => vo
                 <b>{a.title}</b>
                 <small className="muted">{a.text}</small>
                 {got ? (
-                  <span className="quest-done">✓ +{a.diamonds} 💎</span>
+                  <span className="quest-done">✓ +{a.diamonds} <GameIcon name="diamant" size={20} /></span>
                 ) : done ? (
                   <button className="btn tiny primary" onClick={() => game.dispatch({ type: 'claimAchievement', achievementId: a.id })}>
-                    Ia +{a.diamonds} 💎
+                    Ia +{a.diamonds} <GameIcon name="diamant" size={20} />
                   </button>
                 ) : (
                   <Bar value={value} max={a.goal} color="#c79bff" thin label={`${value}/${a.goal}`} />

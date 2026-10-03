@@ -102,7 +102,7 @@ export function wildCombatant(rng: Rng, speciesId: string, level: number, index:
 export function rollEnemies(rng: Rng, zone: Zone, party: Combatant[], firstBattles: boolean, alpha = false): Combatant[] {
   if (alpha) {
     const a = wildCombatant(rng, zone.alpha.speciesId, zone.alpha.level, 0, zone.alpha.hpMult);
-    return [{ ...a, name: `${SPECIES[zone.alpha.speciesId].name}, ${zone.alpha.title}` }];
+    return [{ ...a, name: zone.alpha.title }];
   }
   // Prima luptă e blândă: un singur pui sălbatic, slăbit, la nivelul minim al zonei.
   const count = firstBattles ? 1 : Math.min(party.length, randInt(rng, zone.count[0], zone.count[1]));

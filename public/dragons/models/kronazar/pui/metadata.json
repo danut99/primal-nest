@@ -1,0 +1,35 @@
+{
+  "label": "Pui",
+  "nativeAge": 1,
+  "derived": false,
+  "displayScale": 0.7,
+  "sourceArchive": "basic_3109_dragon_highredemptionnorn_1_HD_spine-3-8-59_dxt5.zip",
+  "animations": [
+    {
+      "name": "breathe",
+      "duration": 1.3333333730697632
+    },
+    {
+      "name": "fly",
+      "duration": 1.3333333730697632
+    },
+    {
+      "name": "levelup",
+      "duration": 1.3333333730697632
+    },
+    {
+      "name": "special1",
+      "duration": 2.5
+    },
+    {
+      "name": "walk",
+      "duration": 1.3333333730697632
+    }
+  ],
+  "bones": 58,
+  "slots": 63,
+  "skeleton": "models/kronazar/pui/skeleton.skel",
+  "atlas": "models/kronazar/pui/atlas.atlas",
+  "texture": "models/kronazar/pui/texture.png",
+  "preview": "models/kronazar/pui/preview.png"
+}

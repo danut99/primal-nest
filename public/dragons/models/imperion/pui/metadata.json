@@ -1,0 +1,35 @@
+{
+  "label": "Pui",
+  "nativeAge": 1,
+  "derived": false,
+  "displayScale": 0.7,
+  "sourceArchive": "basic_3081_dragon_highascendedsupreme_1_HD_spine-3-8-59_dxt5.zip",
+  "animations": [
+    {
+      "name": "breathe",
+      "duration": 2
+    },
+    {
+      "name": "fly",
+      "duration": 1.600000023841858
+    },
+    {
+      "name": "levelup",
+      "duration": 2
+    },
+    {
+      "name": "special1",
+      "duration": 2.700000047683716
+    },
+    {
+      "name": "walk",
+      "duration": 1.600000023841858
+    }
+  ],
+  "bones": 55,
+  "slots": 69,
+  "skeleton": "models/imperion/pui/skeleton.skel",
+  "atlas": "models/imperion/pui/atlas.atlas",
+  "texture": "models/imperion/pui/texture.png",
+  "preview": "models/imperion/pui/preview.png"
+}

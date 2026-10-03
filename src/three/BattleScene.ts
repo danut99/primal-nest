@@ -1,11 +1,11 @@
 // Arena 3D a luptei. Rezultatul e deja calculat de reguli (battle.ts); aici doar îl punem în scenă:
 // dinozaurii respiră, aleargă spre țintă și atacă, se clatină la lovituri și se prăbușesc.
-// Modelele cu animații (Quaternius) își folosesc clipurile; celelalte primesc mișcări din cod.
+// Fiecare luptător e un decupaj din imaginile 360° (unghiul din profil), luminat de arenă.
 
 import * as THREE from 'three';
 import type { BattleEvent, Combatant } from '@shared/game';
 import { SPECIES, TYPES } from '@shared/game';
-import { jobFor, prepareModel } from './models';
+import { TURNTABLE_FRAMES, turntableFor } from '../content/turntables';
 
 type Clip = 'idle' | 'run' | 'attack' | 'death';
 
@@ -44,14 +44,33 @@ interface Burst {
 }
 
 const ZONE_LIGHT: Record<string, { rim: number; hemiSky: number; hemiGround: number; fog: number }> = {
-  mlastina: { rim: 0x7dffc8, hemiSky: 0x9fc4ff, hemiGround: 0x1d2a1a, fog: 0x0d1a18 },
-  jungla: { rim: 0xb6ffd0, hemiSky: 0xc4e6ff, hemiGround: 0x16240f, fog: 0x0b140b },
+  jungla: { rim: 0xb6ffd0, hemiSky: 0xfff0c4, hemiGround: 0x16240f, fog: 0x0b140b },
+  canion: { rim: 0xffc070, hemiSky: 0xffd9a8, hemiGround: 0x2a1408, fog: 0x1a0c06 },
+  piscuri: { rim: 0x9fd8ff, hemiSky: 0xd0e4ff, hemiGround: 0x141a24, fog: 0x0a0f16 },
   vulcan: { rim: 0xff7a2a, hemiSky: 0xffb38a, hemiGround: 0x2a0d06, fog: 0x1a0805 },
 };
 
-/** Lungimea țintă a modelului (unități de scenă), după stadiu. */
-const STAGE_LENGTH = { pui: 1.6, juvenil: 2.1, adult: 2.7 };
-const UMBRA_GLOW = 0.16;
+/** Lățimea imaginii în scenă (unități), după stadiu. */
+const STAGE_LENGTH = { pui: 1.7, juvenil: 2.3, adult: 3 };
+/** Cadrul din banda 360°: 090 = din profil spre dreapta (haita), 270 = spre stânga (inamicii). */
+const SIDE_FRAME = { player: 2, enemy: 6 };
+/** Lumina proprie a imaginii, ca să nu pară stinsă pe fundalul întunecat. */
+const SELF_LIGHT = 0.55;
+
+const textureLoader = new THREE.TextureLoader();
+const stripCache = new Map<string, Promise<THREE.Texture>>();
+function loadStrip(url: string): Promise<THREE.Texture> {
+  if (!stripCache.has(url)) {
+    stripCache.set(
+      url,
+      textureLoader.loadAsync(url).then((t) => {
+        t.colorSpace = THREE.SRGBColorSpace;
+        return t;
+      }),
+    );
+  }
+  return stripCache.get(url)!;
+}
 
 export class BattleScene {
   private renderer: THREE.WebGLRenderer;
@@ -80,23 +99,14 @@ export class BattleScene {
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
     this.renderer.toneMappingExposure = 1.2;
-    this.renderer.shadowMap.enabled = true;
-    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     this.renderer.domElement.className = 'arena3d-canvas';
     container.appendChild(this.renderer.domElement);
 
-    const z = ZONE_LIGHT[zoneId] ?? ZONE_LIGHT.mlastina;
+    const z = ZONE_LIGHT[zoneId] ?? ZONE_LIGHT.jungla;
     this.scene.fog = new THREE.Fog(z.fog, 14, 30);
     this.scene.add(new THREE.HemisphereLight(z.hemiSky, z.hemiGround, 0.9));
     const key = new THREE.DirectionalLight(0xffe6c4, 2.4);
     key.position.set(-5, 9, 7);
-    key.castShadow = true;
-    key.shadow.mapSize.set(1024, 1024);
-    key.shadow.camera.left = -9;
-    key.shadow.camera.right = 9;
-    key.shadow.camera.top = 6;
-    key.shadow.camera.bottom = -6;
-    key.shadow.bias = -0.0005;
     this.scene.add(key);
     const rim = new THREE.DirectionalLight(z.rim, 3.2);
     rim.position.set(2, 4, -8);
@@ -105,11 +115,7 @@ export class BattleScene {
     rim2.position.set(-8, 2, -4);
     this.scene.add(rim2);
 
-    // Solul: doar umbre peste imaginea regiunii, plus o pată de lumină caldă.
-    const ground = new THREE.Mesh(new THREE.PlaneGeometry(40, 40), new THREE.ShadowMaterial({ opacity: 0.55 }));
-    ground.rotation.x = -Math.PI / 2;
-    ground.receiveShadow = true;
-    this.scene.add(ground);
+    // Solul e imaginea regiunii; umbrele sunt pete sub fiecare luptător. Aici doar o pată de lumină caldă.
     const pool = new THREE.Mesh(
       new THREE.CircleGeometry(7, 48),
       new THREE.MeshBasicMaterial({ map: radialTexture('rgba(255,210,150,0.28)', 'rgba(0,0,0,0)'), transparent: true, depthWrite: false }),
@@ -134,98 +140,99 @@ export class BattleScene {
     const h = this.container.clientHeight || 1;
     this.renderer.setSize(w, h, false);
     this.camera.aspect = w / h;
-    // Pe ecrane înguste camera se dă înapoi, ca să încapă ambele tabere.
-    this.camera.position.z = w / h < 1.4 ? 14 : 8.8;
+    // Camera se dă înapoi cât să încapă ambele tabere (±6 pe orizontală), inclusiv rândul din spate.
+    const halfFov = THREE.MathUtils.degToRad(this.camera.fov / 2);
+    this.camera.position.z = Math.min(16, Math.max(8.8, 5 / (Math.tan(halfFov) * (w / h))));
     this.camera.updateProjectionMatrix();
   }
 
-  /** Încarcă modelele și le așază: haita în stânga, inamicii în dreapta. */
+  /** Încarcă modelele și le așază: haita în stânga (pe rânduri, ca în formație), inamicii în dreapta. */
   async load(start: Combatant[]) {
-    const slots = [
-      new THREE.Vector3(3.2, 0, 0.6),
-      new THREE.Vector3(4.2, 0, -1.6),
-      new THREE.Vector3(2.6, 0, 2.4),
-    ];
-    const sides = { player: 0, enemy: 0 };
+    // Rândul din față stă aproape de inamici, cel din spate mai în urmă.
+    const players = start.filter((c) => c.side === 'player');
+    const rows = { front: players.filter((c) => !c.back), back: players.filter((c) => c.back) };
+    const rowSlot = (c: Combatant) => {
+      const row = c.back ? rows.back : rows.front;
+      const i = row.indexOf(c);
+      const z = (i - (row.length - 1) / 2) * 2.4;
+      return new THREE.Vector3(c.back ? -4.2 : -2.3, 0, z + (c.back ? -1 : 0.8));
+    };
+    // Inamicii stau pe un singur rând, răsfirați în adâncime, ca imaginile să nu se suprapună.
+    const foes = start.filter((c) => c.side === 'enemy');
+    const foeSlot = (c: Combatant) => {
+      const i = foes.indexOf(c);
+      return new THREE.Vector3(2.7 + (i % 2) * 0.7, 0, (i - (foes.length - 1) / 2) * 2.4);
+    };
     await Promise.all(
       start.map(async (c) => {
-        const index = sides[c.side]++;
-        const slot = slots[index % slots.length].clone();
-        if (c.side === 'player') slot.x *= -1;
-        if (c.boss) slot.set(3.6, 0, 0);
+        let slot: THREE.Vector3;
+        if (c.side === 'player') slot = rowSlot(c);
+        else slot = c.boss ? new THREE.Vector3(3.6, 0, 0) : foeSlot(c);
         await this.addFighter(c, slot);
       }),
     );
   }
 
   private async addFighter(c: Combatant, home: THREE.Vector3) {
-    const job = jobFor(c.speciesId);
-    if (!job) return;
-    const prepared = await prepareModel(job);
+    const tt = turntableFor(c.speciesId);
+    if (!tt) return;
+    const strip = await loadStrip(tt.strip);
     const species = SPECIES[c.speciesId];
-    const flyer = species.line === 'ptero';
-    // Scalare la o lungime țintă pe stadiu; Alfa e mult mai mare.
-    const length = Math.max(prepared.size.x, prepared.size.z * 0.5, prepared.size.y * 0.8);
-    const target = STAGE_LENGTH[species.stage] * (c.boss ? 1.6 : 1);
-    const scale = target / length;
-    const group = new THREE.Group();
-    prepared.root.scale.setScalar(scale);
-    group.add(prepared.root);
-    const facing = c.side === 'player' ? 0 : Math.PI;
-    group.rotation.y = facing;
-    group.position.copy(home);
-    if (flyer) group.position.y = 1.1;
-    this.scene.add(group);
-
-    const materials: THREE.MeshStandardMaterial[] = [];
-    group.traverse((o) => {
-      const mesh = o as THREE.Mesh;
-      if (!mesh.isMesh) return;
-      for (const m of Array.isArray(mesh.material) ? mesh.material : [mesh.material]) {
-        const mat = m as THREE.MeshStandardMaterial;
-        if (c.variant === 'albino' && mat.color) mat.color.lerp(new THREE.Color('#fff4f6'), 0.75);
-        if (c.side === 'enemy' && mat.emissive) {
-          // Umbra: o strălucire violetă care se stinge la înfrângere.
-          mat.emissive = new THREE.Color('#5a1fb0');
-          mat.emissiveIntensity = UMBRA_GLOW;
-        }
-        materials.push(mat);
-      }
+    // Un singur cadru din bandă; textura e o copie care împarte aceeași imagine (o singură încărcare).
+    const map = strip.clone();
+    map.repeat.set(1 / TURNTABLE_FRAMES, 1);
+    map.offset.set(SIDE_FRAME[c.side] / TURNTABLE_FRAMES, 0);
+    map.needsUpdate = true;
+    const enemy = c.side === 'enemy';
+    const mat = new THREE.MeshStandardMaterial({
+      map,
+      emissiveMap: map,
+      emissive: new THREE.Color(enemy ? '#c9b2ff' : '#ffffff'),
+      emissiveIntensity: SELF_LIGHT,
+      transparent: true,
+      alphaTest: 0.08,
+      roughness: 1,
+      metalness: 0,
+      side: THREE.DoubleSide,
     });
+    if (c.variant === 'albino') mat.color.set('#fff4f6');
+    if (enemy) mat.color.set('#cdbbe8');
+    const size = STAGE_LENGTH[species.stage] * (c.boss ? 1.6 : 1);
+    const geo = new THREE.PlaneGeometry(1, 1).translate(0, 0.5, 0);
+    const body = new THREE.Mesh(geo, mat);
+    body.scale.set(size, size, 1);
+    const group = new THREE.Group();
+    group.add(body);
+    // Umbra de sub picioare (imaginile n-au umbră proprie).
+    const shadow = new THREE.Mesh(
+      new THREE.CircleGeometry(size * 0.32, 24),
+      new THREE.MeshBasicMaterial({ map: radialTexture('rgba(0,0,0,0.55)', 'rgba(0,0,0,0)'), transparent: true, depthWrite: false }),
+    );
+    shadow.rotation.x = -Math.PI / 2;
+    shadow.position.y = 0.02;
+    shadow.scale.set(1.4, 0.7, 1);
+    group.add(shadow);
+    group.position.copy(home);
+    this.scene.add(group);
 
     const f: Fighter = {
       c,
       group,
       home: group.position.clone(),
-      facing,
+      facing: 0,
       actions: {},
-      materials,
+      materials: [mat],
       flash: 0,
       flashColor: new THREE.Color(),
-      flyer,
-      height: prepared.size.y * scale,
+      flyer: false,
+      height: size * 0.8,
       fainted: false,
       phase: Math.random() * Math.PI * 2,
     };
 
-    if (prepared.animations.length) {
-      f.mixer = new THREE.AnimationMixer(prepared.root);
-      const find = (name: string) => prepared.animations.find((a) => a.name.toLowerCase().includes(name));
-      const map: Record<Clip, string> = { idle: 'idle', run: 'run', attack: 'attack', death: 'death' };
-      for (const [k, n] of Object.entries(map) as [Clip, string][]) {
-        const clip = find(n);
-        if (clip) f.actions[k] = f.mixer.clipAction(clip);
-      }
-      f.actions.death?.setLoop(THREE.LoopOnce, 1);
-      if (f.actions.death) f.actions.death.clampWhenFinished = true;
-      f.actions.attack?.setLoop(THREE.LoopOnce, 1);
-      this.playClip(f, 'idle');
-      f.mixer.setTime(Math.random() * 2);
-    }
-
-    if (c.side === 'enemy') {
+    if (enemy) {
       f.umbra = new THREE.PointLight(0x9b5cff, c.boss ? 6 : 3, 4, 2);
-      f.umbra.position.set(0, 0.4, 0);
+      f.umbra.position.set(0, 0.4, 0.6);
       group.add(f.umbra);
     }
     this.fighters.set(c.key, f);
@@ -383,15 +390,16 @@ export class BattleScene {
       this.spark(p, new THREE.Color('#9b5cff'), 60, 1.4, 1.6, -1.2, 0.14);
       this.tween(this.time, 1.2, (k) => {
         if (f.umbra) f.umbra.intensity = (1 - k) * 3;
-        for (const m of f.materials) if (m.emissive) m.emissiveIntensity = UMBRA_GLOW * (1 - k);
+        for (const m of f.materials) if (m.emissive) m.emissiveIntensity = SELF_LIGHT * (1 - k * 0.5);
       });
     }
     // Învinsul se stinge și dispare, ca terenul să rămână clar.
     this.tween(this.time + 1.1, 0.7, (k) => {
-      for (const m of f.materials) {
-        m.transparent = true;
-        m.opacity = 1 - k;
-      }
+      for (const m of f.materials) m.opacity = 1 - k;
+      f.group.traverse((o) => {
+        const mm = (o as THREE.Mesh).material as THREE.Material | undefined;
+        if (mm && 'opacity' in mm) mm.opacity = Math.min(mm.opacity, 1 - k);
+      });
     }, () => {
       f.group.visible = false;
     });
@@ -438,8 +446,8 @@ export class BattleScene {
       f.mixer?.update(dt);
       if (!f.fainted) {
         f.phase += dt;
-        // Respirație pentru modelele fără animație; zburătorii plutesc.
-        if (!f.actions.idle) f.group.scale.y = 1 + Math.sin(f.phase * 2.2) * 0.015;
+        // Respirație: imaginea se întinde ușor în sus și în jos; zburătorii plutesc.
+        if (!f.actions.idle) f.group.scale.y = 1 + Math.sin(f.phase * 2.2) * 0.02;
         if (f.flyer) f.group.position.y = f.home.y + Math.sin(f.phase * 2.4) * 0.15;
       }
       if (f.flash > 0) {
@@ -448,11 +456,11 @@ export class BattleScene {
           if (!m.emissive) continue;
           if (f.flash > 0) {
             m.emissive.copy(f.flashColor);
-            m.emissiveIntensity = f.flash * 1.4;
-          } else if (f.c.side === 'enemy' && !f.fainted) {
-            m.emissive.set('#5a1fb0');
-            m.emissiveIntensity = UMBRA_GLOW;
-          } else m.emissiveIntensity = 0;
+            m.emissiveIntensity = SELF_LIGHT + f.flash * 1.4;
+          } else {
+            m.emissive.set(f.c.side === 'enemy' ? '#c9b2ff' : '#ffffff');
+            m.emissiveIntensity = f.fainted ? SELF_LIGHT * 0.5 : SELF_LIGHT;
+          }
         }
       }
     }

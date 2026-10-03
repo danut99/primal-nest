@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { BRANCH_INFO, DIET_INFO, SPECIES, SPECIES_LIST, STAT_NAMES, type Stats } from '@shared/game';
 import { DinoSprite } from '../components/DinoSprite';
+import { DinoTurntable } from '../components/DinoTurntable';
 import { Bar, Modal, Panel, TypeBadge } from '../components/ui';
 import type { Game } from '../hooks/useGame';
 
@@ -46,7 +47,7 @@ function SpeciesCard({ id, owned, onClose }: { id: string; owned: boolean; onClo
   return (
     <Modal onClose={onClose}>
       <div className={`detail-art type-bg-${s.types[0]}`}>
-        <DinoSprite speciesId={id} size={170} className="bob" />
+        <DinoTurntable speciesId={id} size={170} />
       </div>
       <h2>{s.name}</h2>
       <div className="row gap-s wrap">

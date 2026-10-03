@@ -7,7 +7,10 @@ import {
   type ItemId,
   MAX_SKILL_LEVEL,
   PROPERTY_LEVELS,
+  QUEUE_MAX,
+  type QueuedAction,
   RECIPES,
+  ZONES,
   SKILLS,
   type SkillId,
   maxCookable,
@@ -17,8 +20,47 @@ import {
 import { Bar, ItemChip, Panel } from '../components/ui';
 import type { Game } from '../hooks/useGame';
 import { formatSeconds } from '../utils/format';
+import { WorkPanel } from './WorkPanel';
 
 type Tab = 'cules' | 'sapaturi' | 'bucatarie';
+
+/** Câte acțiuni la cules/săpături; 0 = fără sfârșit. */
+const GATHER_COUNTS = [0, 10, 50, 100];
+
+function queuedLabel(item: QueuedAction): string {
+  if (item.kind === 'gather') {
+    const a = GATHER_ACTIONS.find((x) => x.id === item.actionId)!;
+    return `${a.icon} ${a.name} ×${item.count}`;
+  }
+  if (item.kind === 'cook') return `${ITEMS[RECIPES.find((r) => r.id === item.recipeId)!.output].icon} ${RECIPES.find((r) => r.id === item.recipeId)!.name} ×${item.count}`;
+  const z = ZONES.find((x) => x.id === item.zoneId)!;
+  return `${z.icon} ${z.name}`;
+}
+
+function QueueStrip({ game }: { game: Game }) {
+  const state = game.state!;
+  if (!state.activity && state.queue.length === 0) return null;
+  return (
+    <div className="queue-strip">
+      <span className="queue-title">Coada</span>
+      {Array.from({ length: QUEUE_MAX }, (_, i) => {
+        const item = state.queue[i];
+        return item ? (
+          <span key={i} className="queue-item">
+            <small>{i + 1}.</small> {queuedLabel(item)}
+            <button className="queue-x" onClick={() => game.dispatch({ type: 'dequeue', index: i })} aria-label="Scoate din coadă">
+              ✕
+            </button>
+          </span>
+        ) : (
+          <span key={i} className="queue-item empty">
+            <small>{i + 1}.</small> loc liber
+          </span>
+        );
+      })}
+    </div>
+  );
+}
 
 export function SkillHeader({ game, skill }: { game: Game; skill: SkillId }) {
   const state = game.state!;
@@ -48,11 +90,15 @@ export function SkillHeader({ game, skill }: { game: Game; skill: SkillId }) {
 
 export function ActivitiesScreen({ game }: { game: Game }) {
   const [tab, setTab] = useState<Tab>('cules');
+  const [count, setCount] = useState(0);
   const state = game.state!;
   const active = state.activity;
+  const canQueue = !!active && state.queue.length < QUEUE_MAX;
 
   return (
     <div className="screen">
+      <WorkPanel game={game} />
+      <QueueStrip game={game} />
       <div className="tabs" role="tablist">
         {(['cules', 'sapaturi', 'bucatarie'] as Tab[]).map((t) => (
           <button key={t} role="tab" aria-selected={tab === t} className={`tab${tab === t ? ' active' : ''}`} onClick={() => setTab(t)}>
@@ -64,6 +110,14 @@ export function ActivitiesScreen({ game }: { game: Game }) {
       {tab !== 'bucatarie' ? (
         <Panel>
           <SkillHeader game={game} skill={tab} />
+          <div className="count-row">
+            <span className="muted small">Câte acțiuni:</span>
+            {GATHER_COUNTS.map((n) => (
+              <button key={n} className={`btn tiny${count === n ? ' primary' : ''}`} onClick={() => setCount(n)}>
+                {n === 0 ? '∞' : n}
+              </button>
+            ))}
+          </div>
           <div className="action-grid">
             {GATHER_ACTIONS.filter((a) => a.skill === tab).map((a) => {
               const locked = skillLevel(state, a.skill) < a.level;
@@ -86,12 +140,26 @@ export function ActivitiesScreen({ game }: { game: Game }) {
                   </div>
                   {locked ? (
                     <small className="lock-text">Nivel {a.level}</small>
-                  ) : running ? (
-                    <span className="running-tag">⏳ În lucru…</span>
                   ) : (
-                    <button className="btn primary small" onClick={() => game.dispatch({ type: 'gather', actionId: a.id })}>
-                      Pornește
-                    </button>
+                    <div className="action-btns">
+                      {running ? (
+                        <span className="running-tag">⏳ În lucru…</span>
+                      ) : (
+                        <button className="btn primary small" onClick={() => game.dispatch({ type: 'gather', actionId: a.id, count: count || undefined })}>
+                          Pornește
+                        </button>
+                      )}
+                      {canQueue && (
+                        <button
+                          className="btn small"
+                          title={count ? '' : 'Alege un număr de acțiuni ca să o pui în coadă'}
+                          disabled={!count}
+                          onClick={() => game.dispatch({ type: 'enqueue', item: { kind: 'gather', actionId: a.id, count } })}
+                        >
+                          ＋ Coadă
+                        </button>
+                      )}
+                    </div>
                   )}
                 </div>
               );
@@ -104,7 +172,9 @@ export function ActivitiesScreen({ game }: { game: Game }) {
       ) : (
         <Kitchen game={game} />
       )}
-      <p className="hint">Activitatea merge și cât ești plecat (maximum 8 ore). Revendică din bara de jos.</p>
+      <p className="hint">
+        Activitatea merge și cât ești plecat (maximum 8 ore). Alege un număr de acțiuni și pune altele în coadă: pornesc singure, una după alta.
+      </p>
     </div>
   );
 }
@@ -163,9 +233,20 @@ function Kitchen({ game }: { game: Game }) {
                       Max ({max})
                     </button>
                   </div>
-                  <button className="btn primary small" disabled={max < 1} onClick={() => game.dispatch({ type: 'cook', recipeId: r.id, count })}>
-                    🍳 Gătește {count}
-                  </button>
+                  <div className="action-btns">
+                    <button className="btn primary small" disabled={max < 1} onClick={() => game.dispatch({ type: 'cook', recipeId: r.id, count })}>
+                      🍳 Gătește {count}
+                    </button>
+                    {active && game.state!.queue.length < QUEUE_MAX && (
+                      <button
+                        className="btn small"
+                        title="Ingredientele se iau când pornește"
+                        onClick={() => game.dispatch({ type: 'enqueue', item: { kind: 'cook', recipeId: r.id, count: counts[r.id] ?? 1 } })}
+                      >
+                        ＋ Coadă
+                      </button>
+                    )}
+                  </div>
                 </>
               )}
             </div>

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { type Dino, type Egg, SPECIES, TEMPERAMENTS, geneStars } from '@shared/game';
-import { DinoSprite } from '../components/DinoSprite';
+import { DinoTurntable } from '../components/DinoTurntable';
 import { EggSprite } from '../components/EggSprite';
 import { Modal, Sparkles, Stars, TypeBadge } from '../components/ui';
 import type { Game } from '../hooks/useGame';
@@ -65,7 +65,7 @@ export function HatchModal({ game, egg, onClose }: { game: Game; egg: Egg; onClo
         {phase === 'reveal' && dino && species && (
           <div className="reveal pop-in">
             <Sparkles count={16} />
-            <DinoSprite speciesId={dino.speciesId} albino={dino.variant === 'albino'} size={170} className="bob" />
+            <DinoTurntable speciesId={dino.speciesId} albino={dino.variant === 'albino'} size={170} />
           </div>
         )}
       </div>

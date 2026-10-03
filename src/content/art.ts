@@ -1,15 +1,17 @@
-// Artă locală opțională din src/local-art/ (exclus din git). Fișierele sunt găsite după nume;
-// dacă lipsesc, jocul folosește desenele din cod. Vezi src/local-art/CITESTE.md.
+// Fundalurile: regiunile de expediție vin din src/assets/scenes (generate din art/scenes cu
+// `npm run scenes`); restul (ex. 'fundal', 'poveste-1') sunt scene locale opționale din
+// src/local-art/scenes, exclus din git. Dacă lipsesc, ecranele rămân pe fundalul din cod.
+// Dinozaurii au imaginile lor în src/assets/turntables (vezi content/turntables.ts).
 
 import type { CSSProperties } from 'react';
 
-const scenes = import.meta.glob('../local-art/scenes/*.{jpg,jpeg,png,webp}', {
+const game = import.meta.glob('../assets/scenes/*.webp', {
   eager: true,
   query: '?url',
   import: 'default',
 }) as Record<string, string>;
 
-const dinos = import.meta.glob('../local-art/dinos/*.{png,webp,jpg}', {
+const local = import.meta.glob('../local-art/scenes/*.{jpg,jpeg,png,webp}', {
   eager: true,
   query: '?url',
   import: 'default',
@@ -24,30 +26,22 @@ function byName(files: Record<string, string>): Record<string, string> {
   return out;
 }
 
-const SCENES = byName(scenes);
-const DINOS = byName(dinos);
+/** Imaginile jocului au întâietate față de cele locale de test. */
+const SCENES = { ...byName(local), ...byName(game) };
 
-/** URL-ul unei scene (ex. 'mlastina', 'poveste-1', 'fundal') sau undefined. */
+/** URL-ul unei scene (ex. 'jungla', 'poveste-1', 'fundal') sau undefined. */
 export const sceneArt = (name: string): string | undefined => SCENES[name];
 
-/** URL-ul imaginii unei specii sau undefined (atunci se folosește desenul SVG). */
-export const dinoArt = (speciesId: string): string | undefined => DINOS[speciesId];
-
-/** Încadrare pe scenă: capturile de test au personajul jocului în prim-plan, așa că mărim spre peisaj. */
-const FOCUS: Record<string, { size: string; pos: string }> = {
-  mlastina: { size: '175%', pos: '92% 42%' },
-  jungla: { size: '190%', pos: '92% 38%' },
-  vulcan: { size: '160%', pos: '30% 18%' },
-};
-
-/** Stil de fundal: imaginea sub un voal întunecat, ca textul să rămână lizibil. */
+/**
+ * Stil de fundal: imaginea sub un voal întunecat, ca textul să rămână lizibil.
+ * Regiunile au solul liber în treimea de jos, așa că încadrarea coboară puțin spre el.
+ */
 export function sceneBackground(name: string, veil = 0.55): CSSProperties | undefined {
   const url = SCENES[name];
   if (!url) return undefined;
   return {
     backgroundImage: `linear-gradient(rgba(5, 5, 10, ${veil}), rgba(5, 5, 10, ${Math.min(0.95, veil + 0.25)})), url(${url})`,
-    // Cadrele late taie sus și jos, unde capturile de test au interfața jocului.
-    backgroundSize: FOCUS[name]?.size ?? 'cover',
-    backgroundPosition: FOCUS[name]?.pos ?? 'center 40%',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center 55%',
   };
 }

@@ -106,6 +106,8 @@ export function hatchEgg(state: GameState, eggId: string, now: number, events: G
     fullness: 0,
     fullAt: now,
     hatchedAt: now,
+    rarity: egg.rarity,
+    ...(egg.lineage ? { lineage: egg.lineage } : {}),
   };
   state.eggs = state.eggs.filter((e) => e.id !== eggId);
   state.dinos.push(dino);
@@ -113,6 +115,7 @@ export function hatchEgg(state: GameState, eggId: string, now: number, events: G
   if (state.activity?.kind !== 'expedition' && state.party.length < 2) state.party.push(dino.id);
   markOwned(state, dino.speciesId, dino.variant === 'albino');
   markTutorial(state, 'first-hatch');
+  state.stats.hatches++;
   events.push({
     kind: 'hatch',
     text: dino.variant === 'albino' ? `Incredibil! Un ${species.name} ALBINO a eclozat! 🤍` : `A eclozat un ${species.name}! 🐣`,
@@ -122,13 +125,34 @@ export function hatchEgg(state: GameState, eggId: string, now: number, events: G
   return dino;
 }
 
-export function sellEgg(state: GameState, eggId: string, events: GameEvent[]) {
-  const egg = findEgg(state, eggId);
-  if (egg.incubation) throw new GameError('BUSY', 'Nu poți vinde un ou din cuib.');
-  if (egg.tutorial) throw new GameError('VALIDATION', 'Oul de start nu se vinde.');
-  // Ouăle lumânate valorează cu 25% mai mult: informația are preț.
-  const price = Math.round(RARITIES[egg.rarity].sell * (egg.candled ? 1.25 : 1));
-  state.eggs = state.eggs.filter((e) => e.id !== eggId);
+/** Ouăle lumânate valorează cu 25% mai mult: informația are preț. */
+export function eggPrice(egg: Egg): number {
+  return Math.round(RARITIES[egg.rarity].sell * (egg.candled ? 1.25 : 1));
+}
+
+/** Ouăle din rucsac care pot pleca (nu din cuib, nu oul de start). */
+function bagEggs(state: GameState, eggIds: string[], verb: string): Egg[] {
+  const ids = [...new Set(eggIds)];
+  if (ids.length === 0) throw new GameError('VALIDATION', 'Niciun ou ales.');
+  return ids.map((id) => {
+    const egg = findEgg(state, id);
+    if (egg.incubation) throw new GameError('BUSY', `Nu poți ${verb} un ou din cuib.`);
+    if (egg.tutorial) throw new GameError('VALIDATION', `Oul de start nu se poate ${verb}.`);
+    return egg;
+  });
+}
+
+export function sellEggs(state: GameState, eggIds: string[], events: GameEvent[]) {
+  const eggs = bagEggs(state, eggIds, 'vinde');
+  const price = eggs.reduce((sum, e) => sum + eggPrice(e), 0);
+  state.eggs = state.eggs.filter((e) => !eggs.includes(e));
   state.sparks += price;
-  events.push({ kind: 'reward', text: `Ai dat oul altui cuib: +${price} scântei. ✨` });
+  const what = eggs.length === 1 ? 'oul' : `${eggs.length} ouă`;
+  events.push({ kind: 'reward', text: `Ai dat ${what} altui cuib: +${price} scântei. ✨` });
+}
+
+export function discardEggs(state: GameState, eggIds: string[], events: GameEvent[]) {
+  const eggs = bagEggs(state, eggIds, 'arunca');
+  state.eggs = state.eggs.filter((e) => !eggs.includes(e));
+  events.push({ kind: 'info', text: eggs.length === 1 ? 'Ai lăsat oul în sălbăticie.' : `Ai lăsat ${eggs.length} ouă în sălbăticie.` });
 }

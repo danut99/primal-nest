@@ -6,11 +6,13 @@ import {
   MAX_SKILL_LEVEL,
   RARITIES,
   SPECIES,
+  START_DIAMONDS,
   START_SPARKS,
   STARTERS,
   TEMPERATURES,
   skillXp,
 } from './catalog';
+import { emptyStats } from './daily';
 import { GameError } from './errors';
 import { type Rng, createRng, pick, randInt } from './rng';
 import type { Egg, GameEvent, GameState, ItemId, Rarity, SkillId, Temperature } from './types';
@@ -45,6 +47,19 @@ export function newGame(
     tutorialDone: [],
     alphas: [],
     relics: [],
+    relicLevels: {},
+    workers: [],
+    queue: [],
+    breeding: null,
+    diamonds: START_DIAMONDS,
+    wild: [],
+    trough: {},
+    stats: emptyStats(),
+    daily: null,
+    streak: { count: 0, lastDay: -1 },
+    achievements: [],
+    backRow: [],
+    zonesVersion: 2,
   };
   // Oul de start: neobișnuit, dar eclozează în 2 minute.
   const egg = makeEgg(state, createRng(state.rngSeed), starter, 'neobisnuit');

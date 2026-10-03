@@ -10,3 +10,8 @@ export * from './activities';
 export * from './commands';
 export * from './objectives';
 export * from './load';
+export * from './work';
+export * from './breeding';
+export * from './neglect';
+export * from './care';
+export * from './daily';

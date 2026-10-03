@@ -2,11 +2,16 @@
 // Timpul curge și offline; revendicarea calculează exact câte acțiuni s-au terminat.
 
 import {
+  ALPHA_FIRST_DIAMONDS,
+  ALPHA_REPEAT_DIAMONDS,
   EXPEDITION_CAP_SECONDS,
+  WIN_DIAMOND_CHANCE,
   GATHER_ACTIONS,
   GATHER_CAP_SECONDS,
   ITEMS,
   MAX_COOK_BATCH,
+  MAX_GATHER_COUNT,
+  QUEUE_MAX,
   PROPERTY_LEVELS,
   RECIPES,
   RELICS,
@@ -16,7 +21,7 @@ import {
   type Zone,
 } from './catalog';
 import { type BattleResult, findZone, fromDino, rollEnemies, simulateBattle } from './battle';
-import { addDinoXp, findDino } from './creatures';
+import { addDinoXp, findDino, relicLevel } from './creatures';
 import { GameError } from './errors';
 import { createRng, mixSeed, randInt, weighted } from './rng';
 import {
@@ -30,7 +35,7 @@ import {
   removeItems,
   skillLevel,
 } from './state';
-import type { Activity, GameEvent, GameState, ItemId, Rarity } from './types';
+import type { Activity, GameEvent, GameState, ItemId, QueuedAction, Rarity } from './types';
 
 /** Ce s-a strâns la o revendicare; interfața îl arată ca popup. */
 export interface Haul {
@@ -40,9 +45,10 @@ export interface Haul {
   wins: number;
   losses: number;
   sparks: number;
+  diamonds: number;
 }
 
-const emptyHaul = (): Haul => ({ items: {}, eggs: [], wins: 0, losses: 0, sparks: 0 });
+const emptyHaul = (): Haul => ({ items: {}, eggs: [], wins: 0, losses: 0, sparks: 0, diamonds: 0 });
 const addToHaul = (haul: Haul, item: ItemId, qty: number) => (haul.items[item] = (haul.items[item] ?? 0) + qty);
 
 export function activityDuration(activity: Activity): number {
@@ -56,7 +62,9 @@ export function readyCount(activity: Activity, now: number): number {
   const dur = activityDuration(activity) * 1000;
   const cap = (activity.kind === 'expedition' ? EXPEDITION_CAP_SECONDS : GATHER_CAP_SECONDS) * 1000;
   const n = Math.floor(Math.min(Math.max(0, now - activity.startedAt), cap) / dur);
-  return activity.kind === 'cook' ? Math.min(activity.count, n) - activity.done : n;
+  if (activity.kind === 'cook') return Math.min(activity.count, n) - activity.done;
+  if (activity.kind === 'gather' && activity.limit) return Math.min(n, activity.limit - activity.index);
+  return n;
 }
 
 export function findAction(id: string) {
@@ -104,6 +112,7 @@ function claimGather(state: GameState, activity: Extract<Activity, { kind: 'gath
     }
   }
   if (n > 0) addSkillXp(state, action.skill, action.xp * n, events);
+  state.stats.gathers += n;
   activity.index += n;
   advance(activity, n, action.seconds * 1000, GATHER_CAP_SECONDS * 1000, now);
 }
@@ -121,6 +130,7 @@ function claimCook(state: GameState, activity: Extract<Activity, { kind: 'cook' 
   addItem(state, recipe.output, n);
   addToHaul(haul, recipe.output, n);
   activity.done += n;
+  state.stats.cooks += n;
   markTutorial(state, 'first-cook');
   addSkillXp(state, 'bucatarie', recipe.xp * n, events);
 }
@@ -139,6 +149,7 @@ export function applyBattle(state: GameState, zone: Zone, result: BattleResult, 
     return;
   }
   haul.wins++;
+  state.stats.wins++;
   markTutorial(state, 'first-win');
   const rng = createRng(mixSeed(seed, 99));
   const enemies = result.start.filter((c) => c.side === 'enemy');
@@ -162,6 +173,9 @@ export function applyBattle(state: GameState, zone: Zone, result: BattleResult, 
     state.sparks += a.sparks;
     haul.sparks += a.sparks;
     const first = !state.alphas.includes(zone.id);
+    const gems = first ? ALPHA_FIRST_DIAMONDS : ALPHA_REPEAT_DIAMONDS;
+    state.diamonds += gems;
+    haul.diamonds += gems;
     if (first) {
       state.alphas.push(zone.id);
       if (zone.id === 'vulcan') markTutorial(state, 'alfa');
@@ -179,6 +193,11 @@ export function applyBattle(state: GameState, zone: Zone, result: BattleResult, 
     events.push({ kind: 'egg', text: `În bârlogul lui ${a.title} ai găsit un ou ${eggAdjective(egg.rarity)}! 🥚`, eggId: egg.id });
     return;
   }
+  if (rng() < WIN_DIAMOND_CHANCE) {
+    state.diamonds++;
+    haul.diamonds++;
+    events.push({ kind: 'reward', text: 'Ai găsit un diamant în cuibul prădătorului! 💎' });
+  }
   // Ouă sălbatice: din linia unuia dintre inamici; Îmblânzirea crește șansa.
   const chance = zone.egg.chance + (skillLevel(state, 'imblanzire') - 1) * 0.001;
   if (rng() < chance) {
@@ -195,7 +214,7 @@ function claimExpedition(state: GameState, activity: Extract<Activity, { kind: '
   const n = readyCount(activity, now);
   let fought = 0;
   for (let i = 0; i < n; i++) {
-    const party = partyDinos(state).map(fromDino);
+    const party = partyDinos(state).map((d, i) => fromDino(d, i, relicLevel(state, d.relic), state.backRow.includes(d.id)));
     if (party.length === 0) break;
     const seed = mixSeed(activity.seed, activity.index + i);
     const enemies = rollEnemies(createRng(mixSeed(seed, 1)), zone, party, !state.tutorialDone.includes('first-win'));
@@ -220,19 +239,94 @@ function claimExpedition(state: GameState, activity: Extract<Activity, { kind: '
 
 // ---------- Comenzi ----------
 
-export function claimActivity(state: GameState, now: number, events: GameEvent[]): Haul {
-  const activity = state.activity;
-  if (!activity) throw new GameError('NOT_READY', 'Nu ai nicio activitate pornită.');
-  const haul = emptyHaul();
+/** Momentul în care s-a terminat activitatea, sau null dacă încă merge (expedițiile nu se termină singure). */
+function finishedAt(activity: Activity): number | null {
+  if (activity.kind === 'cook' && activity.done >= activity.count) return activity.startedAt + activity.count * activityDuration(activity) * 1000;
+  // La cules, startedAt a fost avansat exact până la ultima acțiune terminată.
+  if (activity.kind === 'gather' && activity.limit && activity.index >= activity.limit) return activity.startedAt;
+  return null;
+}
+
+function claimOne(state: GameState, activity: Activity, now: number, events: GameEvent[], haul: Haul) {
   if (activity.kind === 'gather') claimGather(state, activity, now, events, haul);
-  else if (activity.kind === 'cook') {
-    claimCook(state, activity, now, events, haul);
-    if (activity.done >= activity.count) state.activity = null;
-  } else claimExpedition(state, activity, now, events, haul);
+  else if (activity.kind === 'cook') claimCook(state, activity, now, events, haul);
+  else claimExpedition(state, activity, now, events, haul);
+}
+
+/** Revendică activitatea curentă; dacă s-a terminat, pornește următoarea din coadă exact de când s-a terminat. */
+export function claimActivity(state: GameState, now: number, events: GameEvent[]): Haul {
+  if (!state.activity) throw new GameError('NOT_READY', 'Nu ai nicio activitate pornită.');
+  const haul = emptyHaul();
+  for (let guard = 0; state.activity && guard <= QUEUE_MAX + 1; guard++) {
+    claimOne(state, state.activity, now, events, haul);
+    if (!state.activity) {
+      // Retragere din expediție: coada continuă de acum.
+      startNextQueued(state, now, events);
+      break;
+    }
+    const end = finishedAt(state.activity);
+    if (end === null) break;
+    state.activity = null;
+    startNextQueued(state, Math.min(end, now), events);
+  }
   return haul;
 }
 
-export function stopActivity(state: GameState, now: number, events: GameEvent[]): Haul {
+function startQueued(state: GameState, item: QueuedAction, at: number, events: GameEvent[]) {
+  if (item.kind === 'gather') startGather(state, item.actionId, at, events, item.count);
+  else if (item.kind === 'cook') startCook(state, item.recipeId, item.count, at, events);
+  else startExpedition(state, item.zoneId, at, events);
+}
+
+function queuedName(item: QueuedAction): string {
+  if (item.kind === 'gather') return findAction(item.actionId).name;
+  if (item.kind === 'cook') return findRecipe(item.recipeId).name;
+  return findZone(item.zoneId).name;
+}
+
+function startNextQueued(state: GameState, at: number, events: GameEvent[]) {
+  while (!state.activity && state.queue.length) {
+    const item = state.queue.shift()!;
+    try {
+      startQueued(state, item, at, events);
+      events.push({ kind: 'info', text: `Din coadă: a pornit ${queuedName(item)}.` });
+    } catch (e) {
+      if (!(e instanceof GameError)) throw e;
+      events.push({ kind: 'warning', text: `Coada a sărit peste ${queuedName(item)}: ${e.message}` });
+    }
+  }
+}
+
+export function enqueueActivity(state: GameState, item: QueuedAction, now: number, events: GameEvent[]) {
+  validateQueued(state, item);
+  if (!state.activity) {
+    startQueued(state, item, now, events);
+    return;
+  }
+  if (state.queue.length >= QUEUE_MAX) throw new GameError('FULL', `Coada are maximum ${QUEUE_MAX} activități.`);
+  state.queue.push(item);
+  if (state.activity.kind === 'expedition' || (state.activity.kind === 'gather' && !state.activity.limit)) {
+    events.push({ kind: 'info', text: 'Activitatea curentă nu are sfârșit: coada pornește când o oprești.' });
+  }
+}
+
+export function dequeueActivity(state: GameState, index: number) {
+  if (!Number.isInteger(index) || index < 0 || index >= state.queue.length) throw new GameError('NOT_FOUND', 'Nu există în coadă.');
+  state.queue.splice(index, 1);
+}
+
+function validateQueued(state: GameState, item: QueuedAction) {
+  if (item.kind === 'gather') {
+    findAction(item.actionId);
+    if (!Number.isInteger(item.count) || item.count < 1 || item.count > MAX_GATHER_COUNT) throw new GameError('VALIDATION', `Poți pune 1–${MAX_GATHER_COUNT} acțiuni.`);
+  } else if (item.kind === 'cook') {
+    findRecipe(item.recipeId);
+    if (!Number.isInteger(item.count) || item.count < 1 || item.count > MAX_COOK_BATCH) throw new GameError('VALIDATION', `Poți găti 1–${MAX_COOK_BATCH} porții.`);
+  } else assertUnlocked(state, findZone(item.zoneId));
+}
+
+/** Oprirea manuală trece la următoarea activitate din coadă. */
+export function stopActivity(state: GameState, now: number, events: GameEvent[], next = true): Haul {
   const haul = claimActivity(state, now, events);
   const activity = state.activity;
   if (activity?.kind === 'cook') {
@@ -241,19 +335,23 @@ export function stopActivity(state: GameState, now: number, events: GameEvent[])
     for (const [item, qty] of Object.entries(recipe.inputs)) addItem(state, item as ItemId, qty! * (activity.count - activity.done));
   }
   state.activity = null;
+  if (next) startNextQueued(state, now, events);
   return haul;
 }
 
-/** Pornirea unei activități noi oprește (și revendică) activitatea veche. */
+/** Pornirea unei activități noi oprește (și revendică) activitatea veche; coada rămâne pe loc. */
 function replaceActivity(state: GameState, now: number, events: GameEvent[]): Haul | null {
-  return state.activity ? stopActivity(state, now, events) : null;
+  return state.activity ? stopActivity(state, now, events, false) : null;
 }
 
-export function startGather(state: GameState, actionId: string, now: number, events: GameEvent[]) {
+export function startGather(state: GameState, actionId: string, now: number, events: GameEvent[], limit?: number) {
   const action = findAction(actionId);
   if (skillLevel(state, action.skill) < action.level) throw new GameError('LOCKED', `Necesită ${action.skill === 'cules' ? 'Cules' : 'Săpături'} nivel ${action.level}.`);
   const haul = replaceActivity(state, now, events);
-  state.activity = { kind: 'gather', actionId, startedAt: now, seed: mixSeed(state.rngSeed, state.nextId++), index: 0 };
+  if (limit !== undefined && (!Number.isInteger(limit) || limit < 1 || limit > MAX_GATHER_COUNT)) {
+    throw new GameError('VALIDATION', `Poți pune 1–${MAX_GATHER_COUNT} acțiuni.`);
+  }
+  state.activity = { kind: 'gather', actionId, startedAt: now, seed: mixSeed(state.rngSeed, state.nextId++), index: 0, ...(limit ? { limit } : {}) };
   return haul;
 }
 
@@ -308,7 +406,7 @@ export function liveBattle(state: GameState, zoneId: string, alpha: boolean, eve
     removeItems(state, { [key]: 1 });
   }
   const seed = mixSeed(state.rngSeed, state.nextId++);
-  const fighters = party.map(fromDino);
+  const fighters = party.map((d, i) => fromDino(d, i, relicLevel(state, d.relic), state.backRow.includes(d.id)));
   const enemies = rollEnemies(createRng(mixSeed(seed, 1)), zone, fighters, !alpha && !state.tutorialDone.includes('first-win'), alpha);
   const result = simulateBattle(fighters, enemies, seed);
   const haul = emptyHaul();

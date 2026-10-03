@@ -40,6 +40,8 @@ export interface Egg {
   /** Oul de tutorial eclozează mai repede. */
   tutorial?: boolean;
   candled?: boolean;
+  /** Doar la ouăle din împerechere. */
+  lineage?: Lineage;
   /** Prezent doar când oul e în cuib. */
   incubation?: {
     temperature: Temperature;
@@ -69,12 +71,67 @@ export interface Dino {
   relic?: string;
   /** Năpârlirea: evoluția pe timp. */
   molt?: { targetSpeciesId: string; startedAt: number; endsAt: number };
+  /** Părinții și generația, pentru dinozaurii din împerechere. */
+  lineage?: Lineage;
+  /** De câte ori s-a împerecheat (maximum BREED_MAX). */
+  breeds?: number;
+  /** Raritatea oului din care a ieșit (lipsește la dinozaurii vechi). */
+  rarity?: Rarity;
+}
+
+/** Contoare pe toată viața jocului: misiunile și realizările se uită la ele. */
+export interface LifetimeStats {
+  feeds: number;
+  wins: number;
+  hatches: number;
+  gathers: number;
+  cooks: number;
+  work: number;
+  breeds: number;
+  releases: number;
+}
+
+export interface DailyState {
+  day: number;
+  /** Contoarele de la începutul zilei; progresul = acum − base. */
+  base: LifetimeStats;
+  quests: string[];
+  claimed: string[];
+  bonusClaimed: boolean;
+}
+
+export interface Lineage {
+  parents: [string, string];
+  generation: number;
+}
+
+export interface Breeding {
+  a: string;
+  b: string;
+  startedAt: number;
+  endsAt: number;
+  seed: number;
 }
 
 export type Activity =
-  | { kind: 'gather'; actionId: string; startedAt: number; seed: number; index: number }
+  | { kind: 'gather'; actionId: string; startedAt: number; seed: number; index: number; limit?: number }
   | { kind: 'cook'; recipeId: string; startedAt: number; count: number; done: number }
   | { kind: 'expedition'; zoneId: string; startedAt: number; seed: number; index: number; losses?: number };
+
+/** O activitate care așteaptă în coadă; pornește când se termină cea curentă. */
+export type QueuedAction =
+  | { kind: 'gather'; actionId: string; count: number }
+  | { kind: 'cook'; recipeId: string; count: number }
+  | { kind: 'expedition'; zoneId: string };
+
+/** Un dinozaur pus la muncă într-un post din Tabără. */
+export interface Worker {
+  dinoId: string;
+  jobId: string;
+  startedAt: number;
+  seed: number;
+  index: number;
+}
 
 export interface AtlasEntry {
   seen: boolean;
@@ -105,6 +162,25 @@ export interface GameState {
   alphas: string[];
   /** Relicvele câștigate (fiecare e unică). */
   relics: string[];
+  /** Nivelul fiecărei relicve întărite (lipsă = 1). */
+  relicLevels: Record<string, number>;
+  workers: Worker[];
+  queue: QueuedAction[];
+  breeding: Breeding | null;
+  /** Diamante: moneda rară, câștigată din Alfa și, rar, din lupte. */
+  diamonds: number;
+  /** Dinozaurii care au fugit în sălbăticie de foame. */
+  wild: { dino: Dino; leftAt: number }[];
+  /** Mâncarea din troacă: dinozaurii flămânzi mănâncă singuri din ea. */
+  trough: Partial<Record<ItemId, number>>;
+  stats: LifetimeStats;
+  daily: DailyState | null;
+  streak: { count: number; lastDay: number };
+  achievements: string[];
+  /** Dinozaurii din haită care stau în rândul din spate. */
+  backRow: string[];
+  /** Versiunea hărții de expediții (2 = cele 4 regiuni: junglă, canion, piscuri, vulcan). */
+  zonesVersion?: number;
 }
 
 export interface GameEvent {

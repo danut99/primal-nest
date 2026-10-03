@@ -13,7 +13,7 @@ export function Gallery() {
           <figcaption>{s.name}</figcaption>
         </figure>
       ))}
-      {['mugurel', 'jarraptor', 'abisaurus'].map((id) => (
+      {['mugurel', 'jarraptor', 'cetatodon'].map((id) => (
         <figure key={id + 'a'}>
           <DinoSprite speciesId={id} size={120} albino />
           <figcaption>{id} albino</figcaption>
@@ -25,7 +25,7 @@ export function Gallery() {
       </figure>
       {(Object.keys(RARITIES) as Rarity[]).map((r, i) => (
         <figure key={r}>
-          <EggSprite egg={{ rarity: r, speciesId: SPECIES_LIST[i * 4].id }} size={100} cracks={i === 4 ? 2 : 0} />
+          <EggSprite egg={{ rarity: r, speciesId: SPECIES_LIST[(i * 4) % SPECIES_LIST.length].id }} size={100} cracks={i === 4 ? 2 : 0} />
           <figcaption>{r}</figcaption>
         </figure>
       ))}

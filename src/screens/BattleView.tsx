@@ -153,7 +153,10 @@ export function BattleView({ game, zone, alpha, result, haul, onClose, onAgain }
     return (
       <div key={c.key} className={`fighter-card ${c.side}${fainted.has(c.key) ? ' out' : ''}${c.boss ? ' is-alpha' : ''}`}>
         <div className="row between">
-          <b>{c.name}</b>
+          <b>
+            {c.side === 'player' && <span title={c.back ? 'Rândul din spate' : 'Rândul din față'}>{c.back ? '🏹 ' : '🛡️ '}</span>}
+            {c.name}
+          </b>
           <small>Nv. {c.level}</small>
         </div>
         <Bar value={hp[c.key]} max={c.hpMax} thin color={ratio > 0.5 ? '#5cd65a' : ratio > 0.2 ? '#f2c84b' : '#ef4b3f'} />
@@ -170,7 +173,7 @@ export function BattleView({ game, zone, alpha, result, haul, onClose, onAgain }
     const hit = lastAttack?.target === c.key;
     const dino = c.dinoId ? game.state!.dinos.find((d) => d.id === c.dinoId) : undefined;
     return (
-      <div key={c.key} className={`fighter ${c.side}${fainted.has(c.key) ? ' fainted' : ''}${c.boss ? ' is-alpha' : ''}`}>
+      <div key={c.key} className={`fighter ${c.side}${c.back ? ' back-row' : ''}${fainted.has(c.key) ? ' fainted' : ''}${c.boss ? ' is-alpha' : ''}`}>
         {card(c)}
         <div className={`fighter-sprite${acting ? (c.side === 'player' ? ' lunge-right' : ' lunge-left') : ''}${hit ? ' hit' : ''}`} key={hit || acting ? step : 'idle'}>
           <DinoSprite
@@ -285,7 +288,7 @@ export function BattleView({ game, zone, alpha, result, haul, onClose, onAgain }
 export function HaulList({ haul, game }: { haul: Haul; game: Game }) {
   const items = Object.entries(haul.items) as [ItemId, number][];
   const eggs = haul.eggs.map((id) => game.state!.eggs.find((e) => e.id === id)).filter((e) => !!e);
-  if (!items.length && !eggs.length && !haul.sparks && !haul.relic) return <p className="muted">Nimic de data asta.</p>;
+  if (!items.length && !eggs.length && !haul.sparks && !haul.diamonds && !haul.relic) return <p className="muted">Nimic de data asta.</p>;
   return (
     <div className="haul">
       {haul.relic && (
@@ -294,6 +297,7 @@ export function HaulList({ haul, game }: { haul: Haul; game: Game }) {
         </span>
       )}
       {haul.sparks > 0 && <span className="haul-item">✨ +{haul.sparks}</span>}
+      {haul.diamonds > 0 && <span className="haul-item">💎 +{haul.diamonds}</span>}
       {items.map(([id, n]) => (
         <span key={id} className="haul-item" title={ITEMS[id].name}>
           {ITEMS[id].icon} +{n}

@@ -122,27 +122,90 @@ export function Saurok({ size = 64 }: { size?: number }) {
   );
 }
 
-/** Cerul nopții cu aurora, stele și licurici. Stă în spatele întregului joc. */
+/** Peisaj preistoric la amurg: vulcan activ, creste cu palmieri, ceață și jar. Stă în spatele întregului joc. */
 export function Sky() {
-  const flies = useMemo(
+  const embers = useMemo(
     () =>
-      Array.from({ length: 22 }, (_, i) => ({
+      Array.from({ length: 18 }, (_, i) => ({
         left: (i * 37) % 100,
-        top: (i * 53) % 100,
+        top: 45 + ((i * 53) % 55),
         delay: (i * 0.73) % 9,
-        dur: 7 + ((i * 1.7) % 6),
-        size: 3 + (i % 3) * 2,
-        hue: i % 4 === 0 ? '#ffe98a' : i % 4 === 1 ? '#9ff7c8' : i % 4 === 2 ? '#a9e4ff' : '#f6c1ff',
+        dur: 8 + ((i * 1.7) % 6),
+        size: 2 + (i % 3),
+        hue: i % 3 === 0 ? '#ffd27a' : i % 3 === 1 ? '#ff9a3a' : '#ff6a1a',
       })),
     [],
   );
   return (
     <div className="sky" aria-hidden="true">
-      <div className="starfield" />
-      <div className="aurora a1" />
-      <div className="aurora a2" />
-      <div className="aurora a3" />
-      {flies.map((f, i) => (
+      <div className="sky-sun" />
+      <svg className="sky-land" viewBox="0 0 1600 600" preserveAspectRatio="xMidYMax slice">
+        <defs>
+          <radialGradient id="sky-crater" cx="50%" cy="50%" r="50%">
+            <stop offset="0" stopColor="#ffb347" stopOpacity="0.9" />
+            <stop offset="0.35" stopColor="#ff6a1a" stopOpacity="0.45" />
+            <stop offset="1" stopColor="#ff6a1a" stopOpacity="0" />
+          </radialGradient>
+          <radialGradient id="sky-smoke" cx="50%" cy="50%" r="50%">
+            <stop offset="0" stopColor="#3a2a2c" stopOpacity="0.85" />
+            <stop offset="1" stopColor="#3a2a2c" stopOpacity="0" />
+          </radialGradient>
+          <linearGradient id="sky-far" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#3b2228" />
+            <stop offset="1" stopColor="#24161b" />
+          </linearGradient>
+          <linearGradient id="sky-mist" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#c86a3a" stopOpacity="0" />
+            <stop offset="0.5" stopColor="#c86a3a" stopOpacity="0.16" />
+            <stop offset="1" stopColor="#c86a3a" stopOpacity="0" />
+          </linearGradient>
+          <symbol id="sky-palm" viewBox="0 0 100 200">
+            <path d="M47 200 Q44 120 53 42 L58 42 Q51 120 57 200 Z" />
+            <path d="M56 42 Q30 30 2 54 Q30 38 55 47 Z" />
+            <path d="M56 42 Q82 26 100 50 Q78 36 57 47 Z" />
+            <path d="M56 42 Q38 12 14 10 Q40 22 54 45 Z" />
+            <path d="M56 42 Q72 10 94 16 Q70 24 58 45 Z" />
+            <path d="M56 42 Q54 16 64 0 Q60 22 58 45 Z" />
+          </symbol>
+        </defs>
+
+        {/* fum din vulcan */}
+        <g className="sky-smoke">
+          <ellipse cx="1120" cy="150" rx="70" ry="50" fill="url(#sky-smoke)" />
+          <ellipse cx="1150" cy="95" rx="95" ry="60" fill="url(#sky-smoke)" />
+          <ellipse cx="1195" cy="40" rx="130" ry="70" fill="url(#sky-smoke)" opacity="0.7" />
+        </g>
+        <ellipse className="sky-crater" cx="1112" cy="212" rx="90" ry="55" fill="url(#sky-crater)" />
+
+        {/* munți îndepărtați + vulcanul */}
+        <path
+          fill="url(#sky-far)"
+          d="M0 380 L120 330 L230 360 L340 300 L460 350 L560 320 L680 370 L820 340 L960 300 L1085 214 L1100 220 L1125 216 L1140 212 L1260 310 L1360 290 L1480 340 L1600 310 L1600 600 L0 600 Z"
+        />
+        <path className="sky-lava" fill="none" stroke="#ff7a1a" strokeWidth="2.5" strokeLinecap="round" d="M1108 220 Q1100 250 1080 275 Q1066 292 1050 300 M1128 218 Q1140 245 1162 262" />
+
+        {/* ceață */}
+        <rect className="sky-mist" x="-200" y="330" width="2000" height="110" fill="url(#sky-mist)" />
+
+        {/* creasta din mijloc, cu palmieri */}
+        <g fill="#1a1013">
+          <path d="M0 450 Q140 410 280 435 T560 425 Q700 400 840 430 T1120 420 Q1280 395 1420 430 T1600 420 L1600 600 L0 600 Z" />
+          <use href="#sky-palm" x="150" y="330" width="70" height="140" />
+          <use href="#sky-palm" x="205" y="355" width="55" height="110" />
+          <use href="#sky-palm" x="640" y="320" width="75" height="150" transform="scale(-1 1) translate(-1355 0)" />
+          <use href="#sky-palm" x="980" y="340" width="60" height="120" />
+          <use href="#sky-palm" x="1330" y="300" width="80" height="160" transform="scale(-1 1) translate(-2740 0)" />
+          <use href="#sky-palm" x="1395" y="345" width="55" height="110" />
+        </g>
+
+        {/* prim-plan: pământ și ferigi */}
+        <g fill="#0b0708">
+          <path d="M0 520 Q200 490 420 515 T860 505 Q1100 485 1300 510 T1600 500 L1600 600 L0 600 Z" />
+          <path d="M0 600 L0 380 Q30 430 40 470 Q60 400 110 360 Q90 430 92 480 Q130 430 190 420 Q140 470 130 530 Q170 500 230 500 Q170 540 160 600 Z" />
+          <path d="M1600 600 L1600 400 Q1570 440 1560 480 Q1540 410 1490 380 Q1510 440 1508 490 Q1470 450 1410 440 Q1460 480 1470 535 Q1430 510 1370 512 Q1430 545 1440 600 Z" />
+        </g>
+      </svg>
+      {embers.map((f, i) => (
         <span
           key={i}
           className="firefly"

@@ -6,7 +6,10 @@ import {
   FULLNESS_DECAY_PER_MIN,
   ITEMS,
   MAX_LEVEL,
+  MAX_RELIC_LEVEL,
   RELICS,
+  RELIC_UPGRADES,
+  relicBonus,
   SPECIES,
   TEMPERAMENTS,
   levelXp,
@@ -22,7 +25,7 @@ export function species(dino: Pick<Dino, 'speciesId'>) {
 }
 
 /** Formula în stil Pokémon: bază, gene, nivel, plus temperamentul. */
-export function computeStats(dino: Pick<Dino, 'speciesId' | 'level' | 'genes' | 'temperament'> & { relic?: string }): Stats {
+export function computeStats(dino: Pick<Dino, 'speciesId' | 'level' | 'genes' | 'temperament'> & { relic?: string }, relicLevel = 1): Stats {
   const s = species(dino);
   const t = TEMPERAMENTS[dino.temperament];
   const calc = (key: keyof Stats) => {
@@ -31,7 +34,7 @@ export function computeStats(dino: Pick<Dino, 'speciesId' | 'level' | 'genes' | 
     if (t.up === key) value = Math.floor(value * 1.1);
     if (t.down === key) value = Math.floor(value * 0.95);
     const relic = dino.relic ? RELICS[dino.relic] : undefined;
-    if (relic?.bonus[key]) value = Math.floor(value * (1 + relic.bonus[key]!));
+    if (relic?.bonus[key]) value = Math.floor(value * (1 + relicBonus(relic, key, relicLevel)));
     return value;
   };
   return { hp: calc('hp'), atk: calc('atk'), def: calc('def'), spd: calc('spd') };
@@ -73,17 +76,37 @@ export function feed(state: GameState, dinoId: string, itemId: ItemId, now: numb
   if (fullness >= 100) throw new GameError('FULL', `${dino.nickname} e sătul. Mai așteaptă puțin.`);
 
   removeItems(state, { [itemId]: 1 });
-  const loves = species(dino).diet === food.diet;
-  dino.fullness = Math.min(100, fullness + food.fill);
-  dino.fullAt = now;
-  dino.bond = Math.min(100, dino.bond + food.bond * (loves ? 2 : 1));
-  dino.diets = [...dino.diets, food.diet].slice(-20);
+  const loves = applyMeal(state, dino, itemId, now, events);
   events.push({
     kind: 'info',
     text: loves ? `${dino.nickname} adoră ${ITEMS[itemId].name}! ❤️❤️` : `${dino.nickname} a mâncat ${ITEMS[itemId].name}. ❤️`,
     dinoId,
   });
+}
+
+/** Efectele unei mese (fără să ia mâncarea din rucsac). Întoarce true dacă era mâncarea preferată. */
+export function applyMeal(state: GameState, dino: Dino, itemId: ItemId, at: number, events: GameEvent[]): boolean {
+  const food = ITEMS[itemId].food!;
+  const loves = species(dino).diet === food.diet;
+  dino.fullness = Math.min(100, currentFullness(dino, at) + food.fill);
+  dino.fullAt = at;
+  dino.bond = Math.min(100, dino.bond + food.bond * (loves ? 2 : 1));
+  dino.diets = [...dino.diets, food.diet].slice(-20);
+  state.stats.feeds++;
   addDinoXp(dino, food.xp, events);
+  return loves;
+}
+
+/** Cea mai bună mâncare dintr-o rezervă: întâi dieta preferată, apoi cea cu mai mult XP. */
+export function bestFood(dino: Dino, stock: Partial<Record<ItemId, number>>): ItemId | null {
+  const diet = species(dino).diet;
+  const foods = (Object.keys(stock) as ItemId[]).filter((id) => (stock[id] ?? 0) > 0 && ITEMS[id]?.food);
+  if (!foods.length) return null;
+  return foods.sort((a, b) => {
+    const fa = ITEMS[a].food!;
+    const fb = ITEMS[b].food!;
+    return Number(fb.diet === diet) - Number(fa.diet === diet) || fb.xp - fa.xp;
+  })[0];
 }
 
 export function dominantDiet(dino: Dino): Diet | null {
@@ -136,6 +159,8 @@ export function startEvolution(state: GameState, dinoId: string, now: number, ev
   if (!check.ok) throw new GameError('LOCKED', `Încă nu poate evolua: ${check.reasons.join(', ')}.`);
   const req = evolutionRequirement(dino)!;
   const target = evolutionTarget(dino)!;
+  if (state.workers.some((w) => w.dinoId === dinoId)) throw new GameError('BUSY', `${dino.nickname} e la muncă. Cheamă-l acasă mai întâi.`);
+  if (isBreeding(state, dinoId)) throw new GameError('BUSY', `${dino.nickname} e în Bârlog.`);
   if (req.item) removeItems(state, { [req.item]: 1 });
   dino.molt = { targetSpeciesId: target, startedAt: now, endsAt: now + req.seconds * 1000 };
   state.party = state.party.filter((id) => id !== dinoId);
@@ -167,6 +192,8 @@ export function setParty(state: GameState, ids: string[]) {
   for (const id of unique) {
     const dino = findDino(state, id);
     if (dino.molt) throw new GameError('BUSY', `${dino.nickname} năpârlește.`);
+    if (state.workers.some((w) => w.dinoId === id)) throw new GameError('BUSY', `${dino.nickname} e la muncă.`);
+    if (isBreeding(state, id)) throw new GameError('BUSY', `${dino.nickname} e în Bârlog.`);
   }
   state.party = unique;
 }
@@ -187,4 +214,32 @@ export function equipRelic(state: GameState, dinoId: string, relicId: string | n
   if (!RELICS[relicId] || !state.relics.includes(relicId)) throw new GameError('NOT_FOUND', 'Nu ai această relicvă.');
   for (const d of state.dinos) if (d.relic === relicId) d.relic = undefined;
   dino.relic = relicId;
+}
+
+/** Rândul din luptă: față (încasează loviturile) sau spate (ferit, dar lovește mai slab). */
+export function setRow(state: GameState, dinoId: string, back: boolean) {
+  findDino(state, dinoId);
+  if (state.activity?.kind === 'expedition') throw new GameError('BUSY', 'Haita e în expediție. Oprește-o ca să schimbi formația.');
+  state.backRow = back ? [...new Set([...state.backRow, dinoId])] : state.backRow.filter((id) => id !== dinoId);
+}
+
+export function isBreeding(state: GameState, dinoId: string): boolean {
+  return state.breeding?.a === dinoId || state.breeding?.b === dinoId;
+}
+
+export function relicLevel(state: GameState, relicId: string | undefined): number {
+  return relicId ? (state.relicLevels[relicId] ?? 1) : 1;
+}
+
+export function upgradeRelic(state: GameState, relicId: string, events: GameEvent[]) {
+  const relic = RELICS[relicId];
+  if (!relic || !state.relics.includes(relicId)) throw new GameError('NOT_FOUND', 'Nu ai această relicvă.');
+  const level = relicLevel(state, relicId);
+  const next = RELIC_UPGRADES[level];
+  if (level >= MAX_RELIC_LEVEL || !next) throw new GameError('LOCKED', `${relic.name} e deja la nivelul maxim.`);
+  if (state.sparks < next.sparks) throw new GameError('INSUFFICIENT_FUNDS', `Îți trebuie ${next.sparks} scântei.`);
+  removeItems(state, next.cost);
+  state.sparks -= next.sparks;
+  state.relicLevels[relicId] = level + 1;
+  events.push({ kind: 'levelup', text: `Saurok a întărit ${relic.name}: nivel ${level + 1}! ${relic.icon}` });
 }

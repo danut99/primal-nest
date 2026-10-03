@@ -48,11 +48,10 @@ Arhitectura urmează Hearth & Crown (`../proiect nou`): reguli fără React în 
 
 ## Artă
 
-- **Dinozaurii** sunt modele 3D gratuite (Quaternius CC0; Hoai Nguyen și Poly by Google CC-BY), aflate în `public/models`. Autorii și licențele sunt în [public/models/CREDITS.md](public/models/CREDITS.md).
-- În lupte, modelele se mișcă în 3D (three.js). În restul jocului apar ca imagini randate din aceleași modele.
-- Modelul, culoarea și poza fiecărei specii sunt în `src/content/dinoModels.ts`.
-- Pentru o nouă randare a imaginilor (cu `npm run dev` pornit): `node scripts/render-dinos.mjs`. Planșa de verificare: `node scripts/render-dinos.mjs --preview=plansa.png`.
-- Randările ajung în `src/local-art/dinos/`, iar scenele de test în `src/local-art/scenes/`. Folderul e exclus din git (detalii în `src/local-art/CITESTE.md`). Dacă o imagine lipsește, jocul folosește desenul din cod.
+- **Regiunile** (fundalurile expedițiilor și ale arenei) vin din `art/scenes`; `npm run scenes` le comprimă în `src/assets/scenes`.
+- Alte scene de test (ecranul de start, povestea) stau în `src/local-art/scenes/`, exclus din git (vezi `src/local-art/CITESTE.md`).
+- **Dinozaurii** sunt cele 4 corpuri generate în `art/turntables` (sauropod, theropod, ankylosaur, pterosaur), câte 8 unghiuri pe vârstă. `npm run turntables` le comprimă în `src/assets/turntables` (o poză 3/4 + o bandă 360°).
+- În joc apar ca imagini (cu rotire 360° în Haită, la eclozare și în Atlas); în lupta 3D (three.js) sunt decupaje din profil, luminate de arenă.
 
 ## Verificări
 

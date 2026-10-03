@@ -9,7 +9,9 @@
     "preview": "vite preview --host 127.0.0.1",
     "test": "vitest run",
     "typecheck": "tsc -p tsconfig.json",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "turntables": "python scripts/build-turntables.py",
+    "scenes": "python scripts/build-scenes.py"
   },
   "dependencies": {
     "react": "^19.1.0",

@@ -37,7 +37,7 @@ const STORY: { art: ReactNode; text: ReactNode }[] = [
   {
     art: (
       <div className="story-art amber-scene">
-        {(['mugurel', 'scanteius', 'stropel'] as const).map((id, i) => (
+        {(['mugurel', 'scanteius', 'pietroi'] as const).map((id, i) => (
           <span key={id} className="amber" style={{ animationDelay: `${i * 0.4}s` }}>
             <EggSprite egg={{ rarity: i === 1 ? 'legendar' : 'rar', speciesId: id }} size={64} />
           </span>

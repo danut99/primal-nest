@@ -87,7 +87,7 @@ Ca la ouăle reale, le poți pune în lumină. Acțiunea „Lumânare” (skill 
 - **HP, Atac, Apărare, Viteză, Instinct.** Instinctul înseamnă șansă de lovitură critică și de abilitate pasivă.
 - **Gene:** 0–15 per stat, ascunse până la eclozare. Echivalentul IV-urilor din Pokémon.
 - **Nivel:** 1–50. XP din expediții și hrănire.
-- **Atașament:** 0–100. Crește prin hrănire cu dieta preferată și scade puțin dacă puiul e neglijat 48 h. Nu moare niciodată.
+- **Atașament:** 0–100. Crește prin hrănire cu dieta preferată. Nu moare niciodată, dar un dino nehrănit 72 h fuge în sălbăticie (vezi Status).
 
 ### Stadii și evoluție
 
@@ -255,5 +255,18 @@ Implementat, local, fără server:
 - Cules, Săpături, Bucătărie (cu Cuibul de lut), Incubație, Îmblânzire.
 - 3 regiuni păzite de Alfa (Mlaștina Licuricilor → Jungla Cețurilor → Inima Vulcanului), lupte pe ture animate, expediții idle și offline, 3 relicve echipabile.
 - Tabără cu 3 niveluri, forja lui Saurok (vânzare), Atlasul Speciilor, unelte de test pentru timp.
+- **Haita la muncă** (diferențiatorul față de MilkyWay): posturi în Tabără (1/2/3 după nivel) unde dinozaurii lucrează în paralel cu activitatea ta, offline până la 8 h. Culegător (Junglă/Apă), Săpător (Piatră), Vânător (Foc/Aer). Viteza: +2%/nivel, +50% tip potrivit, până la +25% din atașament. Un dino la muncă iese din haita de luptă.
+- Relicvele se întăresc la forjă până la nivelul 5 (bonus dublu la nivelul 5).
+- **Coada de acțiuni**: culesul/săpăturile pot avea un număr fix de acțiuni (10/50/100); încă 2 activități așteaptă în coadă (cules, gătit, expediție) și pornesc exact când se termină cea curentă, și offline. „Oprește” trece la următoarea.
+- **Foame și sălbăticie**: după 24 h fără mâncare Haita avertizează (😟), iar după 72 h dinozaurul fuge în sălbăticie (iese din haită, de la muncă și din Bârlog; relicva rămâne în tabără). Îl aduci înapoi cu **diamante 💎** (pui 3, juvenil 5, adult 8); se întoarce flămând, cu −20 atașament. Diamantele: 5 la start, +10 la prima victorie contra fiecărui Alfa, +1 la revanșe, 1% șansă per victorie obișnuită.
+- **Grija pentru haită**: „Hrănește toată haita” (fiecare primește mâncarea preferată); **Troaca** (200 locuri): cine n-a mâncat de 12 h mănâncă singur, și offline; **eliberarea** unui dino dă scântei (10/nivel + 40/stea + bonus de stadiu); sortare și filtre în Haită; chenar după raritatea oului din care a ieșit.
+- **„Bine ai revenit”**: după 15+ minute plecat, un rezumat cu ce s-a întâmplat (troacă, fugari) și ce așteaptă (ouă, activitate, muncă, Bârlog, năpârliri, flămânzi, răsplăți), cu scurtături.
+- **Misiuni zilnice** (3/zi, alese după zi) cu ✨ și 💎, plus **cufărul zilei** care crește cu seria de zile (până la ziua 7); **14 realizări** cu diamante.
+- **Formația**: în haită, fiecare dino stă în față (încasează loviturile) sau în spate (ferit cât timp mai e cineva în față, dar −15% damage).
+- **Împerecherea** (Bârlogul, din Cuib): Îmblânzire nivel 5, doi dinozauri non-pui din aceeași linie, 6 h, maximum 3 împerecheri per dino. Raritatea oului vine din genele medii ale părinților (stele 0→3: neobișnuit/rar … epic/legendar), iar înainte de trimitere Bârlogul arată o previziune (intervalul fiecărei gene, stelele puiului, șansele de raritate); genele vin de la părinți (50/50) cu 30% șansă de mutație ±2; un părinte albino crește șansa de albino la 1/32. Oul și puiul păstrează părinții și generația (linia de sânge).
 
-Încă nu: server și conturi, piață între jucători, împerechere, Laborator, liniile Gheață și Străvechi, artă desenată de un artist. Creaturile sunt acum SVG desenat în cod; pentru nivelul vizual din Dinoblade e nevoie de o trecere de artă dedicată.
+- **Doar 4 corpuri de dinozaur** (imaginile generate din `art/turntables`): sauropod = linia de Junglă (Mugurel → Ferigosaur → Codrodon/Spinodon), theropod = Foc (Scânteiuș…), ankylosaur = Piatră (Pietroi…), pterosaur = Aer (Aripel…). Linia de plesiozaur (Stropel, Apă) a fost scoasă; salvările vechi primesc echivalentul din linia de Junglă. Ouăle de start: Mugurel, Scânteiuș, Pietroi (Junglă bate Piatră, Piatră bate Foc, Foc bate Junglă). Tipul Apă rămâne doar ca tip secundar (Norisaur). Modelele 3D vechi (public/models) au fost scoase; lupta 3D folosește decupaje din imagini.
+
+- **4 regiuni de expediție**, câte una pe tip, cu fundaluri generate (`art/scenes`, comprimate cu `npm run scenes`): Jungla Cețurilor (1–8, Alfa Ferigosaur → Colții Licuricilor), Canionul de Chihlimbar (9–16, Alfa Scutosaur → Lama de Chihlimbar, Oase de Alfa), Piscurile Furtunii (17–24, Alfa Furtunodactil → Pana Furtunii, relicvă nouă: +20% Viteză, +10% Apărare), Inima Vulcanului (25–32, Alfa Umbrei, cere Os de Alfa → Coroana Vulcanului). Salvările vechi: Mlaștina → Jungla, Jungla → Canionul.
+
+Încă nu: server și conturi, piață între jucători, Laborator, liniile Gheață și Străvechi, artă desenată de un artist. Creaturile sunt acum SVG desenat în cod; pentru nivelul vizual din Dinoblade e nevoie de o trecere de artă dedicată.

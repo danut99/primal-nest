@@ -11,12 +11,13 @@ import {
   TURN_COOLDOWN_SECONDS,
   canTurn,
   candleHint,
+  eggPrice,
   eggsInNest,
   incubationSeconds,
   nestSlots,
 } from '@shared/game';
 import { EggSprite } from '../components/EggSprite';
-import { Bar, Panel, Sparkles } from '../components/ui';
+import { Panel, Sparkles } from '../components/ui';
 import type { Game } from '../hooks/useGame';
 import { formatDuration, formatSeconds } from '../utils/format';
 import { HatchModal } from './HatchModal';
@@ -28,7 +29,6 @@ export function NestScreen({ game }: { game: Game }) {
   const bag = state.eggs.filter((e) => !e.incubation);
   const slots = nestSlots(state);
   const [hatching, setHatching] = useState<Egg | null>(null);
-  const [placing, setPlacing] = useState<string | null>(null);
 
   return (
     <div className="screen">
@@ -52,12 +52,17 @@ export function NestScreen({ game }: { game: Game }) {
             const nearly = !ready && left < total * 0.15;
             const turnable = canTurn(egg, now);
             const species = SPECIES[egg.speciesId];
+            const temp = TEMPERATURES[inc.temperature];
+            const turnLeft = inc.lastTurnedAt ? inc.lastTurnedAt + TURN_COOLDOWN_SECONDS * 1000 - now : 0;
+            const pct = Math.min(100, Math.floor(((now - inc.startedAt) / total) * 100));
             return (
-              <div key={egg.id} className={`nest-slot${ready ? ' ready' : ''}`}>
-                <span className={`rarity-tag r-${egg.rarity}`}>{RARITIES[egg.rarity].name}</span>
-                <span className="temp-tag" title={`Pui ${TEMPERAMENTS[TEMPERATURES[inc.temperature].temperament].name}`}>
-                  {TEMPERATURES[inc.temperature].icon}
-                </span>
+              <div key={egg.id} className={`nest-slot r-${egg.rarity}${ready ? ' ready' : ''}`}>
+                <div className="slot-head">
+                  <span className={`rarity-tag r-${egg.rarity}`}>{RARITIES[egg.rarity].name}</span>
+                  <span className="temp-tag" title={`${temp.name} → pui ${TEMPERAMENTS[temp.temperament].name.toLowerCase()}`}>
+                    {temp.icon} {TEMPERAMENTS[temp.temperament].name}
+                  </span>
+                </div>
                 <button
                   className="egg-button"
                   onClick={() => ready && setHatching(egg)}
@@ -70,31 +75,45 @@ export function NestScreen({ game }: { game: Game }) {
                   <EggSprite egg={egg} size={92} cracks={ready ? 2 : nearly ? 1 : 0} className={ready ? 'wobble-fast' : nearly ? 'wobble' : 'breathe'} />
                 </button>
                 {ready ? (
-                  <button className="btn primary glow" onClick={() => setHatching(egg)}>
+                  <button className="btn primary glow slot-hatch" onClick={() => setHatching(egg)}>
                     🐣 Eclozează!
                   </button>
                 ) : (
                   <>
-                    <Bar value={now - inc.startedAt} max={total} color="#f5b942" label={formatDuration(left)} />
-                    <div className="row gap-s">
+                    <div className="slot-timer">
+                      <div className="slot-time">
+                        <small>{nearly ? 'Aproape gata…' : 'Eclozează în'}</small>
+                        <b>{formatDuration(left)}</b>
+                        <small className="slot-pct">{pct}%</small>
+                      </div>
+                      <div className="slot-progress">
+                        <i style={{ width: `${pct}%` }} />
+                      </div>
+                    </div>
+                    <div className="slot-actions">
                       <button
-                        className="btn small"
+                        className="slot-act"
                         disabled={!turnable}
                         onClick={() => game.dispatch({ type: 'turnEgg', eggId: egg.id })}
                         title={turnable ? 'Rotește oul: −5% din timp' : `Poți roti o dată la ${TURN_COOLDOWN_SECONDS / 60} min`}
                       >
-                        🔄 Rotește
+                        <span>🔄</span>
+                        {turnable ? 'Rotește' : formatDuration(turnLeft)}
                       </button>
-                      {!egg.candled && (
-                        <button className="btn small" onClick={() => game.dispatch({ type: 'candleEgg', eggId: egg.id })} title="Privește oul prin lumină">
-                          🕯️ Lumânare
-                        </button>
-                      )}
+                      <button
+                        className="slot-act"
+                        disabled={egg.candled}
+                        onClick={() => game.dispatch({ type: 'candleEgg', eggId: egg.id })}
+                        title="Privește oul prin lumină"
+                      >
+                        <span>🕯️</span>
+                        {egg.candled ? 'Privit' : 'Lumânare'}
+                      </button>
                     </div>
                   </>
                 )}
                 {egg.candled && <CandleNote egg={egg} />}
-                {state.atlas[species.id]?.owned && <small className="muted">Seamănă cu un ou de {species.name}</small>}
+                {state.atlas[species.id]?.owned && <small className="muted slot-foot">Seamănă cu un ou de {species.name}</small>}
               </div>
             );
           })}
@@ -105,62 +124,133 @@ export function NestScreen({ game }: { game: Game }) {
         </p>
       </Panel>
 
-      <Panel title="Ouă în rucsac" icon="🎒" right={<span className="muted">{bag.length}</span>}>
-        {bag.length === 0 ? (
-          <p className="empty-state">Niciun ou deocamdată. Le găsești la Săpături și în Expediții.</p>
-        ) : (
-          <div className="egg-list">
-            {bag.map((egg) => {
-              const full = nest.length >= slots;
-              const price = Math.round(RARITIES[egg.rarity].sell * (egg.candled ? 1.25 : 1));
-              return (
-                <div key={egg.id} className="egg-card">
-                  <EggSprite egg={egg} size={64} className="breathe" />
-                  <div className="egg-info">
-                    <b className={`r-text r-${egg.rarity}`}>Ou {RARITIES[egg.rarity].name.toLowerCase()}</b>
-                    <small>Incubare: {formatSeconds(incubationSeconds(state, egg))}</small>
-                    {egg.candled && <CandleNote egg={egg} />}
-                  </div>
-                  <div className="egg-actions">
-                    {placing === egg.id ? (
-                      <div className="temp-pick">
-                        {(Object.keys(TEMPERATURES) as Temperature[]).map((t) => (
-                          <button
-                            key={t}
-                            className="btn small"
-                            title={`Pui ${TEMPERAMENTS[TEMPERATURES[t].temperament].name}: ${TEMPERAMENTS[TEMPERATURES[t].temperament].text}`}
-                            onClick={() => {
-                              game.dispatch({ type: 'placeEgg', eggId: egg.id, temperature: t });
-                              setPlacing(null);
-                            }}
-                          >
-                            {TEMPERATURES[t].icon} {TEMPERATURES[t].name}
-                          </button>
-                        ))}
-                      </div>
-                    ) : (
-                      <button className="btn primary small" disabled={full} onClick={() => setPlacing(egg.id)} title={full ? 'Cuibul e plin' : ''}>
-                        🪺 În cuib
-                      </button>
-                    )}
-                    {!egg.candled && (
-                      <button className="btn small" onClick={() => game.dispatch({ type: 'candleEgg', eggId: egg.id })}>
-                        🕯️
-                      </button>
-                    )}
-                    <button className="btn small ghost" onClick={() => game.dispatch({ type: 'sellEgg', eggId: egg.id })} title="Dă oul altui cuib pentru scântei">
-                      ✨ {price}
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        )}
-      </Panel>
+      <EggBag game={game} bag={bag} nestFull={nest.length >= slots} />
 
       {hatching && <HatchModal game={game} egg={hatching} onClose={() => setHatching(null)} />}
     </div>
+  );
+}
+
+/** Ouă care arată la fel (raritate + culoarea petelor) se adună într-un teanc. Cele lumânate sau din împerechere rămân separate. */
+function stackKey(egg: Egg): string {
+  if (egg.candled || egg.lineage || egg.tutorial) return egg.id;
+  return `${egg.rarity}:${SPECIES[egg.speciesId].types[0]}`;
+}
+
+const RARITY_ORDER = Object.keys(RARITIES) as Egg['rarity'][];
+
+function EggBag({ game, bag, nestFull }: { game: Game; bag: Egg[]; nestFull: boolean }) {
+  const state = game.state!;
+  const [placing, setPlacing] = useState<string | null>(null);
+  const [confirm, setConfirm] = useState<string | null>(null);
+  const stacks = new Map<string, Egg[]>();
+  for (const egg of bag) stacks.set(stackKey(egg), [...(stacks.get(stackKey(egg)) ?? []), egg]);
+  const sorted = [...stacks.entries()].sort(([, x], [, y]) => RARITY_ORDER.indexOf(y[0].rarity) - RARITY_ORDER.indexOf(x[0].rarity));
+  const sellable = bag.filter((e) => !e.tutorial);
+  const total = sellable.reduce((sum, e) => sum + eggPrice(e), 0);
+
+  return (
+    <Panel
+      title="Ouă în rucsac"
+      icon="🎒"
+      right={
+        <span className="row gap-s">
+          <span className="muted">{bag.length}</span>
+          {sellable.length > 1 &&
+            (confirm === 'all' ? (
+              <button className="btn tiny danger" onClick={() => (game.dispatch({ type: 'sellEggs', eggIds: sellable.map((e) => e.id) }), setConfirm(null))}>
+                Sigur? Vinde toate ({total} ✨)
+              </button>
+            ) : (
+              <button className="btn tiny" onClick={() => setConfirm('all')}>
+                ✨ Vinde toate
+              </button>
+            ))}
+        </span>
+      }
+    >
+      {bag.length === 0 ? (
+        <p className="empty-state">Niciun ou deocamdată. Le găsești la Săpături și în Expediții.</p>
+      ) : (
+        <div className="egg-list">
+          {sorted.map(([key, eggs]) => {
+            const egg = eggs[0];
+            const n = eggs.length;
+            const ids = eggs.map((e) => e.id);
+            return (
+              <div key={key} className={`egg-card r-${egg.rarity}`}>
+                <span className="egg-stack">
+                  <EggSprite egg={egg} size={64} className="breathe" />
+                  {n > 1 && <span className="egg-count">×{n}</span>}
+                </span>
+                <div className="egg-info">
+                  <b className={`r-text r-${egg.rarity}`}>
+                    Ou {RARITIES[egg.rarity].name.toLowerCase()}
+                    {n > 1 && <span className="muted"> ×{n}</span>}
+                  </b>
+                  <small>Incubare: {formatSeconds(incubationSeconds(state, egg))}</small>
+                  {egg.lineage && (
+                    <small className="lineage">
+                      💞 Gen. {egg.lineage.generation} · {egg.lineage.parents[0]} × {egg.lineage.parents[1]}
+                    </small>
+                  )}
+                  {egg.candled && <CandleNote egg={egg} />}
+                </div>
+                <div className="egg-actions">
+                  {placing === key ? (
+                    <div className="temp-pick">
+                      {(Object.keys(TEMPERATURES) as Temperature[]).map((t) => (
+                        <button
+                          key={t}
+                          className="btn small"
+                          title={`Pui ${TEMPERAMENTS[TEMPERATURES[t].temperament].name}: ${TEMPERAMENTS[TEMPERATURES[t].temperament].text}`}
+                          onClick={() => {
+                            game.dispatch({ type: 'placeEgg', eggId: egg.id, temperature: t });
+                            setPlacing(null);
+                          }}
+                        >
+                          {TEMPERATURES[t].icon} {TEMPERATURES[t].name}
+                        </button>
+                      ))}
+                    </div>
+                  ) : (
+                    <button className="btn primary small" disabled={nestFull} onClick={() => setPlacing(key)} title={nestFull ? 'Cuibul e plin' : ''}>
+                      🪺 În cuib
+                    </button>
+                  )}
+                  {!egg.candled && (
+                    <button className="btn small" onClick={() => game.dispatch({ type: 'candleEgg', eggId: egg.id })} title="Privește un ou prin lumină">
+                      🕯️
+                    </button>
+                  )}
+                  {!egg.tutorial && (
+                    <>
+                      <button className="btn small" onClick={() => game.dispatch({ type: 'sellEggs', eggIds: [egg.id] })} title="Dă oul altui cuib pentru scântei">
+                        ✨ Vinde {eggPrice(egg)}
+                      </button>
+                      {n > 1 && (
+                        <button className="btn small" onClick={() => game.dispatch({ type: 'sellEggs', eggIds: ids })}>
+                          ✨ Vinde ×{n} ({eggs.reduce((sum, e) => sum + eggPrice(e), 0)})
+                        </button>
+                      )}
+                      {confirm === key ? (
+                        <button className="btn small danger" onClick={() => (game.dispatch({ type: 'discardEggs', eggIds: ids }), setConfirm(null))}>
+                          Sigur? Aruncă{n > 1 ? ` ×${n}` : ''}
+                        </button>
+                      ) : (
+                        <button className="btn small ghost" onClick={() => setConfirm(key)} title="Lasă oul în sălbăticie, fără scântei">
+                          🗑️
+                        </button>
+                      )}
+                    </>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </Panel>
   );
 }
 

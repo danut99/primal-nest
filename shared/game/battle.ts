@@ -1,7 +1,7 @@
 // Lupta pe ture, deterministă: același seed și aceeași haită dau exact același jurnal.
 // Interfața redă jurnalul ca animație; regulile nu depind de animație.
 
-import { MAX_BATTLE_ROUNDS, SPECIAL_COOLDOWN, SPECIES, WILD_STAT_MULT, ZONES, effectiveness, type Move, type Zone } from './catalog';
+import { BACK_ROW_DAMAGE, MAX_BATTLE_ROUNDS, SPECIAL_COOLDOWN, SPECIES, WILD_STAT_MULT, ZONES, effectiveness, type Move, type Zone } from './catalog';
 import { computeStats } from './creatures';
 import { GameError } from './errors';
 import { type Rng, createRng, pick, randInt } from './rng';
@@ -23,6 +23,8 @@ export interface Combatant {
   hp: number;
   cooldown: number;
   boss?: boolean;
+  /** În rândul din spate: ferit cât timp cineva stă în față, dar lovește mai slab. */
+  back?: boolean;
 }
 
 export type BattleEvent =
@@ -37,8 +39,8 @@ export interface BattleResult {
   events: BattleEvent[];
 }
 
-export function fromDino(dino: Dino, index: number): Combatant {
-  const stats = computeStats(dino);
+export function fromDino(dino: Dino, index: number, relicLevel = 1, back = false): Combatant {
+  const stats = computeStats(dino, relicLevel);
   const s = SPECIES[dino.speciesId];
   // Atașamentul contează și în luptă: până la +10% la toate statisticile.
   const bond = 1 + dino.bond / 1000;
@@ -58,6 +60,7 @@ export function fromDino(dino: Dino, index: number): Combatant {
     hpMax: hp,
     hp,
     cooldown: 1,
+    ...(back ? { back: true } : {}),
   };
 }
 
@@ -123,12 +126,15 @@ function damage(rng: Rng, attacker: Combatant, defender: Combatant, move: Move) 
   const crit = rng() < 1 / 16;
   const base = (((2 * attacker.level) / 5 + 2) * move.power * (attacker.atk / defender.def)) / 50 + 2;
   const roll = 0.85 + rng() * 0.15;
-  return { damage: Math.max(1, Math.floor(base * eff * stab * (crit ? 1.5 : 1) * roll)), eff, crit };
+  const row = attacker.back ? BACK_ROW_DAMAGE : 1;
+  return { damage: Math.max(1, Math.floor(base * eff * stab * row * (crit ? 1.5 : 1) * roll)), eff, crit };
 }
 
 /** Ținta: cea cu cel mai bun avantaj de tip, apoi cea mai slăbită. */
 function chooseTarget(foes: Combatant[], move: Move): Combatant {
-  return foes.reduce((best, f) => {
+  // Cei din spate sunt feriți cât timp mai stă cineva în față.
+  const front = foes.filter((f) => !f.back);
+  return (front.length ? front : foes).reduce((best, f) => {
     const eb = effectiveness(move.type, best.types);
     const ef = effectiveness(move.type, f.types);
     if (ef !== eb) return ef > eb ? f : best;

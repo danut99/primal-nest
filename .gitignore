@@ -1,0 +1,5 @@
+node_modules/
+dist/
+*.log
+# Artă locală (imagini de test, ex. din Dinoblade): nu se publică.
+src/local-art/

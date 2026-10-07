@@ -1,3 +1,4 @@
+import { ControlIcon, ThemeText } from '../components/ThemeText';
 import { ItemArt } from '../components/AssetIcon';
 // Haita la muncă: posturile din Tabără, unde dinozaurii lucrează în paralel cu activitatea ta.
 
@@ -38,8 +39,7 @@ export function WorkPanel({ game }: { game: Game }) {
       icon="🦖"
       className="work-panel"
       right={
-        <button className="btn small primary" disabled={ready === 0} onClick={() => game.dispatch({ type: 'collectWork' })}>
-          🧺 Strânge{ready > 0 ? ` (${ready})` : ''}
+        <button className="btn small primary" disabled={ready === 0} onClick={() => game.dispatch({ type: 'collectWork' })}><ThemeText>{"\r\n          🧺 Strânge"}</ThemeText><ThemeText>{ready > 0 ? ` (${ready})` : ''}</ThemeText>
         </button>
       }
     >
@@ -59,30 +59,28 @@ export function WorkPanel({ game }: { game: Game }) {
             return (
               <div key={worker.dinoId} className="work-post busy">
                 <div className="work-job">
-                  <span>{job.icon}</span> {job.name}
+                  <span><ThemeText>{job.icon}</ThemeText></span> <ThemeText>{job.name}</ThemeText>
                 </div>
                 <div className="work-dino">
                   <DinoSprite speciesId={dino.speciesId} albino={dino.variant === 'albino'} size={72} className="bob" />
-                  {n > 0 && <span className="work-ready">{n}</span>}
+                  {n > 0 && <span className="work-ready"><ThemeText>{n}</ThemeText></span>}
                 </div>
-                <b>{dino.nickname}</b>
+                <b><ThemeText>{dino.nickname}</ThemeText></b>
                 <small className="muted">
-                  Nv. {dino.level} · ×{workSpeed(dino, job).toFixed(2)} {jobAffinity(dino, job) && <span className="work-fit">tip potrivit</span>}
+                  Nv. <ThemeText>{dino.level}</ThemeText> · ×<ThemeText>{workSpeed(dino, job).toFixed(2)}</ThemeText> {jobAffinity(dino, job) && <span className="work-fit">tip potrivit</span>}
                 </small>
                 <div className="work-progress">
                   <i style={{ width: `${pct}%` }} />
                 </div>
-                <small className="muted">o bucată la {formatSeconds(Math.round(dur / 1000))}</small>
-                <button className="btn tiny" onClick={() => game.dispatch({ type: 'unassignWork', dinoId: dino.id })}>
-                  🏠 Cheamă acasă
-                </button>
+                <small className="muted">o bucată la <ThemeText>{formatSeconds(Math.round(dur / 1000))}</ThemeText></small>
+                <button className="btn tiny" onClick={() => game.dispatch({ type: 'unassignWork', dinoId: dino.id })}><ThemeText>{"\r\n                  🏠 Cheamă acasă\r\n                "}</ThemeText></button>
               </div>
             );
           }
           if (i < slots) {
             return (
               <button key={`free${i}`} className="work-post free" onClick={() => setPicking(true)}>
-                <span className="work-plus">＋</span>
+                <span className="work-plus"><ControlIcon glyph="+" /></span>
                 <b>Post liber</b>
                 <small className="muted">Trimite un dinozaur la muncă</small>
               </button>
@@ -91,8 +89,8 @@ export function WorkPanel({ game }: { game: Game }) {
           const unlock = PROPERTY_LEVELS.find((l) => l.workSlots > i)!;
           return (
             <div key={`lock${i}`} className="work-post locked">
-              <span className="work-plus">🔒</span>
-              <small className="muted">Se deblochează cu {unlock.name}</small>
+              <span className="work-plus"><ThemeText>{"🔒"}</ThemeText></span>
+              <small className="muted">Se deblochează cu <ThemeText>{unlock.name}</ThemeText></small>
             </div>
           );
         })}
@@ -116,12 +114,12 @@ function AssignModal({ game, onClose }: { game: Game; onClose: () => void }) {
       <div className="job-tabs">
         {WORK_JOBS.map((j) => (
           <button key={j.id} className={`job-tab${j.id === job.id ? ' active' : ''}`} onClick={() => setJob(j)}>
-            <span className="job-icon">{j.icon}</span>
-            <b>{j.name}</b>
+            <span className="job-icon"><ThemeText>{j.icon}</ThemeText></span>
+            <b><ThemeText>{j.name}</ThemeText></b>
             <small>
               {j.types.map((t) => (
                 <span key={t} title={TYPES[t].name}>
-                  {TYPES[t].icon}
+                  <ThemeText>{TYPES[t].icon}</ThemeText>
                 </span>
               ))}
             </small>
@@ -129,7 +127,7 @@ function AssignModal({ game, onClose }: { game: Game; onClose: () => void }) {
         ))}
       </div>
       <p className="muted small">
-        {job.blurb} Aduce:{' '}
+        <ThemeText>{job.blurb}</ThemeText> Aduce:<ThemeText>{' '}</ThemeText>
         {job.drops.map((d) => (
           <span key={d.value} title={ITEMS[d.value].name}>
             <ItemArt item={d.value} />
@@ -154,16 +152,16 @@ function AssignModal({ game, onClose }: { game: Game; onClose: () => void }) {
               >
                 <DinoSprite speciesId={d.speciesId} albino={d.variant === 'albino'} size={48} />
                 <span className="grow">
-                  <b>{d.nickname}</b>
+                  <b><ThemeText>{d.nickname}</ThemeText></b>
                   <small className="muted">
-                    {SPECIES[d.speciesId].name} · Nv. {d.level}
-                    {state.party.includes(d.id) && ' · iese din haită'}
-                    {blocked && ' · în expediție'}
+                    <ThemeText>{SPECIES[d.speciesId].name}</ThemeText> · Nv. <ThemeText>{d.level}</ThemeText>
+                    <ThemeText>{state.party.includes(d.id) && ' · iese din haită'}</ThemeText>
+                    <ThemeText>{blocked && ' · în expediție'}</ThemeText>
                   </small>
                 </span>
                 <span className="assign-speed">
-                  ×{workSpeed(d, job).toFixed(2)}
-                  <small>{formatSeconds(Math.round(workSeconds(d, job)))}/buc</small>
+                  ×<ThemeText>{workSpeed(d, job).toFixed(2)}</ThemeText>
+                  <small><ThemeText>{formatSeconds(Math.round(workSeconds(d, job)))}</ThemeText>/buc</small>
                 </span>
               </button>
             );

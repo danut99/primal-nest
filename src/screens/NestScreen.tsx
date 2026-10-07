@@ -1,3 +1,4 @@
+import { ThemeText } from '../components/ThemeText';
 // Cuibul: o cameră de incubație. Ouăle stau pe cuibul din scenă, fiecare cu un inel de progres, cronometru și
 // acțiuni (rotește, lumânare); cel gata strălucește și se eclozează cu un clic. Sub scenă, raftul cu ouăle din
 // rucsac: alegi un ou, apoi lumina sub care îl clocești (ea îi dă temperamentul puiului).
@@ -60,9 +61,7 @@ export function NestScreen({ game }: { game: Game }) {
                   onMouseEnter={() => setFocus(i)}
                   onMouseLeave={() => setFocus(null)}
                   title="Loc liber: pune un ou"
-                >
-                  ＋
-                </button>
+                ><ThemeText>{"\r\n                  ＋\r\n                "}</ThemeText></button>
               );
             }
             const inc = egg.incubation!;
@@ -95,7 +94,7 @@ export function NestScreen({ game }: { game: Game }) {
           <header className="nest-side-head">
             <h2>Cuibul</h2>
             <span className="nest-count">
-              {nest.length}/{slots} ouă{readyNow ? ` · ${readyNow} gata!` : ''}
+              <ThemeText>{nest.length}</ThemeText>/<ThemeText>{slots}</ThemeText> ouă<ThemeText>{readyNow ? ` · ${readyNow} gata!` : ''}</ThemeText>
             </span>
           </header>
           <ol className="nest-slots">
@@ -105,15 +104,13 @@ export function NestScreen({ game }: { game: Game }) {
               if (!egg) {
                 return (
                   <li key={`free${i}`} className={`nest-slot-row free${focus === i ? ' focus' : ''}`} {...hover}>
-                    <span className="slot-no">{i + 1}</span>
+                    <span className="slot-no"><ThemeText>{i + 1}</ThemeText></span>
                     <div className="slot-main">
                       <b>Loc liber</b>
-                      <small className="muted">{bag.length ? 'Alege un ou din rucsac și lumina lui.' : 'Ouăle vin din Săpături și Expediții.'}</small>
+                      <small className="muted"><ThemeText>{bag.length ? 'Alege un ou din rucsac și lumina lui.' : 'Ouăle vin din Săpături și Expediții.'}</ThemeText></small>
                     </div>
                     {bag.length > 0 && (
-                      <button className="btn small" onClick={toBag}>
-                        ＋ Pune un ou
-                      </button>
+                      <button className="btn small" onClick={toBag}><ThemeText>{"\r\n                        ＋ Pune un ou\r\n                      "}</ThemeText></button>
                     )}
                   </li>
                 );
@@ -129,22 +126,22 @@ export function NestScreen({ game }: { game: Game }) {
               const species = SPECIES[egg.speciesId];
               return (
                 <li key={egg.id} className={`nest-slot-row r-${egg.rarity} t-${inc.temperature}${ready ? ' ready' : ''}${focus === i ? ' focus' : ''}`} {...hover}>
-                  <span className="slot-no">{i + 1}</span>
+                  <span className="slot-no"><ThemeText>{i + 1}</ThemeText></span>
                   <div className="slot-main">
                     <div className="slot-line">
-                      <span className={`rarity-tag r-${egg.rarity}`}>{RARITIES[egg.rarity].name}</span>
+                      <span className={`rarity-tag r-${egg.rarity}`}><ThemeText>{RARITIES[egg.rarity].name}</ThemeText></span>
                       <span className="slot-temp" title={`${temp.name} → pui ${TEMPERAMENTS[temp.temperament].name.toLowerCase()}`}>
-                        {temp.icon} {TEMPERAMENTS[temp.temperament].name}
+                        <ThemeText>{temp.icon}</ThemeText> <ThemeText>{TEMPERAMENTS[temp.temperament].name}</ThemeText>
                       </span>
-                      {state.atlas[species.id]?.owned && <small className="muted">seamănă cu {species.name}</small>}
+                      {state.atlas[species.id]?.owned && <small className="muted">seamănă cu <ThemeText>{species.name}</ThemeText></small>}
                     </div>
                     {ready ? (
                       <b className="slot-ready">Gata de eclozare!</b>
                     ) : (
                       <>
                         <div className="slot-time-row">
-                          <b>⏳ {formatDuration(left)}</b>
-                          <small>{pct}%</small>
+                          <b><ThemeText>{"⏳ "}</ThemeText><ThemeText>{formatDuration(left)}</ThemeText></b>
+                          <small><ThemeText>{pct}</ThemeText>%</small>
                         </div>
                         <div className="slot-bar">
                           <i style={{ width: `${pct}%` }} />
@@ -155,9 +152,7 @@ export function NestScreen({ game }: { game: Game }) {
                   </div>
                   <div className="slot-btns">
                     {ready ? (
-                      <button className="btn primary glow" onClick={() => setHatching(egg)}>
-                        🐣 Eclozează
-                      </button>
+                      <button className="btn primary glow" onClick={() => setHatching(egg)}><ThemeText>{"\r\n                        🐣 Eclozează\r\n                      "}</ThemeText></button>
                     ) : (
                       <>
                         <button
@@ -165,17 +160,13 @@ export function NestScreen({ game }: { game: Game }) {
                           disabled={!turnable}
                           onClick={() => game.dispatch({ type: 'turnEgg', eggId: egg.id })}
                           title={turnable ? 'Rotește oul: −5% din timp' : `Din nou în ${formatDuration(turnLeft)}`}
-                        >
-                          🔄
-                        </button>
+                        ><ThemeText>{"\r\n                          🔄\r\n                        "}</ThemeText></button>
                         <button
                           className="egg-tool"
                           disabled={egg.candled}
                           onClick={() => game.dispatch({ type: 'candleEgg', eggId: egg.id })}
                           title={egg.candled ? 'Deja privit prin lumină' : 'Privește oul prin lumină'}
-                        >
-                          🕯️
-                        </button>
+                        ><ThemeText>{"\r\n                          🕯️\r\n                        "}</ThemeText></button>
                       </>
                     )}
                   </div>
@@ -183,9 +174,7 @@ export function NestScreen({ game }: { game: Game }) {
               );
             })}
           </ol>
-          <p className="nest-tip">
-            🔄 Rotește oul o dată la {TURN_COOLDOWN_SECONDS / 60} min ca să eclozeze mai repede · 🕯️ lumânarea arată ce pui e în el
-          </p>
+          <p className="nest-tip"><ThemeText>{"\r\n            🔄 Rotește oul o dată la "}</ThemeText><ThemeText>{TURN_COOLDOWN_SECONDS / 60}</ThemeText><ThemeText>{" min ca să eclozeze mai repede · 🕯️ lumânarea arată ce pui e în el\r\n          "}</ThemeText></p>
         </div>
       </section>
 
@@ -239,18 +228,15 @@ function EggShelf({ game, bag, nestFull }: { game: Game; bag: Egg[]; nestFull: b
     <section className="egg-shelf" id="egg-shelf">
       <header className="egg-shelf-head">
         <div>
-          <h3>🎒 Ouăle din rucsac</h3>
-          <small className="muted">{bag.length ? 'Alege un ou ca să-l pui în cuib, să-l privești prin lumină sau să-l vinzi.' : 'Niciun ou deocamdată. Le găsești la Săpături și în Expediții.'}</small>
+          <h3><ThemeText>{"🎒 Ouăle din rucsac"}</ThemeText></h3>
+          <small className="muted"><ThemeText>{bag.length ? 'Alege un ou ca să-l pui în cuib, să-l privești prin lumină sau să-l vinzi.' : 'Niciun ou deocamdată. Le găsești la Săpături și în Expediții.'}</ThemeText></small>
         </div>
         {sellable.length > 1 &&
           (confirm === 'all' ? (
             <button className="btn small danger" onClick={() => (game.dispatch({ type: 'sellEggs', eggIds: sellable.map((e) => e.id) }), setConfirm(null))}>
-              Sigur? Vinde toate ({total} ✨)
-            </button>
+              Sigur? Vinde toate (<ThemeText>{total}</ThemeText><ThemeText>{" ✨)\r\n            "}</ThemeText></button>
           ) : (
-            <button className="btn small" onClick={() => setConfirm('all')}>
-              ✨ Vinde toate
-            </button>
+            <button className="btn small" onClick={() => setConfirm('all')}><ThemeText>{"\r\n              ✨ Vinde toate\r\n            "}</ThemeText></button>
           ))}
       </header>
 
@@ -260,10 +246,10 @@ function EggShelf({ game, bag, nestFull }: { game: Game; bag: Egg[]; nestFull: b
             const egg = eggs[0];
             return (
               <button key={key} className={`shelf-egg r-${egg.rarity}${picked === key ? ' picked' : ''}`} onClick={() => setPicked(picked === key ? null : key)}>
-                {eggs.length > 1 && <span className="shelf-count">×{eggs.length}</span>}
+                {eggs.length > 1 && <span className="shelf-count">×<ThemeText>{eggs.length}</ThemeText></span>}
                 <EggSprite egg={egg} size={70} className="breathe" />
-                <b className={`r-text r-${egg.rarity}`}>{RARITIES[egg.rarity].name}</b>
-                <small>{formatSeconds(incubationSeconds(state, egg))}</small>
+                <b className={`r-text r-${egg.rarity}`}><ThemeText>{RARITIES[egg.rarity].name}</ThemeText></b>
+                <small><ThemeText>{formatSeconds(incubationSeconds(state, egg))}</ThemeText></small>
               </button>
             );
           })}
@@ -282,13 +268,12 @@ function EggShelf({ game, bag, nestFull }: { game: Game; bag: Egg[]; nestFull: b
                 <EggSprite egg={egg} size={84} className="breathe" />
                 <div>
                   <b className={`r-text r-${egg.rarity}`}>
-                    Ou {RARITIES[egg.rarity].name.toLowerCase()}
-                    {n > 1 && <span className="muted"> ×{n}</span>}
+                    Ou <ThemeText>{RARITIES[egg.rarity].name.toLowerCase()}</ThemeText>
+                    {n > 1 && <span className="muted"> ×<ThemeText>{n}</ThemeText></span>}
                   </b>
-                  <small className="muted">Incubare: {formatSeconds(incubationSeconds(state, egg))}</small>
+                  <small className="muted">Incubare: <ThemeText>{formatSeconds(incubationSeconds(state, egg))}</ThemeText></small>
                   {egg.lineage && (
-                    <small className="lineage">
-                      💞 Gen. {egg.lineage.generation} · {egg.lineage.parents[0]} × {egg.lineage.parents[1]}
+                    <small className="lineage"><ThemeText>{"\r\n                      💞 Gen. "}</ThemeText><ThemeText>{egg.lineage.generation}</ThemeText> · <ThemeText>{egg.lineage.parents[0]}</ThemeText> × <ThemeText>{egg.lineage.parents[1]}</ThemeText>
                     </small>
                   )}
                   {egg.candled && <CandleNote egg={egg} />}
@@ -296,7 +281,7 @@ function EggShelf({ game, bag, nestFull }: { game: Game; bag: Egg[]; nestFull: b
               </div>
 
               <div className="egg-panel-place">
-                <h4>{nestFull ? '🪺 Cuibul e plin' : 'Pune-l în cuib, sub lumina:'}</h4>
+                <h4><ThemeText>{nestFull ? '🪺 Cuibul e plin' : 'Pune-l în cuib, sub lumina:'}</ThemeText></h4>
                 <div className="light-pick">
                   {(Object.keys(TEMPERATURES) as Temperature[]).map((t) => {
                     const temp = TEMPERATURES[t];
@@ -311,10 +296,10 @@ function EggShelf({ game, bag, nestFull }: { game: Game; bag: Egg[]; nestFull: b
                           if (n <= 1) setPicked(null);
                         }}
                       >
-                        <span>{temp.icon}</span>
-                        <b>{temp.name}</b>
+                        <span><ThemeText>{temp.icon}</ThemeText></span>
+                        <b><ThemeText>{temp.name}</ThemeText></b>
                         <small>
-                          pui <b>{kind.name.toLowerCase()}</b> · {kind.text}
+                          pui <b><ThemeText>{kind.name.toLowerCase()}</ThemeText></b> · <ThemeText>{kind.text}</ThemeText>
                         </small>
                       </button>
                     );
@@ -324,28 +309,22 @@ function EggShelf({ game, bag, nestFull }: { game: Game; bag: Egg[]; nestFull: b
 
               <div className="egg-panel-more">
                 {!egg.candled && (
-                  <button className="btn small" onClick={() => game.dispatch({ type: 'candleEgg', eggId: egg.id })}>
-                    🕯️ Privește prin lumină
-                  </button>
+                  <button className="btn small" onClick={() => game.dispatch({ type: 'candleEgg', eggId: egg.id })}><ThemeText>{"\r\n                    🕯️ Privește prin lumină\r\n                  "}</ThemeText></button>
                 )}
                 {!egg.tutorial && (
                   <>
-                    <button className="btn small" onClick={() => game.dispatch({ type: 'sellEggs', eggIds: [egg.id] })}>
-                      ✨ Vinde 1 · {eggPrice(egg)}
+                    <button className="btn small" onClick={() => game.dispatch({ type: 'sellEggs', eggIds: [egg.id] })}><ThemeText>{"\r\n                      ✨ Vinde 1 · "}</ThemeText><ThemeText>{eggPrice(egg)}</ThemeText>
                     </button>
                     {n > 1 && (
-                      <button className="btn small" onClick={() => (game.dispatch({ type: 'sellEggs', eggIds: ids }), setPicked(null))}>
-                        ✨ Vinde ×{n} · {eggs.reduce((sum, e) => sum + eggPrice(e), 0)}
+                      <button className="btn small" onClick={() => (game.dispatch({ type: 'sellEggs', eggIds: ids }), setPicked(null))}><ThemeText>{"\r\n                        ✨ Vinde ×"}</ThemeText><ThemeText>{n}</ThemeText> · <ThemeText>{eggs.reduce((sum, e) => sum + eggPrice(e), 0)}</ThemeText>
                       </button>
                     )}
                     {confirm === key ? (
                       <button className="btn small danger" onClick={() => (game.dispatch({ type: 'discardEggs', eggIds: ids }), setConfirm(null), setPicked(null))}>
-                        Sigur? Aruncă{n > 1 ? ` ×${n}` : ''}
+                        Sigur? Aruncă<ThemeText>{n > 1 ? ` ×${n}` : ''}</ThemeText>
                       </button>
                     ) : (
-                      <button className="btn small ghost" onClick={() => setConfirm(key)} title="Lasă oul în sălbăticie, fără scântei">
-                        🗑️
-                      </button>
+                      <button className="btn small ghost" onClick={() => setConfirm(key)} title="Lasă oul în sălbăticie, fără scântei"><ThemeText>{"\r\n                        🗑️\r\n                      "}</ThemeText></button>
                     )}
                   </>
                 )}
@@ -360,8 +339,7 @@ function EggShelf({ game, bag, nestFull }: { game: Game; bag: Egg[]; nestFull: b
 function CandleNote({ egg }: { egg: Egg }) {
   const hint = candleHint(egg);
   return (
-    <small className="candle-note">
-      🕯️ {hint.text} {hint.quality}
+    <small className="candle-note"><ThemeText>{"\r\n      🕯️ "}</ThemeText><ThemeText>{hint.text}</ThemeText> <ThemeText>{hint.quality}</ThemeText>
     </small>
   );
 }

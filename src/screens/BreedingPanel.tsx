@@ -1,3 +1,4 @@
+import { ControlIcon, ThemeText } from '../components/ThemeText';
 // Bârlogul: împerecherea a doi dinozauri din aceeași linie. Oul moștenește genele lor.
 // Părinții se trag (drag & drop) din haită pe cele două locuri ale altarului; pe telefon, o atingere îi pune.
 
@@ -52,17 +53,17 @@ export function BreedingPanel({ game }: { game: Game }) {
     const xp = state.skills.imblanzire;
     return (
       <>
-        {head}
+        <ThemeText>{head}</ThemeText>
         <Panel title="Cum funcționează" icon="📜" className="den">
           <ol className="den-steps">
             <li>
-              <span>💞</span>
+              <span><ThemeText>{"💞"}</ThemeText></span>
               <b>Alegi doi părinți</b>
               <small>Dragoni crescuți de tine, care nu luptă și nu muncesc în acel moment.</small>
             </li>
             <li>
-              <span>⏳</span>
-              <b>Așteaptă {BREED_SECONDS / 3600} ore</b>
+              <span><ThemeText>{"⏳"}</ThemeText></span>
+              <b>Așteaptă <ThemeText>{BREED_SECONDS / 3600}</ThemeText> ore</b>
               <small>Stau în bârlog; merge și cât ești plecat.</small>
             </li>
             <li>
@@ -72,8 +73,8 @@ export function BreedingPanel({ game }: { game: Game }) {
             </li>
           </ol>
           <div className="den-locked">
-            <span className="den-lock-icon">🔒</span>
-            <h3>Se deschide la Îmblânzire nivel {BREED_SKILL_LEVEL}</h3>
+            <span className="den-lock-icon"><ThemeText>{"🔒"}</ThemeText></span>
+            <h3>Se deschide la Îmblânzire nivel <ThemeText>{BREED_SKILL_LEVEL}</ThemeText></h3>
             <p className="muted">Îmblânzirea crește când câștigi lupte în Expediții.</p>
             <div className="den-lock-bar">
               <Bar value={xp} max={skillXp(BREED_SKILL_LEVEL)} color="#ff7aa8" label={`Îmblânzire ${level}/${BREED_SKILL_LEVEL}`} />
@@ -85,7 +86,7 @@ export function BreedingPanel({ game }: { game: Game }) {
   }
   return (
     <>
-      {head}
+      <ThemeText>{head}</ThemeText>
       {state.breeding ? <ActiveDen game={game} /> : <DenPicker game={game} />}
     </>
   );
@@ -114,8 +115,8 @@ function ActiveDen({ game }: { game: Game }) {
           <div className="den-ring" style={{ ['--p' as string]: `${pct * 360}deg` }}>
             <EggSprite egg={{ rarity: likely, speciesId: babyOf(pa) }} size={64 + Math.round(pct * 24)} className={done ? 'wobble-fast' : 'breathe'} />
           </div>
-          <b className="den-timer">{done ? 'Oul e gata!' : formatDuration(left)}</b>
-          <small className="muted">{done ? 'Ia-l și pune-l în cuib' : `${Math.floor(pct * 100)}% · cuibăresc oul`}</small>
+          <b className="den-timer"><ThemeText>{done ? 'Oul e gata!' : formatDuration(left)}</ThemeText></b>
+          <small className="muted"><ThemeText>{done ? 'Ia-l și pune-l în cuib' : `${Math.floor(pct * 100)}% · cuibăresc oul`}</ThemeText></small>
         </div>
         <div className="den-slot filled">
           <ParentCard dino={pb} />
@@ -187,9 +188,9 @@ function DenPicker({ game }: { game: Game }) {
   const ready = !!first && !!second && problems.length === 0;
 
   return (
-    <Panel title="Bârlogul" icon="💞" className="den" right={<span className="muted small">⏳ {formatSeconds(BREED_SECONDS)}</span>}>
+    <Panel title="Bârlogul" icon="💞" className="den" right={<span className="muted small"><ThemeText>{"⏳ "}</ThemeText><ThemeText>{formatSeconds(BREED_SECONDS)}</ThemeText></span>}>
       <p className="den-intro">
-        Trage doi dinozauri din aceeași linie pe altar. <b>Părinți cu gene mai bune → pui mai puternic și ou mai rar.</b>
+        Trage doi dinozauri din aceeași linie pe altar. <b><ThemeText>{"Părinți cu gene mai bune → pui mai puternic și ou mai rar."}</ThemeText></b>
       </p>
 
       <div className="den-altar">
@@ -208,16 +209,14 @@ function DenPicker({ game }: { game: Game }) {
             >
               {d ? (
                 <>
-                  <button className="den-slot-x" onClick={() => clear(i)} aria-label="Scoate din Bârlog">
-                    ✕
-                  </button>
+                  <button className="den-slot-x" onClick={() => clear(i)} aria-label="Scoate din Bârlog"><ThemeText>{"\r\n                    ✕\r\n                  "}</ThemeText></button>
                   <ParentCard dino={d} />
                 </>
               ) : (
                 <div className="den-slot-empty">
-                  <span className="den-slot-plus">＋</span>
-                  <b>{i === 0 ? 'Primul părinte' : 'Perechea'}</b>
-                  <small>Trage aici un dinozaur{partner && i === 1 ? ` din linia lui ${SPECIES[partner.speciesId].name}` : ''}</small>
+                  <span className="den-slot-plus"><ControlIcon glyph="+" /></span>
+                  <b><ThemeText>{i === 0 ? 'Primul părinte' : 'Perechea'}</ThemeText></b>
+                  <small>Trage aici un dinozaur<ThemeText>{partner && i === 1 ? ` din linia lui ${SPECIES[partner.speciesId].name}` : ''}</ThemeText></small>
                 </div>
               )}
             </div>
@@ -227,24 +226,22 @@ function DenPicker({ game }: { game: Game }) {
           {first && second ? (
             <>
               <EggSprite egg={{ rarity: likelyRarity(first, second), speciesId: babyOf(first) }} size={70} className="breathe" />
-              <small className="muted">puiul: {SPECIES[babyOf(first)].name}</small>
+              <small className="muted">puiul: <ThemeText>{SPECIES[babyOf(first)].name}</ThemeText></small>
             </>
           ) : (
-            <span className="den-heart">💞</span>
+            <span className="den-heart"><ThemeText>{"💞"}</ThemeText></span>
           )}
         </div>
       </div>
 
       {first && second && <Forecast a={first} b={second} />}
-      {problems.length > 0 && <p className="lock-text den-problems">Nu se poate: {problems.join(', ')}.</p>}
+      {problems.length > 0 && <p className="lock-text den-problems">Nu se poate: <ThemeText>{problems.join(', ')}</ThemeText>.</p>}
       <div className="den-cta">
         <button
           className={`btn primary big${ready ? ' glow' : ''}`}
           disabled={!ready}
           onClick={() => first && second && game.dispatch({ type: 'breed', a: first.id, b: second.id }) && setSlots([null, null])}
-        >
-          💞 Trimite în Bârlog
-        </button>
+        ><ThemeText>{"\r\n          💞 Trimite în Bârlog\r\n        "}</ThemeText></button>
       </div>
 
       <h3 className="den-roster-title">
@@ -269,12 +266,12 @@ function DenPicker({ game }: { game: Game }) {
               title={why ?? 'Trage pe altar sau atinge'}
             >
               <DinoSprite speciesId={d.speciesId} albino={d.variant === 'albino'} size={56} />
-              <b>{d.nickname}</b>
+              <b><ThemeText>{d.nickname}</ThemeText></b>
               <small className="muted">
-                {SPECIES[d.speciesId].name} · Gen. {generation(d)}
+                <ThemeText>{SPECIES[d.speciesId].name}</ThemeText> · Gen. <ThemeText>{generation(d)}</ThemeText>
               </small>
               <Stars n={geneStars(d.genes)} />
-              {why ? <span className="den-why">{why}</span> : <span className="den-uses">💞 {d.breeds ?? 0}/{BREED_MAX}</span>}
+              {why ? <span className="den-why"><ThemeText>{why}</ThemeText></span> : <span className="den-uses"><ThemeText>{"💞 "}</ThemeText><ThemeText>{d.breeds ?? 0}</ThemeText>/<ThemeText>{BREED_MAX}</ThemeText></span>}
             </button>
           );
         })}
@@ -287,9 +284,9 @@ function ParentCard({ dino }: { dino: Dino }) {
   return (
     <div className="den-parent">
       <DinoSprite speciesId={dino.speciesId} albino={dino.variant === 'albino'} size={104} className="breathe" />
-      <b>{dino.nickname}</b>
+      <b><ThemeText>{dino.nickname}</ThemeText></b>
       <small className="muted">
-        {SPECIES[dino.speciesId].name} · Gen. {generation(dino)}
+        <ThemeText>{SPECIES[dino.speciesId].name}</ThemeText> · Gen. <ThemeText>{generation(dino)}</ThemeText>
       </small>
       <Stars n={geneStars(dino.genes)} />
     </div>
@@ -306,7 +303,7 @@ function Forecast({ a, b }: { a: Dino; b: Dino }) {
           Puiul: <Stars n={f.stars[0]} />
           {f.stars[1] !== f.stars[0] && (
             <>
-              {' '}
+              <ThemeText>{' '}</ThemeText>
               până la <Stars n={f.stars[1]} />
             </>
           )}
@@ -317,12 +314,12 @@ function Forecast({ a, b }: { a: Dino; b: Dino }) {
           const [lo, hi] = f.genes[k];
           return (
             <div key={k} className="forecast-gene">
-              <span>{STAT_NAMES[k]}</span>
+              <span><ThemeText>{STAT_NAMES[k]}</ThemeText></span>
               <div className="gene-track" title={`${lo}–${hi} din 15`}>
                 <i style={{ left: `${(lo / 15) * 100}%`, width: `${Math.max(4, ((hi - lo) / 15) * 100)}%` }} />
               </div>
               <small>
-                {lo}–{hi}
+                <ThemeText>{lo}</ThemeText>–<ThemeText>{hi}</ThemeText>
               </small>
             </div>
           );
@@ -332,7 +329,7 @@ function Forecast({ a, b }: { a: Dino; b: Dino }) {
         <span className="muted small">Oul:</span>
         {f.rarities.map((r) => (
           <span key={r.rarity} className={`rarity-tag r-${r.rarity}`}>
-            {RARITIES[r.rarity].name} {r.pct}%
+            <ThemeText>{RARITIES[r.rarity].name}</ThemeText> <ThemeText>{r.pct}</ThemeText>%
           </span>
         ))}
       </div>

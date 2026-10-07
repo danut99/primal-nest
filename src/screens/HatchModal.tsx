@@ -1,3 +1,4 @@
+import { ThemeText } from '../components/ThemeText';
 // Momentul eclozării: oul tremură, crapă, lumină, iar puiul apare. Apoi îi dai un nume.
 
 import { useEffect, useRef, useState } from 'react';
@@ -71,15 +72,15 @@ export function HatchModal({ game, egg, onClose }: { game: Game; egg: Egg; onClo
       </div>
       {phase === 'reveal' && dino && species && (
         <div className="hatch-info pop-in">
-          <h2>{dino.variant === 'albino' ? `Un ${species.name} ALBINO! 🤍` : `A eclozat un ${species.name}!`}</h2>
+          <h2><ThemeText>{dino.variant === 'albino' ? `Un ${species.name} ALBINO! 🤍` : `A eclozat un ${species.name}!`}</ThemeText></h2>
           <div className="row center gap-s">
             {species.types.map((t) => (
               <TypeBadge key={t} type={t} />
             ))}
-            <span className="chip">{TEMPERAMENTS[dino.temperament].name}</span>
+            <span className="chip"><ThemeText>{TEMPERAMENTS[dino.temperament].name}</ThemeText></span>
             <Stars n={geneStars(dino.genes)} />
           </div>
-          <p className="muted">{species.blurb}</p>
+          <p className="muted"><ThemeText>{species.blurb}</ThemeText></p>
           <form
             className="name-form"
             onSubmit={(e) => {
@@ -88,7 +89,7 @@ export function HatchModal({ game, egg, onClose }: { game: Game; egg: Egg; onClo
             }}
           >
             <input value={name} maxLength={14} onChange={(e) => setName(e.target.value)} aria-label="Numele puiului" />
-            <button className="btn primary">Al meu ⚔️</button>
+            <button className="btn primary"><ThemeText>{"Al meu ⚔️"}</ThemeText></button>
           </form>
         </div>
       )}

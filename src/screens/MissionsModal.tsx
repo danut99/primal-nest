@@ -1,3 +1,4 @@
+import { ThemeText } from '../components/ThemeText';
 // Misiunile zilnice (cu cufărul zilei și seria) și realizările, într-o fereastră deschisă din bara de sus.
 
 import { useState } from 'react';
@@ -43,19 +44,19 @@ export function MissionsModal({ game, onClose }: { game: Game; onClose: () => vo
           <GameIcon name="zilnica" /> Zilnice
         </button>
         <button className={`tab${tab === 'ach' ? ' active' : ''}`} onClick={() => setTab('ach')}>
-          Realizări {state.achievements.length}/{ACHIEVEMENTS.length}
+          Realizări <ThemeText>{state.achievements.length}</ThemeText>/<ThemeText>{ACHIEVEMENTS.length}</ThemeText>
         </button>
       </div>
 
       {tab === 'daily' ? (
         <>
           <div className="streak-row">
-            <span className="streak-fire">🔥</span>
+            <span className="streak-fire"><ThemeText>{"🔥"}</ThemeText></span>
             <div className="grow">
-              <b>Serie: {streakAlive ? state.streak.count : 0} {state.streak.count === 1 ? 'zi' : 'zile'}</b>
+              <b>Serie: <ThemeText>{streakAlive ? state.streak.count : 0}</ThemeText> <ThemeText>{state.streak.count === 1 ? 'zi' : 'zile'}</ThemeText></b>
               <small className="muted">Termină toate misiunile zilnic: cufărul crește până la ziua 7.</small>
             </div>
-            <small className="muted">Misiuni noi în {formatDuration(resetIn)}</small>
+            <small className="muted">Misiuni noi în <ThemeText>{formatDuration(resetIn)}</ThemeText></small>
           </div>
           {!daily ? (
             <p className="empty-state">Misiunile apar la prima acțiune de azi.</p>
@@ -67,16 +68,16 @@ export function MissionsModal({ game, onClose }: { game: Game; onClose: () => vo
                 const claimed = daily.claimed.includes(id);
                 return (
                   <div key={id} className={`quest${claimed ? ' claimed' : p >= q.goal ? ' ready' : ''}`}>
-                    <span className="quest-icon">{q.icon}</span>
+                    <span className="quest-icon"><ThemeText>{q.icon}</ThemeText></span>
                     <div className="grow">
-                      <b>{q.title}</b>
+                      <b><ThemeText>{q.title}</ThemeText></b>
                       <Bar value={p} max={q.goal} color="#7bc66b" thin label={`${p}/${q.goal}`} />
                     </div>
                     {claimed ? (
-                      <span className="quest-done">✓</span>
+                      <span className="quest-done"><ThemeText>{"✓"}</ThemeText></span>
                     ) : (
                       <button className="btn small primary" disabled={p < q.goal} onClick={() => game.dispatch({ type: 'claimQuest', questId: id })}>
-                        +{q.sparks} <GameIcon name="scanteie" size={20} /> · +{q.diamonds} <GameIcon name="diamant" size={20} />
+                        +<ThemeText>{q.sparks}</ThemeText> <GameIcon name="scanteie" size={20} /> · +<ThemeText>{q.diamonds}</ThemeText> <GameIcon name="diamant" size={20} />
                       </button>
                     )}
                   </div>
@@ -87,7 +88,7 @@ export function MissionsModal({ game, onClose }: { game: Game; onClose: () => vo
                 <div className="grow">
                   <b>Cufărul zilei</b>
                   <small className="muted">
-                    {daily.bonusClaimed ? 'Luat azi. Revino mâine pentru serie!' : <>Toate cele {daily.quests.length} misiuni → +{streakBonus(nextStreak)} <GameIcon name="diamant" size={18} /> (ziua {nextStreak})</>}
+                    {daily.bonusClaimed ? 'Luat azi. Revino mâine pentru serie!' : <>Toate cele <ThemeText>{daily.quests.length}</ThemeText><ThemeText>{" misiuni → +"}</ThemeText><ThemeText>{streakBonus(nextStreak)}</ThemeText> <GameIcon name="diamant" size={18} /> (ziua <ThemeText>{nextStreak}</ThemeText>)</>}
                   </small>
                 </div>
                 {!daily.bonusClaimed && (
@@ -107,14 +108,14 @@ export function MissionsModal({ game, onClose }: { game: Game; onClose: () => vo
             const value = Math.min(a.goal, achievementValue(state, a));
             return (
               <div key={a.id} className={`ach${got ? ' got' : done ? ' ready' : ''}`}>
-                <span className="ach-icon">{a.icon}</span>
-                <b>{a.title}</b>
-                <small className="muted">{a.text}</small>
+                <span className="ach-icon"><ThemeText>{a.icon}</ThemeText></span>
+                <b><ThemeText>{a.title}</ThemeText></b>
+                <small className="muted"><ThemeText>{a.text}</ThemeText></small>
                 {got ? (
-                  <span className="quest-done">✓ +{a.diamonds} <GameIcon name="diamant" size={20} /></span>
+                  <span className="quest-done"><ThemeText>{"✓ +"}</ThemeText><ThemeText>{a.diamonds}</ThemeText> <GameIcon name="diamant" size={20} /></span>
                 ) : done ? (
                   <button className="btn tiny primary" onClick={() => game.dispatch({ type: 'claimAchievement', achievementId: a.id })}>
-                    Ia +{a.diamonds} <GameIcon name="diamant" size={20} />
+                    Ia +<ThemeText>{a.diamonds}</ThemeText> <GameIcon name="diamant" size={20} />
                   </button>
                 ) : (
                   <Bar value={value} max={a.goal} color="#c79bff" thin label={`${value}/${a.goal}`} />

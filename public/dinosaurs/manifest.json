@@ -1,0 +1,50 @@
+{
+  "models": [
+    {
+      "id": "astravor",
+      "name": "Astravor · Coroana Riftului",
+      "type": "T-Rex legendar",
+      "skeleton": "tyrannosaurus/skeleton.json",
+      "atlas": "tyrannosaurus/parts.atlas",
+      "texture": "tyrannosaurus/parts.png",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 3.2,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 1.35,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Ruptura Riftului",
+          "duration": 4.2,
+          "loop": false
+        }
+      ],
+      "bones": 15,
+      "effectBones": 18,
+      "totalBones": 33,
+      "uniqueParts": 9,
+      "bounds": {
+        "x": -530,
+        "y": -8,
+        "width": 950,
+        "height": 540
+      },
+      "animationBounds": {
+        "attack": {
+          "x": -560,
+          "y": -18,
+          "width": 1500,
+          "height": 680
+        }
+      }
+    }
+  ]
+}

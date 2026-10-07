@@ -1,3 +1,4 @@
+import { ThemeText } from '../components/ThemeText';
 // Dragonii: modelele generate (4 evoluții fiecare) și biblioteca de animații Dragon City.
 
 import { useEffect, useMemo, useState } from 'react';
@@ -57,7 +58,7 @@ export function DragonsScreen() {
     URL.revokeObjectURL(a.href);
   };
 
-  if (error) return <div className="screen error-text">{error}</div>;
+  if (error) return <div className="screen error-text"><ThemeText>{error}</ThemeText></div>;
   if (!catalog) return <div className="screen muted">Se încarcă dragonii…</div>;
 
   const model = 'model' in source ? catalog.models.find((m) => m.id === source.model) : undefined;
@@ -71,13 +72,13 @@ export function DragonsScreen() {
       <Panel
         title={model?.name ?? entry?.name}
         icon="🐉"
-        right={model && <span className="chip">{model.element}</span>}
+        right={model && <span className="chip"><ThemeText>{model.element}</ThemeText></span>}
       >
         <DragonPlayer source={source} animation={animation} speed={speed} paused={paused} framing={featured || spectacular ? framing : 'animation'} onReady={ready} />
-        {model && <p className="muted">{model.description}</p>}
-        {featured && <p className="muted">{featured.description} Model original din bibliotecă.</p>}
+        {model && <p className="muted"><ThemeText>{model.description}</ThemeText></p>}
+        {featured && <p className="muted"><ThemeText>{featured.description}</ThemeText> Model original din bibliotecă.</p>}
         {(featured || spectacular) && <div className="row gap-s wrap dragon-controls">
-          {(['body', 'scene', 'animation'] as const).map((f) => <button key={f} className={`btn small${framing === f ? ' primary' : ''}`} onClick={() => setFraming(f)}>{f === 'body' ? 'Dragon aproape' : f === 'scene' ? 'Scenă stabilă' : 'Animație întreagă'}</button>)}
+          {(['body', 'scene', 'animation'] as const).map((f) => <button key={f} className={`btn small${framing === f ? ' primary' : ''}`} onClick={() => setFraming(f)}><ThemeText>{f === 'body' ? 'Dragon aproape' : f === 'scene' ? 'Scenă stabilă' : 'Animație întreagă'}</ThemeText></button>)}
           <small className="muted">În vederea apropiată, efectele pot depăși cadrul.</small>
         </div>}
         {featured?.fatalityArchive && <div className="row gap-s wrap dragon-controls">
@@ -93,7 +94,7 @@ export function DragonsScreen() {
                 className={`btn small${sourceKey(next) === sourceKey(source) ? ' primary' : ''}`}
                 onClick={() => pick(next)}
               >
-                {s.label}
+                <ThemeText>{s.label}</ThemeText>
               </button>
             );
           })}
@@ -101,38 +102,36 @@ export function DragonsScreen() {
         <div className="row gap-s wrap dragon-controls">
           {dragon?.animations.map((a) => (
             <button key={a} className={`chip${a === animation ? ' active' : ''}`} onClick={() => setAnimation(a)}>
-              {a}
+              <ThemeText>{a}</ThemeText>
             </button>
           ))}
         </div>
         <div className="row gap-s wrap dragon-controls">
           <button className="btn small" onClick={() => setPaused(!paused)}>
-            {paused ? '▶ Pornește' : '⏸ Pauză'}
+            <ThemeText>{paused ? '▶ Pornește' : '⏸ Pauză'}</ThemeText>
           </button>
           {SPEEDS.map((s) => (
             <button key={s} className={`btn tiny${s === speed ? ' primary' : ''}`} onClick={() => setSpeed(s)}>
-              {s}×
+              <ThemeText>{s}</ThemeText>×
             </button>
           ))}
-          <button className="btn small ghost" onClick={save} disabled={!dragon}>
-            📷 PNG
-          </button>
+          <button className="btn small ghost" onClick={save} disabled={!dragon}><ThemeText>{"\r\n            📷 PNG\r\n          "}</ThemeText></button>
         </div>
       </Panel>
 
       <Panel>
         <div className="row gap-s wrap">
           <button className={`btn small${tab === 'spectacular' ? ' primary' : ''}`} onClick={() => setTab('spectacular')}>
-            Spectaculoși ({catalog.spectacular?.length ?? 0})
+            Spectaculoși (<ThemeText>{catalog.spectacular?.length ?? 0}</ThemeText>)
           </button>
           <button className={`btn small${tab === 'grandiosi' ? ' primary' : ''}`} onClick={() => setTab('grandiosi')}>
-            Grandioși ({catalog.grandiose?.length ?? 0})
+            Grandioși (<ThemeText>{catalog.grandiose?.length ?? 0}</ThemeText>)
           </button>
           <button className={`btn small${tab === 'generati' ? ' primary' : ''}`} onClick={() => setTab('generati')}>
-            Generați ({catalog.models.length})
+            Generați (<ThemeText>{catalog.models.length}</ThemeText>)
           </button>
           <button className={`btn small${tab === 'biblioteca' ? ' primary' : ''}`} onClick={() => setTab('biblioteca')}>
-            Bibliotecă ({catalog.library.length})
+            Bibliotecă (<ThemeText>{catalog.library.length}</ThemeText>)
           </button>
           {tab === 'biblioteca' && (
             <input
@@ -147,7 +146,7 @@ export function DragonsScreen() {
           <div className="dragon-grid">
             {catalog.grandiose?.map((m) => <button key={m.id} className={`dragon-card${featured?.id === m.id ? ' selected' : ''}`} onClick={() => { setAnimation(m.recommendedAnimation); pick({ archive: m.archive }); }}>
               <img src={`${DRAGON_BASE}/${m.preview}`} alt="" loading="lazy" />
-              <b>{m.name}</b><small className="muted">{m.description}</small>
+              <b><ThemeText>{m.name}</ThemeText></b><small className="muted"><ThemeText>{m.description}</ThemeText></small>
             </button>)}
           </div>
         ) : tab === 'generati' || tab === 'spectacular' ? (
@@ -162,8 +161,8 @@ export function DragonsScreen() {
                   onClick={() => { if (tab === 'spectacular') setAnimation('fly'); pick({ model: m.id, stage }); }}
                 >
                   <img src={previewUrl(m.id, stage)} alt="" loading="lazy" />
-                  <b>{m.name}</b>
-                  <small className="muted">{m.stages.length} evoluții</small>
+                  <b><ThemeText>{m.name}</ThemeText></b>
+                  <small className="muted"><ThemeText>{m.stages.length}</ThemeText> evoluții</small>
                 </button>
               );
             })}
@@ -176,8 +175,8 @@ export function DragonsScreen() {
                 className={`dragon-row${entry?.id === e.id ? ' selected' : ''}`}
                 onClick={() => pick({ archive: e.forms[e.forms.length - 1].file })}
               >
-                <span>{e.name}</span>
-                <small className="muted">{e.kind === 'efect' ? 'efect' : `${e.forms.length} forme`}</small>
+                <span><ThemeText>{e.name}</ThemeText></span>
+                <small className="muted"><ThemeText>{e.kind === 'efect' ? 'efect' : `${e.forms.length} forme`}</ThemeText></small>
               </button>
             ))}
           </div>

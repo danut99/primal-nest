@@ -1,3 +1,4 @@
+import { ThemeText } from '../components/ThemeText';
 import { EggIcon, ItemArt } from '../components/AssetIcon';
 // Activități în stil MilkyWay: Cules, Săpături, Bucătărie. O singură activitate odată.
 
@@ -48,14 +49,12 @@ function QueueStrip({ game }: { game: Game }) {
         const item = state.queue[i];
         return item ? (
           <span key={i} className="queue-item">
-            <small>{i + 1}.</small> {queuedLabel(item)}
-            <button className="queue-x" onClick={() => game.dispatch({ type: 'dequeue', index: i })} aria-label="Scoate din coadă">
-              ✕
-            </button>
+            <small><ThemeText>{i + 1}</ThemeText>.</small> <ThemeText>{queuedLabel(item)}</ThemeText>
+            <button className="queue-x" onClick={() => game.dispatch({ type: 'dequeue', index: i })} aria-label="Scoate din coadă"><ThemeText>{"\r\n              ✕\r\n            "}</ThemeText></button>
           </span>
         ) : (
           <span key={i} className="queue-item empty">
-            <small>{i + 1}.</small> loc liber
+            <small><ThemeText>{i + 1}</ThemeText>.</small> loc liber
           </span>
         );
       })}
@@ -71,16 +70,16 @@ export function SkillHeader({ game, skill }: { game: Game; skill: SkillId }) {
   const xp = state.skills[skill];
   return (
     <div className="skill-header">
-      <span className="skill-icon">{SKILLS[skill].icon}</span>
+      <span className="skill-icon"><ThemeText>{SKILLS[skill].icon}</ThemeText></span>
       <div className="grow">
         <div className="row between">
           <b>
-            {SKILLS[skill].name} <span className="skill-level">Nv. {level}</span>
+            <ThemeText>{SKILLS[skill].name}</ThemeText> <span className="skill-level">Nv. <ThemeText>{level}</ThemeText></span>
           </b>
-          <small className="muted">{level < MAX_SKILL_LEVEL ? `${xp - from}/${to - from} XP până la nivelul ${level + 1}` : 'Nivel maxim!'}</small>
+          <small className="muted"><ThemeText>{level < MAX_SKILL_LEVEL ? `${xp - from}/${to - from} XP până la nivelul ${level + 1}` : 'Nivel maxim!'}</ThemeText></small>
         </div>
         {level < MAX_SKILL_LEVEL && <Bar value={xp - from} max={to - from} color="#7bc66b" thin />}
-        <small className="muted">{SKILLS[skill].blurb}</small>
+        <small className="muted"><ThemeText>{SKILLS[skill].blurb}</ThemeText></small>
       </div>
     </div>
   );
@@ -110,12 +109,12 @@ export function ActivitiesScreen({ game }: { game: Game }) {
             (t === 'bucatarie' && active?.kind === 'cook');
           return (
             <button key={t} role="tab" aria-selected={tab === t} className={`act-tab${tab === t ? ' active' : ''}`} onClick={() => setTab(t)}>
-              <span className="act-tab-icon">{SKILLS[t].icon}</span>
+              <span className="act-tab-icon"><ThemeText>{SKILLS[t].icon}</ThemeText></span>
               <span className="act-tab-text">
-                <b>{SKILLS[t].name}</b>
+                <b><ThemeText>{SKILLS[t].name}</ThemeText></b>
                 <small>
-                  Nv. {skillLevel(state, t)}
-                  {running && <span className="act-tab-running"> · ⏳ în lucru</span>}
+                  Nv. <ThemeText>{skillLevel(state, t)}</ThemeText>
+                  {running && <span className="act-tab-running"><ThemeText>{" · ⏳ în lucru"}</ThemeText></span>}
                 </small>
               </span>
             </button>
@@ -131,7 +130,7 @@ export function ActivitiesScreen({ game }: { game: Game }) {
             <span className="segmented">
               {GATHER_COUNTS.map((n) => (
                 <button key={n} className={count === n ? 'on' : ''} onClick={() => setCount(n)} title={n === 0 ? 'Până o oprești (maximum 8 ore)' : `${n} acțiuni`}>
-                  {n === 0 ? '∞ continuu' : `×${n}`}
+                  <ThemeText>{n === 0 ? '∞ continuu' : `×${n}`}</ThemeText>
                 </button>
               ))}
             </span>
@@ -143,25 +142,25 @@ export function ActivitiesScreen({ game }: { game: Game }) {
               const totalWeight = a.drops.reduce((s, d) => s + d.weight, 0);
               return (
                 <div key={a.id} className={`action-card${running ? ' running' : ''}${locked ? ' locked' : ''}`}>
-                  <div className="action-icon">{locked ? '🔒' : a.skill === 'cules' ? <ItemArt item={a.drops[0].value} size={52} /> : a.icon}</div>
-                  <b>{a.name}</b>
+                  <div className="action-icon"><ThemeText>{locked ? '🔒' : a.skill === 'cules' ? <ItemArt item={a.drops[0].value} size={52} /> : a.icon}</ThemeText></div>
+                  <b><ThemeText>{a.name}</ThemeText></b>
                   <small className="muted">
-                    {formatSeconds(a.seconds)} / acțiune · +{a.xp} XP
+                    <ThemeText>{formatSeconds(a.seconds)}</ThemeText> / acțiune · +<ThemeText>{a.xp}</ThemeText> XP
                   </small>
                   <div className="drops">
                     {a.drops.map((d) => (
                       <span key={d.value} className="drop" title={ITEMS[d.value].blurb}>
-                        <ItemArt item={d.value} /> {ITEMS[d.value].name} · {Math.round((d.weight / totalWeight) * 100)}%
+                        <ItemArt item={d.value} /> <ThemeText>{ITEMS[d.value].name}</ThemeText> · <ThemeText>{Math.round((d.weight / totalWeight) * 100)}</ThemeText>%
                       </span>
                     ))}
-                    {a.egg && <span className="drop egg-drop"><EggIcon /> {+(a.egg.chance * 100).toFixed(1)}%</span>}
+                    {a.egg && <span className="drop egg-drop"><EggIcon /> <ThemeText>{+(a.egg.chance * 100).toFixed(1)}</ThemeText>%</span>}
                   </div>
                   {locked ? (
-                    <small className="lock-text">Nivel {a.level}</small>
+                    <small className="lock-text">Nivel <ThemeText>{a.level}</ThemeText></small>
                   ) : (
                     <div className="action-btns">
                       {running ? (
-                        <span className="running-tag">⏳ În lucru…</span>
+                        <span className="running-tag"><ThemeText>{"⏳ În lucru…"}</ThemeText></span>
                       ) : (
                         <button className="btn primary small" onClick={() => game.dispatch({ type: 'gather', actionId: a.id, count: count || undefined })}>
                           Pornește
@@ -173,9 +172,7 @@ export function ActivitiesScreen({ game }: { game: Game }) {
                           title={count ? '' : 'Alege un număr de acțiuni ca să o pui în coadă'}
                           disabled={!count}
                           onClick={() => game.dispatch({ type: 'enqueue', item: { kind: 'gather', actionId: a.id, count } })}
-                        >
-                          ＋ Coadă
-                        </button>
+                        ><ThemeText>{"\r\n                          ＋ Coadă\r\n                        "}</ThemeText></button>
                       )}
                     </div>
                   )}
@@ -184,7 +181,7 @@ export function ActivitiesScreen({ game }: { game: Game }) {
             })}
           </div>
           {tab === 'sapaturi' && !state.tutorialDone.includes('first-dig-egg') && (
-            <p className="hint">🔥 Saurok: „Sub nisip strălucește chihlimbar. Acolo e un ou. Sapă!”</p>
+            <p className="hint"><ThemeText>{"🔥 Saurok: „Sub nisip strălucește chihlimbar. Acolo e un ou. Sapă!”"}</ThemeText></p>
           )}
         </Panel>
       ) : (
@@ -204,8 +201,7 @@ function Kitchen({ game }: { game: Game }) {
     return (
       <Panel>
         <SkillHeader game={game} skill="bucatarie" />
-        <p className="empty-state">
-          🔒 Bucătăria se deblochează când construiești <b>{PROPERTY_LEVELS[1].name}</b> în Tabără.
+        <p className="empty-state"><ThemeText>{"\r\n          🔒 Bucătăria se deblochează când construiești "}</ThemeText><b><ThemeText>{PROPERTY_LEVELS[1].name}</ThemeText></b> în Tabără.
         </p>
       </Panel>
     );
@@ -223,10 +219,10 @@ function Kitchen({ game }: { game: Game }) {
           const food = ITEMS[r.output].food!;
           return (
             <div key={r.id} className={`action-card${running ? ' running' : ''}${locked ? ' locked' : ''}`}>
-              <div className="action-icon">{locked ? '🔒' : <ItemArt item={r.output} size={52} />}</div>
-              <b>{r.name}</b>
+              <div className="action-icon"><ThemeText>{locked ? '🔒' : <ItemArt item={r.output} size={52} />}</ThemeText></div>
+              <b><ThemeText>{r.name}</ThemeText></b>
               <small className="muted">
-                {formatSeconds(r.seconds)} / porție · +{food.xp} XP la hrănire
+                <ThemeText>{formatSeconds(r.seconds)}</ThemeText> / porție · +<ThemeText>{food.xp}</ThemeText> XP la hrănire
               </small>
               <div className="drops">
                 {Object.entries(r.inputs).map(([item, qty]) => (
@@ -234,35 +230,31 @@ function Kitchen({ game }: { game: Game }) {
                 ))}
               </div>
               {locked ? (
-                <small className="lock-text">Nivel {r.level}</small>
+                <small className="lock-text">Nivel <ThemeText>{r.level}</ThemeText></small>
               ) : running ? (
-                <span className="running-tag">
-                  ⏳ {active.done}/{active.count}
+                <span className="running-tag"><ThemeText>{"\r\n                  ⏳ "}</ThemeText><ThemeText>{active.done}</ThemeText>/<ThemeText>{active.count}</ThemeText>
                 </span>
               ) : (
                 <>
                   <div className="qty-row">
                     {[1, 5, 10].map((n) => (
                       <button key={n} className={`btn tiny${count === n ? ' primary' : ''}`} disabled={n > max} onClick={() => setCounts({ ...counts, [r.id]: n })}>
-                        {n}
+                        <ThemeText>{n}</ThemeText>
                       </button>
                     ))}
                     <button className={`btn tiny${count === max && max > 1 ? ' primary' : ''}`} disabled={max < 1} onClick={() => setCounts({ ...counts, [r.id]: max })}>
-                      Max ({max})
+                      Max (<ThemeText>{max}</ThemeText>)
                     </button>
                   </div>
                   <div className="action-btns">
-                    <button className="btn primary small" disabled={max < 1} onClick={() => game.dispatch({ type: 'cook', recipeId: r.id, count })}>
-                      🍳 Gătește {count}
+                    <button className="btn primary small" disabled={max < 1} onClick={() => game.dispatch({ type: 'cook', recipeId: r.id, count })}><ThemeText>{"\r\n                      🍳 Gătește "}</ThemeText><ThemeText>{count}</ThemeText>
                     </button>
                     {active && game.state!.queue.length < QUEUE_MAX && (
                       <button
                         className="btn small"
                         title="Ingredientele se iau când pornește"
                         onClick={() => game.dispatch({ type: 'enqueue', item: { kind: 'cook', recipeId: r.id, count: counts[r.id] ?? 1 } })}
-                      >
-                        ＋ Coadă
-                      </button>
+                      ><ThemeText>{"\r\n                        ＋ Coadă\r\n                      "}</ThemeText></button>
                     )}
                   </div>
                 </>

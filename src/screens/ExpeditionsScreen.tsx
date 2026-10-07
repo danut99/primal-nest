@@ -1,3 +1,4 @@
+import { ThemeText } from '../components/ThemeText';
 import { EggIcon, ItemArt, RelicIcon } from '../components/AssetIcon';
 // Expediții: regiuni păzite de câte un Alfa. Luptă directă (privită) sau expediție idle (și offline).
 
@@ -68,13 +69,13 @@ export function ExpeditionsScreen({ game }: { game: Game }) {
               <header className="zc-banner" style={sceneBackground(zone.id, 0.15)}>
                 <div className="zc-title">
                   <span className="zc-region">
-                    {zone.icon} Regiunea {index + 1}
+                    <ThemeText>{zone.icon}</ThemeText> Regiunea <ThemeText>{index + 1}</ThemeText>
                   </span>
-                  <h3>{zone.name}</h3>
+                  <h3><ThemeText>{zone.name}</ThemeText></h3>
                   <span className="zc-levels">
-                    Nivel {zone.levels[0]}–{zone.levels[1]}
+                    Nivel <ThemeText>{zone.levels[0]}</ThemeText>–<ThemeText>{zone.levels[1]}</ThemeText>
                   </span>
-                  {here && <span className="zc-running">🗺️ În expediție…</span>}
+                  {here && <span className="zc-running"><ThemeText>{"🗺️ În expediție…"}</ThemeText></span>}
                 </div>
                 <div className="zc-boss">
                   <span className="zc-boss-glow" />
@@ -84,18 +85,18 @@ export function ExpeditionsScreen({ game }: { game: Game }) {
                     <DinoSprite speciesId={a.speciesId} art={bossStill(zone.id)} size={190} flip silhouette />
                   )}
                   <div className="zc-boss-plate">
-                    <span className="zc-boss-tag">{!unlocked ? '🔒 ALFA' : beaten ? '★ ÎNVINS' : 'ALFA'}</span>
-                    <b>{unlocked ? boss.name : '???'}</b>
+                    <span className="zc-boss-tag"><ThemeText>{!unlocked ? '🔒 ALFA' : beaten ? '★ ÎNVINS' : 'ALFA'}</ThemeText></span>
+                    <b><ThemeText>{unlocked ? boss.name : '???'}</ThemeText></b>
                     <small>
-                      {a.title} · nv. {a.level}
+                      <ThemeText>{a.title}</ThemeText> · nv. <ThemeText>{a.level}</ThemeText>
                     </small>
                   </div>
                 </div>
                 {!unlocked && (
                   <div className="zc-lock">
-                    <span>🔒</span>
+                    <span><ThemeText>{"🔒"}</ThemeText></span>
                     <p>
-                      Drumul e păzit. Învinge-l pe <b>{prev?.alpha.title}</b> din {prev?.name}.
+                      Drumul e păzit. Învinge-l pe <b><ThemeText>{prev?.alpha.title}</ThemeText></b> din <ThemeText>{prev?.name}</ThemeText>.
                     </p>
                   </div>
                 )}
@@ -103,7 +104,7 @@ export function ExpeditionsScreen({ game }: { game: Game }) {
 
               {unlocked && (
                 <div className="zc-body">
-                  <p className="zc-blurb">{zone.blurb}</p>
+                  <p className="zc-blurb"><ThemeText>{zone.blurb}</ThemeText></p>
 
                   <div className="zc-section">
                     <h4>Inamici</h4>
@@ -115,7 +116,7 @@ export function ExpeditionsScreen({ game }: { game: Game }) {
                             <span className="zc-enemy-frame">
                               <DinoSprite speciesId={id} size={64} flip shadowed={seen} silhouette={!seen} aura={false} />
                             </span>
-                            <figcaption>{seen ? SPECIES[id].name : '???'}</figcaption>
+                            <figcaption><ThemeText>{seen ? SPECIES[id].name : '???'}</ThemeText></figcaption>
                           </figure>
                         );
                       })}
@@ -127,10 +128,10 @@ export function ExpeditionsScreen({ game }: { game: Game }) {
                     <div className="drops">
                       {zone.drops.map((d) => (
                         <span key={d.item} className="drop" title={ITEMS[d.item].name}>
-                          <ItemArt item={d.item} /> {ITEMS[d.item].name} · {Math.round(d.chance * 100)}%
+                          <ItemArt item={d.item} /> <ThemeText>{ITEMS[d.item].name}</ThemeText> · <ThemeText>{Math.round(d.chance * 100)}</ThemeText>%
                         </span>
                       ))}
-                      {zone.egg.chance > 0 && <span className="drop egg-drop"><EggIcon /> Ou · {+(zone.egg.chance * 100).toFixed(1)}%</span>}
+                      {zone.egg.chance > 0 && <span className="drop egg-drop"><EggIcon /> Ou · <ThemeText>{+(zone.egg.chance * 100).toFixed(1)}</ThemeText>%</span>}
                     </div>
                   </div>
 
@@ -138,10 +139,10 @@ export function ExpeditionsScreen({ game }: { game: Game }) {
                     <h4>Premiul Alfa</h4>
                     <div className="drops">
                       <span className="drop zc-relic">
-                        <RelicIcon relic={a.relic} /> {RELICS[a.relic].name}
+                        <RelicIcon relic={a.relic} /> <ThemeText>{RELICS[a.relic].name}</ThemeText>
                       </span>
-                      <span className="drop"><EggIcon /> ou {a.egg}</span>
-                      <span className="drop">✨ {a.sparks}</span>
+                      <span className="drop"><EggIcon /> ou <ThemeText>{a.egg}</ThemeText></span>
+                      <span className="drop"><ThemeText>{"✨ "}</ThemeText><ThemeText>{a.sparks}</ThemeText></span>
                     </div>
                   </div>
 
@@ -152,13 +153,9 @@ export function ExpeditionsScreen({ game }: { game: Game }) {
                         disabled={!!onExpedition}
                         onClick={() => setPrep({ kind: 'battle', zone })}
                         title={onExpedition ? 'Haita e în expediție' : ''}
-                      >
-                        ⚔️ Luptă acum
-                      </button>
+                      ><ThemeText>{"\r\n                        ⚔️ Luptă acum\r\n                      "}</ThemeText></button>
                       {!here && (
-                        <button className="btn" onClick={() => setPrep({ kind: 'idle', zone })} title={`O luptă la ${formatSeconds(zone.seconds)}, și offline`}>
-                          🕒 Expediție idle
-                        </button>
+                        <button className="btn" onClick={() => setPrep({ kind: 'idle', zone })} title={`O luptă la ${formatSeconds(zone.seconds)}, și offline`}><ThemeText>{"\r\n                          🕒 Expediție idle\r\n                        "}</ThemeText></button>
                       )}
                       {game.state!.activity && game.state!.activity.kind !== 'expedition' && game.state!.queue.length < QUEUE_MAX && (
                         <button
@@ -166,9 +163,7 @@ export function ExpeditionsScreen({ game }: { game: Game }) {
                           disabled={party.length === 0}
                           onClick={() => game.dispatch({ type: 'enqueue', item: { kind: 'expedition', zoneId: zone.id } })}
                           title="Pleacă în expediție după ce se termină activitatea curentă"
-                        >
-                          ＋ Coadă
-                        </button>
+                        ><ThemeText>{"\r\n                          ＋ Coadă\r\n                        "}</ThemeText></button>
                       )}
                     </div>
                     <button
@@ -176,9 +171,9 @@ export function ExpeditionsScreen({ game }: { game: Game }) {
                       disabled={!!onExpedition || (!!a.key && keys < 1)}
                       onClick={() => setPrep({ kind: 'battle', zone, alpha: true })}
                     >
-                      {a.key ? <ItemArt item={a.key} /> : '💀 '}
-                      {beaten ? 'Luptă din nou cu Alfa' : 'Provoacă Alfa'}
-                      {a.key ? ` (${keys})` : ''}
+                      <ThemeText>{a.key ? <ItemArt item={a.key} /> : '💀 '}</ThemeText>
+                      <ThemeText>{beaten ? 'Luptă din nou cu Alfa' : 'Provoacă Alfa'}</ThemeText>
+                      <ThemeText>{a.key ? ` (${keys})` : ''}</ThemeText>
                     </button>
                   </footer>
                 </div>

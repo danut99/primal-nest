@@ -1,3 +1,4 @@
+import { ThemeText } from '../components/ThemeText';
 import { ItemArt, RelicIcon } from '../components/AssetIcon';
 // Redarea animată a unei lupte. Rezultatul e deja calculat de reguli; aici doar îl punem în scenă.
 // Implicit: arena cu dragonii animați (Spine: mers, zbor, atac, ultimată, sărbătoare), al cărei ritm îl dă
@@ -166,14 +167,14 @@ export function BattleView({ game, zone, alpha, result, haul, onClose, onAgain }
       <div key={c.key} className={`fighter-card ${c.side}${fainted.has(c.key) ? ' out' : ''}${c.boss ? ' is-alpha' : ''}`}>
         <div className="row between">
           <b>
-            {c.side === 'player' && <span title={c.back ? 'Rândul din spate' : 'Rândul din față'}>{c.back ? '🏹 ' : '🛡️ '}</span>}
-            {c.name}
+            {c.side === 'player' && <span title={c.back ? 'Rândul din spate' : 'Rândul din față'}><ThemeText>{c.back ? '🏹 ' : '🛡️ '}</ThemeText></span>}
+            <ThemeText>{c.name}</ThemeText>
           </b>
-          <small>Nv. {c.level}</small>
+          <small>Nv. <ThemeText>{c.level}</ThemeText></small>
         </div>
         <Bar value={hp[c.key]} max={c.hpMax} thin color={ratio > 0.5 ? '#5cd65a' : ratio > 0.2 ? '#f2c84b' : '#ef4b3f'} />
         <small className="muted">
-          {hp[c.key]}/{c.hpMax}
+          <ThemeText>{hp[c.key]}</ThemeText>/<ThemeText>{c.hpMax}</ThemeText>
         </small>
       </div>
     );
@@ -186,7 +187,7 @@ export function BattleView({ game, zone, alpha, result, haul, onClose, onAgain }
     const dino = c.dinoId ? game.state!.dinos.find((d) => d.id === c.dinoId) : undefined;
     return (
       <div key={c.key} className={`fighter ${c.side}${c.back ? ' back-row' : ''}${fainted.has(c.key) ? ' fainted' : ''}${c.boss ? ' is-alpha' : ''}`}>
-        {card(c)}
+        <ThemeText>{card(c)}</ThemeText>
         <div className={`fighter-sprite${acting ? (c.side === 'player' ? ' lunge-right' : ' lunge-left') : ''}${hit ? ' hit' : ''}`} key={hit || acting ? step : 'idle'}>
           <DinoSprite
             speciesId={c.speciesId}
@@ -203,7 +204,7 @@ export function BattleView({ game, zone, alpha, result, haul, onClose, onAgain }
                 className={`slash${lastAttack.special ? ' special' : ''}`}
                 style={{ ['--slash' as string]: lastAttack.moveType ? TYPES[lastAttack.moveType].color : '#ffffff' }}
               />
-              <span className={`dmg${lastAttack.crit ? ' crit' : ''}${lastAttack.eff > 1 ? ' super' : ''}`}>−{lastAttack.damage}</span>
+              <span className={`dmg${lastAttack.crit ? ' crit' : ''}${lastAttack.eff > 1 ? ' super' : ''}`}>−<ThemeText>{lastAttack.damage}</ThemeText></span>
             </>
           )}
           {fainted.has(c.key) && c.side === 'enemy' && <span className="umbra-dissolve" />}
@@ -223,11 +224,11 @@ export function BattleView({ game, zone, alpha, result, haul, onClose, onAgain }
         {use3d ? (
           <>
             <div className="arena3d-stage" ref={stage} />
-            <div className="arena-cards player">{side('player').map(card)}</div>
-            <div className="arena-cards enemy">{side('enemy').map(card)}</div>
+            <div className="arena-cards player"><ThemeText>{side('player').map(card)}</ThemeText></div>
+            <div className="arena-cards enemy"><ThemeText>{side('enemy').map(card)}</ThemeText></div>
             {pops.map((p) => (
               <span key={p.id} className={`dmg3d${p.cls}`} style={{ left: p.x, top: p.y }} onAnimationEnd={() => setPops((all) => all.filter((x) => x.id !== p.id))}>
-                {p.text}
+                <ThemeText>{p.text}</ThemeText>
               </span>
             ))}
             {!ready && <div className="arena-loading">Se pregătește arena…</div>}
@@ -235,29 +236,29 @@ export function BattleView({ game, zone, alpha, result, haul, onClose, onAgain }
         ) : (
           <>
             <div className="embers" />
-            <div className="arena-side player">{side('player').map(renderFighter2d)}</div>
+            <div className="arena-side player"><ThemeText>{side('player').map(renderFighter2d)}</ThemeText></div>
             <div className="vs">VS</div>
-            <div className="arena-side enemy">{side('enemy').map(renderFighter2d)}</div>
+            <div className="arena-side enemy"><ThemeText>{side('enemy').map(renderFighter2d)}</ThemeText></div>
           </>
         )}
         {intro && enemyAlpha && ready && (
           <div className="alpha-intro">
             <span className="intro-slash" />
-            <small>{zone.name}</small>
-            <h2>{zone.alpha.title}</h2>
+            <small><ThemeText>{zone.name}</ThemeText></small>
+            <h2><ThemeText>{zone.alpha.title}</ThemeText></h2>
             <p>Învinge-l, sau vei fi devorat.</p>
           </div>
         )}
-        {finished && <div className={`result-banner ${result.win ? 'win' : 'lose'}`}>{result.win ? 'VICTORIE' : 'ÎNFRÂNGERE'}</div>}
+        {finished && <div className={`result-banner ${result.win ? 'win' : 'lose'}`}><ThemeText>{result.win ? 'VICTORIE' : 'ÎNFRÂNGERE'}</ThemeText></div>}
       </div>
       <div className="battle-log" aria-live="polite">
-        {intro && ready ? '…' : message}
+        <ThemeText>{intro && ready ? '…' : message}</ThemeText>
       </div>
       {!finished ? (
         <div className="row center gap-s">
           {[1, 2, 4].map((s) => (
             <button key={s} className={`btn small${speed === s ? ' primary' : ''}`} onClick={() => setSpeed(s)}>
-              {s === 1 ? '▶' : s === 2 ? '⏩' : '⏭'} ×{s}
+              <ThemeText>{s === 1 ? '▶' : s === 2 ? '⏩' : '⏭'}</ThemeText> ×<ThemeText>{s}</ThemeText>
             </button>
           ))}
           <button
@@ -283,9 +284,7 @@ export function BattleView({ game, zone, alpha, result, haul, onClose, onAgain }
                 className="btn primary"
                 onClick={onAgain}
                 disabled={!!alpha && !!zone.alpha.key && (game.state!.inventory[zone.alpha.key] ?? 0) < 1}
-              >
-                ⚔️ Încă o luptă
-              </button>
+              ><ThemeText>{"\r\n                ⚔️ Încă o luptă\r\n              "}</ThemeText></button>
             )}
             <button className="btn" onClick={onClose}>
               Gata
@@ -305,14 +304,14 @@ export function HaulList({ haul, game }: { haul: Haul; game: Game }) {
     <div className="haul">
       {haul.relic && (
         <span className="haul-item relic-haul" style={{ ['--relic' as string]: RELICS[haul.relic].color }}>
-          <RelicIcon relic={haul.relic} /> {RELICS[haul.relic].name}!
+          <RelicIcon relic={haul.relic} /> <ThemeText>{RELICS[haul.relic].name}</ThemeText>!
         </span>
       )}
-      {haul.sparks > 0 && <span className="haul-item">✨ +{haul.sparks}</span>}
-      {haul.diamonds > 0 && <span className="haul-item">💎 +{haul.diamonds}</span>}
+      {haul.sparks > 0 && <span className="haul-item"><ThemeText>{"✨ +"}</ThemeText><ThemeText>{haul.sparks}</ThemeText></span>}
+      {haul.diamonds > 0 && <span className="haul-item"><ThemeText>{"💎 +"}</ThemeText><ThemeText>{haul.diamonds}</ThemeText></span>}
       {items.map(([id, n]) => (
         <span key={id} className="haul-item" title={ITEMS[id].name}>
-          <ItemArt item={id} /> +{n}
+          <ItemArt item={id} /> +<ThemeText>{n}</ThemeText>
         </span>
       ))}
       {eggs.map((egg) => (

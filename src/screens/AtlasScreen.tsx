@@ -1,3 +1,4 @@
+import { ThemeText } from '../components/ThemeText';
 // Atlasul Speciilor (Pokédex-ul): fiecare linie e un drum de evoluție (pui → juvenil → două ramuri de adult),
 // cu dragonul ei. Speciile nedescoperite apar ca siluete; fișa unei specii se deschide cu un clic.
 
@@ -32,18 +33,16 @@ export function AtlasScreen({ game }: { game: Game }) {
         disabled={!known}
         title={known ? `Deschide fișa: ${s.name}` : 'Încă nedescoperit'}
       >
-        <span className="atlas-n">#{String(n).padStart(3, '0')}</span>
+        <span className="atlas-n">#<ThemeText>{String(n).padStart(3, '0')}</ThemeText></span>
         {entry?.albino && (
-          <span className="atlas-albino" title="Ai avut și varianta albino">
-            🤍
-          </span>
+          <span className="atlas-albino" title="Ai avut și varianta albino"><ThemeText>{"\r\n            🤍\r\n          "}</ThemeText></span>
         )}
         <span className="atlas-art">
           <img src={speciesStill(s.id)} alt="" loading="lazy" className={known ? '' : 'silhouette'} />
         </span>
-        <b>{known ? s.name : '???'}</b>
-        <small className="atlas-stage">{STAGE_LABEL(s)}</small>
-        <span className={`atlas-status${entry?.owned ? ' ok' : ''}`}>{entry?.owned ? '✓ crescut' : known ? '👁 văzut' : '🔒 nedescoperit'}</span>
+        <b><ThemeText>{known ? s.name : '???'}</ThemeText></b>
+        <small className="atlas-stage"><ThemeText>{STAGE_LABEL(s)}</ThemeText></small>
+        <span className={`atlas-status${entry?.owned ? ' ok' : ''}`}><ThemeText>{entry?.owned ? '✓ crescut' : known ? '👁 văzut' : '🔒 nedescoperit'}</ThemeText></span>
       </button>
     );
   };
@@ -70,23 +69,23 @@ export function AtlasScreen({ game }: { game: Game }) {
           return (
             <section key={line} className="atlas-line-card" style={{ ['--type' as string]: type.color }}>
               <header className="atlas-line-head">
-                <span className="atlas-line-icon">{type.icon}</span>
+                <span className="atlas-line-icon"><ThemeText>{type.icon}</ThemeText></span>
                 <div>
-                  <h3>Linia {capital(LINE_DRAGON[line])}</h3>
+                  <h3>Linia <ThemeText>{capital(LINE_DRAGON[line])}</ThemeText></h3>
                   <small className="muted">
-                    {type.name} · îi place <DietArt diet={pui.diet} /> {DIET_INFO[pui.diet].name.toLowerCase()}
+                    <ThemeText>{type.name}</ThemeText> · îi place <DietArt diet={pui.diet} /> <ThemeText>{DIET_INFO[pui.diet].name.toLowerCase()}</ThemeText>
                   </small>
                 </div>
                 <span className="atlas-line-count">
-                  {done}/{list.length}
+                  <ThemeText>{done}</ThemeText>/<ThemeText>{list.length}</ThemeText>
                 </span>
               </header>
               <div className="atlas-path">
-                {card(pui)}
+                <ThemeText>{card(pui)}</ThemeText>
                 <span className="atlas-arrow">➜</span>
-                {card(juvenil)}
+                <ThemeText>{card(juvenil)}</ThemeText>
                 <span className="atlas-arrow">➜</span>
-                <div className="atlas-branches">{adults.map(card)}</div>
+                <div className="atlas-branches"><ThemeText>{adults.map(card)}</ThemeText></div>
               </div>
             </section>
           );
@@ -112,44 +111,44 @@ function SpeciesCard({ id, game, onOpen, onClose }: { id: string; game: Game; on
           <DinoLive key={id} speciesId={id} size={360} />
         </div>
         <div className="species-info">
-          <small className="atlas-n">#{String(SPECIES_LIST.indexOf(s) + 1).padStart(3, '0')}</small>
-          <h2>{s.name}</h2>
+          <small className="atlas-n">#<ThemeText>{String(SPECIES_LIST.indexOf(s) + 1).padStart(3, '0')}</ThemeText></small>
+          <h2><ThemeText>{s.name}</ThemeText></h2>
           <div className="dd-chips">
             {s.types.map((t) => (
               <TypeBadge key={t} type={t} />
             ))}
-            <span className="chip">{STAGE_LABEL(s)}</span>
+            <span className="chip"><ThemeText>{STAGE_LABEL(s)}</ThemeText></span>
             <span className="chip">
-              Îi place: <DietArt diet={s.diet} /> {DIET_INFO[s.diet].name}
+              Îi place: <DietArt diet={s.diet} /> <ThemeText>{DIET_INFO[s.diet].name}</ThemeText>
             </span>
           </div>
-          <p className="species-blurb">{s.blurb}</p>
+          <p className="species-blurb"><ThemeText>{s.blurb}</ThemeText></p>
 
           <h4>Statistici de bază</h4>
           {owned ? (
             <div className="stats-table">
               {(Object.keys(s.base) as (keyof Stats)[]).map((k) => (
                 <div key={k} className="stat-row">
-                  <span>{STAT_NAMES[k]}</span>
+                  <span><ThemeText>{STAT_NAMES[k]}</ThemeText></span>
                   <Bar value={s.base[k]} max={max} thin color="#7bc66b" />
-                  <b>{s.base[k]}</b>
+                  <b><ThemeText>{s.base[k]}</ThemeText></b>
                 </div>
               ))}
             </div>
           ) : (
-            <p className="muted">🔒 Crește unul ca să-i afli statisticile.</p>
+            <p className="muted"><ThemeText>{"🔒 Crește unul ca să-i afli statisticile."}</ThemeText></p>
           )}
 
           <h4>În luptă</h4>
           <ul className="dd-facts">
             <li>
-              <span>⚔️ Atac de bază</span>
-              <b>{s.basic.name}</b>
+              <span><ThemeText>{"⚔️ Atac de bază"}</ThemeText></span>
+              <b><ThemeText>{s.basic.name}</ThemeText></b>
             </li>
             <li>
-              <span>✨ Ultimată</span>
+              <span><ThemeText>{"✨ Ultimată"}</ThemeText></span>
               <b>
-                {s.special.name} {s.special.type && <TypeBadge type={s.special.type} small />}
+                <ThemeText>{s.special.name}</ThemeText> {s.special.type && <TypeBadge type={s.special.type} small />}
               </b>
             </li>
           </ul>
@@ -167,7 +166,7 @@ function SpeciesCard({ id, game, onOpen, onClose }: { id: string; game: Game; on
                   title={known ? f.name : '???'}
                 >
                   <img src={speciesStill(f.id)} alt="" className={known ? '' : 'silhouette'} />
-                  <small>{known ? f.name : '???'}</small>
+                  <small><ThemeText>{known ? f.name : '???'}</ThemeText></small>
                 </button>
               );
             })}

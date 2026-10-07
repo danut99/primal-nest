@@ -1,3 +1,4 @@
+import { ControlIcon, ThemeText } from '../components/ThemeText';
 // Tabăra ca bază de joc: o hartă cu clădirile tale (Tabăra, Forja lui Saurok, Cuibul, Posturile de muncă,
 // Bucătăria). Fiecare are platformă, plăcuță și insigne (⬆ upgrade posibil, surplus de vândut, ouă gata…).
 // Apeși pe o clădire și sub hartă se deschide panoul ei: upgrade-ul, rucsacul forjei sau o scurtătură.
@@ -92,11 +93,11 @@ export function CampScreen({ game, onGo }: { game: Game; onGo?: (screen: Screen)
   /** O clădire pe hartă. */
   const building = (id: Spot, icon: ReactNode, name: string, sub: string, badge?: ReactNode, extra = '') => (
     <button key={id} className={`camp-spot spot-${id}${spot === id ? ' selected' : ''}${extra}`} onClick={() => setSpot(id)}>
-      {badge && <span className="spot-badge">{badge}</span>}
-      <span className="spot-art">{icon}</span>
+      {badge && <span className="spot-badge"><ThemeText>{badge}</ThemeText></span>}
+      <span className="spot-art"><ThemeText>{icon}</ThemeText></span>
       <span className="spot-plate">
-        <b>{name}</b>
-        <small>{sub}</small>
+        <b><ThemeText>{name}</ThemeText></b>
+        <small><ThemeText>{sub}</ThemeText></small>
       </span>
     </button>
   );
@@ -107,25 +108,25 @@ export function CampScreen({ game, onGo }: { game: Game; onGo?: (screen: Screen)
       <section className="camp-map" style={sceneBackground('jungla', 0.2)}>
         <div className="camp-map-title">
           <small>Baza ta</small>
-          <h2>{current.name}</h2>
+          <h2><ThemeText>{current.name}</ThemeText></h2>
           <span>
-            Nivel {state.property + 1}/{PROPERTY_LEVELS.length}
+            Nivel <ThemeText>{state.property + 1}</ThemeText>/<ThemeText>{PROPERTY_LEVELS.length}</ThemeText>
           </span>
         </div>
         <div className="camp-fire" aria-hidden="true" />
 
-        {building(
+        <ThemeText>{building(
           'tabara',
           BUILDING_ICONS[state.property],
           current.name,
           next ? `upgrade ${progress}%` : 'nivel maxim',
           ready ? '⬆' : undefined,
           ` main${ready ? ' can-upgrade' : ''}`,
-        )}
+        )}</ThemeText>
         {building('forja', <Saurok size={64} />, 'Forja lui Saurok', 'vinde pe scântei', spare.length ? `+${spareValue}✨` : undefined)}
-        {building('cuib', '🥚', 'Cuibul', `${nest.length}/${nestSlots(state)} ouă`, hatchReady ? `${hatchReady} gata!` : undefined)}
-        {building('munca', '⛏️', 'Posturi de muncă', `${state.workers.length}/${workSlots(state)} la muncă`, state.workers.length < workSlots(state) ? 'loc liber' : undefined)}
-        {building('bucatarie', kitchen ? '🍳' : '🔒', 'Bucătăria', kitchen ? 'gătește hrană' : `la ${PROPERTY_LEVELS[1].name}`, undefined, kitchen ? '' : ' locked')}
+        <ThemeText>{building('cuib', '🥚', 'Cuibul', `${nest.length}/${nestSlots(state)} ouă`, hatchReady ? `${hatchReady} gata!` : undefined)}</ThemeText>
+        <ThemeText>{building('munca', '⛏️', 'Posturi de muncă', `${state.workers.length}/${workSlots(state)} la muncă`, state.workers.length < workSlots(state) ? 'loc liber' : undefined)}</ThemeText>
+        <ThemeText>{building('bucatarie', kitchen ? '🍳' : '🔒', 'Bucătăria', kitchen ? 'gătește hrană' : `la ${PROPERTY_LEVELS[1].name}`, undefined, kitchen ? '' : ' locked')}</ThemeText>
       </section>
 
       {/* Panoul clădirii alese */}
@@ -134,16 +135,16 @@ export function CampScreen({ game, onGo }: { game: Game; onGo?: (screen: Screen)
           (next ? (
             <div className="drawer-build">
               <div className="drawer-build-head">
-                <span className="drawer-from">{BUILDING_ICONS[state.property]}</span>
-                <span className="drawer-arrow">➜</span>
-                <span className={`drawer-to${ready ? ' ready' : ''}`}>{BUILDING_ICONS[state.property + 1]}</span>
+                <span className="drawer-from"><ThemeText>{BUILDING_ICONS[state.property]}</ThemeText></span>
+                <span className="drawer-arrow"><ControlIcon glyph="→" /></span>
+                <span className={`drawer-to${ready ? ' ready' : ''}`}><ThemeText>{BUILDING_ICONS[state.property + 1]}</ThemeText></span>
                 <div>
                   <small className="camp-kicker">Upgrade</small>
-                  <h3>{next.name}</h3>
+                  <h3><ThemeText>{next.name}</ThemeText></h3>
                   <div className="build-gain">
-                    {next.nestSlots > current.nestSlots && <span>+{next.nestSlots - current.nestSlots} loc în cuib</span>}
-                    {next.workSlots > current.workSlots && <span>+{next.workSlots - current.workSlots} post de muncă</span>}
-                    {next.unlocks.includes('Bucătăria') && <span>🍳 Bucătăria</span>}
+                    {next.nestSlots > current.nestSlots && <span>+<ThemeText>{next.nestSlots - current.nestSlots}</ThemeText> loc în cuib</span>}
+                    {next.workSlots > current.workSlots && <span>+<ThemeText>{next.workSlots - current.workSlots}</ThemeText> post de muncă</span>}
+                    {next.unlocks.includes('Bucătăria') && <span><ThemeText>{"🍳 Bucătăria"}</ThemeText></span>}
                   </div>
                 </div>
               </div>
@@ -154,23 +155,23 @@ export function CampScreen({ game, onGo }: { game: Game; onGo?: (screen: Screen)
                   return (
                     <button key={n.key} className={`ring${done ? ' done' : ''}`} onClick={n.go} disabled={done || !n.go} title={done ? 'Gata!' : n.hint ? `De unde: ${n.hint}` : ''}>
                       <span className="ring-circle" style={{ ['--p' as string]: `${pct}%` }}>
-                        <span className="ring-icon">{done ? '✓' : n.icon}</span>
+                        <span className="ring-icon"><ThemeText>{done ? '✓' : n.icon}</ThemeText></span>
                       </span>
                       <b>
-                        {Math.min(n.have, n.need)}/{n.need}
+                        <ThemeText>{Math.min(n.have, n.need)}</ThemeText>/<ThemeText>{n.need}</ThemeText>
                       </b>
-                      <small>{n.name}</small>
-                      {!done && n.hint && <em>{n.hint}</em>}
+                      <small><ThemeText>{n.name}</ThemeText></small>
+                      {!done && n.hint && <em><ThemeText>{n.hint}</ThemeText></em>}
                     </button>
                   );
                 })}
               </div>
               <button className="btn primary big build-btn" disabled={!ready} onClick={() => game.dispatch({ type: 'upgrade' })}>
-                {ready ? `🔨 Construiește ${next.name}` : '🔒 Strânge resursele'}
+                <ThemeText>{ready ? `🔨 Construiește ${next.name}` : '🔒 Strânge resursele'}</ThemeText>
               </button>
             </div>
           ) : (
-            <p className="drawer-note">🏆 Baza e complet construită. Incubatorul termal vine curând!</p>
+            <p className="drawer-note"><ThemeText>{"🏆 Baza e complet construită. Incubatorul termal vine curând!"}</ThemeText></p>
           ))}
 
         {spot === 'forja' && (
@@ -181,9 +182,7 @@ export function CampScreen({ game, onGo }: { game: Game; onGo?: (screen: Screen)
                 <small className="muted">Alege o resursă și câte bucăți vrei să vinzi.</small>
               </div>
               {spare.length > 0 && (
-                <button className="btn primary" onClick={() => spare.forEach((id) => sell(id, sellable(id)))}>
-                  🔥 Vinde surplusul · +{spareValue} ✨
-                </button>
+                <button className="btn primary" onClick={() => spare.forEach((id) => sell(id, sellable(id)))}><ThemeText>{"\r\n                  🔥 Vinde surplusul · +"}</ThemeText><ThemeText>{spareValue}</ThemeText><ThemeText>{" ✨\r\n                "}</ThemeText></button>
               )}
             </div>
             {items.length === 0 ? (
@@ -202,10 +201,10 @@ export function CampScreen({ game, onGo }: { game: Game; onGo?: (screen: Screen)
                       }}
                       title={`${def.name}: ${def.blurb}`}
                     >
-                      <span className="bag-count">×{state.inventory[id]}</span>
+                      <span className="bag-count">×<ThemeText>{state.inventory[id]}</ThemeText></span>
                       <ItemArt item={id} size={44} />
-                      <small>{def.name}</small>
-                      <span className="bag-price">+{def.sell} ✨</span>
+                      <small><ThemeText>{def.name}</ThemeText></small>
+                      <span className="bag-price">+<ThemeText>{def.sell}</ThemeText><ThemeText>{" ✨"}</ThemeText></span>
                     </button>
                   );
                 })}
@@ -220,21 +219,20 @@ export function CampScreen({ game, onGo }: { game: Game; onGo?: (screen: Screen)
                 <div className="sell-panel">
                   <ItemArt item={picked} size={52} />
                   <div className="sell-info">
-                    <b>{def.name}</b>
+                    <b><ThemeText>{def.name}</ThemeText></b>
                     <small className="muted">
-                      ai ×{have} · {def.sell} ✨/buc
-                    </small>
+                      ai ×<ThemeText>{have}</ThemeText> · <ThemeText>{def.sell}</ThemeText><ThemeText>{" ✨/buc\r\n                    "}</ThemeText></small>
                   </div>
                   <div className="qty-stepper">
                     <button onClick={() => set(n - 1)} disabled={n <= 1} aria-label="Mai puțin">
-                      −
+                      <ControlIcon glyph="−" />
                     </button>
                     <input type="number" min={1} max={have} value={n} onChange={(e) => set(+e.target.value)} aria-label="Câte bucăți" />
                     <button onClick={() => set(n + 1)} disabled={n >= have} aria-label="Mai mult">
-                      +
+                      <ControlIcon glyph="+" />
                     </button>
                     <button className="qty-chip" onClick={() => set(have)}>
-                      Max ({have})
+                      Max (<ThemeText>{have}</ThemeText>)
                     </button>
                   </div>
                   <button
@@ -245,9 +243,7 @@ export function CampScreen({ game, onGo }: { game: Game; onGo?: (screen: Screen)
                         else setQty(1);
                       }
                     }}
-                  >
-                    🔥 Vinde {n} · +{n * def.sell} ✨
-                  </button>
+                  ><ThemeText>{"\r\n                    🔥 Vinde "}</ThemeText><ThemeText>{n}</ThemeText> · +<ThemeText>{n * def.sell}</ThemeText><ThemeText>{" ✨\r\n                  "}</ThemeText></button>
                 </div>
               );
             })()}
@@ -256,45 +252,39 @@ export function CampScreen({ game, onGo }: { game: Game; onGo?: (screen: Screen)
 
         {spot === 'cuib' && (
           <div className="drawer-go">
-            <span className="drawer-go-icon">🥚</span>
+            <span className="drawer-go-icon"><ThemeText>{"🥚"}</ThemeText></span>
             <div>
               <h3>Cuibul</h3>
               <p className="muted">
-                {nest.length}/{nestSlots(state)} locuri ocupate{hatchReady ? ` · ${hatchReady} ou(ă) gata de eclozare!` : ''}. Mai multe locuri vin cu upgrade-ul bazei.
+                <ThemeText>{nest.length}</ThemeText>/<ThemeText>{nestSlots(state)}</ThemeText> locuri ocupate<ThemeText>{hatchReady ? ` · ${hatchReady} ou(ă) gata de eclozare!` : ''}</ThemeText>. Mai multe locuri vin cu upgrade-ul bazei.
               </p>
             </div>
-            <button className="btn primary" onClick={() => onGo?.('cuib')}>
-              Mergi la Cuib →
-            </button>
+            <button className="btn primary" onClick={() => onGo?.('cuib')}><ThemeText>{"\r\n              Mergi la Cuib →\r\n            "}</ThemeText></button>
           </div>
         )}
 
         {spot === 'munca' && (
           <div className="drawer-go">
-            <span className="drawer-go-icon">⛏️</span>
+            <span className="drawer-go-icon"><ThemeText>{"⛏️"}</ThemeText></span>
             <div>
               <h3>Posturi de muncă</h3>
               <p className="muted">
-                {state.workers.length}/{workSlots(state)} dragoni lucrează și aduc resurse, chiar și când ești plecat.
+                <ThemeText>{state.workers.length}</ThemeText>/<ThemeText>{workSlots(state)}</ThemeText> dragoni lucrează și aduc resurse, chiar și când ești plecat.
               </p>
             </div>
-            <button className="btn primary" onClick={() => onGo?.('activitati')}>
-              Trimite la muncă →
-            </button>
+            <button className="btn primary" onClick={() => onGo?.('activitati')}><ThemeText>{"\r\n              Trimite la muncă →\r\n            "}</ThemeText></button>
           </div>
         )}
 
         {spot === 'bucatarie' && (
           <div className="drawer-go">
-            <span className="drawer-go-icon">{kitchen ? '🍳' : '🔒'}</span>
+            <span className="drawer-go-icon"><ThemeText>{kitchen ? '🍳' : '🔒'}</ThemeText></span>
             <div>
               <h3>Bucătăria</h3>
-              <p className="muted">{kitchen ? 'Hrana gătită dă mult mai mult XP și atașament.' : `Se deschide când construiești ${PROPERTY_LEVELS[1].name}.`}</p>
+              <p className="muted"><ThemeText>{kitchen ? 'Hrana gătită dă mult mai mult XP și atașament.' : `Se deschide când construiești ${PROPERTY_LEVELS[1].name}.`}</ThemeText></p>
             </div>
             {kitchen ? (
-              <button className="btn primary" onClick={() => onGo?.('activitati')}>
-                Gătește →
-              </button>
+              <button className="btn primary" onClick={() => onGo?.('activitati')}><ThemeText>{"\r\n                Gătește →\r\n              "}</ThemeText></button>
             ) : (
               <button className="btn" onClick={() => setSpot('tabara')}>
                 Vezi upgrade-ul
@@ -313,10 +303,10 @@ export function CampScreen({ game, onGo }: { game: Game; onGo?: (screen: Screen)
           const pct = level >= MAX_SKILL_LEVEL ? 100 : Math.round(((state.skills[sk] - from) / (to - from)) * 100);
           return (
             <div key={sk} className="skill-pill" title={SKILLS[sk].blurb}>
-              <span className="skill-pill-icon">{sk === 'incubatie' ? <EggIcon size={22} /> : SKILLS[sk].icon}</span>
+              <span className="skill-pill-icon"><ThemeText>{sk === 'incubatie' ? <EggIcon size={22} /> : SKILLS[sk].icon}</ThemeText></span>
               <span className="skill-pill-text">
-                <b>{SKILLS[sk].name}</b>
-                <small>Nv. {level}</small>
+                <b><ThemeText>{SKILLS[sk].name}</ThemeText></b>
+                <small>Nv. <ThemeText>{level}</ThemeText></small>
               </span>
               <span className="skill-pill-bar">
                 <i style={{ width: `${pct}%` }} />

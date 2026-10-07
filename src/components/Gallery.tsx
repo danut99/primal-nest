@@ -1,3 +1,4 @@
+import { ThemeText } from './ThemeText';
 // Galerie de dezvoltare: toate speciile și ouăle (deschide /#galerie).
 
 import { RARITIES, SPECIES_LIST, type Rarity } from '@shared/game';
@@ -10,13 +11,13 @@ export function Gallery() {
       {SPECIES_LIST.map((s) => (
         <figure key={s.id}>
           <DinoSprite speciesId={s.id} size={120} />
-          <figcaption>{s.name}</figcaption>
+          <figcaption><ThemeText>{s.name}</ThemeText></figcaption>
         </figure>
       ))}
       {['mugurel', 'jarraptor', 'cetatodon'].map((id) => (
         <figure key={id + 'a'}>
           <DinoSprite speciesId={id} size={120} albino />
-          <figcaption>{id} albino</figcaption>
+          <figcaption><ThemeText>{id}</ThemeText> albino</figcaption>
         </figure>
       ))}
       <figure>
@@ -26,7 +27,7 @@ export function Gallery() {
       {(Object.keys(RARITIES) as Rarity[]).map((r, i) => (
         <figure key={r}>
           <EggSprite egg={{ rarity: r, speciesId: SPECIES_LIST[(i * 4) % SPECIES_LIST.length].id }} size={100} cracks={i === 4 ? 2 : 0} />
-          <figcaption>{r}</figcaption>
+          <figcaption><ThemeText>{r}</ThemeText></figcaption>
         </figure>
       ))}
     </div>

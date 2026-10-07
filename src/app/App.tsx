@@ -1,3 +1,4 @@
+import { ControlIcon, ThemeText } from '../components/ThemeText';
 // Cadrul aplicației: început → joc. Bara de sus, navigarea, activitatea curentă, notificările.
 
 import { Suspense, lazy, useState } from 'react';
@@ -90,19 +91,19 @@ function GameShell({ game }: { game: Game }) {
         <div className="topbar-right">
           <span className="res-pill sparks" title="Scântei stelare: din forjă, lupte, Alfa și misiuni">
             <GameIcon name="scanteie" className="res-icon" />
-            <b>{state.sparks}</b>
+            <b><ThemeText>{state.sparks}</ThemeText></b>
             <small>scântei</small>
           </span>
           <span className="res-pill diamonds" title="Diamante: le câștigi din Alfa, misiuni, realizări și, rar, din lupte">
             <GameIcon name="diamant" className="res-icon" />
-            <b>{state.diamonds}</b>
+            <b><ThemeText>{state.diamonds}</ThemeText></b>
             <small>diamante</small>
           </span>
           <button className="round-btn missions-btn" onClick={() => setMissions(true)} aria-label="Misiuni și realizări" title="Misiuni și realizări">
-            <GameIcon name="misiune" size={28} />{rewards > 0 && <span className="badge">{rewards}</span>}
+            <GameIcon name="misiune" size={28} />{rewards > 0 && <span className="badge"><ThemeText>{rewards}</ThemeText></span>}
           </button>
           <button className="round-btn" onClick={() => setMuted(sound.toggle())} aria-label={muted ? 'Pornește sunetul' : 'Oprește sunetul'} title={muted ? 'Sunet oprit' : 'Sunet pornit'}>
-            {muted ? '🔇' : '🔊'}
+            <ThemeText>{muted ? '🔇' : '🔊'}</ThemeText>
           </button>
         </div>
       </header>
@@ -112,10 +113,10 @@ function GameShell({ game }: { game: Game }) {
           <Saurok size={38} />
           <div>
             <small className="objective-kicker">Pasul următor</small>
-            <b>{objective.title}</b>
-            <small>{objective.hint}</small>
+            <b><ThemeText>{objective.title}</ThemeText></b>
+            <small><ThemeText>{objective.hint}</ThemeText></small>
           </div>
-          <span className="objective-go">→</span>
+          <span className="objective-go"><ControlIcon glyph="→" /></span>
         </button>
       )}
 
@@ -126,8 +127,8 @@ function GameShell({ game }: { game: Game }) {
             return (
               <button key={n.id} className={`nav-btn${screen === n.id ? ' active' : ''}`} onClick={() => go(n.id)} aria-current={screen === n.id ? 'page' : undefined}>
                 <img className="nav-icon" src={`/icons/tabs/${n.id}.png`} alt="" aria-hidden="true" width={40} height={40} />
-                <span className="nav-label">{n.label}</span>
-                {badge > 0 && <span className="badge">{badge}</span>}
+                <span className="nav-label"><ThemeText>{n.label}</ThemeText></span>
+                {badge > 0 && <span className="badge"><ThemeText>{badge}</ThemeText></span>}
               </button>
             );
           })}
@@ -183,8 +184,7 @@ function GameShell({ game }: { game: Game }) {
         <Modal onClose={() => setHaul(null)}>
           <h2>Ai strâns:</h2>
           {(haul.wins > 0 || haul.losses > 0) && (
-            <p className="muted">
-              ⚔️ {haul.wins} victorii{haul.losses ? ` · ${haul.losses} înfrângeri` : ''}
+            <p className="muted"><ThemeText>{"\r\n              ⚔️ "}</ThemeText><ThemeText>{haul.wins}</ThemeText> victorii<ThemeText>{haul.losses ? ` · ${haul.losses} înfrângeri` : ''}</ThemeText>
             </p>
           )}
           <HaulList haul={haul} game={game} />
@@ -203,10 +203,10 @@ function ActivityBar({ game, onHaul, onGo }: { game: Game; onHaul: (h: Haul) => 
   if (!a) {
     return (
       <button className="activity-bar idle" onClick={() => onGo('activitati')} title="Alege o activitate">
-        <span className="act-icon">💤</span>
+        <span className="act-icon"><ThemeText>{"💤"}</ThemeText></span>
         <span className="act-main">
           <b>Nicio activitate</b>
-          <small>Pornește una: cules, săpături, gătit sau o expediție →</small>
+          <small><ThemeText>{"Pornește una: cules, săpături, gătit sau o expediție →"}</ThemeText></small>
         </span>
       </button>
     );
@@ -234,13 +234,13 @@ function ActivityBar({ game, onHaul, onGo }: { game: Game; onHaul: (h: Haul) => 
 
   return (
     <div className="activity-bar">
-      <span className="act-icon">{activityItem ? <ItemArt item={activityItem} size={28} /> : label.icon}</span>
+      <span className="act-icon"><ThemeText>{activityItem ? <ItemArt item={activityItem} size={28} /> : label.icon}</ThemeText></span>
       <div className="act-main">
         <div className="row between">
-          <b>{label.name}</b>
+          <b><ThemeText>{label.name}</ThemeText></b>
           <small>
-            {a.kind === 'cook' ? `${a.done + ready}/${a.count} porții` : a.kind === 'gather' && a.limit ? `${a.index + ready}/${a.limit}` : `${ready} ${unit}`}
-            {state.queue.length > 0 && <span className="queue-count"> · +{state.queue.length} în coadă</span>}
+            <ThemeText>{a.kind === 'cook' ? `${a.done + ready}/${a.count} porții` : a.kind === 'gather' && a.limit ? `${a.index + ready}/${a.limit}` : `${ready} ${unit}`}</ThemeText>
+            {state.queue.length > 0 && <span className="queue-count"> · +<ThemeText>{state.queue.length}</ThemeText> în coadă</span>}
           </small>
         </div>
         <Bar value={cookDone ? 1 : progress} max={1} thin color="#7bc66b" />
@@ -248,9 +248,7 @@ function ActivityBar({ game, onHaul, onGo }: { game: Game; onHaul: (h: Haul) => 
       <button className="btn primary small" disabled={ready < 1} onClick={() => claim(false)}>
         Revendică
       </button>
-      <button className="btn small ghost" onClick={() => claim(true)} aria-label="Oprește activitatea">
-        ⏹
-      </button>
+      <button className="btn small ghost" onClick={() => claim(true)} aria-label="Oprește activitatea"><ThemeText>{"\r\n        ⏹\r\n      "}</ThemeText></button>
     </div>
   );
 }
@@ -260,7 +258,7 @@ function Toasts({ game }: { game: Game }) {
     <div className="toasts" aria-live="polite">
       {game.toasts.map((t) => (
         <div key={t.id} className={`toast t-${t.kind}${t.error ? ' t-error' : ''}`}>
-          {t.text}
+          <ThemeText>{t.text}</ThemeText>
         </div>
       ))}
     </div>
@@ -307,19 +305,13 @@ function DevTools({ game }: { game: Game }) {
             ['+8 h', 28_800_000],
           ].map(([label, ms]) => (
             <button key={label} className="btn tiny" onClick={() => game.skip(ms as number)}>
-              {label}
+              <ThemeText>{label}</ThemeText>
             </button>
           ))}
           <b>Resurse</b>
-          <button className="btn tiny" onClick={() => game.start({ ...game.state!, diamonds: game.state!.diamonds + 1000 })}>
-            +1000 💎
-          </button>
-          <button className="btn tiny" onClick={() => game.start({ ...game.state!, sparks: game.state!.sparks + 1000 })}>
-            +1000 ✨
-          </button>
-          <button className="btn tiny" onClick={() => addRunaway(game)}>
-            🌲 Dino fugit (nv. 3)
-          </button>
+          <button className="btn tiny" onClick={() => game.start({ ...game.state!, diamonds: game.state!.diamonds + 1000 })}><ThemeText>{"\r\n            +1000 💎\r\n          "}</ThemeText></button>
+          <button className="btn tiny" onClick={() => game.start({ ...game.state!, sparks: game.state!.sparks + 1000 })}><ThemeText>{"\r\n            +1000 ✨\r\n          "}</ThemeText></button>
+          <button className="btn tiny" onClick={() => addRunaway(game)}><ThemeText>{"\r\n            🌲 Dino fugit (nv. 3)\r\n          "}</ThemeText></button>
           <button
             className="btn tiny danger"
             onClick={() => {
@@ -330,9 +322,7 @@ function DevTools({ game }: { game: Game }) {
           </button>
         </div>
       )}
-      <button className="devtools-toggle" onClick={() => setOpen(!open)} aria-label="Unelte de test">
-        ⏩
-      </button>
+      <button className="devtools-toggle" onClick={() => setOpen(!open)} aria-label="Unelte de test"><ThemeText>{"\r\n        ⏩\r\n      "}</ThemeText></button>
     </div>
   );
 }

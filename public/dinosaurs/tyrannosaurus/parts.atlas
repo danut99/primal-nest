@@ -1,0 +1,88 @@
+parts.png
+size: 1536,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+body
+  rotate: false
+  xy: 16,15
+  size: 544,331
+  orig: 544,331
+  offset: 0,0
+  index: -1
+head
+  rotate: false
+  xy: 548,8
+  size: 486,344
+  orig: 486,344
+  offset: 0,0
+  index: -1
+tail
+  rotate: false
+  xy: 1003,65
+  size: 528,237
+  orig: 528,237
+  offset: 0,0
+  index: -1
+thigh
+  rotate: false
+  xy: 90,336
+  size: 374,379
+  orig: 374,379
+  offset: 0,0
+  index: -1
+shin
+  rotate: false
+  xy: 623,344
+  size: 307,354
+  orig: 307,354
+  offset: 0,0
+  index: -1
+foot
+  rotate: false
+  xy: 1042,371
+  size: 446,308
+  orig: 446,308
+  offset: 0,0
+  index: -1
+upperarm
+  rotate: false
+  xy: 105,718
+  size: 304,289
+  orig: 304,289
+  offset: 0,0
+  index: -1
+forearm
+  rotate: false
+  xy: 605,730
+  size: 321,266
+  orig: 321,266
+  offset: 0,0
+  index: -1
+hip
+  rotate: false
+  xy: 1146,697
+  size: 292,312
+  orig: 292,312
+  offset: 0,0
+  index: -1
+fxPixel
+  rotate: false
+  xy: 777,24
+  size: 1,1
+  orig: 1,1
+  offset: 0,0
+  index: -1
+
+attack-crystal.png
+size: 1024,1536
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+fxCrystal
+  rotate: false
+  xy: 0,0
+  size: 1024,1536
+  orig: 1024,1536
+  offset: 0,0
+  index: -1

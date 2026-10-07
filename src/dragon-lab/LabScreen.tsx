@@ -1,3 +1,4 @@
+import { ThemeText } from '../components/ThemeText';
 // Laboratorul de dragoni (/#laborator): editor vizual pentru rețete. În dev, „Salvează” scrie recipes.json.
 
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
@@ -151,23 +152,19 @@ export function LabScreen() {
         <div className="row gap-s wrap lab-row">
           {dragon?.animations.map((a) => (
             <button key={a} className={`btn small${a === animation ? ' primary' : ''}`} onClick={() => setAnimation(a)}>
-              {animationLabel(recipe, a)}
+              <ThemeText>{animationLabel(recipe, a)}</ThemeText>
             </button>
           ))}
         </div>
         <div className="row gap-s wrap lab-row">
           <button className="btn small" onClick={() => setPaused(!paused)}>
-            {paused ? '▶' : '⏸'}
+            <ThemeText>{paused ? '▶' : '⏸'}</ThemeText>
           </button>
-          <button className="btn small" onClick={() => dragon?.reframe()} title="Reîncadrează camera">
-            ⛶
-          </button>
+          <button className="btn small" onClick={() => dragon?.reframe()} title="Reîncadrează camera"><ThemeText>{"\r\n            ⛶\r\n          "}</ThemeText></button>
           <button className={`btn small${compare ? ' primary' : ''}`} onClick={() => setCompare(!compare)}>
             Compară cu originalul
           </button>
-          <button className="btn small ghost" onClick={snapshot}>
-            📷 PNG
-          </button>
+          <button className="btn small ghost" onClick={snapshot}><ThemeText>{"\r\n            📷 PNG\r\n          "}</ThemeText></button>
           {BACKGROUNDS.map((b) => (
             <button
               key={b}
@@ -250,7 +247,7 @@ export function LabScreen() {
                 className={`chip${g.id === group ? ' active' : ''}${recipe.parts?.[g.id] ? ' changed' : ''}`}
                 onClick={() => setGroup(g.id)}
               >
-                {g.label}
+                <ThemeText>{g.label}</ThemeText>
               </button>
             ))}
           </div>
@@ -259,7 +256,7 @@ export function LabScreen() {
               type="checkbox"
               checked={!!part.hidden}
               onChange={(e) => setPart(group, { hidden: e.target.checked })}
-            />{' '}
+            /><ThemeText>{' '}</ThemeText>
             Ascunde partea
           </label>
           <h4>Formă</h4>
@@ -451,7 +448,7 @@ export function LabScreen() {
             onChange={(v) => setMotion({ zoom: v })}
           />
           <label className="lab-check">
-            <input type="checkbox" checked={!!motion.flip} onChange={(e) => setMotion({ flip: e.target.checked })} />{' '}
+            <input type="checkbox" checked={!!motion.flip} onChange={(e) => setMotion({ flip: e.target.checked })} /><ThemeText>{' '}</ThemeText>
             Oglindit
           </label>
         </Section>
@@ -461,7 +458,7 @@ export function LabScreen() {
             const s = recipe.animations?.[a] ?? {};
             return (
               <div key={a} className="lab-anim">
-                <code>{a}</code>
+                <code><ThemeText>{a}</ThemeText></code>
                 <input
                   placeholder={animationLabel({ ...recipe, animations: undefined }, a)}
                   value={s.label ?? ''}
@@ -481,7 +478,7 @@ export function LabScreen() {
                     type="checkbox"
                     checked={!!s.hidden}
                     onChange={(e) => setAnim(a, { hidden: e.target.checked })}
-                  />{' '}
+                  /><ThemeText>{' '}</ThemeText>
                   ascunsă
                 </label>
               </div>
@@ -511,11 +508,9 @@ export function LabScreen() {
 
         <div className="row gap-s wrap lab-row">
           {import.meta.env.DEV && (
-            <button className="btn primary" onClick={save}>
-              💾 Salvează toate rețetele
-            </button>
+            <button className="btn primary" onClick={save}><ThemeText>{"\r\n              💾 Salvează toate rețetele\r\n            "}</ThemeText></button>
           )}
-          {message && <small className="muted">{message}</small>}
+          {message && <small className="muted"><ThemeText>{message}</ThemeText></small>}
         </div>
       </div>
     </div>
@@ -525,8 +520,8 @@ export function LabScreen() {
 function Section({ title, open, children }: { title: string; open?: boolean; children: ReactNode }) {
   return (
     <details className="lab-section" open={open}>
-      <summary>{title}</summary>
-      {children}
+      <summary><ThemeText>{title}</ThemeText></summary>
+      <ThemeText>{children}</ThemeText>
     </details>
   );
 }
@@ -555,7 +550,7 @@ function Range({
       onDoubleClick={() => onChange(undefined)}
       title="Dublu-clic: valoarea implicită"
     >
-      <span>{label}</span>
+      <span><ThemeText>{label}</ThemeText></span>
       <input
         type="range"
         min={min}
@@ -564,7 +559,7 @@ function Range({
         value={v}
         onChange={(e) => onChange(+e.target.value === def ? undefined : +e.target.value)}
       />
-      <output>{Math.round(v * 100) / 100}</output>
+      <output><ThemeText>{Math.round(v * 100) / 100}</ThemeText></output>
     </label>
   );
 }
@@ -610,9 +605,7 @@ function ColorControls({ value, onChange }: { value: ColorAdjust; onChange: (p: 
           className="btn tiny ghost"
           onClick={() => onChange({ colorize: undefined, colorizeAmount: undefined })}
           disabled={!value.colorize}
-        >
-          ✕
-        </button>
+        ><ThemeText>{"\r\n          ✕\r\n        "}</ThemeText></button>
       </label>
       {value.colorize && (
         <Range

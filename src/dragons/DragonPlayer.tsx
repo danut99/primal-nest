@@ -1,3 +1,4 @@
+import { ThemeText } from '../components/ThemeText';
 // Componenta React pentru un dragon animat (Spine). Folosire:
 //   <DragonPlayer source={{ model: 'nerion', stage: 'adult' }} animation="fly" />
 //   <DragonPlayer source={{ archive: 'basic_2725_dragon_polargeneral_3_HD_spine-3-8-59_dxt5.zip' }} />
@@ -61,7 +62,7 @@ export function DragonPlayer({
     <div className={`dragon-player ${className ?? ''}`} style={{ background, ...style }}>
       <div ref={host} className="dragon-player-surface" />
       {status === 'loading' && <div className="dragon-player-message">Se încarcă dragonul…</div>}
-      {status !== 'loading' && status !== 'ready' && <div className="dragon-player-message error-text">{status}</div>}
+      {status !== 'loading' && status !== 'ready' && <div className="dragon-player-message error-text"><ThemeText>{status}</ThemeText></div>}
     </div>
   );
 }

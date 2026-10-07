@@ -247,6 +247,17 @@ small {
   vertical-align: middle;
   filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.35));
 }
+.theme-control { position: relative; display: inline-flex; align-items: center; justify-content: center; }
+.theme-control > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.theme-control > span { position: relative; color: #fff0c4; font-size: .6em; font-family: Arial, sans-serif; font-weight: 700; line-height: 1; text-shadow: 0 1px 2px #091f24; }
+.hearts .off .theme-symbol, .stars .off .theme-symbol { opacity: .25; filter: grayscale(1); }
+.theme-symbol.theme-dim { opacity: .35; filter: grayscale(1); }
+.theme-symbol.theme-albino { filter: grayscale(1) brightness(1.8); }
+.theme-symbol {
+  width: 1.35em;
+  height: 1.35em;
+  vertical-align: -0.28em;
+}
 .brand-mark {
   display: block;
 }

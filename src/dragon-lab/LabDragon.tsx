@@ -1,3 +1,4 @@
+import { ThemeText } from '../components/ThemeText';
 // Un dragon din laborator, ca componentă React: îl folosesc jocul (DinoLive, BossLive) și editorul.
 // Stă separat de editor, ca jocul să nu încarce laboratorul întreg.
 
@@ -80,7 +81,7 @@ export function LabDragon({
       {/* Ascuns cât se încarcă: altfel se vede ecranul de încărcare Spine (un pătrat negru). */}
       <div ref={host} className={`dragon-player-surface lab-fade${status === 'ready' ? ' ready' : ''}`} />
       {status === 'loading' && <div className="dragon-player-message">Se încarcă dragonul…</div>}
-      {status !== 'loading' && status !== 'ready' && <div className="dragon-player-message error-text">{status}</div>}
+      {status !== 'loading' && status !== 'ready' && <div className="dragon-player-message error-text"><ThemeText>{status}</ThemeText></div>}
     </div>
   );
 }

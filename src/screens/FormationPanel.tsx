@@ -1,3 +1,4 @@
+import { ThemeText } from '../components/ThemeText';
 // Formația de luptă, cu drag & drop: rândul din față (încasează loviturile), rândul din spate
 // (ferit, dar lovește mai slab) și dinozaurii disponibili. Pe telefon merge și cu atingeri.
 // Se aranjează într-o fereastră care se deschide înainte de fiecare luptă sau expediție.
@@ -67,12 +68,12 @@ export function FormationBoard({ game }: { game: Game }) {
         title={why ?? (where === 'bench' ? (full ? `Haita are ${size} locuri` : 'Trage într-un rând sau atinge') : 'Trage ca să-l muți')}
       >
         <DinoSprite speciesId={d.speciesId} albino={d.variant === 'albino'} size={where === 'bench' ? 52 : 72} className={where === 'bench' ? '' : 'bob'} />
-        <b>{d.nickname}</b>
+        <b><ThemeText>{d.nickname}</ThemeText></b>
         <small className="muted">
-          Nv. {d.level} · {SPECIES[d.speciesId].name}
+          Nv. <ThemeText>{d.level}</ThemeText> · <ThemeText>{SPECIES[d.speciesId].name}</ThemeText>
         </small>
         {where === 'bench' ? (
-          why ? <span className="form-why">{why}</span> : <Stars n={geneStars(d.genes)} />
+          why ? <span className="form-why"><ThemeText>{why}</ThemeText></span> : <Stars n={geneStars(d.genes)} />
         ) : (
           !locked && (
             <span className="form-actions">
@@ -84,7 +85,7 @@ export function FormationBoard({ game }: { game: Game }) {
                 }}
                 title={where === 'front' ? 'Mută în spate' : 'Mută în față'}
               >
-                {where === 'front' ? '⬇' : '⬆'}
+                <ThemeText>{where === 'front' ? '⬇' : '⬆'}</ThemeText>
               </button>
               <button
                 className="form-mini"
@@ -93,9 +94,7 @@ export function FormationBoard({ game }: { game: Game }) {
                   move(d.id, 'bench');
                 }}
                 title="Scoate din haită"
-              >
-                ✕
-              </button>
+              ><ThemeText>{"\r\n                ✕\r\n              "}</ThemeText></button>
             </span>
           )
         )}
@@ -106,25 +105,25 @@ export function FormationBoard({ game }: { game: Game }) {
   const empty = size - party.length;
   return (
     <div className="formation">
-      {locked && <p className="lock-text">🔒 Haita e în expediție. Oprește expediția ca să schimbi formația.</p>}
+      {locked && <p className="lock-text"><ThemeText>{"🔒 Haita e în expediție. Oprește expediția ca să schimbi formația."}</ThemeText></p>}
       <div className="form-rows">
         <div className={`form-row front${over === 'front' ? ' over' : ''}`} {...dropProps('front')}>
           <div className="form-row-label">
-            <b>🛡️ Față</b>
+            <b><ThemeText>{"🛡️ Față"}</ThemeText></b>
             <small>Încasează loviturile</small>
           </div>
           <div className="form-row-slots">
-            {front.map((d) => card(d, 'front'))}
+            <ThemeText>{front.map((d) => card(d, 'front'))}</ThemeText>
             {empty > 0 && !locked && <div className="form-slot">Trage aici</div>}
           </div>
         </div>
         <div className={`form-row back${over === 'back' ? ' over' : ''}`} {...dropProps('back')}>
           <div className="form-row-label">
-            <b>🏹 Spate</b>
+            <b><ThemeText>{"🏹 Spate"}</ThemeText></b>
             <small>Ferit cât timp e cineva în față · −15% damage</small>
           </div>
           <div className="form-row-slots">
-            {back.map((d) => card(d, 'back'))}
+            <ThemeText>{back.map((d) => card(d, 'back'))}</ThemeText>
             {empty > 0 && !locked && <div className="form-slot">Trage aici</div>}
           </div>
         </div>
@@ -133,9 +132,9 @@ export function FormationBoard({ game }: { game: Game }) {
 
       <div className={`form-bench${over === 'bench' ? ' over' : ''}`} {...dropProps('bench')}>
         <h3>
-          Disponibili <small className="muted">· trage în formație sau atinge · {party.length}/{size} în luptă</small>
+          Disponibili <small className="muted">· trage în formație sau atinge · <ThemeText>{party.length}</ThemeText>/<ThemeText>{size}</ThemeText> în luptă</small>
         </h3>
-        {bench.length === 0 ? <p className="muted small">Toți dinozaurii sunt deja în luptă.</p> : <div className="form-bench-list">{bench.map((d) => card(d, 'bench'))}</div>}
+        {bench.length === 0 ? <p className="muted small">Toți dinozaurii sunt deja în luptă.</p> : <div className="form-bench-list"><ThemeText>{bench.map((d) => card(d, 'bench'))}</ThemeText></div>}
       </div>
     </div>
   );
@@ -158,7 +157,7 @@ export function FormationModal({
   const ready = game.state!.party.length > 0;
   return (
     <Modal wide onClose={onClose} className="formation-modal">
-      <h2>{title}</h2>
+      <h2><ThemeText>{title}</ThemeText></h2>
       <p className="muted small">Trage dinozaurii în rânduri. Pe câmpul de luptă vor sta exact așa: cei din față lângă inamic, cei din spate în urmă.</p>
       <FormationBoard game={game} />
       {!ready && <p className="lock-text formation-empty">Pune cel puțin un dinozaur în formație.</p>}
@@ -167,7 +166,7 @@ export function FormationModal({
           Înapoi
         </button>
         <button className="btn primary big glow" disabled={!ready} onClick={onStart}>
-          {startLabel}
+          <ThemeText>{startLabel}</ThemeText>
         </button>
       </div>
     </Modal>
@@ -197,7 +196,7 @@ export function FormationSummary({ game, onEdit }: { game: Game; onEdit: () => v
         <div className="form-summary">
           {([false, true] as const).map((back) => (
             <div key={String(back)} className={`form-summary-row ${back ? 'back' : 'front'}`}>
-              <span className="form-summary-label">{back ? '🏹 Spate' : '🛡️ Față'}</span>
+              <span className="form-summary-label"><ThemeText>{back ? '🏹 Spate' : '🛡️ Față'}</ThemeText></span>
               {row(back).length === 0 ? (
                 <small className="muted">—</small>
               ) : (
@@ -205,7 +204,7 @@ export function FormationSummary({ game, onEdit }: { game: Game; onEdit: () => v
                   <span key={d.id} className="form-summary-dino">
                     <DinoSprite speciesId={d.speciesId} albino={d.variant === 'albino'} size={44} />
                     <small>
-                      {d.nickname} · nv. {d.level}
+                      <ThemeText>{d.nickname}</ThemeText> · nv. <ThemeText>{d.level}</ThemeText>
                     </small>
                   </span>
                 ))
@@ -213,7 +212,7 @@ export function FormationSummary({ game, onEdit }: { game: Game; onEdit: () => v
             </div>
           ))}
           <small className="muted">
-            {party.length}/{size} în luptă
+            <ThemeText>{party.length}</ThemeText>/<ThemeText>{size}</ThemeText> în luptă
           </small>
         </div>
       )}

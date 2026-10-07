@@ -1,3 +1,4 @@
+import { ThemeText } from '../components/ThemeText';
 // „Cât ai lipsit”: la întoarcere, tot ce te așteaptă, cu scurtături spre ecranul potrivit.
 
 import { type GameEvent, eggsInNest, readyCount, runawayIn, workReady } from '@shared/game';
@@ -53,28 +54,28 @@ export function WelcomeModal({ game, away, events, onGo, onMissions, onClose }: 
       <div className="speech">
         <Saurok size={60} />
         <div>
-          <h2>Bine ai revenit, {state.playerName}!</h2>
-          <p className="muted">Ai lipsit {formatDuration(away)}. Iată ce te așteaptă:</p>
+          <h2>Bine ai revenit, <ThemeText>{state.playerName}</ThemeText>!</h2>
+          <p className="muted">Ai lipsit <ThemeText>{formatDuration(away)}</ThemeText>. Iată ce te așteaptă:</p>
         </div>
       </div>
       {lines.length === 0 && rewards === 0 ? (
-        <p className="empty-state">Liniște în tabără. Totul merge cum trebuie. 🌿</p>
+        <p className="empty-state"><ThemeText>{"Liniște în tabără. Totul merge cum trebuie. 🌿"}</ThemeText></p>
       ) : (
         <div className="welcome-list">
           {lines.map((l, i) => (
             <button key={i} className={`welcome-line${l.warn ? ' warn' : ''}`} onClick={() => l.screen && onGo(l.screen)}>
-              <span>{l.icon}</span>
-              <span className="grow">{l.text}</span>
-              {l.screen && <span className="muted">→</span>}
+              <span><ThemeText>{l.icon}</ThemeText></span>
+              <span className="grow"><ThemeText>{l.text}</ThemeText></span>
+              {l.screen && <span className="muted"><ThemeText>{"→"}</ThemeText></span>}
             </button>
           ))}
           {rewards > 0 && (
             <button className="welcome-line" onClick={onMissions}>
-              <span>📜</span>
+              <span><ThemeText>{"📜"}</ThemeText></span>
               <span className="grow">
-                {rewards} {rewards === 1 ? 'răsplată te așteaptă' : 'răsplăți te așteaptă'} la Misiuni.
+                <ThemeText>{rewards}</ThemeText> <ThemeText>{rewards === 1 ? 'răsplată te așteaptă' : 'răsplăți te așteaptă'}</ThemeText> la Misiuni.
               </span>
-              <span className="muted">→</span>
+              <span className="muted"><ThemeText>{"→"}</ThemeText></span>
             </button>
           )}
         </div>

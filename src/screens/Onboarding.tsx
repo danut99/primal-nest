@@ -1,3 +1,4 @@
+import { ThemeText } from '../components/ThemeText';
 // Începutul: povestea cataclismului (scurtă, cinematică), Saurok, numele, oul de start și căldura cuibului.
 
 import { type ReactNode, useState } from 'react';
@@ -101,17 +102,15 @@ export function Onboarding({ onStart, now }: { onStart: (s: GameState) => void; 
       <div className="onboarding story">
         <SceneLayer key={`bg${step}`} name={`poveste-${step + 1}`} />
         <div key={step} className="story-slide">
-          {slide.art}
-          <p className="story-text">{slide.text}</p>
+          <ThemeText>{slide.art}</ThemeText>
+          <p className="story-text"><ThemeText>{slide.text}</ThemeText></p>
           <div className="story-nav">
             <div className="dots">
               {STORY.map((_, i) => (
                 <span key={i} className={i === step ? 'on' : ''} />
               ))}
             </div>
-            <button className="btn primary" onClick={next}>
-              Continuă ›
-            </button>
+            <button className="btn primary" onClick={next}><ThemeText>{"\r\n              Continuă ›\r\n            "}</ThemeText></button>
           </div>
           <button className="skip" onClick={() => setStep(storySteps)}>
             Sari peste poveste
@@ -136,7 +135,7 @@ export function Onboarding({ onStart, now }: { onStart: (s: GameState) => void; 
               <Saurok size={78} />
               <p>
                 Sunt <b>Saurok</b>, ultimul din neamul Spinosaurilor. Am forjat lame din puterea stelei, dar sunt prea bătrân
-                ca să le mai port. Ai nevoie de o haită. Crește-o, călește-o și du-o împotriva Alfa. Cum te cheamă,{' '}
+                ca să le mai port. Ai nevoie de o haită. Crește-o, călește-o și du-o împotriva Alfa. Cum te cheamă,<ThemeText>{' '}</ThemeText>
                 <b>Păzitorule</b>?
               </p>
             </div>
@@ -148,9 +147,7 @@ export function Onboarding({ onStart, now }: { onStart: (s: GameState) => void; 
               }}
             >
               <input autoFocus value={name} maxLength={16} placeholder="Numele tău" onChange={(e) => setName(e.target.value)} aria-label="Numele tău" />
-              <button className="btn primary" disabled={name.trim().length < 2}>
-                Mai departe →
-              </button>
+              <button className="btn primary" disabled={name.trim().length < 2}><ThemeText>{"\r\n                Mai departe →\r\n              "}</ThemeText></button>
             </form>
           </div>
         )}
@@ -160,7 +157,7 @@ export function Onboarding({ onStart, now }: { onStart: (s: GameState) => void; 
             <div className="speech">
               <Saurok size={56} />
               <p>
-                Am salvat trei ouă din chihlimbar, {name.trim()}. Alege unul. <b>Puiul din el va lupta lângă tine până la capăt.</b>
+                Am salvat trei ouă din chihlimbar, <ThemeText>{name.trim()}</ThemeText>. Alege unul. <b>Puiul din el va lupta lângă tine până la capăt.</b>
               </p>
             </div>
             <div className="starter-grid">
@@ -182,17 +179,15 @@ export function Onboarding({ onStart, now }: { onStart: (s: GameState) => void; 
                       <EggSprite egg={{ rarity: 'neobisnuit', speciesId: id }} size={58} className="wobble-slow pedestal-egg" />
                       <DinoSprite speciesId={id} size={96} className="bob" />
                     </div>
-                    <b>{sp.name}</b>
+                    <b><ThemeText>{sp.name}</ThemeText></b>
                     <TypeBadge type={sp.types[0]} small />
-                    <small>{sp.blurb}</small>
+                    <small><ThemeText>{sp.blurb}</ThemeText></small>
                   </button>
                 );
               })}
             </div>
             <div className="onb-actions">
-              <button className="btn ghost" onClick={() => setStep(step - 1)}>
-                ← Înapoi
-              </button>
+              <button className="btn ghost" onClick={() => setStep(step - 1)}><ThemeText>{"\r\n                ← Înapoi\r\n              "}</ThemeText></button>
               <button className="btn primary" disabled={!starter} onClick={next}>
                 Pe ăsta îl aleg!
               </button>
@@ -215,21 +210,19 @@ export function Onboarding({ onStart, now }: { onStart: (s: GameState) => void; 
                 const tm = TEMPERAMENTS[info.temperament];
                 return (
                   <button key={t} className={`temp-card t-${t}${temp === t ? ' selected' : ''}`} onClick={() => setTemp(t)}>
-                    <span className="temp-icon">{info.icon}</span>
-                    <b>{info.name}</b>
+                    <span className="temp-icon"><ThemeText>{info.icon}</ThemeText></span>
+                    <b><ThemeText>{info.name}</ThemeText></b>
                     <span>
-                      Pui <b>{tm.name}</b>
+                      Pui <b><ThemeText>{tm.name}</ThemeText></b>
                     </span>
-                    <small>{tm.text}</small>
+                    <small><ThemeText>{tm.text}</ThemeText></small>
                   </button>
                 );
               })}
             </div>
-            {error && <p className="error-text">{error}</p>}
+            {error && <p className="error-text"><ThemeText>{error}</ThemeText></p>}
             <div className="onb-actions">
-              <button className="btn ghost" onClick={() => setStep(step - 1)}>
-                ← Înapoi
-              </button>
+              <button className="btn ghost" onClick={() => setStep(step - 1)}><ThemeText>{"\r\n                ← Înapoi\r\n              "}</ThemeText></button>
               <button className="btn primary big" disabled={!temp} onClick={begin}>
                 <EggIcon /> Pune oul în cuib
               </button>

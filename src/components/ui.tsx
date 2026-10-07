@@ -1,3 +1,4 @@
+import { ThemeText } from './ThemeText';
 // Piese mici, reutilizabile: tipuri, bare, modale, obiecte.
 
 import { useEffect, useMemo, useRef, type ReactNode } from 'react';
@@ -9,7 +10,7 @@ export function TypeBadge({ type, small }: { type: DinoType; small?: boolean }) 
   const t = TYPES[type];
   return (
     <span className={`type-badge${small ? ' small' : ''}`} style={{ background: t.color }}>
-      {t.icon} {t.name}
+      <ThemeText>{t.icon}</ThemeText> <ThemeText>{t.name}</ThemeText>
     </span>
   );
 }
@@ -19,7 +20,7 @@ export function Bar({ value, max, color, label, thin }: { value: number; max: nu
   return (
     <div className={`bar${thin ? ' thin' : ''}`} role="progressbar" aria-valuenow={Math.round(pct)} aria-valuemin={0} aria-valuemax={100}>
       <div className="bar-fill" style={{ width: `${pct}%`, background: color }} />
-      {label && <span className="bar-label">{label}</span>}
+      {label && <span className="bar-label"><ThemeText>{label}</ThemeText></span>}
     </div>
   );
 }
@@ -29,9 +30,7 @@ export function Hearts({ bond }: { bond: number }) {
   return (
     <span className="hearts" title={`Atașament ${bond}/100`} aria-label={`Atașament ${bond} din 100`}>
       {Array.from({ length: 5 }, (_, i) => (
-        <span key={i} className={i < full ? 'on' : 'off'}>
-          ♥
-        </span>
+        <span key={i} className={i < full ? 'on' : 'off'}><ThemeText>{"\r\n          ♥\r\n        "}</ThemeText></span>
       ))}
     </span>
   );
@@ -41,9 +40,7 @@ export function Stars({ n, max = 3 }: { n: number; max?: number }) {
   return (
     <span className="stars" aria-label={`${n} din ${max} stele`}>
       {Array.from({ length: max }, (_, i) => (
-        <span key={i} className={i < n ? 'on' : 'off'}>
-          ★
-        </span>
+        <span key={i} className={i < n ? 'on' : 'off'}><ThemeText>{"\r\n          ★\r\n        "}</ThemeText></span>
       ))}
     </span>
   );
@@ -55,8 +52,8 @@ export function ItemChip({ item, qty, have }: { item: ItemId; qty?: number; have
   return (
     <span className={`item-chip${short ? ' short' : ''}`} title={def.blurb}>
       <span className="item-icon"><ItemArt item={item} /></span>
-      {qty !== undefined && <b>{have !== undefined ? `${have}/${qty}` : `×${qty}`}</b>}
-      <span className="item-name">{def.name}</span>
+      {qty !== undefined && <b><ThemeText>{have !== undefined ? `${have}/${qty}` : `×${qty}`}</ThemeText></b>}
+      <span className="item-name"><ThemeText>{def.name}</ThemeText></span>
     </span>
   );
 }
@@ -75,11 +72,9 @@ export function Modal({ children, onClose, wide, className }: { children: ReactN
     <div className="modal-backdrop" onClick={onClose}>
       <div ref={box} className={`modal${wide ? ' wide' : ''} ${className ?? ''}`} role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()}>
         {onClose && (
-          <button className="modal-close" onClick={onClose} aria-label="Închide">
-            ✕
-          </button>
+          <button className="modal-close" onClick={onClose} aria-label="Închide"><ThemeText>{"\r\n            ✕\r\n          "}</ThemeText></button>
         )}
-        {children}
+        <ThemeText>{children}</ThemeText>
       </div>
     </div>
   );
@@ -101,20 +96,20 @@ export function PageHeader({
 }) {
   return (
     <header className="page-head">
-      <span className="page-head-icon">{icon}</span>
+      <span className="page-head-icon"><ThemeText>{icon}</ThemeText></span>
       <div className="page-head-text">
-        <h1>{title}</h1>
-        <p>{subtitle}</p>
+        <h1><ThemeText>{title}</ThemeText></h1>
+        <p><ThemeText>{subtitle}</ThemeText></p>
       </div>
       {(stats?.length || actions) && (
         <div className="page-head-side">
           {stats?.map((s) => (
             <span key={s.label} className={`page-stat${s.tone ? ` ${s.tone}` : ''}`}>
-              <b>{s.value}</b>
-              <small>{s.label}</small>
+              <b><ThemeText>{s.value}</ThemeText></b>
+              <small><ThemeText>{s.label}</ThemeText></small>
             </span>
           ))}
-          {actions}
+          <ThemeText>{actions}</ThemeText>
         </div>
       )}
     </header>
@@ -127,13 +122,13 @@ export function Panel({ title, icon, children, right, className }: { title?: Rea
       {title && (
         <header className="panel-head">
           <h2>
-            {icon && <span className="panel-icon">{icon}</span>}
-            {title}
+            {icon && <span className="panel-icon"><ThemeText>{icon}</ThemeText></span>}
+            <ThemeText>{title}</ThemeText>
           </h2>
-          {right}
+          <ThemeText>{right}</ThemeText>
         </header>
       )}
-      {children}
+      <ThemeText>{children}</ThemeText>
     </section>
   );
 }

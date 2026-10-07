@@ -1,0 +1,387 @@
+{
+  "regions": {
+    "body": {
+      "x": 16,
+      "y": 15,
+      "w": 544,
+      "h": 331
+    },
+    "head": {
+      "x": 548,
+      "y": 8,
+      "w": 486,
+      "h": 344
+    },
+    "tail": {
+      "x": 1003,
+      "y": 65,
+      "w": 528,
+      "h": 237
+    },
+    "thigh": {
+      "x": 90,
+      "y": 336,
+      "w": 374,
+      "h": 379
+    },
+    "shin": {
+      "x": 623,
+      "y": 344,
+      "w": 307,
+      "h": 354
+    },
+    "foot": {
+      "x": 1042,
+      "y": 371,
+      "w": 446,
+      "h": 308
+    },
+    "upperarm": {
+      "x": 105,
+      "y": 718,
+      "w": 304,
+      "h": 289
+    },
+    "forearm": {
+      "x": 605,
+      "y": 730,
+      "w": 321,
+      "h": 266
+    },
+    "hip": {
+      "x": 1146,
+      "y": 697,
+      "w": 292,
+      "h": 312
+    }
+  },
+  "bones": [
+    {
+      "name": "root"
+    },
+    {
+      "name": "body",
+      "parent": "root",
+      "y": 260,
+      "length": 125
+    },
+    {
+      "name": "farThigh",
+      "parent": "body",
+      "x": -90,
+      "y": -2,
+      "rotation": -57.4103573174843,
+      "length": 128
+    },
+    {
+      "name": "farShin",
+      "parent": "farThigh",
+      "x": 128,
+      "y": 0,
+      "rotation": -61.38191069693785,
+      "length": 112
+    },
+    {
+      "name": "farFoot",
+      "parent": "farShin",
+      "x": 112,
+      "y": 0,
+      "rotation": 118.79226801442215,
+      "length": 105
+    },
+    {
+      "name": "farArm",
+      "parent": "body",
+      "x": 79,
+      "y": 1,
+      "rotation": -40,
+      "length": 43
+    },
+    {
+      "name": "farHand",
+      "parent": "farArm",
+      "x": 43,
+      "y": 0,
+      "rotation": 15,
+      "length": 43
+    },
+    {
+      "name": "tail",
+      "parent": "body",
+      "x": -143,
+      "y": 31,
+      "rotation": 180,
+      "length": 320
+    },
+    {
+      "name": "head",
+      "parent": "body",
+      "x": 154,
+      "y": 78,
+      "rotation": 0,
+      "length": 180
+    },
+    {
+      "name": "nearThigh",
+      "parent": "body",
+      "x": -112,
+      "y": -10,
+      "rotation": -54.269286808881525,
+      "length": 128
+    },
+    {
+      "name": "nearShin",
+      "parent": "nearThigh",
+      "x": 128,
+      "y": 0,
+      "rotation": -68.5779927496856,
+      "length": 112
+    },
+    {
+      "name": "nearFoot",
+      "parent": "nearShin",
+      "x": 112,
+      "y": 0,
+      "rotation": 122.84727955856712,
+      "length": 105
+    },
+    {
+      "name": "nearArm",
+      "parent": "body",
+      "x": 95,
+      "y": -8,
+      "rotation": -40,
+      "length": 43
+    },
+    {
+      "name": "nearHand",
+      "parent": "nearArm",
+      "x": 43,
+      "y": 0,
+      "rotation": 15,
+      "length": 43
+    },
+    {
+      "name": "hipCover",
+      "parent": "body",
+      "x": -112,
+      "y": -10,
+      "rotation": 0,
+      "length": 0
+    },
+    {
+      "name": "fxCharge",
+      "parent": "body",
+      "x": -20,
+      "y": 15,
+      "length": 0
+    },
+    {
+      "name": "fxChargeSpark0",
+      "parent": "body",
+      "x": 0,
+      "y": 0,
+      "length": 0
+    },
+    {
+      "name": "fxChargeSpark1",
+      "parent": "body",
+      "x": 0,
+      "y": 0,
+      "length": 0
+    },
+    {
+      "name": "fxChargeSpark2",
+      "parent": "body",
+      "x": 0,
+      "y": 0,
+      "length": 0
+    },
+    {
+      "name": "fxChargeSpark3",
+      "parent": "body",
+      "x": 0,
+      "y": 0,
+      "length": 0
+    },
+    {
+      "name": "fxImpact",
+      "parent": "root",
+      "x": 80,
+      "y": 8,
+      "length": 0
+    },
+    {
+      "name": "fxStrike",
+      "parent": "head",
+      "x": 182,
+      "y": 35,
+      "length": 0
+    },
+    {
+      "name": "fxCrystal0",
+      "parent": "root",
+      "x": 330,
+      "y": 4,
+      "length": 0
+    },
+    {
+      "name": "fxCrystal1",
+      "parent": "root",
+      "x": 442,
+      "y": 4,
+      "length": 0
+    },
+    {
+      "name": "fxCrystal2",
+      "parent": "root",
+      "x": 554,
+      "y": 4,
+      "length": 0
+    },
+    {
+      "name": "fxCrystal3",
+      "parent": "root",
+      "x": 666,
+      "y": 4,
+      "length": 0
+    },
+    {
+      "name": "fxCrystal4",
+      "parent": "root",
+      "x": 778,
+      "y": 4,
+      "length": 0
+    },
+    {
+      "name": "fxShard0",
+      "parent": "root",
+      "x": 0,
+      "y": 0,
+      "length": 0
+    },
+    {
+      "name": "fxShard1",
+      "parent": "root",
+      "x": 0,
+      "y": 0,
+      "length": 0
+    },
+    {
+      "name": "fxShard2",
+      "parent": "root",
+      "x": 0,
+      "y": 0,
+      "length": 0
+    },
+    {
+      "name": "fxShard3",
+      "parent": "root",
+      "x": 0,
+      "y": 0,
+      "length": 0
+    },
+    {
+      "name": "fxShard4",
+      "parent": "root",
+      "x": 0,
+      "y": 0,
+      "length": 0
+    },
+    {
+      "name": "fxShard5",
+      "parent": "root",
+      "x": 0,
+      "y": 0,
+      "length": 0
+    }
+  ],
+  "effectBones": [
+    "fxCharge",
+    "fxChargeSpark0",
+    "fxChargeSpark1",
+    "fxChargeSpark2",
+    "fxChargeSpark3",
+    "fxImpact",
+    "fxStrike",
+    "fxCrystal0",
+    "fxCrystal1",
+    "fxCrystal2",
+    "fxCrystal3",
+    "fxCrystal4",
+    "fxShard0",
+    "fxShard1",
+    "fxShard2",
+    "fxShard3",
+    "fxShard4",
+    "fxShard5"
+  ],
+  "effectSlots": [
+    "fx_fxCharge_0",
+    "fx_fxCharge_1",
+    "fx_fxCharge_2",
+    "fx_fxCharge_3",
+    "fx_body_4",
+    "fx_head_5",
+    "fx_hipCover_6",
+    "fx_fxChargeSpark0_7",
+    "fx_fxChargeSpark1_8",
+    "fx_fxChargeSpark2_9",
+    "fx_fxChargeSpark3_10",
+    "fx_fxImpact_11",
+    "fx_fxImpact_12",
+    "fx_fxImpact_13",
+    "fx_fxStrike_14",
+    "fx_fxStrike_15",
+    "fx_fxCrystal0_16",
+    "fx_fxCrystal0_17",
+    "fx_fxCrystal0_18",
+    "fx_fxCrystal1_19",
+    "fx_fxCrystal1_20",
+    "fx_fxCrystal1_21",
+    "fx_fxCrystal2_22",
+    "fx_fxCrystal2_23",
+    "fx_fxCrystal2_24",
+    "fx_fxCrystal3_25",
+    "fx_fxCrystal3_26",
+    "fx_fxCrystal3_27",
+    "fx_fxCrystal4_28",
+    "fx_fxCrystal4_29",
+    "fx_fxCrystal4_30",
+    "fx_fxShard0_31",
+    "fx_fxShard1_32",
+    "fx_fxShard2_33",
+    "fx_fxShard3_34",
+    "fx_fxShard4_35",
+    "fx_fxShard5_36"
+  ],
+  "maxAttackLegExtension": 231.21634890292688,
+  "legInfo": {
+    "far": {
+      "hipX": -90,
+      "hipY": -2,
+      "L1": 128,
+      "L2": 112,
+      "ankleX": -75,
+      "ankleY": 52,
+      "setup": {
+        "upper": -57.4103573174843,
+        "lower": -61.38191069693785,
+        "foot": 118.79226801442215
+      }
+    },
+    "near": {
+      "hipX": -112,
+      "hipY": -10,
+      "L1": 128,
+      "L2": 112,
+      "ankleX": -98,
+      "ankleY": 52,
+      "setup": {
+        "upper": -54.269286808881525,
+        "lower": -68.5779927496856,
+        "foot": 122.84727955856712
+      }
+    }
+  }
+}

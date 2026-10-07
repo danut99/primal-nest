@@ -1,3 +1,4 @@
+import { ThemeText } from '../components/ThemeText';
 import { DietArt, ItemArt, RelicIcon } from '../components/AssetIcon';
 // Haita: toți dinozaurii, haita de luptă, hrănire, statistici și evoluție.
 
@@ -77,7 +78,7 @@ export function PackScreen({ game, selected, onSelect }: { game: Game; selected:
       <div className="screen">
         <Panel title="Haita" icon="🦖">
           <p className="empty-state">
-            {state.wild.length ? 'Toată haita a fugit în sălbăticie. Adu-i înapoi mai jos.' : 'Încă n-ai niciun dinozaur. Primul ou din cuib e aproape gata! 🥚'}
+            <ThemeText>{state.wild.length ? 'Toată haita a fugit în sălbăticie. Adu-i înapoi mai jos.' : 'Încă n-ai niciun dinozaur. Primul ou din cuib e aproape gata! 🥚'}</ThemeText>
           </p>
         </Panel>
         <WildPanel game={game} />
@@ -120,30 +121,27 @@ export function PackScreen({ game, selected, onSelect }: { game: Game; selected:
       {/* Banda cu toți dragonii */}
       <section className="roster">
         <div className="roster-head">
-          <h3>
-            🐉 Dragonii tăi <span className="muted">· {state.party.length}/{size} în luptă</span>
-            {hungry > 0 && <span className="roster-warn">😟 {hungry} flămânzi</span>}
-            {evolveReady > 0 && <span className="roster-gold">✨ {evolveReady} gata de evoluție</span>}
+          <h3><ThemeText>{"\r\n            🐉 Dragonii tăi "}</ThemeText><span className="muted">· <ThemeText>{state.party.length}</ThemeText>/<ThemeText>{size}</ThemeText> în luptă</span>
+            {hungry > 0 && <span className="roster-warn"><ThemeText>{"😟 "}</ThemeText><ThemeText>{hungry}</ThemeText> flămânzi</span>}
+            {evolveReady > 0 && <span className="roster-gold"><ThemeText>{"✨ "}</ThemeText><ThemeText>{evolveReady}</ThemeText> gata de evoluție</span>}
           </h3>
           <div className="roster-tools">
             <div className="pack-filters">
               {FILTERS.map(([id, label]) => (
                 <button key={id} className={`chip-btn${filter === id ? ' active' : ''}`} onClick={() => setFilter(id)}>
-                  {label}
+                  <ThemeText>{label}</ThemeText>
                 </button>
               ))}
             </div>
             <select className="pack-sort" value={sort} onChange={(e) => setSort(e.target.value as Sort)} aria-label="Sortează">
               <option value="level">Nivel</option>
-              <option value="stars">Gene ⭐</option>
+              <option value="stars">Gene </option>
               <option value="rarity">Raritate</option>
               <option value="bond">Atașament</option>
               <option value="hunger">Cei mai flămânzi</option>
               <option value="name">Nume</option>
             </select>
-            <button className="btn small primary" onClick={() => game.dispatch({ type: 'feedAll' })} title="Fiecare primește mâncarea lui preferată din rucsac">
-              🍖 Hrănește toată haita
-            </button>
+            <button className="btn small primary" onClick={() => game.dispatch({ type: 'feedAll' })} title="Fiecare primește mâncarea lui preferată din rucsac"><ThemeText>{"\r\n              🍖 Hrănește toată haita\r\n            "}</ThemeText></button>
           </div>
         </div>
         {shown.length === 0 && <p className="muted small">Niciun dragon aici.</p>}
@@ -161,14 +159,14 @@ export function PackScreen({ game, selected, onSelect }: { game: Game; selected:
                 title={`${d.nickname} · ${ds.name}`}
               >
                 <span className="roster-pins">
-                  {inParty && <span title="În haita de luptă">⚔️</span>}
-                  {state.workers.some((w) => w.dinoId === d.id) && <span title="La muncă">{findJob(state.workers.find((w) => w.dinoId === d.id)!.jobId).icon}</span>}
-                  {d.molt && <span>{ready ? '✨' : '🌀'}</span>}
-                  {runawayIn(d, now) !== null && <span title="Flămând!">😟</span>}
+                  {inParty && <span title="În haita de luptă"><ThemeText>{"⚔️"}</ThemeText></span>}
+                  {state.workers.some((w) => w.dinoId === d.id) && <span title="La muncă"><ThemeText>{findJob(state.workers.find((w) => w.dinoId === d.id)!.jobId).icon}</ThemeText></span>}
+                  {d.molt && <span><ThemeText>{ready ? '✨' : '🌀'}</ThemeText></span>}
+                  {runawayIn(d, now) !== null && <span title="Flămând!"><ThemeText>{"😟"}</ThemeText></span>}
                 </span>
                 <DinoSprite speciesId={d.speciesId} albino={d.variant === 'albino'} size={84} className={d.molt ? 'molting' : ''} />
-                <b>{d.nickname}</b>
-                <small>Nv. {d.level}</small>
+                <b><ThemeText>{d.nickname}</ThemeText></b>
+                <small>Nv. <ThemeText>{d.level}</ThemeText></small>
                 <span className="roster-belly" title={`Burtică ${Math.round(full)}%`}>
                   <i style={{ width: `${full}%` }} />
                 </span>
@@ -286,9 +284,9 @@ function DinoDetail({
           <button className="evo-banner" onClick={() => setEvo(null)} title="Închide">
             <small>Evoluție!</small>
             <b>
-              {SPECIES[evo.from].name} a evoluat în {SPECIES[evo.to].name}!
+              <ThemeText>{SPECIES[evo.from].name}</ThemeText> a evoluat în <ThemeText>{SPECIES[evo.to].name}</ThemeText>!
             </b>
-            <span>{SPECIES[evo.to].blurb}</span>
+            <span><ThemeText>{SPECIES[evo.to].blurb}</ThemeText></span>
             <em>apasă ca să continui</em>
           </button>
         )}
@@ -312,9 +310,7 @@ function DinoDetail({
           />
         </div>
         <header className="ps-top">
-          <button className="ps-arrow" onClick={onPrev} aria-label="Dragonul anterior">
-            ◀
-          </button>
+          <button className="ps-arrow" onClick={onPrev} aria-label="Dragonul anterior"><ThemeText>{"\r\n            ◀\r\n          "}</ThemeText></button>
           <div className="ps-title">
             {renaming ? (
               <form
@@ -329,27 +325,23 @@ function DinoDetail({
               </form>
             ) : (
               <h2>
-                {dino.nickname}
-                <button className="ps-rename" onClick={() => setRenaming(true)} aria-label="Redenumește" title="Redenumește">
-                  ✏️
-                </button>
+                <ThemeText>{dino.nickname}</ThemeText>
+                <button className="ps-rename" onClick={() => setRenaming(true)} aria-label="Redenumește" title="Redenumește"><ThemeText>{"\r\n                  ✏️\r\n                "}</ThemeText></button>
               </h2>
             )}
             <div className="ps-chips">
-              <span className="ps-level">Nv. {dino.level}</span>
+              <span className="ps-level">Nv. <ThemeText>{dino.level}</ThemeText></span>
               {s.types.map((ty) => (
                 <TypeBadge key={ty} type={ty} small />
               ))}
-              <span className="chip">{s.stage === 'pui' ? 'Pui' : s.stage === 'juvenil' ? 'Juvenil' : `Adult · ${BRANCH_INFO[s.branch!].name}`}</span>
-              {dino.nickname !== s.name && <span className="chip">{s.name}</span>}
-              {dino.variant === 'albino' && <span className="chip albino-chip">🤍 Albino</span>}
-              {dino.rarity && <span className={`rarity-tag r-${dino.rarity}`}>{RARITIES[dino.rarity].name}</span>}
+              <span className="chip"><ThemeText>{s.stage === 'pui' ? 'Pui' : s.stage === 'juvenil' ? 'Juvenil' : `Adult · ${BRANCH_INFO[s.branch!].name}`}</ThemeText></span>
+              {dino.nickname !== s.name && <span className="chip"><ThemeText>{s.name}</ThemeText></span>}
+              {dino.variant === 'albino' && <span className="chip albino-chip"><ThemeText>{"🤍 Albino"}</ThemeText></span>}
+              {dino.rarity && <span className={`rarity-tag r-${dino.rarity}`}><ThemeText>{RARITIES[dino.rarity].name}</ThemeText></span>}
             </div>
           </div>
-          <span className="ps-pos">{position}</span>
-          <button className="ps-arrow" onClick={onNext} aria-label="Dragonul următor">
-            ▶
-          </button>
+          <span className="ps-pos"><ThemeText>{position}</ThemeText></span>
+          <button className="ps-arrow" onClick={onNext} aria-label="Dragonul următor"><ThemeText>{"\r\n            ▶\r\n          "}</ThemeText></button>
         </header>
 
         <div className="ps-body">
@@ -357,40 +349,38 @@ function DinoDetail({
             <h4>Starea lui</h4>
             <div className="ps-meter">
               <div>
-                <span>⭐ Nivel {dino.level}</span>
+                <span><ThemeText>{"⭐ Nivel "}</ThemeText><ThemeText>{dino.level}</ThemeText></span>
                 <small>
-                  {dino.xp - xpFrom}/{xpTo - xpFrom} XP
+                  <ThemeText>{dino.xp - xpFrom}</ThemeText>/<ThemeText>{xpTo - xpFrom}</ThemeText> XP
                 </small>
               </div>
               <Bar value={dino.xp - xpFrom} max={xpTo - xpFrom} thin color="#5bb4f0" />
             </div>
             <div className="ps-meter">
               <div>
-                <span>💗 Atașament</span>
-                <small>{dino.bond}/100</small>
+                <span><ThemeText>{"💗 Atașament"}</ThemeText></span>
+                <small><ThemeText>{dino.bond}</ThemeText>/100</small>
               </div>
               <Bar value={dino.bond} max={100} thin color="#ff7a9a" />
             </div>
             <div className={`ps-meter${runawayIn(dino, now) !== null ? ' warn' : ''}`}>
               <div>
-                <span>🍖 Burtică</span>
-                <small>{fullness >= 100 ? 'Sătul!' : `${Math.round(fullness)}%`}</small>
+                <span><ThemeText>{"🍖 Burtică"}</ThemeText></span>
+                <small><ThemeText>{fullness >= 100 ? 'Sătul!' : `${Math.round(fullness)}%`}</ThemeText></small>
               </div>
               <Bar value={fullness} max={100} thin color="#f5b942" />
             </div>
             {runawayIn(dino, now) !== null ? (
-              <p className="ps-alert">😟 Fuge în {Math.ceil(runawayIn(dino, now)!)} h dacă nu-l hrănești!</p>
+              <p className="ps-alert"><ThemeText>{"😟 Fuge în "}</ThemeText><ThemeText>{Math.ceil(runawayIn(dino, now)!)}</ThemeText> h dacă nu-l hrănești!</p>
             ) : (
-              <small className="muted">Ultima masă: {formatAgo(hoursSinceMeal(dino, now))}</small>
+              <small className="muted">Ultima masă: <ThemeText>{formatAgo(hoursSinceMeal(dino, now))}</ThemeText></small>
             )}
           </aside>
 
           <div className="ps-dragon">
             <span className="ps-spot" />
             {fed > 0 && (
-              <span key={`h${fed}`} className="float-heart">
-                ❤️
-              </span>
+              <span key={`h${fed}`} className="float-heart"><ThemeText>{"\r\n                ❤️\r\n              "}</ThemeText></span>
             )}
           </div>
 
@@ -399,16 +389,15 @@ function DinoDetail({
             <div className="ps-stats">
               {(Object.keys(stats) as (keyof Stats)[]).map((k) => (
                 <div key={k} className={`ps-stat${k === t.up ? ' up' : k === t.down ? ' down' : ''}`}>
-                  <span>{STAT_NAMES[k]}</span>
-                  <b>{stats[k]}</b>
+                  <span><ThemeText>{STAT_NAMES[k]}</ThemeText></span>
+                  <b><ThemeText>{stats[k]}</ThemeText></b>
                 </div>
               ))}
             </div>
             <div className="ps-row">
               <span className="muted small">Gene</span> <Stars n={geneStars(dino.genes)} />
             </div>
-            <small className="muted">
-              🧠 {t.name}: {t.text}
+            <small className="muted"><ThemeText>{"\r\n              🧠 "}</ThemeText><ThemeText>{t.name}</ThemeText>: <ThemeText>{t.text}</ThemeText>
             </small>
             {/* Slotul de echipament: relicva purtată (sau un loc gol, dacă ai relicve libere). */}
             {dino.relic && RELICS[dino.relic] ? (
@@ -417,19 +406,19 @@ function DinoDetail({
                   <RelicIcon relic={dino.relic} size={40} />
                 </span>
                 <span className="ps-relic-text">
-                  <small>Relicvă · nv. {relicLevel(state, dino.relic)}</small>
-                  <b>{RELICS[dino.relic].name}</b>
+                  <small>Relicvă · nv. <ThemeText>{relicLevel(state, dino.relic)}</ThemeText></small>
+                  <b><ThemeText>{RELICS[dino.relic].name}</ThemeText></b>
                   <em>
-                    {(Object.keys(RELICS[dino.relic].bonus) as (keyof Stats)[])
+                    <ThemeText>{(Object.keys(RELICS[dino.relic].bonus) as (keyof Stats)[])
                       .map((k) => `+${Math.round(relicBonus(RELICS[dino.relic!], k, relicLevel(state, dino.relic!)) * 100)}% ${STAT_NAMES[k]}`)
-                      .join(' · ')}
+                      .join(' · ')}</ThemeText>
                   </em>
                 </span>
               </button>
             ) : (
               state.relics.length > 0 && (
                 <button className="ps-relic empty" onClick={() => setPane('relicve')}>
-                  <span className="ps-relic-art">＋</span>
+                  <span className="ps-relic-art"><ThemeText>{"＋"}</ThemeText></span>
                   <span className="ps-relic-text">
                     <small>Relicvă</small>
                     <b>Echipează una</b>
@@ -442,10 +431,10 @@ function DinoDetail({
 
         {anims.length > 1 && (
           <div className="ps-anims" role="group" aria-label="Alege animația">
-            <span className="ps-anims-label">🎬 Vezi animația</span>
+            <span className="ps-anims-label"><ThemeText>{"🎬 Vezi animația"}</ThemeText></span>
             {anims.map((a) => (
               <button key={a} className={a === anim ? 'on' : ''} onClick={() => (a === anim ? stageDragon.current?.setAnimation(a) : setAnim(a))}>
-                {ANIM_LABELS[a] ?? a}
+                <ThemeText>{ANIM_LABELS[a] ?? a}</ThemeText>
               </button>
             ))}
           </div>
@@ -456,39 +445,39 @@ function DinoDetail({
               <span><ItemArt item={bestFood} /></span>
               <b>Hrănește</b>
               <small>
-                {ITEMS[bestFood].name}
-                {ITEMS[bestFood].food!.diet === s.diet ? ' ❤️' : ''} · ×{state.inventory[bestFood]}
+                <ThemeText>{ITEMS[bestFood].name}</ThemeText>
+                <ThemeText>{ITEMS[bestFood].food!.diet === s.diet ? ' ❤️' : ''}</ThemeText> · ×<ThemeText>{state.inventory[bestFood]}</ThemeText>
               </small>
             </button>
           ) : (
             <button className="ps-btn" disabled>
-              <span>🍽️</span>
+              <span><ThemeText>{"🍽️"}</ThemeText></span>
               <b>N-ai mâncare</b>
               <small>culege sau adu din expediții</small>
             </button>
           )}
           {job ? (
             <button className="ps-btn" disabled>
-              <span>{job.icon}</span>
+              <span><ThemeText>{job.icon}</ThemeText></span>
               <b>La muncă</b>
-              <small>{job.name}</small>
+              <small><ThemeText>{job.name}</ThemeText></small>
             </button>
           ) : s.stage === 'pui' ? (
             <button className="ps-btn" disabled>
-              <span>🍼</span>
+              <span><ThemeText>{"🍼"}</ThemeText></span>
               <b>Prea mic</b>
               <small>luptă după prima evoluție</small>
             </button>
           ) : (
             <button className={`ps-btn fight${inParty ? ' on' : ''}`} onClick={onToggleParty} disabled={!!dino.molt}>
-              <span>⚔️</span>
-              <b>{inParty ? 'În haită' : 'La luptă'}</b>
-              <small>{inParty ? 'apasă ca să-l scoți' : 'pune-l în haită'}</small>
+              <span><ThemeText>{"⚔️"}</ThemeText></span>
+              <b><ThemeText>{inParty ? 'În haită' : 'La luptă'}</ThemeText></b>
+              <small><ThemeText>{inParty ? 'apasă ca să-l scoți' : 'pune-l în haită'}</ThemeText></small>
             </button>
           )}
           {evoReady ? (
             <button className="ps-btn evo ready" onClick={finishMolt}>
-              <span>✨</span>
+              <span><ThemeText>{"✨"}</ThemeText></span>
               <b>Evoluează!</b>
               <small>vezi forma nouă</small>
             </button>
@@ -502,16 +491,16 @@ function DinoDetail({
               }}
               disabled={!req}
             >
-              <span className={dino.molt ? 'ps-molt-icon' : ''}>{dino.molt ? '🌀' : '🧬'}</span>
-              <b>{dino.molt ? `Năpârlește · ${moltPct}%` : canStart ? 'Poate evolua!' : 'Evoluție'}</b>
+              <span className={dino.molt ? 'ps-molt-icon' : ''}><ThemeText>{dino.molt ? '🌀' : '🧬'}</ThemeText></span>
+              <b><ThemeText>{dino.molt ? `Năpârlește · ${moltPct}%` : canStart ? 'Poate evolua!' : 'Evoluție'}</ThemeText></b>
               <small>
-                {dino.molt
+                <ThemeText>{dino.molt
                   ? `gata în ${formatDuration(dino.molt.endsAt - now)}`
                   : req
                     ? canStart
                       ? 'începe năpârlirea'
                       : `la nivelul ${req.level}`
-                    : 'formă finală'}
+                    : 'formă finală'}</ThemeText>
               </small>
             </button>
           )}
@@ -529,7 +518,7 @@ function DinoDetail({
           ] as const
         ).map(([id, label]) => (
           <button key={id} role="tab" aria-selected={pane === id} className={`dd-tab${pane === id ? ' active' : ''}`} onClick={() => setPane(id)}>
-            {label}
+            <ThemeText>{label}</ThemeText>
             {id === 'evolutie' && evoReady && <span className="badge">!</span>}
           </button>
         ))}
@@ -541,7 +530,7 @@ function DinoDetail({
             <section className="detail-card">
               <h3>Ce îi dai</h3>
               <p className="muted small">
-                Îi place: <DietArt diet={s.diet} /> <b>{DIET_INFO[s.diet].name}</b>: dublu atașament. Hrănește-l măcar o dată la {RUNAWAY_HOURS / 24} zile, altfel fuge în
+                Îi place: <DietArt diet={s.diet} /> <b><ThemeText>{DIET_INFO[s.diet].name}</ThemeText></b>: dublu atașament. Hrănește-l măcar o dată la <ThemeText>{RUNAWAY_HOURS / 24}</ThemeText> zile, altfel fuge în
                 sălbăticie.
               </p>
               {foods.length === 0 ? (
@@ -554,8 +543,8 @@ function DinoDetail({
                     return (
                       <button key={id} className={`food-btn${loves ? ' loves' : ''}`} onClick={() => feed(id)} disabled={fullness >= 100 || !!dino.molt} title={`${ITEMS[id].name}: +${food.xp} XP`}>
                         <span className="food-icon"><ItemArt item={id} size={32} /></span>
-                        <small>×{state.inventory[id]}</small>
-                        {loves && <span className="love-tag">❤️</span>}
+                        <small>×<ThemeText>{state.inventory[id]}</ThemeText></small>
+                        {loves && <span className="love-tag"><ThemeText>{"❤️"}</ThemeText></span>}
                       </button>
                     );
                   })}
@@ -582,32 +571,32 @@ function DinoDetail({
               <h3>În luptă</h3>
               <ul className="dd-facts">
                 <li>
-                  <span>⚔️ Atac de bază</span>
-                  <b>{s.basic.name}</b>
+                  <span><ThemeText>{"⚔️ Atac de bază"}</ThemeText></span>
+                  <b><ThemeText>{s.basic.name}</ThemeText></b>
                 </li>
                 <li>
-                  <span>✨ Ultimată</span>
+                  <span><ThemeText>{"✨ Ultimată"}</ThemeText></span>
                   <b>
-                    {s.special.name} {s.special.type && <TypeBadge type={s.special.type} small />}
+                    <ThemeText>{s.special.name}</ThemeText> {s.special.type && <TypeBadge type={s.special.type} small />}
                   </b>
                 </li>
                 <li>
-                  <span>🧠 Temperament</span>
+                  <span><ThemeText>{"🧠 Temperament"}</ThemeText></span>
                   <b>
-                    {t.name} <small className="muted">({t.text})</small>
+                    <ThemeText>{t.name}</ThemeText> <small className="muted">(<ThemeText>{t.text}</ThemeText>)</small>
                   </b>
                 </li>
                 <li>
-                  <span>💞 Generația</span>
+                  <span><ThemeText>{"💞 Generația"}</ThemeText></span>
                   <b>
-                    {dino.lineage?.generation ?? 1} <small className="muted">· împerecheri {dino.breeds ?? 0}/{BREED_MAX}</small>
+                    <ThemeText>{dino.lineage?.generation ?? 1}</ThemeText> <small className="muted">· împerecheri <ThemeText>{dino.breeds ?? 0}</ThemeText>/<ThemeText>{BREED_MAX}</ThemeText></small>
                   </b>
                 </li>
                 {dino.lineage && (
                   <li>
-                    <span>👪 Părinți</span>
+                    <span><ThemeText>{"👪 Părinți"}</ThemeText></span>
                     <b>
-                      {dino.lineage.parents[0]} × {dino.lineage.parents[1]}
+                      <ThemeText>{dino.lineage.parents[0]}</ThemeText> × <ThemeText>{dino.lineage.parents[1]}</ThemeText>
                     </b>
                   </li>
                 )}
@@ -624,7 +613,7 @@ function DinoDetail({
         {releasing ? (
           <>
             <span className="small">
-              Sigur îl eliberezi pe <b>{dino.nickname}</b>? Primești <b>+{releaseReward(dino)} ✨</b>, dar nu se mai întoarce.
+              Sigur îl eliberezi pe <b><ThemeText>{dino.nickname}</ThemeText></b>? Primești <b>+<ThemeText>{releaseReward(dino)}</ThemeText><ThemeText>{" ✨"}</ThemeText></b>, dar nu se mai întoarce.
             </span>
             <button className="btn small danger" onClick={() => game.dispatch({ type: 'release', dinoId: dino.id }) && setReleasing(false)}>
               Da, eliberează-l
@@ -634,9 +623,7 @@ function DinoDetail({
             </button>
           </>
         ) : (
-          <button className="btn tiny ghost" onClick={() => setReleasing(true)} title="Îl lași liber în junglă, în schimbul unor scântei">
-            🌿 Eliberează (+{releaseReward(dino)} ✨)
-          </button>
+          <button className="btn tiny ghost" onClick={() => setReleasing(true)} title="Îl lași liber în junglă, în schimbul unor scântei"><ThemeText>{"\r\n            🌿 Eliberează (+"}</ThemeText><ThemeText>{releaseReward(dino)}</ThemeText><ThemeText>{" ✨)\r\n          "}</ThemeText></button>
         )}
       </div>
       </Panel>
@@ -651,13 +638,13 @@ function StatsTable({ stats, genes, up, down }: { stats: Stats; genes: Stats; up
       {(Object.keys(stats) as (keyof Stats)[]).map((k) => (
         <div key={k} className="stat-row">
           <span className={k === up ? 'stat-up' : k === down ? 'stat-down' : ''}>
-            {STAT_NAMES[k]}
-            {k === up ? ' ▲' : k === down ? ' ▼' : ''}
+            <ThemeText>{STAT_NAMES[k]}</ThemeText>
+            <ThemeText>{k === up ? ' ▲' : k === down ? ' ▼' : ''}</ThemeText>
           </span>
           <Bar value={stats[k]} max={max} thin color={k === 'hp' ? '#6cc36a' : k === 'atk' ? '#ef7b4f' : k === 'def' ? '#7d9fd6' : '#f2c84b'} />
-          <b>{stats[k]}</b>
+          <b><ThemeText>{stats[k]}</ThemeText></b>
           <small className="gene" title="Genă (0–15)">
-            {genes[k] >= 13 ? '★' : genes[k] >= 8 ? '☆' : '·'}
+            <ThemeText>{genes[k] >= 13 ? '★' : genes[k] >= 8 ? '☆' : '·'}</ThemeText>
           </small>
         </div>
       ))}
@@ -673,7 +660,7 @@ function DietMeter({ dino }: { dino: Dino }) {
   const target = s.stage === 'juvenil' ? adultTarget(dino) : null;
   return (
     <div className="diet-meter">
-      <small className="muted">Ultimele {dino.diets.length}/20 mese</small>
+      <small className="muted">Ultimele <ThemeText>{dino.diets.length}</ThemeText>/20 mese</small>
       <div className="diet-bar">
         {(Object.keys(counts) as Diet[]).map((d) =>
           counts[d] ? (
@@ -690,7 +677,7 @@ function DietMeter({ dino }: { dino: Dino }) {
             <div key={b} className={`branch${target?.speciesId === s.branches![b] ? ' active' : ''}`}>
               <DinoSprite speciesId={s.branches![b]!} size={56} silhouette={target?.speciesId !== s.branches![b]} />
               <small>
-                <DietArt diet={BRANCH_INFO[b].diet} /> {BRANCH_INFO[b].name}
+                <DietArt diet={BRANCH_INFO[b].diet} /> <ThemeText>{BRANCH_INFO[b].name}</ThemeText>
               </small>
             </div>
           ))}
@@ -705,20 +692,18 @@ function EvolutionBox({ game, dino, onFinish }: { game: Game; dino: Dino; onFini
   const state = game.state!;
   const now = game.now();
   const req = evolutionRequirement(dino);
-  if (!req) return <p className="evo-box done">🏆 Formă finală. Felicitări, Paznicule!</p>;
+  if (!req) return <p className="evo-box done"><ThemeText>{"🏆 Formă finală. Felicitări, Paznicule!"}</ThemeText></p>;
 
   if (dino.molt) {
     const left = dino.molt.endsAt - now;
     const total = dino.molt.endsAt - dino.molt.startedAt;
     return (
       <div className="evo-box molting-box">
-        <h3>🌀 Năpârlește…</h3>
+        <h3><ThemeText>{"🌀 Năpârlește…"}</ThemeText></h3>
         {left > 0 ? (
           <Bar value={total - left} max={total} color="#b48cf2" label={formatDuration(left)} />
         ) : (
-          <button className="btn primary glow" onClick={onFinish}>
-            ✨ Vezi evoluția!
-          </button>
+          <button className="btn primary glow" onClick={onFinish}><ThemeText>{"\r\n            ✨ Vezi evoluția!\r\n          "}</ThemeText></button>
         )}
       </div>
     );
@@ -734,16 +719,14 @@ function EvolutionBox({ game, dino, onFinish }: { game: Game; dino: Dino; onFini
         <DinoSprite speciesId={target} size={64} silhouette={!state.atlas[target]?.owned} />
       </div>
       <div className="evo-reqs">
-        <h3>Evoluție: {SPECIES[dino.speciesId].stage === 'pui' ? 'Juvenil' : 'Adult'}</h3>
+        <h3>Evoluție: <ThemeText>{SPECIES[dino.speciesId].stage === 'pui' ? 'Juvenil' : 'Adult'}</ThemeText></h3>
         <ul>
-          <li className={dino.level >= req.level ? 'ok' : ''}>Nivel {req.level}</li>
-          <li className={dino.bond >= req.bond ? 'ok' : ''}>Atașament {req.bond}</li>
-          {req.item && <li className={(state.inventory[req.item] ?? 0) > 0 ? 'ok' : ''}>1 {ITEMS[req.item].name}</li>}
-          <li className="muted">Năpârlire: {formatDuration(req.seconds * 1000)}</li>
+          <li className={dino.level >= req.level ? 'ok' : ''}>Nivel <ThemeText>{req.level}</ThemeText></li>
+          <li className={dino.bond >= req.bond ? 'ok' : ''}>Atașament <ThemeText>{req.bond}</ThemeText></li>
+          {req.item && <li className={(state.inventory[req.item] ?? 0) > 0 ? 'ok' : ''}>1 <ThemeText>{ITEMS[req.item].name}</ThemeText></li>}
+          <li className="muted">Năpârlire: <ThemeText>{formatDuration(req.seconds * 1000)}</ThemeText></li>
         </ul>
-        <button className="btn primary" disabled={!check.ok} onClick={() => game.dispatch({ type: 'evolve', dinoId: dino.id })}>
-          🌀 Începe năpârlirea
-        </button>
+        <button className="btn primary" disabled={!check.ok} onClick={() => game.dispatch({ type: 'evolve', dinoId: dino.id })}><ThemeText>{"\r\n          🌀 Începe năpârlirea\r\n        "}</ThemeText></button>
       </div>
     </div>
   );
@@ -760,7 +743,7 @@ function RelicBox({ game, dino }: { game: Game; dino: Dino }) {
           if (!state.relics.includes(id)) {
             return (
               <div key={id} className="relic-card locked" title="Învinge un Alfa ca s-o câștigi.">
-                <span className="relic-icon">❔</span>
+                <span className="relic-icon"><ThemeText>{"❔"}</ThemeText></span>
                 <b>Necunoscută</b>
                 <small className="muted">Învinge un Alfa</small>
               </div>
@@ -777,33 +760,30 @@ function RelicBox({ game, dino }: { game: Game; dino: Dino }) {
           return (
             <div key={id} className={`relic-card${worn ? ' worn' : ''}`} style={{ ['--relic' as string]: r.color }} title={r.blurb}>
               <span className="relic-icon"><RelicIcon relic={id} size={48} /></span>
-              <b>{r.name}</b>
+              <b><ThemeText>{r.name}</ThemeText></b>
               <span className="relic-pips" aria-label={`Nivel ${level} din ${MAX_RELIC_LEVEL}`}>
                 {Array.from({ length: MAX_RELIC_LEVEL }, (_, i) => (
                   <i key={i} className={i < level ? 'on' : ''} />
                 ))}
               </span>
-              <small>{bonus}</small>
-              <small className="muted">{worn ? 'Purtată' : owner ? `O poartă ${owner.nickname}` : 'Liberă'}</small>
+              <small><ThemeText>{bonus}</ThemeText></small>
+              <small className="muted"><ThemeText>{worn ? 'Purtată' : owner ? `O poartă ${owner.nickname}` : 'Liberă'}</ThemeText></small>
               <div className="relic-actions">
                 <button className={`btn small${worn ? '' : ' primary'}`} onClick={() => game.dispatch({ type: 'equip', dinoId: dino.id, relicId: worn ? null : id })}>
-                  {worn ? 'Scoate' : 'Echipează'}
+                  <ThemeText>{worn ? 'Scoate' : 'Echipează'}</ThemeText>
                 </button>
                 {next ? (
-                  <button className="btn small" disabled={!affordable} onClick={() => game.dispatch({ type: 'upgradeRelic', relicId: id })}>
-                    ⬆️ Întărește
-                  </button>
+                  <button className="btn small" disabled={!affordable} onClick={() => game.dispatch({ type: 'upgradeRelic', relicId: id })}><ThemeText>{"\r\n                    ⬆️ Întărește\r\n                  "}</ThemeText></button>
                 ) : (
                   <span className="chip">MAX</span>
                 )}
               </div>
               {next && (
-                <small className={`relic-cost${affordable ? '' : ' muted'}`}>
-                  ✨ {next.sparks}
+                <small className={`relic-cost${affordable ? '' : ' muted'}`}><ThemeText>{"\r\n                  ✨ "}</ThemeText><ThemeText>{next.sparks}</ThemeText>
                   {Object.entries(next.cost).map(([item, qty]) => (
                     <span key={item} className={(state.inventory[item as ItemId] ?? 0) >= qty! ? '' : 'missing'}>
-                      {' '}
-                      · <ItemArt item={item as ItemId} /> {state.inventory[item as ItemId] ?? 0}/{qty}
+                      <ThemeText>{' '}</ThemeText>
+                      · <ItemArt item={item as ItemId} /> <ThemeText>{state.inventory[item as ItemId] ?? 0}</ThemeText>/<ThemeText>{qty}</ThemeText>
                     </span>
                   ))}
                 </small>
@@ -821,8 +801,8 @@ function WildPanel({ game }: { game: Game }) {
   const now = game.now();
   if (state.wild.length === 0) return null;
   return (
-    <Panel title="În sălbăticie" icon="🌲" className="wild-panel" right={<span className="diamonds">💎 {state.diamonds}</span>}>
-      <p className="muted small">Au fugit pentru că n-au primit de mâncare {RUNAWAY_HOURS / 24} zile. Se întorc cu tot ce știau, dar flămânzi și mai puțin atașați.</p>
+    <Panel title="În sălbăticie" icon="🌲" className="wild-panel" right={<span className="diamonds"><ThemeText>{"💎 "}</ThemeText><ThemeText>{state.diamonds}</ThemeText></span>}>
+      <p className="muted small">Au fugit pentru că n-au primit de mâncare <ThemeText>{RUNAWAY_HOURS / 24}</ThemeText> zile. Se întorc cu tot ce știau, dar flămânzi și mai puțin atașați.</p>
       <div className="wild-list">
         {state.wild.map(({ dino, leftAt }) => {
           const cost = returnCost(dino);
@@ -831,13 +811,12 @@ function WildPanel({ game }: { game: Game }) {
             <div key={dino.id} className="wild-card">
               <DinoSprite speciesId={dino.speciesId} albino={dino.variant === 'albino'} size={56} silhouette />
               <div className="grow">
-                <b>{dino.nickname}</b>
+                <b><ThemeText>{dino.nickname}</ThemeText></b>
                 <small className="muted">
-                  Nv. {dino.level} · {SPECIES[dino.speciesId].name} · {days === 0 ? 'a fugit azi' : `de ${days} ${days === 1 ? 'zi' : 'zile'}`}
+                  Nv. <ThemeText>{dino.level}</ThemeText> · <ThemeText>{SPECIES[dino.speciesId].name}</ThemeText> · <ThemeText>{days === 0 ? 'a fugit azi' : `de ${days} ${days === 1 ? 'zi' : 'zile'}`}</ThemeText>
                 </small>
               </div>
-              <button className="btn small primary" disabled={state.diamonds < cost} onClick={() => game.dispatch({ type: 'bringBack', dinoId: dino.id })}>
-                Adu-l înapoi · 💎 {cost}
+              <button className="btn small primary" disabled={state.diamonds < cost} onClick={() => game.dispatch({ type: 'bringBack', dinoId: dino.id })}><ThemeText>{"\r\n                Adu-l înapoi · 💎 "}</ThemeText><ThemeText>{cost}</ThemeText>
               </button>
             </div>
           );
@@ -893,16 +872,16 @@ function TroughPanel({ game }: { game: Game }) {
   const foods = (Object.keys(ITEMS) as ItemId[]).filter((id) => ITEMS[id].food && (state.inventory[id] ?? 0) > 0);
   const stored = (Object.keys(state.trough) as ItemId[]).filter((id) => (state.trough[id] ?? 0) > 0);
   return (
-    <Panel title="Troaca" icon="🥣" className="trough-panel" right={<span className="muted small">{total}/{TROUGH_CAPACITY}</span>}>
+    <Panel title="Troaca" icon="🥣" className="trough-panel" right={<span className="muted small"><ThemeText>{total}</ThemeText>/<ThemeText>{TROUGH_CAPACITY}</ThemeText></span>}>
       <p className="muted small">
-        Cine n-a mâncat de {TROUGH_HOURS} h mănâncă singur de aici, chiar și cât lipsești. Fiecare își alege mâncarea preferată.
+        Cine n-a mâncat de <ThemeText>{TROUGH_HOURS}</ThemeText> h mănâncă singur de aici, chiar și cât lipsești. Fiecare își alege mâncarea preferată.
       </p>
       <Bar value={total} max={TROUGH_CAPACITY} color="#f5b942" thin />
       {stored.length > 0 && (
         <div className="trough-row">
           {stored.map((id) => (
             <button key={id} className="trough-item" onClick={() => game.dispatch({ type: 'troughWithdraw', itemId: id })} title="Scoate înapoi în rucsac">
-              <ItemArt item={id} /> ×{state.trough[id]}
+              <ItemArt item={id} /> ×<ThemeText>{state.trough[id]}</ThemeText>
             </button>
           ))}
         </div>
@@ -920,7 +899,7 @@ function TroughPanel({ game }: { game: Game }) {
               onClick={() => game.dispatch({ type: 'troughDeposit', itemId: id, qty: state.inventory[id] ?? 0 })}
               title={`Pune toate (${state.inventory[id]})`}
             >
-              <ItemArt item={id} /> +{state.inventory[id]}
+              <ItemArt item={id} /> +<ThemeText>{state.inventory[id]}</ThemeText>
             </button>
           ))}
         </div>

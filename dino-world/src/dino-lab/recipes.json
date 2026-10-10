@@ -1,0 +1,47 @@
+{
+  "ignisaur-pui": {
+    "id": "ignisaur-pui",
+    "name": "Ignisaur · Pui",
+    "description": "Pui de foc cu solzi de jar și primele plăci de bazalt.",
+    "base": {
+      "rig": "ignisaur-pui"
+    },
+    "motion": {
+      "zoom": 0.58
+    },
+    "animations": {
+      "ultimate": {
+        "hidden": true
+      }
+    }
+  },
+  "ignisaur-juvenil": {
+    "id": "ignisaur-juvenil",
+    "name": "Ignisaur · Juvenil",
+    "description": "Prădător suplu cu creastă de bazalt și solzi roșu-cărbune.",
+    "base": {
+      "rig": "ignisaur-juvenil"
+    },
+    "motion": {
+      "zoom": 0.79
+    },
+    "animations": {
+      "ultimate": {
+        "hidden": true
+      }
+    }
+  },
+  "ignisaur-adult": {
+    "id": "ignisaur-adult",
+    "name": "Ignisaur · Adult",
+    "description": "Prădător robust cu armură de bazalt și accente de jar.",
+    "base": {
+      "rig": "ignisaur-adult"
+    },
+    "animations": {
+      "ultimate": {
+        "hidden": true
+      }
+    }
+  }
+}

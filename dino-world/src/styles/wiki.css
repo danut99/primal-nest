@@ -1,0 +1,474 @@
+/* Wikipedia (screens/WikiScreen.tsx): aceeași fereastră ca Extinde și Atlasul (bp-modal, bara de sus din
+   adventure.css); aici doar ce e propriu ghidului. Culorile vin din variabilele lui .bp-modal (panels.css). */
+
+.modal.bp-modal.wiki-modal {
+  width: min(1180px, 100%);
+}
+.wiki-modal .modal-corner {
+  top: 1.4rem;
+}
+
+/* ---------- bara de sus: căutarea ---------- */
+
+.wiki-back {
+  flex-shrink: 0;
+}
+.wiki-search {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 26rem;
+  margin-left: auto;
+  padding: 0 0.4rem 0 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--edge);
+  background: #ffffff0d;
+  transition: border-color 0.15s;
+}
+.wiki-search:focus-within {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px #f2c14e33;
+}
+.wiki-search input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.6rem 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+}
+.wiki-search input::placeholder {
+  color: var(--ink-2);
+}
+/* fără ✕-ul nativ al câmpului de căutare: avem butonul nostru */
+.wiki-search input::-webkit-search-cancel-button {
+  display: none;
+}
+.wiki-search button {
+  display: grid;
+  place-items: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  border: 0;
+  border-radius: 50%;
+  background: #ffffff14;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+/* ---------- corpul: categoriile în stânga, conținutul în dreapta (fiecare derulează separat) ---------- */
+
+.wiki-layout {
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 1fr);
+  flex: 1;
+  min-height: 0;
+}
+.wiki-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1rem 0.7rem;
+  overflow-y: auto;
+  border-right: 1px solid var(--edge);
+  background: #0d1612;
+}
+.wiki-nav button {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  background: transparent;
+  color: var(--ink-2);
+  font: inherit;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+.wiki-nav button:hover {
+  background: #ffffff0d;
+  color: var(--ink);
+}
+.wiki-nav button.on {
+  border-color: #f2c14e66;
+  background: #f2c14e1f;
+  color: #ffe08a;
+}
+.wiki-nav-name {
+  flex: 1;
+  min-width: 0;
+}
+.wiki-count {
+  padding: 0.05rem 0.45rem;
+  border-radius: 999px;
+  background: #ffffff12;
+  font-size: 0.75rem;
+}
+.wiki-content {
+  min-width: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  padding: 1.2rem 1.4rem 1.6rem;
+}
+.wiki-content .bp-main-title {
+  margin: 1.4rem 0 0.7rem;
+}
+
+/* ---------- prima pagină ---------- */
+
+.wiki-welcome {
+  padding: 1.6rem 1.8rem;
+  border-radius: 20px;
+  border: 1px solid #f2c14e40;
+  background-color: var(--card);
+  background-size: cover;
+  background-position: center;
+  /* textul rămâne lizibil peste imagine */
+  box-shadow: inset 0 0 0 100vmax #111b16c4;
+}
+.wiki-welcome small,
+.wiki-article-head small,
+.wiki-text small {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.wiki-welcome h2 {
+  margin: 0.35rem 0;
+  font-size: 1.6rem;
+  color: #fff3d0;
+  text-shadow: 0 2px 0 #0008;
+}
+.wiki-welcome p {
+  max-width: 32rem;
+  margin: 0;
+  color: var(--ink-2);
+  line-height: 1.6;
+}
+
+/* cardurile: articole, categorii, întrebări (același aspect ca în Extinde) */
+.wiki-cards,
+.wiki-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  gap: 0.7rem;
+}
+.wiki-card,
+.wiki-category,
+.wiki-questions button {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  min-width: 0;
+  padding: 0.9rem 1rem;
+  border-radius: 18px;
+  border: 1px solid var(--edge);
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    transform 0.15s,
+    background 0.15s;
+}
+.wiki-card:hover,
+.wiki-category:hover,
+.wiki-questions button:hover {
+  border-color: #f2c14e88;
+  background: var(--card-2);
+  transform: translateY(-2px);
+}
+.wiki-card {
+  align-items: flex-start;
+}
+.wiki-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 14px;
+  background: #ffffff0d;
+  border: 1px solid var(--edge);
+  font-size: 1.4rem;
+}
+.wiki-text {
+  display: grid;
+  gap: 0.2rem;
+  flex: 1;
+  min-width: 0;
+}
+.wiki-text strong {
+  color: #fff3d0;
+}
+.wiki-category .wiki-text small {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink-2);
+}
+.wiki-summary {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.wiki-arrow {
+  margin-left: auto;
+  color: var(--gold);
+  font-weight: 800;
+}
+.wiki-questions {
+  display: grid;
+  gap: 0.45rem;
+}
+.wiki-questions button {
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+}
+
+/* ---------- rezultate ---------- */
+
+.wiki-results-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.7rem;
+}
+.wiki-results-head .bp-main-title {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.wiki-empty {
+  display: grid;
+  justify-items: center;
+  gap: 0.5rem;
+  padding: 3rem 1rem;
+  text-align: center;
+  color: var(--ink-2);
+}
+.wiki-empty > span {
+  font-size: 2.6rem;
+}
+.wiki-empty strong {
+  color: #fff3d0;
+  font-size: 1.1rem;
+}
+
+/* ---------- articolul ---------- */
+
+.wiki-article {
+  max-width: 50rem;
+}
+.wiki-article-head {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.2rem 1.4rem;
+  border-radius: 20px;
+  border: 1px solid #f2c14e40;
+  background: radial-gradient(circle at 12% 50%, #5fb98a2e, transparent 45%), var(--card);
+}
+.wiki-article-head h2 {
+  margin: 0.3rem 0;
+  font-size: 1.6rem;
+  color: #fff3d0;
+  outline: none;
+}
+.wiki-article-head p {
+  margin: 0;
+  color: var(--ink-2);
+  line-height: 1.6;
+}
+.wiki-article-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 18px;
+  background: #ffffff0d;
+  border: 1px solid var(--edge);
+  font-size: 2.4rem;
+}
+.wiki-illustration {
+  flex-shrink: 0;
+  width: 7rem;
+  height: 6rem;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 10px #0008);
+}
+.wiki-section {
+  margin: 1.4rem 0;
+}
+.wiki-section h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+  color: #ffe08a;
+}
+.wiki-section p,
+.wiki-section li {
+  margin: 0.45rem 0;
+  line-height: 1.75;
+  color: var(--ink);
+}
+.wiki-section ol {
+  padding-left: 1.4rem;
+}
+.wiki-section li::marker {
+  color: var(--gold);
+  font-weight: 800;
+}
+.wiki-table {
+  max-width: 100%;
+  overflow-x: auto;
+  border-radius: 14px;
+  border: 1px solid var(--edge);
+}
+.wiki-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  text-align: left;
+}
+.wiki-table th,
+.wiki-table td {
+  min-width: 5rem;
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--edge);
+}
+.wiki-table thead {
+  background: #f2c14e1a;
+  color: #ffe08a;
+}
+.wiki-table tbody th {
+  font-weight: 700;
+  color: #fff3d0;
+}
+.wiki-table tbody tr:nth-child(even) {
+  background: #ffffff06;
+}
+.wiki-table tbody tr:last-child > * {
+  border-bottom: 0;
+}
+.wiki-related {
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--edge);
+}
+.wiki-related > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+.wiki-related .bp-chip {
+  cursor: pointer;
+  border: 1px solid var(--edge);
+  background: #ffffff0d;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 700;
+}
+.wiki-related .bp-chip:hover {
+  border-color: #f2c14e88;
+}
+
+.wiki-modal button:focus-visible,
+.wiki-table:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ---------- telefon: categoriile devin un rând care derulează orizontal ---------- */
+
+@media (max-width: 760px) {
+  .wiki-modal .modal-corner {
+    top: 0.7rem;
+  }
+  .wiki-modal .bp-bar {
+    flex-wrap: wrap;
+  }
+  .wiki-search {
+    flex-basis: 100%;
+    max-width: none;
+    margin-left: 0;
+  }
+  .wiki-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .wiki-nav {
+    flex-direction: row;
+    flex-shrink: 0;
+    overflow-x: auto;
+    padding: 0.5rem;
+    border-right: 0;
+    border-bottom: 1px solid var(--edge);
+  }
+  .wiki-nav button {
+    white-space: nowrap;
+  }
+  .wiki-count {
+    display: none;
+  }
+  .wiki-content {
+    padding: 1rem;
+  }
+  .wiki-cards,
+  .wiki-categories {
+    grid-template-columns: 1fr;
+  }
+  .wiki-article-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ---------- imaginile articolelor (ArticleArt): dinozaur, clădire, insulă sau iconiță ---------- */
+
+.wiki-art {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 14px;
+  background: radial-gradient(circle at 50% 60%, #5fb98a33, transparent 70%), #ffffff0d;
+  border: 1px solid var(--edge);
+}
+.wiki-art img,
+.wiki-art .dino-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.wiki-art.picture img {
+  filter: drop-shadow(0 4px 6px #0008);
+}
+.wiki-card-art {
+  width: 4.2rem;
+  height: 3.6rem;
+  font-size: 1.6rem;
+}
+.wiki-article-art {
+  width: 9rem;
+  height: 7rem;
+  font-size: 3rem;
+}

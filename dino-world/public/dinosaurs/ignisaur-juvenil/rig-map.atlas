@@ -1,0 +1,12 @@
+rig-map.webp
+size: 1024,390
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+body
+  rotate: false
+  xy: 2,2
+  size: 735,386
+  orig: 735,386
+  offset: 0,0
+  index: -1

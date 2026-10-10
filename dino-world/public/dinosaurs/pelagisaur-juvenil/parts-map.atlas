@@ -1,0 +1,12 @@
+parts-map.webp
+size: 870,430
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+art
+  rotate: false
+  xy: 0, 0
+  size: 870, 430
+  orig: 870, 430
+  offset: 0, 0
+  index: -1

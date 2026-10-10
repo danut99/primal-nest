@@ -1,0 +1,229 @@
+/* Setările (components/Settings.tsx): aceeași fereastră ca Extinde și Atlasul (bp-modal, bara de sus din
+   adventure.css); aici doar cardurile și controalele proprii. Culorile vin din variabilele lui .bp-modal. */
+
+.modal.bp-modal.settings-modal {
+  width: min(860px, 100%);
+  height: min(720px, calc(100dvh - 2rem));
+}
+.settings-modal .modal-corner {
+  top: 1.4rem;
+}
+
+/* două coloane de carduri; cele `wide` pe tot rândul */
+.settings {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: start;
+  gap: 0.8rem;
+  padding: 1.1rem 1.3rem 1.4rem;
+}
+.settings-card {
+  display: grid;
+  align-content: start;
+  gap: 0.7rem;
+  min-width: 0;
+  padding: 1rem 1.1rem;
+  border-radius: 18px;
+  border: 1px solid var(--edge);
+  background: var(--card);
+}
+.settings-card.wide {
+  grid-column: 1 / -1;
+}
+.settings-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0;
+  font-size: 1.05rem;
+  color: #fff3d0;
+}
+.settings-icon {
+  display: grid;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 12px;
+  background: #ffffff0d;
+  border: 1px solid var(--edge);
+  font-size: 1.1rem;
+}
+.settings-note {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.settings-note strong {
+  color: var(--ink);
+}
+.settings-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+.settings-row.spread {
+  justify-content: space-between;
+}
+.settings-row.spread .settings-note {
+  flex: 1;
+  min-width: 12rem;
+}
+.settings .bp-ghost.on {
+  border-color: #f2c14e88;
+  background: #f2c14e1f;
+  color: #ffe08a;
+}
+
+/* salvarea: „Fă o copie” și „Încarcă o copie” una lângă alta */
+.settings-split {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+.settings-group {
+  display: grid;
+  gap: 0.45rem;
+  padding: 0.75rem 0.85rem;
+  border-radius: 14px;
+  background: #ffffff08;
+  border: 1px solid var(--edge);
+}
+.settings-group > small {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.settings-paste {
+  display: grid;
+  justify-items: start;
+  gap: 0.45rem;
+}
+.settings-paste textarea,
+.settings .report textarea {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border-radius: 12px;
+  border: 1px solid var(--edge);
+  background: #0d1612;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.85rem;
+  resize: vertical;
+}
+.settings-paste textarea {
+  font-family: ui-monospace, monospace;
+  font-size: 0.8rem;
+}
+.settings-paste textarea:focus,
+.settings .report textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px #f2c14e33;
+}
+.settings-confirm {
+  display: grid;
+  gap: 0.5rem;
+  padding: 0.8rem 0.9rem;
+  border-radius: 14px;
+  background: #f2c14e14;
+  box-shadow: inset 3px 0 0 var(--gold);
+}
+.settings-confirm strong {
+  color: #fff3d0;
+}
+.settings-confirm small {
+  color: var(--ink-2);
+}
+.settings-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+/* comutatorul (sunet) */
+.settings-switch {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 0.85rem;
+  border-radius: 14px;
+  background: #ffffff08;
+  border: 1px solid var(--edge);
+  font-weight: 700;
+  cursor: pointer;
+}
+.settings-switch input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.settings-switch-track {
+  position: relative;
+  flex-shrink: 0;
+  width: 2.8rem;
+  height: 1.55rem;
+  border-radius: 999px;
+  background: #ffffff1f;
+  transition: background 0.15s;
+}
+.settings-switch-track::after {
+  content: '';
+  position: absolute;
+  top: 0.2rem;
+  left: 0.2rem;
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 50%;
+  background: #fff3d0;
+  box-shadow: 0 2px 4px #0006;
+  transition: transform 0.15s;
+}
+.settings-switch input:checked + .settings-switch-track {
+  background: var(--gold);
+}
+.settings-switch input:checked + .settings-switch-track::after {
+  transform: translateX(1.25rem);
+}
+.settings-switch input:focus-visible + .settings-switch-track {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* raportul (app/ErrorBoundary.tsx, ReportForm) în card */
+.settings .report {
+  display: grid;
+  justify-items: start;
+  gap: 0.5rem;
+}
+.settings .report-result {
+  color: #8be36b;
+}
+
+/* jocul nou: zona periculoasă */
+.settings-card.danger {
+  border-color: #e0645a55;
+  background: linear-gradient(#b0453f14, transparent 70%), var(--card);
+}
+.settings-confirm.danger {
+  background: #b0453f22;
+  box-shadow: inset 3px 0 0 #e0645a;
+}
+
+@media (max-width: 640px) {
+  .settings-modal .modal-corner {
+    top: 0.7rem;
+  }
+  .settings {
+    grid-template-columns: 1fr;
+    padding: 0.9rem;
+  }
+  .settings-split {
+    grid-template-columns: 1fr;
+  }
+}

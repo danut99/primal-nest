@@ -1,0 +1,360 @@
+/* Dino World: piesele comune (butoane, panouri de pergament, liste). Lumea și HUD-ul: world.css. */
+
+:root {
+  --bg: #0f1f17;
+  --panel: #fdf3dc;
+  --panel-2: #f3e3bd;
+  --line: #c9a86a;
+  --text: #3e2a14;
+  --muted: #8a6f4d;
+  --accent: #f2b544;
+  --accent-ink: #2a1a00;
+  --gem: #4fd1c5;
+  --danger: #ff6b5a;
+  --grass-1: #4f8a3b;
+  --grass-2: #5b9a45;
+  --water: #1d5f7a;
+  --radius: 14px;
+  font-family: 'Barlow', system-ui, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  background: radial-gradient(ellipse at 50% 40%, #1d5f7a 0%, #123f52 55%, #0b2633 100%);
+  overflow: hidden;
+}
+
+#root {
+  overflow: auto;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Cinzel', serif;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+h3 {
+  font-size: 0.95rem;
+  color: var(--accent);
+  margin: 1rem 0 0.5rem;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* ---------- butoane ---------- */
+
+.button {
+  font: inherit;
+  font-weight: 600;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.55rem 1.1rem;
+  background: linear-gradient(#ffcd5e, var(--accent));
+  color: var(--accent-ink);
+  cursor: pointer;
+  box-shadow: 0 3px 0 #a8761d;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+.button:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #a8761d;
+}
+.button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.button.small {
+  padding: 0.35rem 0.75rem;
+  font-size: 0.85rem;
+}
+.button.ghost {
+  background: var(--panel-2);
+  color: var(--text);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.button.gem {
+  background: linear-gradient(#7ff0e4, var(--gem));
+  color: #052a27;
+  box-shadow: 0 3px 0 #23877d;
+}
+
+.icon-button {
+  font: inherit;
+  border: 0;
+  background: var(--panel-2);
+  color: var(--text);
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.select {
+  font: inherit;
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.35rem 0.5rem;
+}
+.select.small {
+  font-size: 0.85rem;
+}
+
+/* ---------- dinozauri ---------- */
+
+.dino-view {
+  position: relative;
+  overflow: hidden;
+}
+.dino-view .dino-spine-host,
+.dino-view .dino-spine-host > div,
+.dino-view canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+/* animația apare cu fade după primul cadru desenat */
+.dino-view .dino-spine-host {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.dino-view.ready .dino-spine-host {
+  opacity: 1;
+}
+.dino-error {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 0.8rem;
+  color: var(--danger);
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.dino-thumb {
+  display: inline-grid;
+  place-items: center;
+  width: 4rem;
+  height: 4rem;
+}
+.dino-thumb img,
+.dino-thumb-cropped {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 2px rgba(0, 0, 0, 0.35));
+}
+.dino-thumb.small {
+  width: 2.6rem;
+  height: 2.6rem;
+}
+
+.dino-thumb.silhouette img {
+  filter: brightness(0) opacity(0.55);
+}
+.dino-thumb-wait {
+  width: 40%;
+  height: 40%;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.25);
+  border-top-color: var(--accent);
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- panouri ---------- */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  z-index: 20;
+}
+.modal {
+  width: min(520px, 100%);
+  max-height: calc(100vh - 2rem);
+  display: flex;
+  flex-direction: column;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+.modal.wide {
+  width: min(900px, 100%);
+}
+.modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.modal-head h2 {
+  font-size: 1.1rem;
+}
+.modal-body {
+  padding: 1rem;
+  overflow: auto;
+}
+
+.progress {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+.progress > div {
+  height: 100%;
+  background: linear-gradient(90deg, #8be36b, #f2e35e);
+  transition: width 0.5s linear;
+}
+
+.element-badge {
+  display: inline-flex;
+  gap: 0.2rem;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.05rem 0.5rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--el) 30%, transparent);
+  border: 1px solid color-mix(in srgb, var(--el) 70%, transparent);
+}
+.rarity-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* panourile clădirilor: panels.css */
+
+/* magazin */
+
+/* atlas */
+
+/* notificări, dev */
+
+.toasts {
+  position: fixed;
+  bottom: 5.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-items: center;
+  z-index: 40;
+  pointer-events: none;
+}
+.toast {
+  background: var(--panel);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 0.4rem 1rem;
+  font-weight: 600;
+  animation: toast-in 0.2s ease-out;
+}
+.toast.error {
+  border-color: var(--danger);
+  color: #ffd2cc;
+}
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+.devtools {
+  position: fixed;
+  left: 0.75rem;
+  bottom: 0.75rem;
+  z-index: 30;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+.devtools-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.5rem;
+  max-width: 16rem;
+}
+
+/* ---------- ouăle pe habitat (components/Eggs.tsx) ---------- */
+.habitat-eggs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.6rem;
+}
+.habitat-egg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.7rem 0.5rem;
+  border-radius: 14px;
+  border: 2px solid color-mix(in srgb, var(--el) 55%, transparent);
+  background: radial-gradient(circle at 50% 25%, color-mix(in srgb, var(--el) 22%, transparent), var(--panel-2) 70%);
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  text-align: center;
+}
+.habitat-egg:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+.habitat-egg:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.habitat-egg .egg-icon {
+  animation: wobble 2.4s ease-in-out infinite;
+}
+.habitat-egg-odds {
+  display: flex;
+  gap: 0.3rem;
+  justify-content: center;
+}
+.habitat-egg-odds > span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.75rem;
+}

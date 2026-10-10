@@ -1,0 +1,12 @@
+parts.webp
+size: 1760,863
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+art
+  rotate: false
+  xy: 0, 0
+  size: 1760, 863
+  orig: 1760, 863
+  offset: 0, 0
+  index: -1

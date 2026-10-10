@@ -1,0 +1,54 @@
+parts-map.webp
+size: 1487,504
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+art
+  rotate: false
+  xy: 0, 0
+  size: 764, 504
+  orig: 764, 504
+  offset: 0, 0
+  index: -1
+nearLegUpper
+  rotate: false
+  xy: 766, 0
+  size: 146, 176
+  orig: 146, 176
+  offset: 0, 0
+  index: -1
+nearLegLower
+  rotate: false
+  xy: 914, 0
+  size: 161, 86
+  orig: 161, 86
+  offset: 0, 0
+  index: -1
+farLegUpper
+  rotate: false
+  xy: 1077, 0
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+nearLegFoot
+  rotate: false
+  xy: 1159, 0
+  size: 116, 74
+  orig: 116, 74
+  offset: 0, 0
+  index: -1
+farLegFoot
+  rotate: false
+  xy: 1277, 0
+  size: 104, 69
+  orig: 104, 69
+  offset: 0, 0
+  index: -1
+farLegLower
+  rotate: false
+  xy: 1383, 0
+  size: 104, 68
+  orig: 104, 68
+  offset: 0, 0
+  index: -1

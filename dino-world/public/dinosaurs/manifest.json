@@ -1,0 +1,1372 @@
+{
+  "rigs": [
+    {
+      "id": "ignisaur-pui",
+      "name": "Ignisaur · pui",
+      "body": "biped",
+      "skeleton": "ignisaur-pui/skeleton.json",
+      "atlas": "ignisaur-pui/rig.atlas",
+      "texture": "ignisaur-pui/rig.png",
+      "bounds": {
+        "x": -292.49,
+        "y": -31.98,
+        "width": 585.47,
+        "height": 485.43
+      },
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 3.2,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 1.25,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Mușcătură",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "ultimate",
+          "label": "Răget de jar",
+          "duration": 3.2,
+          "loop": false
+        }
+      ]
+    },
+    {
+      "id": "ignisaur-juvenil",
+      "name": "Ignisaur · juvenil",
+      "body": "biped",
+      "skeleton": "ignisaur-juvenil/skeleton.json",
+      "atlas": "ignisaur-juvenil/rig.atlas",
+      "texture": "ignisaur-juvenil/rig.png",
+      "bounds": {
+        "x": -386.96,
+        "y": -31.46,
+        "width": 774.4,
+        "height": 434.21
+      },
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 3.2,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 1.45,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Mușcătură",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "ultimate",
+          "label": "Răget de jar",
+          "duration": 3.2,
+          "loop": false
+        }
+      ]
+    },
+    {
+      "id": "ignisaur-adult",
+      "name": "Ignisaur · adult",
+      "body": "biped",
+      "skeleton": "ignisaur-adult/skeleton.json",
+      "atlas": "ignisaur-adult/rig.atlas",
+      "texture": "ignisaur-adult/rig.png",
+      "bounds": {
+        "x": -481.82,
+        "y": -31.82,
+        "width": 964.84,
+        "height": 559.93
+      },
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 3.2,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 1.65,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Mușcătură",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "ultimate",
+          "label": "Răget de jar",
+          "duration": 3.2,
+          "loop": false
+        }
+      ]
+    },
+    {
+      "id": "pyroceratops-pui",
+      "name": "Pyroceratops · Pui",
+      "body": "quadruped",
+      "skeleton": "pyroceratops-pui/skeleton.json",
+      "atlas": "pyroceratops-pui/parts.atlas",
+      "texture": "pyroceratops-pui/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 3.4,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 2,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 2.8,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -850,
+        "y": -66,
+        "width": 1680,
+        "height": 1130
+      }
+    },
+    {
+      "id": "pyroceratops-juvenil",
+      "name": "Pyroceratops · Juvenil",
+      "body": "quadruped",
+      "skeleton": "pyroceratops-juvenil/skeleton.json",
+      "atlas": "pyroceratops-juvenil/parts.atlas",
+      "texture": "pyroceratops-juvenil/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 3.8,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 2.35,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 2.8,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -850,
+        "y": -66,
+        "width": 1680,
+        "height": 1130
+      }
+    },
+    {
+      "id": "pyroceratops-adult",
+      "name": "Pyroceratops · Adult",
+      "body": "quadruped",
+      "skeleton": "pyroceratops-adult/skeleton.json",
+      "atlas": "pyroceratops-adult/parts.atlas",
+      "texture": "pyroceratops-adult/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 4,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 2.65,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 2.8,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -850,
+        "y": -90,
+        "width": 1680,
+        "height": 1130
+      }
+    },
+    {
+      "id": "cineraptor-pui",
+      "name": "Cineraptor · Pui",
+      "body": "biped",
+      "skeleton": "cineraptor-pui/skeleton.json",
+      "atlas": "cineraptor-pui/parts.atlas",
+      "texture": "cineraptor-pui/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 3.2,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 1.8,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 3,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -990,
+        "y": -16,
+        "width": 1650,
+        "height": 1110
+      }
+    },
+    {
+      "id": "cineraptor-juvenil",
+      "name": "Cineraptor · Juvenil",
+      "body": "biped",
+      "skeleton": "cineraptor-juvenil/skeleton.json",
+      "atlas": "cineraptor-juvenil/parts.atlas",
+      "texture": "cineraptor-juvenil/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 3.2,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 1.8,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 3,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -990,
+        "y": -32,
+        "width": 1650,
+        "height": 1110
+      }
+    },
+    {
+      "id": "cineraptor-adult",
+      "name": "Cineraptor · Adult",
+      "body": "biped",
+      "skeleton": "cineraptor-adult/skeleton.json",
+      "atlas": "cineraptor-adult/parts.atlas",
+      "texture": "cineraptor-adult/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 3.2,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 1.8,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 3,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -990,
+        "y": -16,
+        "width": 1650,
+        "height": 1110
+      }
+    },
+    {
+      "id": "pelagisaur-pui",
+      "name": "Pelagisaur · Pui",
+      "body": "swimmer",
+      "skeleton": "pelagisaur-pui/skeleton.json",
+      "atlas": "pelagisaur-pui/parts.atlas",
+      "texture": "pelagisaur-pui/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 4,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 2.4,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 3,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -1010,
+        "y": -59,
+        "width": 1970,
+        "height": 1060
+      }
+    },
+    {
+      "id": "pelagisaur-juvenil",
+      "name": "Pelagisaur · Juvenil",
+      "body": "swimmer",
+      "skeleton": "pelagisaur-juvenil/skeleton.json",
+      "atlas": "pelagisaur-juvenil/parts.atlas",
+      "texture": "pelagisaur-juvenil/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 4,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 2.4,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 3,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -1010,
+        "y": -43,
+        "width": 1970,
+        "height": 1060
+      }
+    },
+    {
+      "id": "pelagisaur-adult",
+      "name": "Pelagisaur · Adult",
+      "body": "swimmer",
+      "skeleton": "pelagisaur-adult/skeleton.json",
+      "atlas": "pelagisaur-adult/parts.atlas",
+      "texture": "pelagisaur-adult/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 4,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 2.4,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 3,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -1010,
+        "y": -43,
+        "width": 1970,
+        "height": 1060
+      }
+    },
+    {
+      "id": "fluviovenator-pui",
+      "name": "Fluviovenator · Pui",
+      "body": "biped",
+      "skeleton": "fluviovenator-pui/skeleton.json",
+      "atlas": "fluviovenator-pui/parts.atlas",
+      "texture": "fluviovenator-pui/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 4,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 2.4,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 3,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -870,
+        "y": -16,
+        "width": 1650,
+        "height": 1130
+      }
+    },
+    {
+      "id": "fluviovenator-juvenil",
+      "name": "Fluviovenator · Juvenil",
+      "body": "biped",
+      "skeleton": "fluviovenator-juvenil/skeleton.json",
+      "atlas": "fluviovenator-juvenil/parts.atlas",
+      "texture": "fluviovenator-juvenil/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 4,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 2.4,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 3,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -870,
+        "y": -48,
+        "width": 1650,
+        "height": 1130
+      }
+    },
+    {
+      "id": "fluviovenator-adult",
+      "name": "Fluviovenator · Adult",
+      "body": "biped",
+      "skeleton": "fluviovenator-adult/skeleton.json",
+      "atlas": "fluviovenator-adult/parts.atlas",
+      "texture": "fluviovenator-adult/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 4,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 2.4,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 3,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -870,
+        "y": -16,
+        "width": 1650,
+        "height": 1130
+      }
+    },
+    {
+      "id": "ferrankyl-pui",
+      "name": "Ferrankyl · Pui",
+      "body": "quadruped",
+      "skeleton": "ferrankyl-pui/skeleton.json",
+      "atlas": "ferrankyl-pui/parts.atlas",
+      "texture": "ferrankyl-pui/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 4.2,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 2.8,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 2.8,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -1080,
+        "y": 84,
+        "width": 2000,
+        "height": 1030
+      }
+    },
+    {
+      "id": "ferrankyl-juvenil",
+      "name": "Ferrankyl · Juvenil",
+      "body": "quadruped",
+      "skeleton": "ferrankyl-juvenil/skeleton.json",
+      "atlas": "ferrankyl-juvenil/parts.atlas",
+      "texture": "ferrankyl-juvenil/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 4.2,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 2.8,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 2.8,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -1080,
+        "y": -83,
+        "width": 2000,
+        "height": 1030
+      }
+    },
+    {
+      "id": "ferrankyl-adult",
+      "name": "Ferrankyl · Adult",
+      "body": "quadruped",
+      "skeleton": "ferrankyl-adult/skeleton.json",
+      "atlas": "ferrankyl-adult/parts.atlas",
+      "texture": "ferrankyl-adult/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 4.2,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 2.8,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 2.8,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -1080,
+        "y": -53,
+        "width": 2000,
+        "height": 1030
+      }
+    },
+    {
+      "id": "terratitan-pui",
+      "name": "Terratitan · Pui",
+      "body": "quadruped",
+      "skeleton": "terratitan-pui/skeleton.json",
+      "atlas": "terratitan-pui/parts.atlas",
+      "texture": "terratitan-pui/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 4,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 3,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 3.2,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -940,
+        "y": -204,
+        "width": 1672,
+        "height": 1559
+      }
+    },
+    {
+      "id": "terratitan-juvenil",
+      "name": "Terratitan · Juvenil",
+      "body": "quadruped",
+      "skeleton": "terratitan-juvenil/skeleton.json",
+      "atlas": "terratitan-juvenil/parts.atlas",
+      "texture": "terratitan-juvenil/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 4,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 3,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 3.2,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -900,
+        "y": -192,
+        "width": 1672,
+        "height": 1559
+      }
+    },
+    {
+      "id": "terratitan-adult",
+      "name": "Terratitan · Adult",
+      "body": "quadruped",
+      "skeleton": "terratitan-adult/skeleton.json",
+      "atlas": "terratitan-adult/parts.atlas",
+      "texture": "terratitan-adult/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 4,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 3,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 3.2,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -750,
+        "y": -61,
+        "width": 1430,
+        "height": 1290
+      }
+    },
+    {
+      "id": "silvosteg-pui",
+      "name": "Silvosteg · Pui",
+      "body": "quadruped",
+      "skeleton": "silvosteg-pui/skeleton.json",
+      "atlas": "silvosteg-pui/parts.atlas",
+      "texture": "silvosteg-pui/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 3.8,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 2.6,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 3,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -1030,
+        "y": -180,
+        "width": 1896,
+        "height": 1384
+      }
+    },
+    {
+      "id": "silvosteg-juvenil",
+      "name": "Silvosteg · Juvenil",
+      "body": "quadruped",
+      "skeleton": "silvosteg-juvenil/skeleton.json",
+      "atlas": "silvosteg-juvenil/parts.atlas",
+      "texture": "silvosteg-juvenil/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 3.8,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 2.6,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 3,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -1030,
+        "y": -180,
+        "width": 1896,
+        "height": 1384
+      }
+    },
+    {
+      "id": "silvosteg-adult",
+      "name": "Silvosteg · Adult",
+      "body": "quadruped",
+      "skeleton": "silvosteg-adult/skeleton.json",
+      "atlas": "silvosteg-adult/parts.atlas",
+      "texture": "silvosteg-adult/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 3.8,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 2.6,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 3,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -850,
+        "y": -6,
+        "width": 1650,
+        "height": 1080
+      }
+    },
+    {
+      "id": "frondonychus-pui",
+      "name": "Frondonychus · Pui",
+      "body": "biped",
+      "skeleton": "frondonychus-pui/skeleton.json",
+      "atlas": "frondonychus-pui/parts.atlas",
+      "texture": "frondonychus-pui/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 3.2,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 1.8,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 3,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -860,
+        "y": -180,
+        "width": 1585,
+        "height": 1644
+      }
+    },
+    {
+      "id": "frondonychus-juvenil",
+      "name": "Frondonychus · Juvenil",
+      "body": "biped",
+      "skeleton": "frondonychus-juvenil/skeleton.json",
+      "atlas": "frondonychus-juvenil/parts.atlas",
+      "texture": "frondonychus-juvenil/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 3.2,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 1.8,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 3,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -860,
+        "y": -180,
+        "width": 1585,
+        "height": 1644
+      }
+    },
+    {
+      "id": "frondonychus-adult",
+      "name": "Frondonychus · Adult",
+      "body": "biped",
+      "skeleton": "frondonychus-adult/skeleton.json",
+      "atlas": "frondonychus-adult/parts.atlas",
+      "texture": "frondonychus-adult/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 3.6,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 2,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 3,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -755,
+        "y": -66,
+        "width": 1510,
+        "height": 1450
+      }
+    },
+    {
+      "id": "cryolophus-pui",
+      "name": "Cryolophus · Pui",
+      "body": "biped",
+      "skeleton": "cryolophus-pui/skeleton.json",
+      "atlas": "cryolophus-pui/parts.atlas",
+      "texture": "cryolophus-pui/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 3.8,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 2.15,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 3,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -1050,
+        "y": -198,
+        "width": 1896,
+        "height": 1384
+      }
+    },
+    {
+      "id": "cryolophus-juvenil",
+      "name": "Cryolophus · Juvenil",
+      "body": "biped",
+      "skeleton": "cryolophus-juvenil/skeleton.json",
+      "atlas": "cryolophus-juvenil/parts.atlas",
+      "texture": "cryolophus-juvenil/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 3.8,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 2.15,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 3,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -1030,
+        "y": -190,
+        "width": 1896,
+        "height": 1384
+      }
+    },
+    {
+      "id": "cryolophus-adult",
+      "name": "Cryolophus · Adult",
+      "body": "biped",
+      "skeleton": "cryolophus-adult/skeleton.json",
+      "atlas": "cryolophus-adult/parts.atlas",
+      "texture": "cryolophus-adult/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 3.8,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 2.15,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 3,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -870,
+        "y": -26,
+        "width": 1650,
+        "height": 1130
+      }
+    },
+    {
+      "id": "tundraceratops-pui",
+      "name": "Tundraceratops · Pui",
+      "body": "quadruped",
+      "skeleton": "tundraceratops-pui/skeleton.json",
+      "atlas": "tundraceratops-pui/parts.atlas",
+      "texture": "tundraceratops-pui/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 3.4,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 2.4,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 2.8,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -970,
+        "y": -198,
+        "width": 1896,
+        "height": 1384
+      }
+    },
+    {
+      "id": "tundraceratops-juvenil",
+      "name": "Tundraceratops · Juvenil",
+      "body": "quadruped",
+      "skeleton": "tundraceratops-juvenil/skeleton.json",
+      "atlas": "tundraceratops-juvenil/parts.atlas",
+      "texture": "tundraceratops-juvenil/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 3.4,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 2.4,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 2.8,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -980,
+        "y": -193,
+        "width": 1896,
+        "height": 1384
+      }
+    },
+    {
+      "id": "tundraceratops-adult",
+      "name": "Tundraceratops · Adult",
+      "body": "quadruped",
+      "skeleton": "tundraceratops-adult/skeleton.json",
+      "atlas": "tundraceratops-adult/parts.atlas",
+      "texture": "tundraceratops-adult/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 3.4,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 2.4,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 2.8,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -780,
+        "y": -46,
+        "width": 1690,
+        "height": 1130
+      }
+    },
+    {
+      "id": "tempestopteryx-pui",
+      "name": "Tempestopteryx · Pui",
+      "body": "flyer",
+      "skeleton": "tempestopteryx-pui/skeleton.json",
+      "atlas": "tempestopteryx-pui/parts.atlas",
+      "texture": "tempestopteryx-pui/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 3.2,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 1.8,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 3.2,
+          "loop": false
+        },
+        {
+          "name": "ultimate",
+          "label": "Ultimată",
+          "duration": 4.6,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -970,
+        "y": -116,
+        "width": 1810,
+        "height": 1410
+      }
+    },
+    {
+      "id": "tempestopteryx-juvenil",
+      "name": "Tempestopteryx · Juvenil",
+      "body": "flyer",
+      "skeleton": "tempestopteryx-juvenil/skeleton.json",
+      "atlas": "tempestopteryx-juvenil/parts.atlas",
+      "texture": "tempestopteryx-juvenil/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 3.2,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 1.8,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 3.2,
+          "loop": false
+        },
+        {
+          "name": "ultimate",
+          "label": "Ultimată",
+          "duration": 4.6,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -970,
+        "y": -106,
+        "width": 1810,
+        "height": 1410
+      }
+    },
+    {
+      "id": "tempestopteryx-adult",
+      "name": "Tempestopteryx · Adult",
+      "body": "flyer",
+      "skeleton": "tempestopteryx-adult/skeleton.json",
+      "atlas": "tempestopteryx-adult/parts.atlas",
+      "texture": "tempestopteryx-adult/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 3.2,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 1.8,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 3.2,
+          "loop": false
+        },
+        {
+          "name": "ultimate",
+          "label": "Ultimată",
+          "duration": 4.6,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -970,
+        "y": -106,
+        "width": 1810,
+        "height": 1410
+      }
+    },
+    {
+      "id": "fulgurodrome-pui",
+      "name": "Fulgurodrome · Pui",
+      "body": "biped",
+      "skeleton": "fulgurodrome-pui/skeleton.json",
+      "atlas": "fulgurodrome-pui/parts.atlas",
+      "texture": "fulgurodrome-pui/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 3.2,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 1.8,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 3,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -1140,
+        "y": -180,
+        "width": 1896,
+        "height": 1384
+      }
+    },
+    {
+      "id": "fulgurodrome-juvenil",
+      "name": "Fulgurodrome · Juvenil",
+      "body": "biped",
+      "skeleton": "fulgurodrome-juvenil/skeleton.json",
+      "atlas": "fulgurodrome-juvenil/parts.atlas",
+      "texture": "fulgurodrome-juvenil/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 3.2,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 1.8,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 3,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -1160,
+        "y": -196,
+        "width": 1896,
+        "height": 1384
+      }
+    },
+    {
+      "id": "fulgurodrome-adult",
+      "name": "Fulgurodrome · Adult",
+      "body": "biped",
+      "skeleton": "fulgurodrome-adult/skeleton.json",
+      "atlas": "fulgurodrome-adult/parts.atlas",
+      "texture": "fulgurodrome-adult/parts.webp",
+      "animations": [
+        {
+          "name": "idle",
+          "label": "Repaus",
+          "duration": 3.2,
+          "loop": true
+        },
+        {
+          "name": "walk",
+          "label": "Mers",
+          "duration": 1.6,
+          "loop": true
+        },
+        {
+          "name": "attack",
+          "label": "Atac",
+          "duration": 2.6,
+          "loop": false
+        },
+        {
+          "name": "ultimate",
+          "label": "Ultimată",
+          "duration": 3.8,
+          "loop": false
+        }
+      ],
+      "bounds": {
+        "x": -1110,
+        "y": -115,
+        "width": 1870,
+        "height": 1330
+      }
+    }
+  ]
+}

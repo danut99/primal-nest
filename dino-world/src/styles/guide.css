@@ -1,0 +1,12 @@
+/* Ghidul de după deblocarea lumii (components/FirstSteps.tsx, Guide): săgeata stă și peste ferestre (z 20),
+   ca să arate butoanele din panouri; sub recompense și nivel nou. */
+.tour-layer.guide {
+  z-index: 30;
+}
+.guide-step {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}

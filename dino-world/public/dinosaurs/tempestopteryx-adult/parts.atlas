@@ -1,0 +1,26 @@
+parts.webp
+size: 3574,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+farWing
+  rotate: false
+  xy: 0, 0
+  size: 1502, 1024
+  orig: 1502, 1024
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 1504, 0
+  size: 1250, 796
+  orig: 1250, 796
+  offset: 0, 0
+  index: -1
+nearWing
+  rotate: false
+  xy: 2756, 0
+  size: 818, 568
+  orig: 818, 568
+  offset: 0, 0
+  index: -1

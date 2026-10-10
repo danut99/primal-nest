@@ -1,0 +1,791 @@
+/* ---------- „Primii pași” (components/FirstSteps.tsx) ---------- */
+
+.tour-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 18;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: radial-gradient(ellipse at 50% 45%, #0d171266, #0d1712cc);
+  animation: tour-fade 0.35s ease-out;
+}
+.tour-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  width: min(380px, 100%);
+  padding: 1.2rem 1.3rem 1.3rem;
+  border-radius: 22px;
+  border: 4px solid #8a5a17;
+  background: radial-gradient(ellipse at 50% 0%, #fffaf0, transparent 60%), var(--panel);
+  box-shadow: 0 24px 60px #0009;
+  text-align: center;
+  animation: tour-pop 0.4s cubic-bezier(0.2, 1.4, 0.4, 1);
+}
+.tour-card.wide {
+  width: min(560px, 100%);
+}
+.tour-card h2 {
+  font-size: 1.35rem;
+  color: #5a3815;
+}
+.tour-hero {
+  display: grid;
+  place-items: center;
+  width: 9.5rem;
+  height: 9.5rem;
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse at 50% 85%, #0006, transparent 40%),
+    radial-gradient(circle at 50% 45%, color-mix(in srgb, var(--el) 70%, #fff3c4), #2a1a10 92%);
+  box-shadow:
+    0 0 0 6px #f2b54455,
+    0 10px 24px #0005;
+  animation: tour-glow 2s ease-in-out infinite;
+}
+.tour-pup {
+  width: 78%;
+  height: 78%;
+  animation: tour-float 3s ease-in-out infinite;
+}
+.tour-line {
+  margin: 0;
+}
+.tour-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  font-size: 1.9rem;
+}
+.tour-flow i {
+  font-style: normal;
+  font-size: 1rem;
+  color: #b8935a;
+}
+
+.tour-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+}
+.tour-dots {
+  display: flex;
+  gap: 5px;
+}
+.tour-dots i {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #e2cc9c;
+  transition: width 0.25s;
+}
+.tour-dots i.done {
+  background: #c9a86a;
+}
+.tour-dots i.on {
+  width: 22px;
+  background: var(--accent);
+}
+
+/* pașii cu săgeată: stratul nu prinde clicuri, insula și butonul de sub el rămân atingibile */
+.tour-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 18;
+  pointer-events: none;
+}
+
+.tour-pointer {
+  position: fixed;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 0.2rem;
+  transform: translate(-50%, -100%);
+}
+.tour-pointer.below {
+  flex-direction: column;
+  transform: translate(-50%, 0);
+}
+.tour-arrow {
+  font-size: 2.4rem;
+  line-height: 1;
+  color: #ffd56a;
+  text-shadow: 0 3px 8px #000a;
+  animation: tour-bounce 0.9s ease-in-out infinite;
+}
+.tour-pointer.below .tour-arrow {
+  animation-name: tour-bounce-up;
+}
+.tour-bubble {
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.7rem 1rem 0.55rem;
+  border-radius: 16px;
+  border: 3px solid #8a5a17;
+  background: var(--panel);
+  box-shadow: 0 10px 28px #0008;
+  white-space: nowrap;
+}
+.tour-bubble strong {
+  font-size: 1rem;
+}
+.tour-skip {
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-decoration: underline;
+  cursor: pointer;
+}
+@keyframes tour-fade {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes tour-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.85) translateY(12px);
+  }
+}
+@keyframes tour-bounce {
+  50% {
+    transform: translateY(8px);
+  }
+}
+@keyframes tour-bounce-up {
+  50% {
+    transform: translateY(-8px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tour-hero,
+  .tour-pup,
+  .tour-arrow {
+    animation: none;
+  }
+}
+@keyframes tour-glow {
+  50% {
+    box-shadow:
+      0 0 0 10px #f2b54444,
+      0 10px 24px #0005;
+  }
+}
+@keyframes tour-float {
+  50% {
+    transform: translateY(-5px);
+  }
+}
+.tour-line .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.8rem;
+  border-radius: 999px;
+  background: #f1e2bf;
+  border: 1px solid #dcc493;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+/* ---------- obiectivul curent (components/Goals.tsx) ---------- */
+
+.goal-card {
+  position: absolute;
+  z-index: 9;
+  top: 5.2rem;
+  left: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  width: min(360px, calc(100vw - 1.5rem));
+  padding: 0.65rem 0.75rem;
+  border-radius: 16px;
+  background: linear-gradient(115deg, #21382ff2, #16291fee);
+  border: 1px solid #d6b26b7a;
+  box-shadow: 0 6px 20px #0005;
+  color: #fff3d0;
+  animation: tour-fade 0.3s ease-out;
+}
+.goal-card.done {
+  border-color: #ffd56a;
+  box-shadow:
+    0 0 0 3px #ffd56a40,
+    0 6px 20px #0005;
+}
+.goal-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 14px;
+  background: #ffffff14;
+  font-size: 1.5rem;
+}
+.goal-card.done .goal-icon {
+  background: linear-gradient(#ffd56a, #f2b544);
+  animation: tour-glow 1.6s ease-in-out infinite;
+}
+.goal-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;
+  min-width: 0;
+}
+.goal-copy small {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #e5ce8b;
+}
+.goal-copy strong {
+  font-size: 0.95rem;
+  line-height: 1.15;
+}
+.goal-hint {
+  font-size: 0.75rem;
+  color: #c9c2a6;
+}
+.goal-reward {
+  align-self: flex-end;
+  opacity: 0.85;
+}
+.goal-claim {
+  padding: 0.45rem 1rem;
+}
+.goal-hide {
+  position: absolute;
+  top: 0.2rem;
+  right: 0.45rem;
+  border: 0;
+  background: none;
+  color: #c9c2a6;
+  font: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.goal-pill {
+  position: absolute;
+  z-index: 9;
+  top: 5.2rem;
+  left: 0.75rem;
+  display: grid;
+  place-items: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 14px;
+  border: 1px solid #d6b26b7a;
+  background: #1c3027f2;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+.goal-pill i {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ffd56a;
+  box-shadow: 0 0 8px #ffd56a;
+}
+.reward-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+.reward-chips > span {
+  padding: 0.05rem 0.45rem;
+  border-radius: 999px;
+  background: #ffffff14;
+  font-size: 0.75rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* ---------- fereastra de recompensă ---------- */
+
+.reward-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: radial-gradient(circle at 50% 45%, #0d171299, #0d1712dd);
+  animation: tour-fade 0.25s ease-out;
+}
+.reward-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+  width: min(380px, 100%);
+  padding: 1.6rem 1.4rem 1.4rem;
+  border-radius: 24px;
+  border: 1px solid #f2c14e88;
+  background: radial-gradient(ellipse at 50% 0%, #f2c14e33, transparent 60%), #111b16;
+  box-shadow: 0 30px 80px #000c;
+  color: #f4ead2;
+  text-align: center;
+  animation: tour-pop 0.4s cubic-bezier(0.2, 1.4, 0.4, 1);
+}
+.reward-burst {
+  display: grid;
+  place-items: center;
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 50%;
+  font-size: 3rem;
+  background: radial-gradient(circle, #f2c14e55, transparent 70%);
+  animation: tour-float 2.4s ease-in-out infinite;
+}
+.reward-card h2 {
+  font-size: 1.35rem;
+  color: #fff3d0;
+}
+.reward-lines {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.reward-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 5.2rem;
+  padding: 0.6rem 0.5rem;
+  border-radius: 16px;
+  background: #ffffff0d;
+  border: 1px solid #ffffff1a;
+  animation: tour-pop 0.4s cubic-bezier(0.2, 1.4, 0.4, 1) backwards;
+}
+.reward-line b {
+  font-size: 1.7rem;
+  font-weight: 400;
+}
+.reward-line strong {
+  font-size: 1.15rem;
+  color: #ffe08a;
+}
+.reward-line small {
+  font-size: 0.7rem;
+  color: #b9b39c;
+}
+.reward-ok {
+  min-width: 10rem;
+  justify-content: center;
+  padding: 0.65rem 1.4rem;
+  font-size: 1.05rem;
+}
+@media (max-width: 640px) {
+  .goal-card,
+  .goal-pill {
+    top: 4.4rem;
+    left: 0.5rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .goal-card.done .goal-icon,
+  .reward-burst,
+  .reward-line {
+    animation: none;
+  }
+}
+
+/* ---------- nivel nou: raze, scântei și o insignă care sare ---------- */
+.levelup {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: grid;
+  place-items: center;
+  pointer-events: auto;
+  background: radial-gradient(circle at 50% 46%, #0d171266, transparent 60%);
+  animation: levelup-out 2.2s ease-in forwards;
+}
+.levelup-rays {
+  position: absolute;
+  width: min(34rem, 90vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: repeating-conic-gradient(#f2c14e55 0 8deg, transparent 8deg 22deg);
+  mask: radial-gradient(circle, #000 18%, transparent 68%);
+  animation:
+    levelup-spin 6s linear infinite,
+    levelup-grow 0.5s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+.levelup-sparks {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+.levelup-sparks i {
+  position: absolute;
+  width: 0.55rem;
+  height: 0.55rem;
+  margin: -0.275rem;
+  border-radius: 50%;
+  background: #ffe08a;
+  box-shadow: 0 0 10px #f2c14e;
+  transform: rotate(var(--a)) translateY(0) scale(0);
+  animation: levelup-spark 0.9s cubic-bezier(0.1, 0.8, 0.3, 1) var(--d) forwards;
+}
+.levelup-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  animation: levelup-pop 0.55s cubic-bezier(0.2, 1.5, 0.4, 1) both;
+}
+.levelup-art {
+  display: grid;
+  place-items: center;
+  width: 9rem;
+  height: 9rem;
+  filter: drop-shadow(0 0 18px #f2c14e88);
+}
+.levelup-art img,
+.levelup-art svg,
+.levelup-art > span {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.levelup-icon {
+  font-size: 5rem;
+  line-height: 1;
+}
+.levelup-badge {
+  display: grid;
+  place-items: center;
+  width: 4.4rem;
+  height: 4.4rem;
+  margin-top: -1.6rem;
+  border-radius: 50%;
+  border: 3px solid #fff3d0;
+  background: radial-gradient(circle at 35% 30%, #ffe08a, #e0a12a 70%);
+  color: #3a2508;
+  box-shadow:
+    0 6px 18px #0008,
+    0 0 0 6px #f2c14e33;
+  line-height: 1;
+  animation: levelup-badge 0.6s cubic-bezier(0.2, 1.8, 0.4, 1) 0.2s both;
+}
+.levelup-badge small {
+  font-size: 0.6rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.levelup-badge strong {
+  font-size: 1.8rem;
+  font-weight: 900;
+}
+.levelup-card h2 {
+  margin: 0.2rem 0 0;
+  font-size: 1.35rem;
+  color: #fff3d0;
+  text-shadow: 0 2px 8px #000a;
+}
+.levelup-card p {
+  margin: 0;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background: #0d1712cc;
+  color: #ffe08a;
+  font-weight: 800;
+  animation: levelup-pop 0.4s ease-out 0.4s both;
+}
+@keyframes levelup-pop {
+  from {
+    transform: scale(0.3) translateY(20px);
+    opacity: 0;
+  }
+}
+@keyframes levelup-badge {
+  from {
+    transform: scale(0) rotate(-40deg);
+  }
+}
+@keyframes levelup-grow {
+  from {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+}
+@keyframes levelup-spin {
+  to {
+    rotate: 360deg;
+  }
+}
+@keyframes levelup-spark {
+  20% {
+    transform: rotate(var(--a)) translateY(-3rem) scale(1.2);
+  }
+  to {
+    transform: rotate(var(--a)) translateY(-11rem) scale(0);
+  }
+}
+@keyframes levelup-out {
+  0%,
+  80% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .levelup-rays,
+  .levelup-sparks,
+  .levelup-card,
+  .levelup-badge {
+    animation: none;
+  }
+}
+
+/* ---------- „Du-mă acolo” (components/nav.tsx): butonul căutat clipește câteva secunde ---------- */
+.spotlight {
+  position: relative;
+  z-index: 3;
+  animation: spotlight 1.2s ease-in-out 3;
+  outline: 3px solid #ffd56a;
+  outline-offset: 3px;
+}
+@keyframes spotlight {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 #ffd56a00;
+  }
+  50% {
+    box-shadow: 0 0 0 10px #ffd56a55;
+  }
+}
+.goal-go,
+.need-go {
+  justify-self: start;
+  align-self: flex-start;
+  margin-top: 0.3rem;
+  padding: 0.25rem 0.7rem;
+  border: 1px solid #ffd56a88;
+  border-radius: 999px;
+  background: #ffd56a1f;
+  color: #ffe08a;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+.goal-go:hover,
+.need-go:hover {
+  background: #ffd56a3a;
+}
+.goal-card.intro:not(.done) .goal-go {
+  animation: tour-glow 1.6s ease-in-out infinite;
+}
+
+/* ---------- rezumatul la revenire (components/Welcome.tsx) ---------- */
+.welcome-away {
+  margin: -0.4rem 0 0;
+  color: #b9b39c;
+  font-size: 0.9rem;
+}
+.welcome-list {
+  display: grid;
+  gap: 0.4rem;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+.welcome-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: 14px;
+  background: #ffffff0d;
+  border: 1px solid #ffffff1a;
+}
+.welcome-list b {
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+.welcome-list span {
+  flex: 1;
+  font-weight: 700;
+}
+.welcome-buttons {
+  display: flex;
+  gap: 0.6rem;
+}
+
+/* ---------- setări (components/Settings.tsx) ---------- */
+.hud-settings {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 12px;
+  border: 1px solid #ffffff33;
+  background: #16291fdd;
+  font-size: 1.15rem;
+  cursor: pointer;
+}
+/* fereastra de setări: settings.css */
+.button.danger {
+  background: #b0453f;
+  color: #fff;
+}
+.button.ghost.danger {
+  background: transparent;
+  color: #ffb4a8;
+  box-shadow: inset 0 0 0 1px #e0645a88;
+}
+
+/* ---------- ce găsești într-o lume blocată (components/WorldPreview.tsx) ---------- */
+.world-preview {
+  display: grid;
+  gap: 0.35rem;
+  width: 100%;
+}
+.world-preview-title {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #e5ce8b;
+}
+.world-preview ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.world-preview li {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.5rem 0.2rem 0.2rem;
+  border-radius: 999px;
+  background: #ffffff10;
+}
+.world-preview li > span {
+  display: grid;
+  line-height: 1.1;
+}
+.world-preview li strong {
+  font-size: 0.75rem;
+}
+.world-preview li small {
+  font-size: 0.65rem;
+  color: #b9b39c;
+}
+.world-preview.compact {
+  justify-items: center;
+}
+.world-preview.compact ul {
+  justify-content: center;
+}
+.world-preview-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.8rem;
+  margin: 0;
+  font-size: 0.75rem;
+  color: #c9c2a6;
+}
+@media (prefers-reduced-motion: reduce) {
+  .spotlight,
+  .goal-card.intro:not(.done) .goal-go {
+    animation: none;
+  }
+}
+
+/* ---------- „Ceva n-a mers” și raportul de probleme (app/ErrorBoundary.tsx) ---------- */
+.crash {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: radial-gradient(circle at 50% 35%, #21382f, #0d1712);
+  color: #f4ead2;
+}
+.crash-card {
+  display: grid;
+  justify-items: center;
+  gap: 0.9rem;
+  width: min(420px, 100%);
+  padding: 1.6rem 1.3rem;
+  border-radius: 24px;
+  border: 1px solid #f2c14e66;
+  background: #111b16;
+  box-shadow: 0 30px 80px #000c;
+  text-align: center;
+}
+.crash-icon {
+  font-size: 3rem;
+}
+.crash-card h1 {
+  font-size: 1.4rem;
+  color: #fff3d0;
+}
+.crash-card p {
+  margin: 0;
+  color: #c9c2a6;
+  line-height: 1.45;
+}
+.crash-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+}
+.report {
+  display: grid;
+  gap: 0.45rem;
+  width: 100%;
+  text-align: left;
+}
+.report textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: 1px solid #ffffff33;
+  background: #0d1712;
+  color: inherit;
+  font: inherit;
+  font-size: 0.85rem;
+  resize: vertical;
+}
+.report .button {
+  justify-self: start;
+}
+.report.compact .button {
+  justify-self: center;
+}
+.report-result {
+  color: #ffe08a;
+  font-size: 0.8rem;
+}

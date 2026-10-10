@@ -1,0 +1,96 @@
+parts-map.webp
+size: 1820,595
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+art
+  rotate: false
+  xy: 0, 0
+  size: 656, 595
+  orig: 656, 595
+  offset: 0, 0
+  index: -1
+nearFrontUpper
+  rotate: false
+  xy: 658, 0
+  size: 128, 200
+  orig: 128, 200
+  offset: 0, 0
+  index: -1
+nearHindUpper
+  rotate: false
+  xy: 788, 0
+  size: 116, 176
+  orig: 116, 176
+  offset: 0, 0
+  index: -1
+farFrontUpper
+  rotate: false
+  xy: 906, 0
+  size: 71, 98
+  orig: 71, 98
+  offset: 0, 0
+  index: -1
+nearHindLower
+  rotate: false
+  xy: 979, 0
+  size: 94, 98
+  orig: 94, 98
+  offset: 0, 0
+  index: -1
+nearFrontLower
+  rotate: false
+  xy: 1075, 0
+  size: 98, 98
+  orig: 98, 98
+  offset: 0, 0
+  index: -1
+farFrontLower
+  rotate: false
+  xy: 1175, 0
+  size: 110, 92
+  orig: 110, 92
+  offset: 0, 0
+  index: -1
+farHindUpper
+  rotate: false
+  xy: 1287, 0
+  size: 88, 86
+  orig: 88, 86
+  offset: 0, 0
+  index: -1
+farHindLower
+  rotate: false
+  xy: 1377, 0
+  size: 72, 80
+  orig: 72, 80
+  offset: 0, 0
+  index: -1
+nearHindFoot
+  rotate: false
+  xy: 1451, 0
+  size: 92, 60
+  orig: 92, 60
+  offset: 0, 0
+  index: -1
+farFrontFoot
+  rotate: false
+  xy: 1545, 0
+  size: 92, 50
+  orig: 92, 50
+  offset: 0, 0
+  index: -1
+nearFrontFoot
+  rotate: false
+  xy: 1639, 0
+  size: 98, 50
+  orig: 98, 50
+  offset: 0, 0
+  index: -1
+farHindFoot
+  rotate: false
+  xy: 1739, 0
+  size: 81, 39
+  orig: 81, 39
+  offset: 0, 0
+  index: -1

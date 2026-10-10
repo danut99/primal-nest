@@ -1,0 +1,26 @@
+parts-map.webp
+size: 1736,507
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+farWing
+  rotate: false
+  xy: 0, 0
+  size: 763, 507
+  orig: 763, 507
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 765, 0
+  size: 560, 338
+  orig: 560, 338
+  offset: 0, 0
+  index: -1
+nearWing
+  rotate: false
+  xy: 1327, 0
+  size: 409, 260
+  orig: 409, 260
+  offset: 0, 0
+  index: -1

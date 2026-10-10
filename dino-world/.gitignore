@@ -1,0 +1,11 @@
+node_modules/
+dist/
+*.log
+# Cheile API: doar locale.
+.env
+.env.*
+# Rezultate temporare (contact sheets, previzualizări).
+tmp/
+# Sursele de artă și imaginile brute generate: doar locale (nu ajung în build).
+art/
+output/

@@ -1,0 +1,54 @@
+parts.webp
+size: 3235,1011
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+art
+  rotate: false
+  xy: 0, 0
+  size: 1536, 1011
+  orig: 1536, 1011
+  offset: 0, 0
+  index: -1
+nearLegUpper
+  rotate: false
+  xy: 1538, 0
+  size: 279, 364
+  orig: 279, 364
+  offset: 0, 0
+  index: -1
+nearLegFoot
+  rotate: false
+  xy: 1819, 0
+  size: 265, 236
+  orig: 265, 236
+  offset: 0, 0
+  index: -1
+nearLegLower
+  rotate: false
+  xy: 2086, 0
+  size: 303, 232
+  orig: 303, 232
+  offset: 0, 0
+  index: -1
+farLegUpper
+  rotate: false
+  xy: 2391, 0
+  size: 156, 208
+  orig: 156, 208
+  offset: 0, 0
+  index: -1
+farLegFoot
+  rotate: false
+  xy: 2549, 0
+  size: 359, 166
+  orig: 359, 166
+  offset: 0, 0
+  index: -1
+farLegLower
+  rotate: false
+  xy: 2910, 0
+  size: 325, 160
+  orig: 325, 160
+  offset: 0, 0
+  index: -1

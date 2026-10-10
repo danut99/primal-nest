@@ -1,0 +1,314 @@
+{
+  "dinosaurs/previews/pyroceratops-pui.webp": {
+    "x": 107,
+    "y": 154,
+    "width": 298,
+    "height": 204,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/pyroceratops-juvenil.webp": {
+    "x": 65,
+    "y": 129,
+    "width": 383,
+    "height": 254,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/pyroceratops-adult.webp": {
+    "x": 22,
+    "y": 105,
+    "width": 468,
+    "height": 303,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/cineraptor-pui.webp": {
+    "x": 108,
+    "y": 148,
+    "width": 298,
+    "height": 217,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/cineraptor-juvenil.webp": {
+    "x": 67,
+    "y": 133,
+    "width": 378,
+    "height": 244,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/cineraptor-adult.webp": {
+    "x": 26,
+    "y": 104,
+    "width": 464,
+    "height": 304,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/pelagisaur-pui.webp": {
+    "x": 106,
+    "y": 175,
+    "width": 300,
+    "height": 158,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/pelagisaur-juvenil.webp": {
+    "x": 67,
+    "y": 165,
+    "width": 380,
+    "height": 173,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/pelagisaur-adult.webp": {
+    "x": 23,
+    "y": 140,
+    "width": 467,
+    "height": 219,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/fluviovenator-pui.webp": {
+    "x": 106,
+    "y": 154,
+    "width": 301,
+    "height": 204,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/fluviovenator-juvenil.webp": {
+    "x": 66,
+    "y": 142,
+    "width": 380,
+    "height": 230,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/fluviovenator-adult.webp": {
+    "x": 23,
+    "y": 112,
+    "width": 467,
+    "height": 288,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/ferrankyl-pui.webp": {
+    "x": 107,
+    "y": 184,
+    "width": 300,
+    "height": 144,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/ferrankyl-juvenil.webp": {
+    "x": 66,
+    "y": 180,
+    "width": 380,
+    "height": 155,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/ferrankyl-adult.webp": {
+    "x": 23,
+    "y": 157,
+    "width": 468,
+    "height": 201,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/terratitan-pui.webp": {
+    "x": 107,
+    "y": 125,
+    "width": 297,
+    "height": 262,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/terratitan-juvenil.webp": {
+    "x": 66,
+    "y": 80,
+    "width": 379,
+    "height": 350,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/terratitan-adult.webp": {
+    "x": 20,
+    "y": 44,
+    "width": 470,
+    "height": 426,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/silvosteg-pui.webp": {
+    "x": 106,
+    "y": 163,
+    "width": 300,
+    "height": 186,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/silvosteg-juvenil.webp": {
+    "x": 67,
+    "y": 141,
+    "width": 379,
+    "height": 230,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/silvosteg-adult.webp": {
+    "x": 20,
+    "y": 108,
+    "width": 472,
+    "height": 298,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/frondonychus-pui.webp": {
+    "x": 106,
+    "y": 106,
+    "width": 297,
+    "height": 299,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/frondonychus-juvenil.webp": {
+    "x": 72,
+    "y": 65,
+    "width": 368,
+    "height": 382,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/frondonychus-adult.webp": {
+    "x": 30,
+    "y": 22,
+    "width": 450,
+    "height": 471,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/cryolophus-pui.webp": {
+    "x": 106,
+    "y": 158,
+    "width": 301,
+    "height": 196,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/cryolophus-juvenil.webp": {
+    "x": 64,
+    "y": 128,
+    "width": 384,
+    "height": 256,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/cryolophus-adult.webp": {
+    "x": 20,
+    "y": 100,
+    "width": 471,
+    "height": 314,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/tundraceratops-pui.webp": {
+    "x": 106,
+    "y": 153,
+    "width": 301,
+    "height": 205,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/tundraceratops-juvenil.webp": {
+    "x": 64,
+    "y": 123,
+    "width": 381,
+    "height": 263,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/tundraceratops-adult.webp": {
+    "x": 21,
+    "y": 95,
+    "width": 467,
+    "height": 322,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/tempestopteryx-pui.webp": {
+    "x": 116,
+    "y": 161,
+    "width": 287,
+    "height": 182,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/tempestopteryx-juvenil.webp": {
+    "x": 70,
+    "y": 133,
+    "width": 373,
+    "height": 242,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/tempestopteryx-adult.webp": {
+    "x": 25,
+    "y": 102,
+    "width": 462,
+    "height": 271,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/fulgurodrome-pui.webp": {
+    "x": 107,
+    "y": 158,
+    "width": 298,
+    "height": 197,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/fulgurodrome-juvenil.webp": {
+    "x": 67,
+    "y": 132,
+    "width": 378,
+    "height": 249,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/fulgurodrome-adult.webp": {
+    "x": 23,
+    "y": 93,
+    "width": 466,
+    "height": 325,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/ignisaur-pui.webp": {
+    "x": 116,
+    "y": 144,
+    "width": 279,
+    "height": 226,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/ignisaur-juvenil.webp": {
+    "x": 69,
+    "y": 159,
+    "width": 375,
+    "height": 196,
+    "imageWidth": 512,
+    "imageHeight": 512
+  },
+  "dinosaurs/previews/ignisaur-adult.webp": {
+    "x": 24,
+    "y": 129,
+    "width": 466,
+    "height": 257,
+    "imageWidth": 512,
+    "imageHeight": 512
+  }
+}

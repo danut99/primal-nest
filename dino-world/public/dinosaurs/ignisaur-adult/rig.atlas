@@ -1,0 +1,12 @@
+rig.png
+size: 2048,836
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+body
+  rotate: false
+  xy: 4, 4
+  size: 1495, 827
+  orig: 1495, 827
+  offset: 0, 0
+  index: -1

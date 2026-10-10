@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ro">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#123524" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" href="/fonts/cinzel-latin-9.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/barlow-latin-1.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- insula principală e cel mai mare element de la pornire (LCP): o cerem înainte să ruleze JS-ul -->
+    <link rel="preload" href="/world/main-island-lite.webp" as="image" type="image/webp" fetchpriority="high" />
+    <!-- clădirile cu care începe orice joc (ecranul de încărcare le așteaptă) -->
+    <link rel="preload" href="/world/hatchery-building.webp" as="image" type="image/webp" />
+    <link rel="preload" href="/world/farm-building.webp" as="image" type="image/webp" />
+    <title>Dino World</title>
+    <!-- Ecranul de încărcare, vizibil din prima clipă (înainte de JS). WorldLoader îl preia identic și îl scoate. -->
+    <style>
+      #boot-loader {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        display: grid;
+        place-items: center;
+        padding: 16px;
+        background:
+          radial-gradient(ellipse at 50% 115%, rgba(233, 251, 255, 0.9) 0%, transparent 55%),
+          linear-gradient(#3f97d6 0%, #7cc6f5 55%, #c9ecfb 100%);
+        font-family: Barlow, system-ui, sans-serif;
+      }
+      #boot-loader .card {
+        width: min(420px, 100%);
+        padding: 28px 30px 22px;
+        border-radius: 22px;
+        text-align: center;
+        background: #233729;
+        border: 3px solid #d6b970;
+        box-shadow: 0 18px 40px rgba(10, 40, 60, 0.35);
+        color: #e9e7c9;
+      }
+      #boot-loader h1 {
+        margin: 0;
+        font: 700 clamp(1.8rem, 6vw, 2.4rem) Cinzel, Georgia, serif;
+        letter-spacing: 0.04em;
+        color: #ffe6a3;
+        text-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
+      }
+      #boot-loader p {
+        margin: 6px 0 18px;
+        font-size: 1rem;
+      }
+      #boot-loader .bar {
+        height: 14px;
+        border-radius: 999px;
+        background: #142219;
+        border: 2px solid #8a6b32;
+      }
+      #boot-loader small {
+        display: block;
+        margin-top: 8px;
+        font-size: 0.85rem;
+        color: #c9c3a3;
+      }
+      /* cache cald: fără ecran de încărcare, doar cerul până apare lumea */
+      html.warm #boot-loader {
+        display: none;
+      }
+      html.warm body {
+        background: linear-gradient(#3f97d6 0%, #7cc6f5 55%, #c9ecfb 100%);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="boot-loader" role="status">
+      <div class="card">
+        <h1>Dino World</h1>
+        <p>Se încarcă lumea…</p>
+        <div class="bar"></div>
+        <small>0%</small>
+      </div>
+    </div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // Ecranul de încărcare doar când fișierele nu sunt în cache: prima vizită sau o versiune nouă (scriptul
+      // principal își schimbă numele la fiecare build). WorldLoader ține minte versiunea după o încărcare completă.
+      try {
+        var scripts = document.querySelectorAll('script[type="module"][src]');
+        // după scriptul principal (în dev e în body; în build, Vite îl mută în head), fără `?t=…` din dev
+        var version = scripts.length ? scripts[scripts.length - 1].getAttribute('src').split('?')[0] : '';
+        if (version && localStorage.getItem('dino-world-warm') === version) document.documentElement.classList.add('warm');
+      } catch (e) {}
+    </script>
+  </body>
+</html>

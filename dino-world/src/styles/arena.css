@@ -1,0 +1,676 @@
+/* Arena (screens/ArenaPanel.tsx), în cadrul întunecat al clădirilor (panels.css, adventure.css).
+   Stânga: adversarii zilei și scena duelului. Dreapta: luptătorul și intrarea. */
+
+.arena {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem 1.3rem 1.2rem;
+}
+.arena-top {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.arena-tabs {
+  display: flex;
+  gap: 0.3rem;
+  padding: 0.25rem;
+  margin-right: auto;
+  border-radius: 999px;
+  background: #ffffff0d;
+  border: 1px solid var(--edge);
+}
+.arena-tabs button {
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 0.45rem 1rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.arena-tabs button.on {
+  background: linear-gradient(#ffd56a, #f2b544);
+  color: #3a2400;
+}
+.arena-pill {
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  background: #ffffff0d;
+  border: 1px solid var(--edge);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.arena-pill.medals {
+  background: #f2c14e1f;
+  border-color: #f2c14e55;
+  color: #ffe08a;
+  font-size: 1rem;
+}
+.arena-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 1rem;
+  align-items: start;
+}
+.arena-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  min-width: 0;
+}
+.arena-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 1rem;
+  border-radius: 20px;
+  background: var(--card);
+  border: 1px solid var(--edge);
+}
+.arena-heading {
+  margin: 0;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+}
+
+/* adversarii zilei */
+.duel-challenges {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+.duel-challenges button {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+  padding: 0.7rem 0.8rem;
+  border-radius: 16px;
+  border: 1px solid var(--edge);
+  background:
+    radial-gradient(ellipse at 15% 50%, color-mix(in srgb, var(--el) 28%, transparent), transparent 60%), var(--card);
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    transform 0.15s;
+}
+.duel-challenges button:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+.duel-challenges button.selected {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px #f2c14e33;
+}
+.duel-challenges button.claimed {
+  opacity: 0.55;
+}
+.duel-challenges button:disabled {
+  cursor: default;
+}
+.duel-challenge-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--el) 35%, #111b16);
+  border: 1px solid color-mix(in srgb, var(--el) 70%, #fff);
+  font-size: 1.3rem;
+}
+.duel-challenge-copy {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+.duel-challenge-copy strong {
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+}
+.duel-challenges .medium .duel-challenge-copy strong {
+  color: #9fd0ff;
+}
+.duel-challenges .hard .duel-challenge-copy strong {
+  color: #ffb39a;
+}
+.duel-challenge-copy small {
+  color: var(--ink-2);
+  font-size: 0.78rem;
+}
+.duel-challenges button > b {
+  font-size: 0.85rem;
+  color: #ffe08a;
+  white-space: nowrap;
+}
+
+/* scena */
+.duel-stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 70px minmax(0, 1fr);
+  gap: 0.5rem;
+  padding: 1rem 1.2rem 3.2rem;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid #d0703e55;
+  background:
+    radial-gradient(ellipse at 25% 75%, #4fb3ff1c, transparent 45%),
+    radial-gradient(ellipse at 75% 75%, #ff6b5a1f, transparent 45%),
+    radial-gradient(ellipse at 50% 120%, #d0703e44, transparent 60%), linear-gradient(180deg, #1f1a16, #12100d);
+  box-shadow: inset 0 0 60px #0007;
+}
+.duel-stage.victory {
+  border-color: #8be36b88;
+}
+.duel-stage.defeat {
+  border-color: #ff6b5a88;
+}
+.duel-fighter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  min-width: 0;
+}
+.duel-fighter-tag {
+  padding: 0.15rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: #4fb3ff26;
+  color: #9fd0ff;
+}
+.duel-fighter.enemy .duel-fighter-tag {
+  background: #ff6b5a26;
+  color: #ffb39a;
+}
+.duel-portrait {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: 190px;
+  padding-bottom: 8px;
+}
+.duel-pedestal {
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  bottom: 0;
+  height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, #000c 0%, #0007 45%, transparent 72%);
+}
+.duel-portrait .dino-thumb {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.duel-portrait .dino-thumb :is(img, svg) {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 180px;
+  filter: drop-shadow(0 6px 6px #0008);
+}
+.duel-fighter.enemy .duel-portrait .dino-thumb {
+  transform: scaleX(-1);
+}
+.duel-empty {
+  position: relative;
+  align-self: center;
+  font-family: 'Cinzel', serif;
+  font-size: 3.5rem;
+  color: #ffffff30;
+}
+.duel-fighter > strong {
+  font-family: 'Cinzel', serif;
+  font-size: 1.15rem;
+  text-align: center;
+  color: #fff3d0;
+}
+.duel-fighter-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.85rem;
+}
+.duel-fighter-meta b {
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  background: #f2c14e26;
+  color: #ffe08a;
+}
+.duel-health {
+  position: relative;
+  width: 90%;
+  height: 16px;
+  border-radius: 999px;
+  background: #0008;
+  border: 1px solid #ffffff1a;
+  overflow: hidden;
+}
+.duel-health i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #4f9a3a, #9be36b);
+  transition: width 0.3s;
+}
+.duel-fighter.enemy .duel-health i {
+  background: linear-gradient(90deg, #c2453a, #ff8a6b);
+}
+.duel-health small {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 1px 2px #000;
+}
+.duel-ability {
+  font-size: 0.78rem;
+  color: #d9b8ff;
+}
+.duel-versus {
+  align-self: center;
+  display: grid;
+  place-items: center;
+}
+.duel-versus b {
+  display: grid;
+  place-items: center;
+  width: 3.4rem;
+  height: 3.4rem;
+  border-radius: 50%;
+  border: 2px solid #f2c14e88;
+  background: radial-gradient(circle, #3a2a14, #16110b);
+  font-family: 'Cinzel', serif;
+  font-size: 1.3rem;
+  color: #ffd56a;
+  box-shadow: 0 0 24px #f2c14e44;
+}
+.duel-stage.victory .duel-versus b {
+  color: #9be36b;
+  border-color: #9be36b88;
+}
+.duel-stage.defeat .duel-versus b {
+  color: #ff8a6b;
+  border-color: #ff8a6b88;
+}
+.duel-commentary {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 0.9rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  background: #0007;
+  text-align: center;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #ead9b4;
+}
+.duel-commentary.good {
+  color: #9be36b;
+}
+.duel-commentary.bad {
+  color: #ff8a6b;
+}
+.duel-fighter.attacking.player .duel-portrait .dino-thumb {
+  animation: duel-lunge-player 0.5s ease-out;
+}
+.duel-fighter.attacking.enemy .duel-portrait .dino-thumb {
+  animation: duel-lunge-enemy 0.5s ease-out;
+}
+@keyframes duel-lunge-player {
+  40% {
+    transform: translateX(24px) rotate(-3deg);
+  }
+}
+@keyframes duel-lunge-enemy {
+  40% {
+    transform: scaleX(-1) translateX(24px) rotate(-3deg);
+  }
+}
+
+/* coloana din dreapta */
+.duel-roster {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(74px, 1fr));
+  gap: 0.5rem;
+  max-height: 250px;
+  overflow-y: auto;
+  padding: 4px;
+}
+.duel-roster button {
+  position: relative;
+  aspect-ratio: 1;
+  padding: 0.4rem;
+  border-radius: 16px;
+  border: 2px solid color-mix(in srgb, var(--rarity, #ffffff) 40%, transparent);
+  background: radial-gradient(circle at 50% 60%, color-mix(in srgb, var(--el) 40%, #1c2a23), #141f19 85%);
+  cursor: pointer;
+  transition:
+    transform 0.15s,
+    border-color 0.15s;
+}
+.duel-roster button:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+.duel-roster button.selected {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px #f2c14e40;
+}
+.duel-roster button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.duel-roster .dino-thumb {
+  width: 100%;
+  height: 100%;
+}
+.duel-roster-level {
+  position: absolute;
+  right: -5px;
+  bottom: -5px;
+  display: grid;
+  place-items: center;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 999px;
+  border: 2px solid var(--gold);
+  background: #111b16;
+  color: #ffe9a8;
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+.duel-roster-busy {
+  position: absolute;
+  top: 3px;
+  left: 5px;
+  font-size: 0.9rem;
+}
+.duel-ability-summary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.8rem;
+  border-radius: 14px;
+  background: #c77dff1a;
+  border: 1px solid #c77dff40;
+}
+.duel-ability-summary > span {
+  font-size: 1.2rem;
+  color: #d9b8ff;
+}
+.duel-ability-summary strong {
+  flex: 1;
+  font-size: 0.9rem;
+}
+.duel-ability-summary small {
+  font-size: 0.75rem;
+  color: #d9b8ff;
+}
+.duel-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--edge);
+}
+.arena-rewards {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.arena-rewards > span {
+  padding: 0.3rem 0.85rem;
+  border-radius: 999px;
+  background: #f2c14e1a;
+  border: 1px solid #f2c14e40;
+  color: #ffe08a;
+  font-weight: 800;
+  font-size: 1rem;
+}
+.button.arena-primary {
+  justify-content: space-between;
+  gap: 0.8rem;
+  padding: 0.7rem 0.7rem 0.7rem 1.3rem;
+  border-radius: 14px;
+  font-size: 1.05rem;
+}
+.arena-cost {
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  background: #0000001f;
+  font-size: 0.9rem;
+}
+.duel-hint {
+  margin: 0;
+  text-align: center;
+  font-size: 0.82rem;
+  color: #ffb39a;
+}
+.arena-ghost {
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid #ffffff26;
+  background: transparent;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.duel-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.6rem 0;
+  text-align: center;
+}
+.duel-result .progress {
+  width: 100%;
+  height: 8px;
+  background: #0006;
+}
+.duel-result-icon {
+  font-size: 3rem;
+}
+.duel-result strong {
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
+}
+.duel-result small {
+  color: var(--ink-2);
+}
+.duel-result .arena-primary {
+  align-self: stretch;
+  justify-content: center;
+}
+
+/* abilitate */
+.duel-training-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: center;
+  padding: 1.4rem;
+  border-radius: 22px;
+  background: radial-gradient(ellipse at 25% 60%, #c77dff2e, transparent 60%), var(--card);
+  border: 1px solid #c77dff40;
+}
+.duel-training-art {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 8px;
+}
+.duel-training-art .dino-thumb {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.duel-training-art .dino-thumb :is(img, svg) {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 240px;
+}
+.duel-training-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.duel-training-copy h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #e6ccff;
+}
+.duel-training-copy p {
+  margin: 0;
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+.arena-select {
+  font: inherit;
+  padding: 0.5rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid #ffffff26;
+  background: #ffffff0d;
+  color: var(--ink);
+}
+.arena-select option {
+  color: #222;
+}
+.duel-training-ranks {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.duel-training-ranks span {
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  border: 1px solid #ffffff26;
+  background: #ffffff0d;
+  color: var(--ink-2);
+  font-weight: 700;
+}
+.duel-training-ranks span.done {
+  border-color: #c77dff;
+  background: #c77dff40;
+  color: #f1e2ff;
+}
+.duel-training-ranks b {
+  margin-left: 0.3rem;
+  color: #d9b8ff;
+}
+
+/* ajutor */
+.duel-elements-help {
+  font-size: 0.85rem;
+  color: var(--ink-2);
+}
+.duel-elements-help summary {
+  cursor: pointer;
+  width: max-content;
+}
+.duel-elements-help > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.6rem;
+}
+.duel-elements-help i {
+  margin: 0 0.25rem;
+  font-style: normal;
+}
+.duel-elements-help .element-badge {
+  color: var(--ink);
+}
+
+@media (max-width: 900px) {
+  .arena-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .arena {
+    padding: 0.8rem;
+  }
+  .duel-challenges button {
+    flex-direction: column;
+    text-align: center;
+    padding: 0.6rem 0.4rem;
+  }
+  .duel-stage {
+    grid-template-columns: minmax(0, 1fr) 44px minmax(0, 1fr);
+    padding: 0.8rem 0.6rem 3.2rem;
+  }
+  .duel-portrait {
+    height: 130px;
+  }
+  .duel-versus b {
+    width: 2.6rem;
+    height: 2.6rem;
+    font-size: 1rem;
+  }
+  .duel-fighter > strong {
+    font-size: 0.9rem;
+  }
+  .duel-training-card {
+    grid-template-columns: 1fr;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .duel-fighter .dino-thumb {
+    animation: none !important;
+  }
+  .duel-health i {
+    transition: none;
+  }
+}
+
+/* sub „Îmbunătățește”: cât lipsește și de unde se iau medaliile */
+.duel-training-need {
+  display: grid;
+  gap: 0.15rem;
+  margin: 0.4rem 0 0;
+  padding: 0.45rem 0.6rem;
+  border-radius: 12px;
+  background: #b0453f22;
+  box-shadow: inset 3px 0 0 #e0645a;
+}
+.duel-training-need strong {
+  color: #ffb4a8;
+  font-size: 0.85rem;
+}
+.duel-training-need small {
+  color: var(--ink-2);
+  font-size: 0.75rem;
+}
